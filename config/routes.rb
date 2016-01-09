@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  mount Headbanger::Web::Engine => '/'
+  # WebApp will depend on other necessary components
+  mount Headbanger::WebApp::Engine => '/'
 end
