@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  mount WebApp::Engine => '/'
+
+  mount Graph::Engine => "/graph"
 end

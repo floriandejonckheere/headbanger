@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 .byebug_history
+
+# Private files
+config/mailer.*yml

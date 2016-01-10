@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Application components
-path 'headbanger' do
+path 'components' do
   gem 'web_app'
 end
 

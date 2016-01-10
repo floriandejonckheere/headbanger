@@ -1,0 +1,22 @@
+default: &default
+  default_host_url: localhost:3000
+  default_sender: myapp <myapp@mydomain.com>
+  host: localhost
+  port: 587
+  domain: mydomain.com
+  username: myapp@mydomain.com
+  password: mypassword
+  authentication: plain
+  starttls: true
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+  exception_sender: Notification <notification@mydomain.com>
+  exception_recipients:
+    - admin@mydomain.com
+
+test:
+  <<: *default

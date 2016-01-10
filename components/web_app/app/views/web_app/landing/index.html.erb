@@ -1,0 +1,60 @@
+<div class="cover">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-lg-8 col-lg-offset-2">
+        <h1>headbanger</h1>
+        <h4><%= t 'landing.tagline' %></h4>
+        <div>
+          <a href="#" class="btn btn-secondary"><%= t :sign_up %></a>
+          <span class="p-a-1"><%= t :or %></span>
+          <a href="#"><%= t :sign_in %></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="cover-content">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2">
+      <h4><%= t 'landing.heading_one' %></h4>
+      <p>
+        <%= t 'landing.text_one' %>
+      </p>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-0 col-lg-4">
+      <img src="http://placehold.it/350x200" class="img-responsive" alt="Placeholder">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2">
+      <h4><%= t 'landing.heading_two' %></h4>
+      <p>
+        <%= t 'landing.text_two' %>
+      </p>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-0 col-lg-4">
+      <img src="http://placehold.it/350x200" class="img-responsive" alt="Placeholder">
+    </div>
+  </div>
+</main>
+
+<div class="cover-footer">
+  <div class="container">
+    <div class="row">
+      <div class="cover-text">
+        <h1><%= t 'landing.footer' %></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<footer>
+  <ul>
+    <li><%= link_to t(:home), "//#{ActionMailer::Base.default_url_options[:host]}" %></li>
+    <li><%= link_to t(:about), '#' %></li>
+    <li><%= link_to t(:contact), '#' %></li>
+  </ul>
+  <div class="copyright text-muted small">&copy; Florian Dejonckheere 2015</div>
+</footer>
