@@ -1,4 +1,4 @@
-require "graph/engine"
+require 'graph/engine'
 
 module Graph
 end
