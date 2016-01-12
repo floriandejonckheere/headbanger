@@ -21,7 +21,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap', '~> 4.0.0.alpha3'
   s.add_dependency 'font-awesome-sass', '~> 4.4.0'
 
-  s.add_dependency 'api'
-
   s.add_development_dependency 'sqlite3'
 end

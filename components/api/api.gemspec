@@ -5,7 +5,7 @@ require 'api/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'API'
+  s.name        = 'api'
   s.version     = API::VERSION
   s.authors     = ['Florian Dejonckheere']
   s.email       = ['florian@floriandejonckheere.be']
@@ -18,8 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir['test/**/*']
 
   s.add_dependency 'rails', '~> 4.2.5'
-
-  s.add_dependency 'graph'
+  s.add_dependency 'grape'
 
   s.add_development_dependency 'sqlite3'
 end
