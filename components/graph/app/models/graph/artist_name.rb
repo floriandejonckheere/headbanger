@@ -9,7 +9,7 @@ module Graph
 
     has_one :in,
                 :artist,
-                :model_class => :Artist,
-                :rel_class => :alias_of
+                :type => :alias_of,
+                :model_class => 'Graph::Artist'
   end
 end

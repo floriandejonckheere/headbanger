@@ -2,11 +2,11 @@ module Graph
   class Genre
     include Neo4j::ActiveNode
 
-    property :name,         :index => :exact
+    property :name,           :constraint => :unique
 
-    validates :name,        :presence => true
+    validates :name,          :presence => true
 
-    has_many :in,   :supergenres, :origin => :genre
-    has_many :out,  :subgenres,   :origin => :genre
+    has_many :in,   :subgenres,   :origin => 'Graph::Genre'
+    has_many :out,  :subgenres,   :origin => 'Graph::Genre'
   end
 end

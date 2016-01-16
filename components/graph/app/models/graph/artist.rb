@@ -11,8 +11,13 @@ module Graph
 
     has_many :out,
                   :artist_names,
-                  :model_class => :ArtistName,
-                  :rel_class => :alias_of,
+                  :type => :artist_name_of,
+                  :model_class => 'Graph::ArtistName',
                   :dependent => :destroy
+
+    has_many :out,
+                  :groups,
+                  :type => :member_of,
+                  :model_class => 'Graph::Group'
   end
 end

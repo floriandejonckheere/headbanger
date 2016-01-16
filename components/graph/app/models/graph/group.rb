@@ -2,8 +2,8 @@ module Graph
   class Group
     include Neo4j::ActiveNode
 
-    property :gid,          :constraint => :unique
-    property :date_formed,  :type => Date
+    property :gid,            :constraint => :unique
+    property :date_formed,    :type => Date
 
     validates :gid,
                   :presence => true,
@@ -11,8 +11,18 @@ module Graph
 
     has_many :out,
                   :group_names,
-                  :model_class => :GroupName,
-                  :rel_class => :known_as,
+                  :type => :artist_name_of,
+                  :model_class => 'Graph::GroupName',
                   :dependent => :destroy
+
+    has_many :in,
+                  :artists,
+                  :type => :member_of,
+                  :model_class => 'Graph::Artist'
+
+    has_many :out,
+                  :lyrical_themes,
+                  :type => :sings_about,
+                  :model_class => 'Graph::LyricalTheme'
   end
 end

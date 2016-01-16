@@ -19,4 +19,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 4.2.5'
   s.add_dependency 'neo4j', '~> 6.1.1'
+  s.add_dependency 'factory_girl_rails', '~> 4.5.0'
 end

@@ -19,4 +19,3 @@
 
 # Private files
 config/mailer.*yml
-config/neo4j.*yml
