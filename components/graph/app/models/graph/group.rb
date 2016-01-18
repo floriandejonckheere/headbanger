@@ -24,5 +24,10 @@ module Graph
                   :lyrical_themes,
                   :type => :sings_about,
                   :model_class => 'Graph::LyricalTheme'
+
+    has_one :out,
+                  :region,
+                  :type => :based_in,
+                  :model_class => ['Graph::Country', 'Graph::City']
   end
 end
