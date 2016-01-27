@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  mount WebApp::Engine => '/'
-  mount API::Engine => '/api'
-  mount Graph::Engine => '/graph'
+  devise_for :users, :class_name => 'User'
+
+  mount API::Base => '/'
+
+  root 'landing#index'
 end

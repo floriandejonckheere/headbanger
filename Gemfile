@@ -1,12 +1,19 @@
 source 'https://rubygems.org'
 
-# Application components
-path 'components' do
-  gem 'web_app'
-  gem 'api'
-  gem 'graph'
-end
+## API ##
+gem 'grape'
 
+## User management ##
+gem 'devise', '~> 3.5.4'
+gem 'simple_token_authentication', '~> 1.0'
+
+## Graph store ##
+gem 'neo4j', '~> 6.1.1'
+gem 'factory_girl_rails', '~> 4.5.0'
+
+## Web frontend ##
+gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'font-awesome-sass', '~> 4.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
