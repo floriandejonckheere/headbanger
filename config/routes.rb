@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   mount API::Base => '/'
 
   root 'landing#index'
+
+  get '/app', :to => 'app#index'
 end

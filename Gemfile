@@ -6,6 +6,7 @@ gem 'grape'
 ## User management ##
 gem 'devise', '~> 3.5.4'
 gem 'simple_token_authentication', '~> 1.0'
+gem 'angular_rails_csrf'
 
 ## Graph store ##
 gem 'neo4j', '~> 6.1.1'
@@ -14,6 +15,7 @@ gem 'neo4j', '~> 6.1.1'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'font-awesome-sass', '~> 4.4.0'
 gem 'bower-rails', '~> 0.10.0'
+gem 'listen', '~> 3.0' # for config/initializers/angular_templates.rb
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

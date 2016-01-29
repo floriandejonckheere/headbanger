@@ -1,20 +1,20 @@
-<div class="cover">
+<div class="landing cover">
   <div class="container">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 col-lg-8 col-lg-offset-2">
         <h1>headbanger</h1>
         <h4><%= t 'landing.tagline' %></h4>
         <div>
-          <a href="#" class="btn btn-secondary"><%= t :sign_up %></a>
+          <%= link_to t(:sign_up), app_path << '/#/signup', :class => 'btn btn-secondary' %>
           <span class="p-a-1"><%= t :or %></span>
-          <a href="#"><%= t :sign_in %></a>
+          <%= link_to t(:sign_in), app_path << '/#/signin' %>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<main class="cover-content">
+<main class="landing cover-content">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2">
       <h4><%= t 'landing.heading_one' %></h4>
@@ -39,7 +39,7 @@
   </div>
 </main>
 
-<div class="cover-footer">
+<div class="landing cover-footer">
   <div class="container">
     <div class="row">
       <div class="cover-text">
@@ -50,7 +50,7 @@
 </div>
 
 
-<footer>
+<footer class="landing">
   <ul>
     <li><%= link_to t(:home), "//#{ActionMailer::Base.default_url_options[:host]}" %></li>
     <li><%= link_to t(:about), '#' %></li>

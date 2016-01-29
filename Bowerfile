@@ -1,4 +1,6 @@
 asset 'angular'
+asset 'angular-devise'
+asset 'angular-route'
 
 asset 'bootstrap', '4.0.0-alpha.2'
 asset 'fontawesome'

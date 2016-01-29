@@ -1,0 +1,17 @@
+(function(){
+  'use strict';
+
+  angular.module('templates', []).run(['$templateCache', function($templateCache) {
+    <%
+      environment.context_class.instance_eval { include ActionView::Helpers::JavaScriptHelper }
+      app_root  = File.expand_path('../../', __FILE__)
+      templates = File.join(app_root, %w{templates ** *.html})
+
+      Dir.glob(templates).each do |f|
+        key  = f.gsub(%r(^#{app_root}/templates/), '')
+        html = File.read(f).squish
+    %>
+      $templateCache.put("<%= key %>", "<%= escape_javascript(html) %>");
+  <% end %>
+  }]);
+}());

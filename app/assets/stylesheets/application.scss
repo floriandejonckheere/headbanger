@@ -3,7 +3,7 @@
 
 @import "bootstrap";
 
-
+@import "utilities";
 @import "landing";
 
 html,
@@ -23,13 +23,6 @@ h5,
 h6 {
   @extend .m-b-2;
   font-weight: 600;
-}
-
-.flexbox {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
 }
 
 .wrapper {
