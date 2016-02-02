@@ -190,6 +190,8 @@ GEM
     os (0.9.6)
     pg (0.18.4)
     puma (2.15.3)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -325,6 +327,7 @@ DEPENDENCIES
   neo4j (~> 6.1.1)
   pg
   puma
+  quiet_assets
   rails (= 4.2.5)
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
