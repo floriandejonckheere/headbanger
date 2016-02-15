@@ -52,7 +52,7 @@ group :development, :test do
   # Ignore asset logging
   gem 'quiet_assets'
 
-  gem 'rspec'
+  gem 'rspec', '~> 3.4.0'
   gem 'rspec-rails', '~> 3.0'
   gem 'database_cleaner', '~> 1.5.1'
   gem 'fabrication'

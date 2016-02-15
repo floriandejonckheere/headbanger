@@ -317,7 +317,7 @@ DEPENDENCIES
   puma
   quiet_assets
   rails (= 4.2.5)
-  rspec
+  rspec (~> 3.4.0)
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
