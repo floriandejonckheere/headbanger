@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 describe User do
-  it { puts 'email'; is_expected.to respond_to :email }
-  it { puts 'name'; is_expected.to respond_to :name }
-  it { puts 'admin'; is_expected.to respond_to :is_admin? }
+  it { is_expected.to respond_to :email }
+  it { is_expected.to respond_to :name }
+  it { is_expected.to respond_to :is_admin? }
+
+  describe Fabricate(:user, :admin => true) do
+    it { expect(subject.is_admin?).to be true }
+  end
+
 end
