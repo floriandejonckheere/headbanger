@@ -76,7 +76,4 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-upload-config'
   gem 'capistrano3-puma'
-
-  # Annotate models
-  gem 'annotate'
 end

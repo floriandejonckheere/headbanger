@@ -41,9 +41,6 @@ GEM
       tzinfo (~> 1.1)
     angular_rails_csrf (1.0.4)
       rails (>= 3, < 5)
-    annotate (2.7.0)
-      activerecord (>= 3.2, < 6.0)
-      rake (~> 10.4)
     arel (6.0.3)
     autoprefixer-rails (6.3.1)
       execjs
@@ -294,7 +291,6 @@ PLATFORMS
 
 DEPENDENCIES
   angular_rails_csrf
-  annotate
   bootstrap (~> 4.0.0.alpha3)
   bower-rails (~> 0.10.0)
   byebug
