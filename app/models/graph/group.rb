@@ -11,7 +11,7 @@ module Graph
 
     has_many :out,
                   :group_names,
-                  :type => :artist_name_of,
+                  :type => :group_known_as,
                   :model_class => 'Graph::GroupName',
                   :dependent => :destroy
 

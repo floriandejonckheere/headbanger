@@ -2,6 +2,8 @@ module Graph
   class KnownAs
     include Neo4j::ActiveRel
     property :preference,   :type => Float,     :default => 1
+    property :start_date,   :type => Date
+    property :end_date,     :type => Date
 
     validates :preference,
                   :presence => true

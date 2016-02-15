@@ -2,7 +2,7 @@ module Graph
   class City
     include Neo4j::ActiveNode
 
-    property :city
+    property :name
 
     has_one :out,
                   :country,

@@ -9,7 +9,7 @@ module Graph
 
     has_one :in,
                 :group,
-                :type => :known_as,
+                :type => :group_known_as,
                 :model_class => 'Graph::Group'
   end
 end
