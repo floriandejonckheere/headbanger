@@ -7,7 +7,7 @@ module Graph
 
     validates :gid,
                   :presence => true,
-                  :format => { :with => /\A[a-z0-0]{8}-[a-z0-0]{4}-[a-z0-0]{4}-[a-z0-0]{4}-[a-z0-0]{12}\Z/ }
+                  :format => { :with => /\A[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}\Z/ }
 
     has_many :out,
                   :artist_names,

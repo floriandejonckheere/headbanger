@@ -55,7 +55,7 @@ group :development, :test do
   gem 'rspec', '~> 3.4.0'
   gem 'rspec-rails', '~> 3.0'
   gem 'database_cleaner', '~> 1.5.1'
-  gem 'fabrication'
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
 end
 

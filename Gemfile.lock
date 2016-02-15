@@ -95,7 +95,11 @@ GEM
     equalizer (0.0.11)
     erubis (2.7.0)
     execjs (2.6.0)
-    fabrication (2.14.1)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     faker (1.6.1)
       i18n (~> 0.5)
     faraday (0.9.2)
@@ -302,7 +306,7 @@ DEPENDENCIES
   capistrano3-puma
   database_cleaner (~> 1.5.1)
   devise (~> 3.5.4)
-  fabrication
+  factory_girl_rails (~> 4.0)
   faker
   font-awesome-sass (~> 4.4.0)
   grape
