@@ -52,11 +52,11 @@ group :development, :test do
   # Ignore asset logging
   gem 'quiet_assets'
 
+  gem 'rspec'
   gem 'rspec-rails', '~> 3.0'
-  gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'database_cleaner'
-  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'database_cleaner', '~> 1.5.1'
+  gem 'fabrication'
+  gem 'faker'
 end
 
 group :development do
@@ -76,4 +76,7 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-upload-config'
   gem 'capistrano3-puma'
+
+  # Annotate models
+  gem 'annotate'
 end
