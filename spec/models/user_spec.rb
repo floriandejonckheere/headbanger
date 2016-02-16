@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'factory_girl'
 
 describe User do
   describe FactoryGirl.build(:user) do
@@ -17,5 +16,4 @@ describe User do
   describe FactoryGirl.build(:user, :admin => true) do
     it { expect(subject.is_admin?).to be true }
   end
-
 end

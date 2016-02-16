@@ -5,7 +5,8 @@ module Graph
     property :name,       :index => :exact
 
     validates :name,
-                  :presence => true
+                  :presence => true,
+                  :length => { :in => 3..64 }
 
     has_one :in,
                 :artist,
