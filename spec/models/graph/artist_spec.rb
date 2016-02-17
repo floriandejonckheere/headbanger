@@ -10,8 +10,7 @@ describe Graph::Artist do
     it { is_expected.not_to be_valid }
   end
 
-  #~ describe FactoryGirl.create(:artist, :name_count => 2) do
-    #~ it { byebug }
-    #~ it { expect(subject.artist_names.count).to eq 2 }
-  #~ end
+  describe FactoryGirl.create(:artist, :name_count => 2) do
+    it { expect(subject.artist_names.count).to eq 2 }
+  end
 end

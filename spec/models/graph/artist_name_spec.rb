@@ -21,9 +21,4 @@ describe Graph::ArtistName do
   describe FactoryGirl.build(:artist_name, :name => '12345678901234567890123456789012345678901234567890123456789012345') do
     it { is_expected.not_to be_valid }
   end
-
-  # associated to artist
-  describe FactoryGirl.build(:artist_name) do
-      it { expect(subject.artist).not_to be_nil }
-  end
 end

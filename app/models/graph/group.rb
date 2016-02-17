@@ -26,8 +26,8 @@ module Graph
                   :model_class => 'Graph::LyricalTheme'
 
     has_one :out,
-                  :region,
+                  :country,
                   :type => :based_in,
-                  :model_class => ['Graph::Country', 'Graph::City']
+                  :model_class => 'Graph::Country'
   end
 end
