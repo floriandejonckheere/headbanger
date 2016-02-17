@@ -1,0 +1,32 @@
+black:
+  name: Black Metal
+death:
+  name: Death Metal
+doom:
+  name: Doom Metal
+electronic:
+  name: Electronic Metal
+avantgarde:
+  name: Avant-garde Metal
+folk:
+  name: Folk Metal
+gothic:
+  name: Gothic Metal
+grind:
+  name: Grind Metal
+groove:
+  name: Groove Metal
+heavy:
+  name: Heavy Metal
+metalcore:
+  name: Metalcore
+power:
+  name: Power Metal
+prog:
+  name: Progressive Metal
+speed:
+  name: Speed Metal
+orchestral:
+  name: Orchestral Metal
+thrash:
+  name: Thrash Metal
