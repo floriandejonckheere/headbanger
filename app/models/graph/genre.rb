@@ -6,7 +6,14 @@ module Graph
 
     validates :name,          :presence => true
 
-    has_many :in,   :subgenres,   :origin => 'Graph::Genre'
-    has_many :out,  :subgenres,   :origin => 'Graph::Genre'
+    has_many :in,
+                  :subgenres,
+                  :type => :subgenre_of,
+                  :model_class => 'Graph::Genre'
+
+    has_many :out,
+                  :supergenres,
+                  :type => :subgenre_of,
+                  :model_class => 'Graph::Genre'
   end
 end
