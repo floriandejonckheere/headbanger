@@ -1,8 +1,6 @@
-require 'grape'
-
 module API
 module V1
-  class Base < ::Grape::API
+  class Base < Grape::API
     version 'v1', using: :path
     format :json
 
@@ -16,13 +14,13 @@ module V1
       error!(e.message, 500)
     end
 
-    get :version do
-      'v1'
+    get '/' do
+      {
+        :version => :v1
+      }
     end
 
-    route :any, '*path' do
-      error!('Not Found', 404)
-    end
+
   end
 end
 end

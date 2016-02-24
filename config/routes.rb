@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :class_name => 'User'
 
-  mount API::Base => '/'
+  mount API::Base => '/api'
 
   root 'landing#index'
 
