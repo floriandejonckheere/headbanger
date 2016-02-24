@@ -29,5 +29,10 @@ module Graph
                   :country,
                   :type => :based_in,
                   :model_class => 'Graph::Country'
+
+    has_many :out,
+                  :data_sources,
+                  :type => :described_by,
+                  :model_class => 'Graph::DataSource'
   end
 end
