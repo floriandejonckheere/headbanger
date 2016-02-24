@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/ifeelgoods/data-migrator.git
+  revision: 65bf22799c6c9914fb35ef96891f438f0ffa84fe
+  specs:
+    data_migrator (0.9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -304,6 +310,7 @@ DEPENDENCIES
   capistrano-rvm
   capistrano-upload-config
   capistrano3-puma
+  data_migrator!
   database_cleaner (~> 1.5.1)
   devise (~> 3.5.4)
   factory_girl_rails (~> 4.0)
