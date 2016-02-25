@@ -11,6 +11,7 @@ gem 'angular_rails_csrf'
 ## Graph store ##
 gem 'neo4j', '~> 6.1.1'
 gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
+gem 'countries'
 
 ## Web frontend ##
 gem 'bootstrap', '~> 4.0.0.alpha3'

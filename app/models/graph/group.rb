@@ -5,6 +5,9 @@ module Graph
     property :gid,            :constraint => :unique
     property :date_formed,    :type => Date
 
+    # ISO-3166-1 alpha 2 (e.g. US, BE)
+    property :country,        :index => :exact
+
     validates :gid,
                   :presence => true,
                   :format => { :with => /\A[a-z0-0]{8}-[a-z0-0]{4}-[a-z0-0]{4}-[a-z0-0]{4}-[a-z0-0]{12}\Z/ }
