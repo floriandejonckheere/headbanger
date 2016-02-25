@@ -8,5 +8,9 @@ module Graph
                   :models,
                   :type => :described_by,
                   :model_class => Graph::DescribedBy.from_class
+
+    def controller
+      "DataSources::#{self.type.camelize}Controller".constantize
+    end
   end
 end
