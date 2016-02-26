@@ -1,11 +1,12 @@
 module Graph
   class Artist
     include Neo4j::ActiveNode
+    include Virtualizable
 
     property :date_of_birth,  :type => Date
 
-    # Virtualize model AFTER property definitions
-    include Virtualizable
+    virtualize :date_of_birth
+    priority :musicbrainz => :very_high
 
     has_many :out,
                   :artist_names,
@@ -22,5 +23,12 @@ module Graph
                   :data_sources,
                   :type => :described_by,
                   :model_class => 'Graph::DataSource'
+  end
+
+  class HeavyMetalArtist < Artist
+    include Virtualizable
+
+    priority :metal_archives => :very_high,
+              :musicbrainz => :high
   end
 end
