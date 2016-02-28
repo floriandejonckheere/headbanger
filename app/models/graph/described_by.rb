@@ -1,7 +1,6 @@
 module Graph
   class DescribedBy
     include Neo4j::ActiveRel
-    include Virtualizes
 
     from_class  ['Graph::Artist', 'Graph::Group']
     to_class    'Graph::DataSource'
@@ -9,7 +8,8 @@ module Graph
 
     property :key
     property :priority
-    property :cache_timestamp,    :type => Integer
+    # TODO: change to Integer for performance reasons
+    property :timestamp,    :type => DateTime
 
     validates :key,
                   :presence => true

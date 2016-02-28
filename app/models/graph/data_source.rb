@@ -7,7 +7,7 @@ module Graph
     has_many :in,
                   :models,
                   :type => :described_by,
-                  :model_class => Graph::DescribedBy.from_class
+                  :model_class => DescribedBy.from_class
 
     def controller
       "DataSources::#{self.type.camelize}Controller".constantize

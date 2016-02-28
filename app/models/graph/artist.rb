@@ -4,9 +4,16 @@ module Graph
     include Virtualizable
 
     property :date_of_birth,  :type => Date
+    property :gid
 
-    virtualize :date_of_birth
+    virtualize :date_of_birth,
+                :source => :musicbrainz,
+                :valid_for => 1.month
+
     priority :musicbrainz => :very_high
+
+    validates :gid, :presence => true
+    id_property :gid, :on => SecureRandom.uuid
 
     has_many :out,
                   :artist_names,
