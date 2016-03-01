@@ -1,16 +1,9 @@
 module Graph
   class Artist
     include Neo4j::ActiveNode
-    include Virtualizable
 
     property :date_of_birth,  :type => Date
     id_property :gid
-
-    virtualize :date_of_birth,
-                :source => :musicbrainz,
-                :valid_for => 1.month
-
-    priority :musicbrainz => :very_high
 
     has_many :out,
                   :artist_names,
@@ -27,10 +20,5 @@ module Graph
                   :data_sources,
                   :type => :described_by,
                   :model_class => 'Graph::DataSource'
-  end
-
-  class HeavyMetalArtist < Artist
-    priority :metal_archives => :very_high,
-              :musicbrainz => :high
   end
 end

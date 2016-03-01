@@ -1,4 +1,4 @@
-module Graph
+module Virtual
   module Virtualizable
     extend ActiveSupport::Concern
 
@@ -12,12 +12,19 @@ module Graph
       @virtual_attributes ||= {}
     end
 
-    class_methods do
+    class_methods do |klass|
       # Duplicate priorities for subclasses
       def inherited(subclass)
         super
         subclass.instance_variable_set('@priorities', @priorities.deep_dup)
       end
+
+      # Delegate methods to Graph::*
+      #~ def method_missing(symbol, *args)
+        #~ byebug
+        #~ puts self.to_sym
+        #~ Graph.constantize(self.to_sym).send symbol, *args
+      #~ end
 
       ## Define data source priorities
       ##
@@ -44,14 +51,14 @@ module Graph
       def virtualize(attr, opts)
         raise 'No data source specified' unless opts[:source]
         raise 'No valid period specified' unless opts[:valid_for]
-        raise 'No such attribute' unless self.attributes[attr]
+        #~ raise 'No such attribute' unless self.attributes[attr]
 
         (@virtual_attributes[opts[:source]] ||= []) << attr
 
         # Virtualizing of associations not yet supported
-        raise 'Not implemented yet' if self.association? attr
+        #~ raise 'Not implemented yet' if self.association? attr
 
-        define_method "virtual_#{attr}".to_sym do
+        define_method attr.to_sym do
           data_source = self.data_sources.find_by(:type => opts[:source])
 
           valid = (data_source and data_source.timestamp and (data_source.timestamp + opts[:valid_for]).future?)
@@ -61,7 +68,7 @@ module Graph
 
           update data_source unless valid
 
-          result = send attr
+          result = __getobj__.send attr
         end
       end
 
