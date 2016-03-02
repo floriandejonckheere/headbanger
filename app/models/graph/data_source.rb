@@ -1,8 +1,10 @@
+require Rails.root.join 'lib', 'neo4j', 'symbol_converter'
+
 module Graph
   class DataSource
     include Neo4j::ActiveNode
 
-    property :type,            :contraint => :unique
+    property :type,            :type => Symbol, :contraint => :unique
 
     has_many :in,
                   :models,

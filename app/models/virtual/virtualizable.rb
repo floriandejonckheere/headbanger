@@ -10,6 +10,12 @@ module Virtual
 
       @priorities ||= {}
       @virtual_attributes ||= {}
+
+      ## Update a data source
+      def update(data_source, described_by)
+        puts "Updating source #{data_source.type} for attributes #{self.class.virtual_attributes[data_source.type]}"
+        ## TODO
+      end
     end
 
     class_methods do |klass|
@@ -18,13 +24,6 @@ module Virtual
         super
         subclass.instance_variable_set('@priorities', @priorities.deep_dup)
       end
-
-      # Delegate methods to Graph::*
-      #~ def method_missing(symbol, *args)
-        #~ byebug
-        #~ puts self.to_sym
-        #~ Graph.constantize(self.to_sym).send symbol, *args
-      #~ end
 
       ## Define data source priorities
       ##
@@ -41,6 +40,7 @@ module Virtual
         end
       end
 
+
       ## Virtualize a property
       ##
       ## virtualize :attribute,
@@ -51,31 +51,27 @@ module Virtual
       def virtualize(attr, opts)
         raise 'No data source specified' unless opts[:source]
         raise 'No valid period specified' unless opts[:valid_for]
-        #~ raise 'No such attribute' unless self.attributes[attr]
 
         (@virtual_attributes[opts[:source]] ||= []) << attr
 
-        # Virtualizing of associations not yet supported
-        #~ raise 'Not implemented yet' if self.association? attr
+        define_method attr do
+          # Virtualizing of associations not yet supported
+          raise 'Not implemented yet' if __getobj__.class.association? attr
 
-        define_method attr.to_sym do
-          data_source = self.data_sources.find_by(:type => opts[:source])
+          data_couple = self.data_sources.each_with_rel.select { |ds, db| ds.type == opts[:source] }
 
-          valid = (data_source and data_source.timestamp and (data_source.timestamp + opts[:valid_for]).future?)
+          data_source = data_couple.first.first
+          described_by = data_couple.first.last
+
+          valid = (data_source and described_by.timestamp and (described_by.timestamp + opts[:valid_for]).future?)
 
           puts "timestamp is VALID" if valid
           puts "timestamp is INVALID" unless valid
 
-          update data_source unless valid
+          update data_source, described_by unless valid
 
           result = __getobj__.send attr
         end
-      end
-
-      ## Update a data source
-      private
-      def update(data_source)
-        puts "Updating source #{data_source.type} for attributes #{@virtual_attributes[data_source.type]}"
       end
     end
   end
