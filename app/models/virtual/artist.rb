@@ -8,7 +8,7 @@ module Virtual
 
     virtualize :date_of_birth,
                 :source => :musicbrainz,
-                :valid_for => 1.month
+                :valid_for => :forever
 
     priority :musicbrainz => :very_high
   end

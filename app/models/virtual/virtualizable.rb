@@ -19,7 +19,10 @@ module Virtual
         attrs = data_source.controller.update_attributes self.class.to_s.split('::').last,
                                           data_source,
                                           self.class.virtual_attributes[data_source.type]
-        puts attrs.inspect
+        self.class.virtual_attributes[data_source.type].each do |attr|
+          __getobj__.send :update, attr.to_sym => attrs[attr]
+        end
+        data_source.update :timestamp => DateTime.now
       end
     end
 
@@ -52,10 +55,10 @@ module Virtual
       ##              :source => :data_source,
       ##              :valid_for => 1.month
       ##
+      ##  :valid_for can be ActiveSupport::Time or :forever
       ##
       def virtualize(attr, opts)
         raise 'No data source specified' unless opts[:source]
-        raise 'No valid period specified' unless opts[:valid_for]
 
         (@virtual_attributes[opts[:source]] ||= []) << attr
 
@@ -63,12 +66,14 @@ module Virtual
           # Virtualizing of associations not yet supported
           raise 'Not implemented yet' if __getobj__.class.association? attr
 
-          self.data_sources.each do |data_source|
-            next unless data_source.type == opts[:source]
+          unless not opts[:valid_for] or opts[:valid_for] == :forever
+            self.data_sources.each do |data_source|
+              next unless data_source.type == opts[:source]
 
-            valid = (data_source and data_source.timestamp and (data_source.timestamp + opts[:valid_for]).future?)
+              valid = (data_source and data_source.timestamp and (data_source.timestamp + opts[:valid_for]).future?)
 
-            update data_source unless valid
+              update data_source unless valid
+            end
           end
 
           result = __getobj__.send attr
