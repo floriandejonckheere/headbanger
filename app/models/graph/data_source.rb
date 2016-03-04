@@ -22,7 +22,7 @@ module Graph
                                   ]
 
     def controller
-      DataSources.const_get "#{self.type.camelize}Controller"
+      DataSources.const_get "#{self.type.to_s.camelize}Controller"
     end
   end
 end

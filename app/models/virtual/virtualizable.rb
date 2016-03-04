@@ -12,13 +12,18 @@ module Virtual
       @virtual_attributes ||= {}
 
       ## Update a data source
-      def update(data_source, described_by)
+      private
+      def update(data_source)
         puts "Updating source #{data_source.type} for attributes #{self.class.virtual_attributes[data_source.type]}"
-        ## TODO
+
+        attrs = data_source.controller.update_attributes self.class.to_s.split('::').last,
+                                          data_source,
+                                          self.class.virtual_attributes[data_source.type]
+        puts attrs.inspect
       end
     end
 
-    class_methods do |klass|
+    class_methods do
       # Duplicate priorities for subclasses
       def inherited(subclass)
         super
@@ -58,17 +63,13 @@ module Virtual
           # Virtualizing of associations not yet supported
           raise 'Not implemented yet' if __getobj__.class.association? attr
 
-          data_couple = self.data_sources.each_with_rel.select { |ds, db| ds.type == opts[:source] }
+          self.data_sources.each do |data_source|
+            next unless data_source.type == opts[:source]
 
-          data_source = data_couple.first.first
-          described_by = data_couple.first.last
+            valid = (data_source and data_source.timestamp and (data_source.timestamp + opts[:valid_for]).future?)
 
-          valid = (data_source and described_by.timestamp and (described_by.timestamp + opts[:valid_for]).future?)
-
-          puts "timestamp is VALID" if valid
-          puts "timestamp is INVALID" unless valid
-
-          update data_source, described_by unless valid
+            update data_source unless valid
+          end
 
           result = __getobj__.send attr
         end
