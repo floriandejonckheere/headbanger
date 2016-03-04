@@ -15,9 +15,13 @@ module DataSources
 
     ## Lookup mapping methods
     private
-    def date_of_birth(model)
-      model.date_begin
-    end
+      def date_of_birth(model)
+        model.date_begin
+      end
+
+      def date_of_death(model)
+        model.date_end unless model.date_end.future?
+      end
   end
   end
 end

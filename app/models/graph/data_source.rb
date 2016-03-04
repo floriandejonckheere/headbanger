@@ -5,9 +5,8 @@ module Graph
     include Neo4j::ActiveNode
 
     property :type,            :type => Symbol, :contraint => :unique
-
     property :key
-    property :priority
+
     # TODO: change to Integer for performance reasons
     property :timestamp,    :type => DateTime
 

@@ -10,6 +10,10 @@ module Virtual
                 :source => :musicbrainz,
                 :valid_for => :forever
 
+    virtualize :date_of_death,
+                :source => :musicbrainz,
+                :valid_for => :forever
+
     priority :musicbrainz => :very_high
   end
 

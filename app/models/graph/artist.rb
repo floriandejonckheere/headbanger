@@ -3,6 +3,8 @@ module Graph
     include Neo4j::ActiveNode
 
     property :date_of_birth,  :type => Date
+    property :date_of_death,  :type => Date
+
     id_property :gid
 
     has_many :out,

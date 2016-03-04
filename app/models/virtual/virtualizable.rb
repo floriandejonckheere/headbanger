@@ -14,11 +14,11 @@ module Virtual
       ## Update a data source
       private
       def update(data_source)
-        puts "Updating source #{data_source.type} for attributes #{self.class.virtual_attributes[data_source.type]}"
-
-        attrs = data_source.controller.update_attributes self.class.to_s.split('::').last,
+        klass = DataSources.const_get "#{data_source.type.to_s.camelize}Controller"
+        attrs = klass.update_attributes self.class.to_s.split('::').last,
                                           data_source,
                                           self.class.virtual_attributes[data_source.type]
+
         self.class.virtual_attributes[data_source.type].each do |attr|
           __getobj__.send :update, attr.to_sym => attrs[attr]
         end
@@ -59,6 +59,7 @@ module Virtual
       ##
       def virtualize(attr, opts)
         raise 'No data source specified' unless opts[:source]
+        raise 'No timeout specified' unless opts[:valid_for]
 
         (@virtual_attributes[opts[:source]] ||= []) << attr
 
@@ -66,14 +67,25 @@ module Virtual
           # Virtualizing of associations not yet supported
           raise 'Not implemented yet' if __getobj__.class.association? attr
 
-          unless not opts[:valid_for] or opts[:valid_for] == :forever
-            self.data_sources.each do |data_source|
-              next unless data_source.type == opts[:source]
+          # TODO: rescue
+          raise 'No data sources attached' unless self.data_sources.any?
 
-              valid = (data_source and data_source.timestamp and (data_source.timestamp + opts[:valid_for]).future?)
+          self.data_sources.each do |data_source|
+            next unless data_source.type == opts[:source]
 
-              update data_source unless valid
+            valid = true
+
+            if data_source and data_source.timestamp
+              if opts[:valid_for] == :forever
+                valid = true
+              else
+                valid = (data_source.timestamp + opts[:valid_for]).future?
+              end
+            else
+              valid = false
             end
+
+            update data_source unless valid
           end
 
           result = __getobj__.send attr
