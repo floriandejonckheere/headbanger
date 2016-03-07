@@ -1,5 +1,5 @@
 module DataSources
-  class MusicbrainzController
+  class Musicbrainz
   class << self
     def update_attributes(class_name, data_source, attrs)
       klass = MusicBrainz.const_get class_name

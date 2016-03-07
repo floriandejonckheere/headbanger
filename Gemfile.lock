@@ -160,6 +160,9 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    musicbrainz (0.7.7)
+      faraday
+      nokogiri
     neo4j (6.1.4)
       active_attr (~> 0.8)
       activemodel (~> 4)
@@ -325,6 +328,7 @@ DEPENDENCIES
   grape
   jquery-rails
   listen (~> 3.0)
+  musicbrainz
   neo4j (~> 6.1.1)
   pg
   puma

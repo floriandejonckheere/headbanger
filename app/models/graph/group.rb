@@ -2,20 +2,16 @@ module Graph
   class Group
     include Neo4j::ActiveNode
 
-    property :gid,            :constraint => :unique
-    property :date_formed,    :type => Date
-
     # ISO-3166-1 alpha 2 (e.g. US, BE)
     property :country,        :index => :exact
+    property :year_formed,    :type => Date
 
-    validates :gid,
-                  :presence => true,
-                  :format => { :with => /\A[a-z0-0]{8}-[a-z0-0]{4}-[a-z0-0]{4}-[a-z0-0]{4}-[a-z0-0]{12}\Z/ }
+    id_property :gid
 
     has_many :out,
-                  :group_names,
-                  :type => :group_known_as,
-                  :model_class => 'Graph::GroupName',
+                  :names,
+                  :type => :known_as,
+                  :model_class => 'Graph::Name',
                   :dependent => :destroy
 
     has_many :in,
@@ -28,10 +24,10 @@ module Graph
                   :type => :sings_about,
                   :model_class => 'Graph::LyricalTheme'
 
-    has_one :out,
-                  :country,
-                  :type => :based_in,
-                  :model_class => 'Graph::Country'
+    has_many :out,
+                  :releases,
+                  :type => :appears_in,
+                  :model_class => 'Graph::Release'
 
     has_many :out,
                   :data_sources,

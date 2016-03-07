@@ -14,7 +14,7 @@ module Virtual
       ## Update a data source
       private
       def update(data_source)
-        klass = DataSources.const_get "#{data_source.type.to_s.camelize}Controller"
+        klass = DataSources.const_get data_source.type.to_s.camelize
         attrs = klass.update_attributes self.class.to_s.split('::').last,
                                           data_source,
                                           self.class.virtual_attributes[data_source.type]
@@ -55,37 +55,35 @@ module Virtual
       ##              :source => :data_source,
       ##              :valid_for => 1.month
       ##
+      ##  :source can be an array
       ##  :valid_for can be ActiveSupport::Time or :forever
       ##
       def virtualize(attr, opts)
         raise 'No data source specified' unless opts[:source]
         raise 'No timeout specified' unless opts[:valid_for]
 
-        (@virtual_attributes[opts[:source]] ||= []) << attr
+        source = Array(opts[:source])
+        source.each { |s|  (@virtual_attributes[s] ||= []) << attr }
 
         define_method attr do
           # Virtualizing of associations not yet supported
           raise 'Not implemented yet' if __getobj__.class.association? attr
 
-          # TODO: rescue
-          raise 'No data sources attached' unless self.data_sources.any?
+          selected_sources = self.data_sources.select { |data_source| source.include? data_source.type }
 
-          self.data_sources.each do |data_source|
-            next unless data_source.type == opts[:source]
+          raise 'Not enough data sources to satisfy attribute source' if selected_sources.count < source.count
 
-            valid = true
-
-            if data_source and data_source.timestamp
-              if opts[:valid_for] == :forever
-                valid = true
-              else
-                valid = (data_source.timestamp + opts[:valid_for]).future?
+          begin
+            selected_sources.each do |data_source|
+              unless data_source.timestamp
+                # There's at least one selected_source which hasn't been harvested yet
+                raise Exception
               end
-            else
-              valid = false
+              next if opts[:valid_for] == :forever
+              raise Exception unless (data_source.timestamp + opts[:valid_for]).future?
             end
-
-            update data_source unless valid
+          rescue Error
+            update data_source
           end
 
           result = __getobj__.send attr

@@ -14,6 +14,9 @@ module Virtual
                 :source => :musicbrainz,
                 :valid_for => :forever
 
+    virtualize :artist_names,
+                :source => [:musicbrainz, :metal_archives]
+
     priority :musicbrainz => :very_high
   end
 

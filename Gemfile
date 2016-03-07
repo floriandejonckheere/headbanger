@@ -12,6 +12,7 @@ gem 'angular_rails_csrf'
 gem 'neo4j', '~> 6.1.1'
 gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
 gem 'countries'
+gem 'musicbrainz'
 
 ## Web frontend ##
 gem 'bootstrap', '~> 4.0.0.alpha3'
