@@ -1,60 +1,10 @@
-<div class="landing cover">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-10 col-xs-offset-1 col-lg-8 col-lg-offset-2">
-        <h1>headbanger</h1>
-        <h4><%= t 'landing.tagline' %></h4>
-        <div>
-          <%= link_to t(:sign_up), app_path << '/#/signup', :class => 'btn btn-secondary' %>
-          <span class="p-a-1"><%= t :or %></span>
-          <%= link_to t(:sign_in), app_path << '/#/signin' %>
-        </div>
-      </div>
-    </div>
+<div class="container">
+  <div class="col-xs-12 col-md-6">
+    <h1>Headbanger</h1>
   </div>
 </div>
 
-<main class="landing cover-content">
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2">
-      <h4><%= t 'landing.heading_one' %></h4>
-      <p>
-        <%= t 'landing.text_one' %>
-      </p>
-    </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-0 col-lg-4">
-      <img src="http://placehold.it/350x200" class="img-responsive" alt="Placeholder">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2">
-      <h4><%= t 'landing.heading_two' %></h4>
-      <p>
-        <%= t 'landing.text_two' %>
-      </p>
-    </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-5 col-md-offset-0 col-lg-4">
-      <img src="http://placehold.it/350x200" class="img-responsive" alt="Placeholder">
-    </div>
-  </div>
-</main>
+<%= link_to t(:sign_up), app_path << '/#/signup', :class => 'btn btn-secondary' %>
 
-<div class="landing cover-footer">
-  <div class="container">
-    <div class="row">
-      <div class="cover-text">
-        <h1><%= t 'landing.footer' %></h1>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<footer class="landing">
-  <ul>
-    <li><%= link_to t(:home), "//#{ActionMailer::Base.default_url_options[:host]}" %></li>
-    <li><%= link_to t(:about), '#' %></li>
-    <li><%= link_to t(:contact), '#' %></li>
-  </ul>
-  <div class="copyright text-muted small"><%= t('copyright_notice').html_safe %></div>
-</footer>
+<%= link_to t(:sign_in), app_path << '/#/signin' %>
+<%= link_to t(:home), "//#{ActionMailer::Base.default_url_options[:host]}" %>

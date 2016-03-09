@@ -1,18 +1,15 @@
 @import "variables";
-@import "responsive";
 
 @import "bootstrap";
 
 @import "utilities";
-@import "landing";
 
 html,
 body {
-  height: 100%;
-  padding: 0;
-  margin: 0;
+  font-family: 'Roboto';
+  font-weight: 400;
 
-  font-family: 'Titillium Web', sans-serif;
+  background: $quaternary-color;
 }
 
 h1,
@@ -21,33 +18,8 @@ h3,
 h4,
 h5,
 h6 {
-  @extend .m-b-2;
-  font-weight: 600;
-}
+  font-family: 'Roboto';
+  font-weight: 100;
 
-.wrapper {
-  @extend .p-a-3;
-
-  background: $bg-color;
-
-  height: auto;
-  min-height: 100%;
-}
-
-/**
- * Bootstrap tweaks
- *
- * */
-.alert .close {
-  font-size: 1rem;
-  line-height: 1.5rem;
-  vertical-align: middle;
-}
-
-.alert-alert {
-  @extend .alert-danger;
-}
-
-.alert-notice {
-  @extend .alert-info;
+  color: white;
 }
