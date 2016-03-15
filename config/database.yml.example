@@ -28,3 +28,16 @@ production:
   database: production
   username: production
   password: production
+
+#
+# MusicBrainz database
+#
+musicbrainz:
+  adapter: postgresql
+  # Set this to the number of Sidekiq workers
+  pool: 25
+  timeout: 5000
+  host: localhost
+  database: musicbrainz
+  user: musicbrainz
+  password: musicbrainz

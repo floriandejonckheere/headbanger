@@ -5,13 +5,6 @@ module Graph
     property :date_of_birth,  :type => Date
     property :date_of_death,  :type => Date
 
-    property :gid,            :contraint => :unique
-    # TODO: use id_property to avoid duplicate primary keys
-
-    validates :gid,
-                  :presence => true,
-                  :format => { :with => /\A[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}\Z/ }
-
     has_many :out,
                   :names,
                   :type => :known_as,

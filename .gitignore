@@ -22,7 +22,3 @@ vendor/assets
 
 # Ignore node
 node_modules/
-
-# Private files
-config/mailer.*yml
-config/neo4j.*yml

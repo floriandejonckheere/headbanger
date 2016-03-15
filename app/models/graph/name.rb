@@ -3,6 +3,8 @@ module Graph
     include Neo4j::ActiveNode
 
     property :name,         :index => :exact
+
+    # Properties specifically for Group
     property :start_date,   :type => Date
     property :end_date,     :type => Date
 

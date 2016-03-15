@@ -12,9 +12,11 @@ gem 'angular_rails_csrf'
 gem 'neo4j', '~> 6.1.1'
 gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
 gem 'countries'
-gem 'musicbrainz'
+
+## Sidekiq ##
 gem 'redis-namespace'
 gem 'sidekiq'
+gem 'sinatra' # For the web frontend
 
 ## Web frontend ##
 gem 'bootstrap', '~> 4.0.0.alpha3'
