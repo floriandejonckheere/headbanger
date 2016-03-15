@@ -29,7 +29,5 @@ module Headbanger
     # Add bower_components to asset path
     config.assets.paths << Rails.root.join('vendor','assets','bower_components')
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
-
-    config.autoload_paths << Rails.root.join('app', 'data_sources')
   end
 end

@@ -13,6 +13,8 @@ gem 'neo4j', '~> 6.1.1'
 gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
 gem 'countries'
 gem 'musicbrainz'
+gem 'redis-namespace'
+gem 'sidekiq'
 
 ## Web frontend ##
 gem 'bootstrap', '~> 4.0.0.alpha3'
@@ -54,12 +56,15 @@ group :development, :test do
 
   # Ignore asset logging
   gem 'quiet_assets'
+end
 
+group :test do
   gem 'rspec', '~> 3.4.0'
   gem 'rspec-rails', '~> 3.0'
   gem 'database_cleaner', '~> 1.5.1'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
+  gem 'rspec-sidekiq'
 end
 
 group :development do
