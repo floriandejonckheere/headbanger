@@ -9,24 +9,26 @@ class BaseWorker
 
     data_sources.each do |data_source|
       source_model = send data_source.type, data_source.key
-      attr_accessor data_source.type
+      class_eval { attr_accessor data_source.type }
       instance_variable_set "@#{data_source.type.to_s}", source_model
     end
 
-    object.attribute_names.each do |attr|
-      result = []
-      result << send "update_#{attr}"
-      object.update attr => result
+    ## Attributes
+    model.attribute_names.each do |attr|
+      object[attr] = send attr
     end
 
-    ## names ##
-    # TODO: optimize
+    ## Associations
+    model.associations_keys.reject { |a| a == :data_sources }.each do |assoc|
+      # TODO: implement associations
+    end
+
     #~ artist.names.delete_all
     #~ mb_artist.artist_aliases.each do |aa|
       #~ artist.names << Graph::Name.new(:name => aa.name)
     #~ end
 
-    object.save
+    object.save!
   end
 
   ############################
@@ -41,7 +43,7 @@ class BaseWorker
   # def mydatasource(key)
   # end
 
-  ## Updates model's myattribute using the @mydatasources
+  ## Returns [myattribute ...] using the @mydatasources
   # def update_myattribute(model)
   # end
 end
