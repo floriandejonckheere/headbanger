@@ -1,21 +1,15 @@
 class BaseWorker
   include Sidekiq::Worker
 
+  attr_accessor :object
+
   def perform(id)
-    object = model.find id # raises Neo4j::RecordNotFound
-
-    data_sources = object.data_sources
-    raise "#{model} #{id} has no data sources." unless data_sources.any?
-
-    data_sources.each do |data_source|
-      source_model = send data_source.type, data_source.key
-      class_eval { attr_accessor data_source.type }
-      instance_variable_set "@#{data_source.type.to_s}", source_model
-    end
+    @object = model.find id # raises Neo4j::RecordNotFound
 
     ## Attributes
     model.attribute_names.each do |attr|
-      object[attr] = send attr
+      # Check validity and retrieve data sources accordingly
+      @object[attr] = send attr unless send "#{attr}_valid?"
     end
 
     ## Associations
@@ -23,12 +17,23 @@ class BaseWorker
       # TODO: implement associations
     end
 
-    #~ artist.names.delete_all
-    #~ mb_artist.artist_aliases.each do |aa|
-      #~ artist.names << Graph::Name.new(:name => aa.name)
-    #~ end
+    @object.save!
+  end
 
-    object.save!
+  def valid_for(hash)
+    hash.each do |type, validity|
+      data_source = @object.data_sources.find_by!(:type => type)
+      valid = data_source.valid_for? validity
+      break true if valid
+
+      unless instance_variable_defined? "@#{type.to_s}"
+        source_model = send type, data_source.key
+        class_eval { attr_accessor data_source.type }
+        instance_variable_set "@#{type.to_s}", source_model
+        data_source.update_attribute :timestamp, DateTime.now
+      end
+      break false
+    end
   end
 
   ############################
@@ -36,14 +41,18 @@ class BaseWorker
   ############################
 
   ## Returns the graph model
-  def model
-  end
+  # def model
+  # end
+
+  ## Returns whether or not the attribute is still valid (using valid_for)
+  # def myattribute_valid
+  # end
 
   ## Returns a mydatasource instance for key (available later in @mydatasource)
   # def mydatasource(key)
   # end
 
-  ## Returns [myattribute ...] using the @mydatasources
-  # def update_myattribute(model)
+  ## Returns [myattribute ...] using @mydatasource
+  # def myattribute(model)
   # end
 end

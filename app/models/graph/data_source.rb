@@ -20,8 +20,9 @@ module Graph
                                     'Graph::Artist'
                                   ]
 
-    def controller
-      DataSources.const_get "#{self.type.to_s.camelize}Controller"
+    def valid_for?(interval)
+      return false unless self.timestamp
+      (self.timestamp + interval).future?
     end
   end
 end

@@ -14,6 +14,10 @@ class ArtistWorker < BaseWorker
 
 
   ### Attributes ###
+  def date_of_birth_valid?
+    valid_for :musicbrainz => 3.months
+  end
+
   def date_of_birth
     begin
       return Date.new @musicbrainz.begin_date_year.to_i,
@@ -25,6 +29,9 @@ class ArtistWorker < BaseWorker
     end
   end
 
+  def date_of_death_valid?
+    valid_for :musicbrainz => 3.months
+  end
   def date_of_death
     begin
       return Date.new @musicbrainz.end_date_year.to_i,
