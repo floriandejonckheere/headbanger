@@ -1,5 +1,14 @@
 class ArtistWorker < BaseWorker
-  ### Data sources ###
+  ### Attribute -> data source mapping ###
+  attribute [:date_of_birth, :date_of_death],
+              :source => :musicbrainz,
+              :valid_for => 3.months
+
+  association :names,
+                :source => [:musicbrainz, :metal_archives],
+                :valid_for => 3.months
+
+  ### Data source lookup ###
   def musicbrainz(key)
     Musicbrainz::Artist.find_by_mbid key
   end
@@ -10,10 +19,6 @@ class ArtistWorker < BaseWorker
 
 
   ### Attributes ###
-  def date_of_birth_valid?
-    valid_for :musicbrainz => 3.months
-  end
-
   def date_of_birth
     begin
       return Date.new @musicbrainz.begin_date_year.to_i,
@@ -25,9 +30,6 @@ class ArtistWorker < BaseWorker
     end
   end
 
-  def date_of_death_valid?
-    valid_for :musicbrainz => 3.months
-  end
   def date_of_death
     begin
       return Date.new @musicbrainz.end_date_year.to_i,

@@ -3,6 +3,22 @@ class BaseWorker
 
   attr_accessor :object
 
+  class << self
+    attr_accessor :attributes, :associations
+  end
+
+  def self.attribute(*args)
+    Array(args.first).each do |attr|
+      (@attributes ||= {})[attr] = args.last
+    end
+  end
+
+  def self.association(*args)
+    Array(args.first).each do |assoc|
+      (@associations ||= {})[assoc] = args.last
+    end
+  end
+
   def perform(id)
     model = Graph.const_get self.class.name[0..-7]
     @object = model.find id # raises Neo4j::RecordNotFound
@@ -11,7 +27,10 @@ class BaseWorker
       ## Attributes
       model.attribute_names.each do |attr|
         # Check validity and retrieve data sources accordingly
-        @object[attr] = send attr unless send "#{attr}_valid?"
+        unless valid? Array(self.class.attributes[attr.to_sym][:source]),
+                            self.class.attributes[attr.to_sym][:valid_for]
+          @object[attr] = send attr
+        end
       end
 
       ## Associations
@@ -25,8 +44,9 @@ class BaseWorker
     end
   end
 
-  def valid_for(hash)
-    hash.each do |type, validity|
+  ## Private methods ##
+  def valid?(arr, validity)
+    arr.each do |type|
       data_source = @object.data_sources.find_by!(:type => type)
       break true if data_source.timestamp? and
                     (data_source.timestamp + validity).future?
