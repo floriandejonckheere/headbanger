@@ -19,10 +19,5 @@ module Graph
                   :model_class => [
                                     'Graph::Artist'
                                   ]
-
-    def valid_for?(interval)
-      return false unless self.timestamp
-      (self.timestamp + interval).future?
-    end
   end
 end

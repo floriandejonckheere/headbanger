@@ -17,20 +17,24 @@ class BaseWorker
       # TODO: implement associations
     end
 
+    @object.data_sources.each { |ds| ds.save! }
+
     @object.save!
   end
 
   def valid_for(hash)
     hash.each do |type, validity|
       data_source = @object.data_sources.find_by!(:type => type)
-      valid = data_source.valid_for? validity
-      break true if valid
+      break true if data_source.timestamp? and
+                    (data_source.timestamp + validity).future?
 
       unless instance_variable_defined? "@#{type.to_s}"
         source_model = send type, data_source.key
         class_eval { attr_accessor data_source.type }
         instance_variable_set "@#{type.to_s}", source_model
-        data_source.update_attribute :timestamp, DateTime.now
+
+        # Set timestamp on data sources, but don't persist yet
+        data_source.timestamp = DateTime.now
       end
       break false
     end
