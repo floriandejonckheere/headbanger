@@ -1,8 +1,4 @@
 class ArtistWorker < BaseWorker
-  def model
-    Graph::Artist
-  end
-
   ### Data sources ###
   def musicbrainz(key)
     Musicbrainz::Artist.find_by_mbid key

@@ -17,7 +17,9 @@ module Graph
                   :model,
                   :type => :described_by,
                   :model_class => [
-                                    'Graph::Artist'
+                                    'Graph::Artist',
+                                    'Graph::Group',
+                                    'Graph::Release'
                                   ]
   end
 end

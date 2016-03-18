@@ -4,6 +4,7 @@ class BaseWorker
   attr_accessor :object
 
   def perform(id)
+    model = Graph.const_get self.class.name[0..-7]
     @object = model.find id # raises Neo4j::RecordNotFound
 
     Neo4j::Transaction.run do
@@ -45,10 +46,6 @@ class BaseWorker
   ############################
   ## Override these methods ##
   ############################
-
-  ## Returns the graph model
-  # def model
-  # end
 
   ## Returns whether or not the attribute is still valid (using valid_for)
   # def myattribute_valid

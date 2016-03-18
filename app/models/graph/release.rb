@@ -18,6 +18,7 @@ module Graph
     has_many :out,
                   :data_sources,
                   :type => :described_by,
-                  :model_class => 'Graph::DataSource'
+                  :model_class => 'Graph::DataSource',
+                  :dependent => :destroy
   end
 end
