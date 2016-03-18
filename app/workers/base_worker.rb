@@ -6,20 +6,22 @@ class BaseWorker
   def perform(id)
     @object = model.find id # raises Neo4j::RecordNotFound
 
-    ## Attributes
-    model.attribute_names.each do |attr|
-      # Check validity and retrieve data sources accordingly
-      @object[attr] = send attr unless send "#{attr}_valid?"
+    Neo4j::Transaction.run do
+      ## Attributes
+      model.attribute_names.each do |attr|
+        # Check validity and retrieve data sources accordingly
+        @object[attr] = send attr unless send "#{attr}_valid?"
+      end
+
+      ## Associations
+      model.associations_keys.reject { |a| a == :data_sources }.each do |assoc|
+        # TODO: implement associations
+      end
+
+      @object.data_sources.each { |ds| ds.save! }
+
+      @object.save!
     end
-
-    ## Associations
-    model.associations_keys.reject { |a| a == :data_sources }.each do |assoc|
-      # TODO: implement associations
-    end
-
-    @object.data_sources.each { |ds| ds.save! }
-
-    @object.save!
   end
 
   def valid_for(hash)
