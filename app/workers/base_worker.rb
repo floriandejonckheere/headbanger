@@ -34,7 +34,9 @@ class BaseWorker
       end
 
       ## Associations
-      model.associations.keys.reject { |a| a == :data_sources }.each do |assoc|
+      model.associations
+                .select { |k,v| v.direction == :out and k != :data_sources }
+                .keys.each do |assoc|
         raise "No data source mapping defined for association #{assoc}" unless self.class.associations[assoc.to_sym]
         unless valid? Array(self.class.associations[assoc.to_sym][:source]),
                             self.class.associations[assoc.to_sym][:valid_for]
