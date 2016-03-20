@@ -4,13 +4,13 @@ class ArtistWorker < BaseWorker
               :source => :musicbrainz,
               :valid_for => 3.months
 
-  association :names,
+  association [:names, :groups, :releases],
                 :source => [:musicbrainz, :metal_archives],
                 :valid_for => 3.months
 
   ### Data source lookup ###
   def musicbrainz(key)
-    Musicbrainz::Artist.find_by_mbid key
+    artist = Musicbrainz::Artist.find_by_mbid key
   end
 
   def metal_archives(key)
@@ -42,4 +42,18 @@ class ArtistWorker < BaseWorker
   end
 
   ### Associations ###
+  def names
+    @object.names.delete_all
+
+    @object.names << Graph::Name.create!(:name => @musicbrainz.name)
+    @musicbrainz.artist_aliases.each do |artist_alias|
+      @object.names << Graph::Name.create!(:name => artist_alias.name)
+    end
+  end
+
+  def groups
+  end
+
+  def releases
+  end
 end

@@ -34,12 +34,15 @@ class BaseWorker
       end
 
       ## Associations
-      model.associations_keys.reject { |a| a == :data_sources }.each do |assoc|
-        # TODO: implement associations
+      model.associations.keys.reject { |a| a == :data_sources }.each do |assoc|
+        raise "No data source mapping defined for association #{assoc}" unless self.class.associations[assoc.to_sym]
+        unless valid? Array(self.class.associations[assoc.to_sym][:source]),
+                            self.class.associations[assoc.to_sym][:valid_for]
+          send assoc
+        end
       end
 
       @object.data_sources.each { |ds| ds.save! }
-
       @object.save!
     end
   end
@@ -67,15 +70,38 @@ class BaseWorker
   ## Override these methods ##
   ############################
 
-  ## Returns whether or not the attribute is still valid (using valid_for)
-  # def myattribute_valid
-  # end
+  ## Refer to example_worker.rb for a somewhat complete example
+
+  ### Data source mapping ###
+
+  ## Call these methods at the beginning of your class definition
+
+  ## Define an attribute's data sources and lifetime
+  # attribute [:myattribute, :myotherattribute],
+  #             :source => :mydatasource,
+  #             :valid_for => 3.months
+
+  ## Define an association's data sources and lifetime
+  # association :myassociation,
+  #               :source => [:mydatasource, myotherdatasource],
+  #               :valid_for => 3.months
+
+
+  ## Override these methods in your subclass
+
+  ### Attributes ###
 
   ## Returns a mydatasource instance for key (available later in @mydatasource)
   # def mydatasource(key)
   # end
 
   ## Returns [myattribute ...] using @mydatasource
-  # def myattribute(model)
+  # def myattribute
+  # end
+
+  ### Associations ###
+
+  ## Does not return anything but manipulates @object using @mydatasource
+  # def myassociation
   # end
 end
