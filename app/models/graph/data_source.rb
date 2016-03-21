@@ -4,7 +4,7 @@ module Graph
   class DataSource
     include Neo4j::ActiveNode
 
-    property :type,            :type => Symbol, :contraint => :unique
+    enum :type => [:musicbrainz, :metal_archives], _index: false
     property :key
 
     # TODO: change to Integer for performance reasons

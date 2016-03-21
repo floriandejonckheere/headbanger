@@ -5,8 +5,6 @@ module Graph
     property :title
     property :release_date,  :type => Date
 
-    id_property :gid
-
     has_many :in,
                   :performers,
                   :type => :appears_in,

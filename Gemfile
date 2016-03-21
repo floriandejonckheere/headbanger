@@ -9,7 +9,7 @@ gem 'simple_token_authentication', '~> 1.0'
 gem 'angular_rails_csrf'
 
 ## Graph store ##
-gem 'neo4j', '~> 6.1.1'
+gem 'neo4j', '~> 7.0.0'
 gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
 gem 'countries'
 

@@ -29,5 +29,8 @@ module Headbanger
     # Add bower_components to asset path
     config.assets.paths << Rails.root.join('vendor','assets','bower_components')
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
+
+    # Neo4j configuration
+    config.neo4j.module_handling = :demodulize
   end
 end

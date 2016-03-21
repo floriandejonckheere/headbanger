@@ -26,5 +26,9 @@ module Graph
                   :type => :described_by,
                   :model_class => 'Graph::DataSource',
                   :dependent => :destroy
+
+    def mbid
+      data_sources.find_by(:type => :musicbrainz).key
+    end
   end
 end
