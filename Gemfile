@@ -11,7 +11,10 @@ gem 'angular_rails_csrf'
 ## Graph store ##
 gem 'neo4j', '~> 7.0.0'
 gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
+
+## Music data ##
 gem 'countries'
+gem 'metal_archives', :github => 'floriandejonckheere/metal_archives'
 
 ## Sidekiq ##
 gem 'redis-namespace'

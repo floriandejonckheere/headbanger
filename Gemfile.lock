@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/floriandejonckheere/metal_archives.git
+  revision: 658240c351df233789213ed90b495382168fc295
+  specs:
+    metal_archives (0.0.1)
+      countries
+      faraday
+      nokogiri
+
+GIT
   remote: git://github.com/ifeelgoods/data-migrator.git
   revision: 65bf22799c6c9914fb35ef96891f438f0ffa84fe
   specs:
@@ -158,7 +167,7 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    neo4j (7.0.0)
+    neo4j (7.0.1)
       activemodel (~> 4)
       activesupport (~> 4)
       neo4j-core (>= 6.0.0)
@@ -225,7 +234,7 @@ GEM
       activesupport (= 4.2.5)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.1.1)
+    rake (11.1.2)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -338,6 +347,7 @@ DEPENDENCIES
   grape
   jquery-rails
   listen (~> 3.0)
+  metal_archives!
   neo4j (~> 7.0.0)
   pg
   puma
