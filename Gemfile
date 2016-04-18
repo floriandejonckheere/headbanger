@@ -6,7 +6,10 @@ gem 'grape'
 ## User management ##
 gem 'devise', '~> 3.5.4'
 gem 'simple_token_authentication', '~> 1.0'
+
+# Angular
 gem 'angular_rails_csrf'
+gem 'angular-rails-templates'
 
 ## Graph store ##
 gem 'neo4j', '~> 7.0.0'

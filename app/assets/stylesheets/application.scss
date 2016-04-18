@@ -1,6 +1,7 @@
 @import "variables";
 
-@import "bootstrap";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
 @import "utilities";
 
@@ -9,7 +10,7 @@ body {
   font-family: 'Roboto';
   font-weight: 400;
 
-  background: $quaternary-color;
+  background: black;
 }
 
 h1,
