@@ -32,5 +32,12 @@ module Headbanger
 
     # Neo4j configuration
     config.neo4j.module_handling = :demodulize
+
+    # Angular templates
+    # config.angular_templates.module_name    = 'templates'
+    # config.angular_templates.ignore_prefix  = %w(templates/)
+    # config.angular_templates.inside_paths   = ['app/assets']
+    # config.angular_templates.markups        = %w(erb)
+    # config.angular_templates.extension      = 'html'
   end
 end

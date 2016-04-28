@@ -6,7 +6,5 @@ Rails.application.routes.draw do
   mount API::Base => '/api'
   mount Sidekiq::Web => '/sidekiq'
 
-  root 'landing#index'
-
-  get '/app', :to => 'app#index'
+  root 'app#index'
 end

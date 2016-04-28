@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="headbanger">
   <head>
     <title>Headbanger</title>
 
@@ -7,9 +7,9 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
 
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,100">
   </head>
   <body>
-    <%= yield %>
+    <main ng-view>
+    </main>
   </body>
 </html>
