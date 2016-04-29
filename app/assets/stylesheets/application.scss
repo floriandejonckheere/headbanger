@@ -3,4 +3,8 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
+$fa-font-path: "../assets/font-awesome";
+@import "fontawesome/scss/font-awesome";
+
 @import "utilities";
+@import "components/sidebar";
