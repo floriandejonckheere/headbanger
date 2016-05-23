@@ -9,27 +9,36 @@
 
   </head>
   <body>
-    <div class="container">
-      <!-- Sidebar -->
-      <div class="col-xs-2 col-md-3 sidebar">
-        <div class="brand">Headbanger</div>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-xs-2 col-md-3 sidebar">
+          <div class="brand">
+            <a href="/#/">
+              <i class="fa fa-headphones fa-spacing"></i>
+              <span class="hidden-xs">Headbanger</span>
+            </a>
+          </div>
 
-        <div class="section-head">Discover</div>
-        <ul>
-          <li><a href="#whats-new"><i class="fa fa-music"></i> What's new</a></li>
-          <li><a href="#by-genre"><i class="fa fa-music"></i> By genre</a></li>
-          <li><a href="#by-country"><i class="fa fa-music"></i> By country</a></li>
-          <li><a href="#by-label"><i class="fa fa-music"></i> By label</a></li>
-        </ul>
-      </div>
-
-      <!-- Main content -->
-      <div class="col-xs-10 col-md-9">
-        <!-- Navbar -->
+          <nav>
+            <div class="section-head">Discover</div>
+            <ul>
+              <li><a href="#whats-new"><i class="fa fa-fw fa-line-chart fa-spacing"></i> What's new</a></li>
+              <li><a href="#by-genre"><i class="fa fa-fw fa-music fa-spacing"></i> By genre</a></li>
+              <li><a href="#by-country"><i class="fa fa-fw fa-globe fa-spacing"></i> By country</a></li>
+              <li><a href="#by-label"><i class="fa fa-fw fa-tag fa-spacing"></i> By record label</a></li>
+            </ul>
+          </nav>
+        </div>
 
         <!-- Main content -->
-        <main ng-view>
-        </main>
+        <div class="col-xs-10 col-md-9">
+          <!-- Search bar -->
+
+          <!-- Main content -->
+          <main ng-view>
+          </main>
+        </div>
       </div>
     </div>
   </body>

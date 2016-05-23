@@ -1,8 +1,58 @@
 .sidebar {
+  @include link-color(white, none);
+
+  padding: 0;
+
+  height: 100vh;
+
   background-color: $primary-background-color;
   color: $primary-text-color;
 
+  @media(max-width: $screen-md-min) {
+    width: 50px;
+
+    text-align: center;
+  }
+
   .brand {
+    padding: $spacing-sm $spacing-lg;
+
+    background-color: #4BB5CA;
+
+    font-family: Roboto;
+    font-weight: bold;
     font-size: $text-xl;
+
+    color: white;
+  }
+
+  nav {
+    padding: $spacing-lg 0;
+
+    .section-head {
+      padding: 0 $spacing-lg;
+      margin-bottom: $spacing-sm;
+
+      color: lighten(black, 50%);
+    }
+
+    ul { padding: 0; }
+
+    ul li {
+      list-style: none;
+
+      a {
+        display: inline-block;
+        width: 100%;
+
+        padding: $spacing-md $spacing-xl;
+
+        font-weight: bold;
+
+        &:hover {
+          background: rgba(255, 255, 255, .1);
+        }
+      }
+    }
   }
 }
