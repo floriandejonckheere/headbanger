@@ -4,3 +4,5 @@ asset 'angular-route'
 
 asset 'bootstrap-sass-official'
 asset 'fontawesome'
+
+asset 'pt-sans'

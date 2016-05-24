@@ -7,6 +7,8 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
 
+    <link rel="stylesheet" type="text/css" href="<%= asset_path('pt-sans/styles/pt_sans.css') %>">
+
   </head>
   <body>
     <div class="container-fluid">
@@ -27,6 +29,12 @@
               <li><a href="#by-genre"><i class="fa fa-fw fa-music fa-spacing"></i> By genre</a></li>
               <li><a href="#by-country"><i class="fa fa-fw fa-globe fa-spacing"></i> By country</a></li>
               <li><a href="#by-label"><i class="fa fa-fw fa-tag fa-spacing"></i> By record label</a></li>
+            </ul>
+            <div class="section-head">Account</div>
+            <ul>
+              <li><a href="#my-account"><i class="fa fa-fw fa-user fa-spacing"></i> My account</a></li>
+              <li><a href="#preferences"><i class="fa fa-fw fa-gear fa-spacing"></i> Preferences</a></li>
+              <li><a href="#sign-out"><i class="fa fa-fw fa-sign-out fa-spacing"></i> Sign out</a></li>
             </ul>
           </nav>
         </div>
