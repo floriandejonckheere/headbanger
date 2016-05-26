@@ -10,16 +10,9 @@ $fa-font-path: "../assets/font-awesome";
 @import "utilities";
 @import "components/sidebar";
 @import "components/searchbar";
+@import "components/app";
 
 html,
 body {
   font-family: 'pt_sans';
-}
-
-.main {
-  padding: 0;
-}
-
-main {
-  background-color: darken(white, 5%);
 }
