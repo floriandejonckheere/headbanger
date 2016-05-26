@@ -4,12 +4,13 @@
   padding: 0;
 
   height: 100vh;
+  width: auto;
 
   background-color: $primary-background-color;
   color: $primary-text-color;
 
   @media(max-width: $screen-md-min) {
-    width: 50px;
+    width: 80px;
 
     text-align: center;
   }
@@ -55,6 +56,12 @@
 
           color: white;
         }
+      }
+
+      @media(max-width: $screen-md-min) {
+        font-size: 125%;
+
+        .fa { margin: 0; }
       }
     }
   }
