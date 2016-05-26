@@ -40,10 +40,20 @@
         </div>
 
         <!-- Main content -->
-        <div class="col-xs-10 col-md-9">
+        <div class="col-xs-10 col-md-9 main">
           <!-- Search bar -->
+          <div class="searchbar">
+            <span class="left search">
+              <i class="fa fa-search fa-spacing"></i>
+              <input type="text" placeholder="Search for artists or albums" />
+            </span>
+            <span class="right">
+              <a href="#my-account">
+                <i class="fa fa-user fa-spacing"></i> John Doe
+              </a>
+            </span>
+          </div>
 
-          <!-- Main content -->
           <main ng-view>
           </main>
         </div>
