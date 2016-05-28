@@ -1,5 +1,5 @@
-function template(filename) {
-  return '/assets/' + filename + '.html';
+function t(filename) {
+  return '/assets/templates/' + filename + '.html';
 }
 
 var headbanger = angular.module('headbanger', [
@@ -13,39 +13,51 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/app');
 
   $stateProvider
-    .state('app', {
+    /** Main application **/
+    .state({
+      name: 'app',
+      abstract: true,
       url: '/app',
-      templateUrl: template('app'),
-      controller: 'AppController'
+      controller: 'AppController',
+      templateUrl: t('app')
     })
-    .state('signin', {
+      .state({
+        name: 'app.whats-new',
+        url: '/whats-new',
+        templateUrl: t('app/whats-new')
+      })
+      .state({
+        name: 'app.by-genre',
+        url: '/by-genre',
+        templateUrl: t('app/by-genre')
+      })
+      .state({
+        name: 'app.by-country',
+        url: '/by-country',
+        templateUrl: t('app/by-country')
+      })
+      .state({
+        name: 'app.by-label',
+        url: '/by-label',
+        templateUrl: t('app/by-label')
+      })
+      .state({
+        name: 'app.my-account',
+        url: '/my-account',
+        templateUrl: t('app/my-account')
+      })
+      .state({
+        name: 'app.preferences',
+        url: '/preferences',
+        templateUrl: t('app/preferences')
+      })
+
+    /** Devise **/
+    .state({
+      name: 'signin',
       url: '/signin',
-      templateUrl: template('signin'),
+      templateUrl: t('signin'),
       controller: 'SigninController'
-    })
-    .state('whats-new', {
-      url: '/whats-new',
-      templateUrl: template('whats-new')
-    })
-    .state('by-genre', {
-      url: '/by-genre',
-      templateUrl: template('by-genre')
-    })
-    .state('by-country', {
-      url: '/by-country',
-      templateUrl: template('by-country')
-    })
-    .state('by-label', {
-      url: '/by-label',
-      templateUrl: template('by-label')
-    })
-    .state('my-account', {
-      url: '/my-account',
-      templateUrl: template('my-account')
-    })
-    .state('preferences', {
-      url: '/preferences',
-      templateUrl: template('preferences')
     });
 });
 
