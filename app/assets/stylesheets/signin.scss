@@ -1,0 +1,32 @@
+.signin-container {
+  background: $secondary-color;
+
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="submit"],
+  input[type="button"] {
+    padding: $spacing-md;
+
+    width: $size-xxl;
+
+    border: 0;
+    border-radius: $border-radius;
+    background-color: white;
+
+    color: $secondary-text-color;
+    font-size: 13px;
+    font-family: 'Sans', sans-serif;
+  }
+
+  *:not(:last-child) {
+    margin-bottom: $spacing-md;
+  }
+}

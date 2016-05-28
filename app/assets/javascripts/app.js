@@ -10,13 +10,14 @@ var headbanger = angular.module('headbanger', [
 headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
   $httpProvider.defaults.withCredentials = true;
 
-  $urlRouterProvider.otherwise('/app');
+// Redirect /app to some intro state
+$urlRouterProvider
+    .when('/app', '/app/whats-new');
 
   $stateProvider
     /** Main application **/
     .state({
       name: 'app',
-      abstract: true,
       url: '/app',
       controller: 'AppController',
       templateUrl: t('app')
@@ -59,6 +60,8 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
       templateUrl: t('signin'),
       controller: 'SigninController'
     });
+
+    $urlRouterProvider.otherwise('app');
 });
 
 headbanger.run(['Auth', function (Auth) {

@@ -29,13 +29,16 @@ $text-xxl: 4   * $text-unit;
 $size-sm: 3 * $spacing-unit;
 $size-md: 5 * $spacing-unit;
 $size-lg: 7 * $spacing-unit;
+$size-xl: 15 * $spacing-unit;
+$size-xxl: 25 * $spacing-unit;
 
 /* colours */
-$primary-background-color: #474747;
 $primary-color: #4CB6CB;
+$primary-background-color: #474747;
 $primary-text-color: #A3A3A3;
 
-$searchbar-text: #555;
+$secondary-color: #275E68;
+$secondary-text-color: #555;
 
 /**
  * screen sizes derived from twbs

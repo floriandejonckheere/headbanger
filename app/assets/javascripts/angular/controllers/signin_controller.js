@@ -1,7 +1,7 @@
 angular.module('headbanger')
   .controller('SigninController',
-    ['$scope', '$routeParams', '$location',
-      function($scope, $routeParams, $location) {
+    ['$scope', '$location',
+      function($scope, $location) {
       }
     ]
   );

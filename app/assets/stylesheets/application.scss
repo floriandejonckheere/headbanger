@@ -12,7 +12,15 @@ $fa-font-path: "../assets/font-awesome";
 @import "components/searchbar";
 @import "components/app";
 
+@import "signin";
+
 html,
 body {
   font-family: 'pt_sans';
 }
+
+/* Italic placeholders */
+::-webkit-input-placeholder { font-style: italic; }
+::-moz-placeholder { font-style: italic; } /* firefox 19+ */
+:-ms-input-placeholder { font-style: italic; } /* ie */
+input:-moz-placeholder { font-style: italic; }
