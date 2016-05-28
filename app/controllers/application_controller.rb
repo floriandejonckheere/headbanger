@@ -32,4 +32,9 @@ class ApplicationController < ActionController::Base
   #
   # When defined, aliases are used to define both the params and the header names to watch.
   # E.g. facilitator_token, X-Facilitator-Token
+
+  # Allow Devise to respond to JSON
+  config.to_prepare do
+    DeviseController.respond_to :html, :json
+  end
 end

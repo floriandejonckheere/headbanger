@@ -26,22 +26,22 @@
             <div class="section-head">Discover</div>
             <ul>
               <li>
-                <a href="#whats-new">
+                <a ui-sref="whats-new">
                   <i class="fa fa-fw fa-line-chart"></i> <span class="hidden-xs hidden-sm">What's new</span>
                 </a>
               </li>
               <li>
-                <a href="#by-genre">
+                <a ui-sref="by-genre">
                   <i class="fa fa-fw fa-music"></i> <span class="hidden-xs hidden-sm">By genre</span>
                 </a>
               </li>
               <li>
-                <a href="#by-country">
+                <a ui-sref="by-country">
                   <i class="fa fa-fw fa-globe"></i> <span class="hidden-xs hidden-sm">By country</span>
                 </a>
               </li>
               <li>
-                <a href="#by-label">
+                <a ui-sref="by-label">
                   <i class="fa fa-fw fa-tag"></i> <span class="hidden-xs hidden-sm">By record label</span>
                 </a>
               </li>
@@ -49,17 +49,17 @@
             <div class="section-head">Account</div>
             <ul>
               <li>
-                <a href="#my-account">
+                <a ui-sref="my-account">
                   <i class="fa fa-fw fa-user"></i> <span class="hidden-xs hidden-sm">My account</span>
                 </a>
               </li>
               <li>
-                <a href="#preferences">
+                <a ui-sref="preferences">
                   <i class="fa fa-fw fa-gear"></i> <span class="hidden-xs hidden-sm">Preferences</span>
                 </a>
               </li>
               <li>
-                <a href="#sign-out">
+                <a ui-sref="sign-out">
                   <i class="fa fa-fw fa-sign-out"></i> <span class="hidden-xs hidden-sm">Sign out</span>
                 </a>
               </li>
@@ -76,13 +76,13 @@
               <input type="text" placeholder="Search for artists or albums" />
             </span>
             <span class="right">
-              <a href="#my-account">
+              <a ui-sref="my-account">
                 <i class="fa fa-user"></i> John Doe
               </a>
             </span>
           </div>
 
-          <main ng-view>
+          <main ui-view>
           </main>
         </div>
       </div>

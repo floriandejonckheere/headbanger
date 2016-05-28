@@ -1,7 +1,7 @@
 angular.module('headbanger')
   .controller('AppController',
-    ['$scope', '$routeParams', '$location',
-      function($scope, $routeParams, $location) {
+    ['$scope', '$location',
+      function($scope, $location) {
 
         $scope.$on('devise:login', function(event, currentUser) {
           $scope.currentUser = currentUser;

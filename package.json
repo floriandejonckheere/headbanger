@@ -1,0 +1,21 @@
+{
+  "name": "headbanger",
+  "version": "0.0.1",
+  "description": "Music recommendation and discovery platform",
+  "dependencies": {
+    "bower": "^1.7.7"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com/floriandejonckheere/headbanger.git"
+  },
+  "keywords": [
+    "music",
+    "recommendation",
+    "angular",
+    "rails"
+  ],
+  "author": "Florian Dejonckheere <florian@floriandejonckheere.be>",
+  "license": "MIT"
+}

@@ -1,47 +1,51 @@
 function template(filename) {
-  return '/assets/' + filename;
+  return '/assets/' + filename + '.html';
 }
 
 var headbanger = angular.module('headbanger', [
-  'ngRoute',
+  'ui.router',
   'Devise'
 ]);
 
-headbanger.config(function($httpProvider, $routeProvider) {
+headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
   $httpProvider.defaults.withCredentials = true;
 
-  $routeProvider
-    .when('/app', {
-      templateUrl: template('app.html'),
+  $urlRouterProvider.otherwise('/app');
+
+  $stateProvider
+    .state('app', {
+      url: '/app',
+      templateUrl: template('app'),
       controller: 'AppController'
     })
-    .when('/signin', {
-      templateUrl: template('signin.html'),
+    .state('signin', {
+      url: '/signin',
+      templateUrl: template('signin'),
       controller: 'SigninController'
     })
-    .when('/signup', {
-      templateUrl: template('signup.html')
+    .state('whats-new', {
+      url: '/whats-new',
+      templateUrl: template('whats-new')
     })
-    .when('/whats-new', {
-      templateUrl: template('whats-new.html')
+    .state('by-genre', {
+      url: '/by-genre',
+      templateUrl: template('by-genre')
     })
-    .when('/by-genre', {
-      templateUrl: template('by-genre.html')
+    .state('by-country', {
+      url: '/by-country',
+      templateUrl: template('by-country')
     })
-    .when('/by-country', {
-      templateUrl: template('by-country.html')
+    .state('by-label', {
+      url: '/by-label',
+      templateUrl: template('by-label')
     })
-    .when('/by-label', {
-      templateUrl: template('by-label.html')
+    .state('my-account', {
+      url: '/my-account',
+      templateUrl: template('my-account')
     })
-    .when('/my-account', {
-      templateUrl: template('my-account.html')
-    })
-    .when('/preferences', {
-      templateUrl: template('preferences.html')
-    })
-    .otherwise({
-      redirectTo: '/app'
+    .state('preferences', {
+      url: '/preferences',
+      templateUrl: template('preferences')
     });
 });
 
@@ -50,6 +54,7 @@ headbanger.run(['Auth', function (Auth) {
       console.log(user);
       console.log(Auth._currentUser);
     }, function(err) {
+
       console.error(err);
     });
   }]);

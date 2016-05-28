@@ -1,6 +1,6 @@
 asset 'angular'
 asset 'angular-devise'
-asset 'angular-route'
+asset 'angular-ui-router'
 
 asset 'bootstrap-sass-official'
 asset 'fontawesome'
