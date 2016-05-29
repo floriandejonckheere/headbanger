@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  acts_as_token_authenticatable
+  include GrapeTokenAuth::ActiveRecord::TokenAuth
 
   validates :email, :presence => true
 

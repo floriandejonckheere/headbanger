@@ -39,5 +39,11 @@ module Headbanger
     # config.angular_templates.inside_paths   = ['app/assets']
     # config.angular_templates.markups        = %w(erb)
     # config.angular_templates.extension      = 'html'
+
+    # Grape Token Auth
+    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+      manager.failure_app = GrapeTokenAuth::UnauthorizedMiddleware
+      manager.default_scope = :user
+    end
   end
 end

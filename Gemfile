@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 ## API ##
 gem 'grape'
+gem 'grape_token_auth'
 
 ## User management ##
 gem 'devise', '~> 3.5.4'
-gem 'simple_token_authentication', '~> 1.0'
 
 # Angular
 gem 'angular_rails_csrf'
