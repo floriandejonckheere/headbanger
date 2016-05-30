@@ -27,6 +27,7 @@
   }
 
   *:not(:last-child) {
+    display:block;
     margin-bottom: $spacing-md;
   }
 }

@@ -1,6 +1,13 @@
 class User < ActiveRecord::Base
   include GrapeTokenAuth::ActiveRecord::TokenAuth
 
+  # grape_token_auth needs some attributes
+  alias_attribute :uid, :email
+  alias_attribute :confirmed_at, :created_at
+
+  # https://github.com/mcordell/grape_token_auth/issues/37
+  @case_insensitive_keys = [:email]
+
   validates :email, :presence => true
 
   # Include default devise modules. Others available are:
@@ -8,7 +15,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :trackable
 
   ## Methods
-  def is_admin?
-    self.admin || false
+  def admin?
+    !!self.admin
+  end
+
+  def display_name
+    self.name || self.email
+  end
+
+  # grape_token_auth needs some attributes
+  def confirmed?
+    true
   end
 end

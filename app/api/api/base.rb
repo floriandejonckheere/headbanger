@@ -3,7 +3,6 @@ module API
     format :json
 
     include GrapeTokenAuth::MountHelpers
-    include GrapeTokenAuth::TokenAuthentication
 
     mount_registration :to => '/auth', :for => :user
     mount_sessions :to => '/auth', :for => :user
@@ -14,7 +13,10 @@ module API
     mount API::V1::Base => '/'
 
     get '/' do
-      {}
+      {
+        :application => 'Headbanger',
+        :version => Headbanger::VERSION
+      }
     end
 
     route :any, '*path' do

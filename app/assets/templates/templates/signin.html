@@ -1,5 +1,10 @@
 <div class="signin-container">
-  <input type="text" placeholder="username">
-  <input type="password" placeholder="password">
-  <input type="submit" value="Sign in">
+  <div class="alert alert-danger" ng-show="error">
+    There was a problem logging in. Please try again.
+  </div>
+  <form role="form" ng-submit="authenticate()">
+    <input type="email" placeholder="email" name="email" id="email" ng-model="credentials.email">
+    <input type="password" placeholder="password" name="password" id="password" ng-model="credentials.password">
+    <input type="submit" value="Sign in">
+  </form>
 </div>

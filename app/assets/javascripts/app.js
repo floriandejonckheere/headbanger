@@ -4,23 +4,30 @@ function t(filename) {
 
 var headbanger = angular.module('headbanger', [
   'ui.router',
-  'Devise'
+  'ng-token-auth'
 ]);
 
-headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider) {
-  $httpProvider.defaults.withCredentials = true;
+var authenticate = function($auth, $state) {
+  return $auth.validateUser()
+    .catch(function(result) {
+      $state.go('signin');
+    });
+};
 
-// Redirect /app to some intro state
-$urlRouterProvider
-    .when('/app', '/app/whats-new');
+headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $authProvider) {
+  $httpProvider.defaults.withCredentials = true;
 
   $stateProvider
     /** Main application **/
     .state({
       name: 'app',
       url: '/app',
+      redirectTo: 'app.whats-new',
       controller: 'AppController',
-      templateUrl: t('app')
+      templateUrl: t('app'),
+      resolve: {
+        auth: authenticate
+      }
     })
       .state({
         name: 'app.whats-new',
@@ -45,7 +52,8 @@ $urlRouterProvider
       .state({
         name: 'app.my-account',
         url: '/my-account',
-        templateUrl: t('app/my-account')
+        templateUrl: t('app/my-account'),
+        controller: 'AccountController'
       })
       .state({
         name: 'app.preferences',
@@ -53,23 +61,46 @@ $urlRouterProvider
         templateUrl: t('app/preferences')
       })
 
-    /** Devise **/
+    /** Authentication **/
     .state({
       name: 'signin',
       url: '/signin',
       templateUrl: t('signin'),
       controller: 'SigninController'
+    })
+    .state({
+      name: 'signout',
+      url: '/signout',
+      controller: 'SignoutController'
     });
 
     $urlRouterProvider.otherwise('app');
+
+    /**
+     * Authentication
+     *
+     * */
+    $authProvider.configure({
+      apiUrl:                  '/api'
+    });
 });
 
-headbanger.run(['Auth', function (Auth) {
-    Auth.currentUser().then(function(user) {
-      console.log(user);
-      console.log(Auth._currentUser);
-    }, function(err) {
+headbanger.run(['$auth', '$state', '$rootScope', function ($auth, $state, $rootScope) {
 
-      console.error(err);
-    });
-  }]);
+  $rootScope.$on('auth:invalid', function(ev, reason) {
+    console.log('auth failed because ' + reason);
+  });
+  $rootScope.$on('auth:validation-error', function(ev, reason) {
+    console.log('auth failed because ' + reason);
+  });
+  $rootScope.$on('auth:login-error', function(ev, reason) {
+    console.log('auth failed because ' + reason);
+  });
+
+  $rootScope.$on('$stateChangeStart', function(evt, to, params) {
+    if (to.redirectTo) {
+      evt.preventDefault();
+      $state.go(to.redirectTo, params, { location: 'replace' })
+    }
+  });
+}]);
