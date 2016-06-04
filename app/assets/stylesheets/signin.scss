@@ -30,4 +30,23 @@
     display:block;
     margin-bottom: $spacing-md;
   }
+
+  .logo {
+    margin-bottom: $spacing-lg;
+
+    font-size: $text-xxl;
+    color: white;
+  }
+
+  .alert-signin {
+    display: block;
+
+    padding: 0 $spacing-sm;
+
+    color: white;
+  }
+
+  form {
+    margin-top: $spacing-md;
+  }
 }
