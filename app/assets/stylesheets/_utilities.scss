@@ -12,5 +12,7 @@
 
 .fa {
   display: inline-block;
-  margin-right: $spacing-sm;
 }
+
+.m-r { margin-right: $spacing-sm; }
+.m-l { margin-left: $spacing-sm; }

@@ -1,3 +1,5 @@
+$focus-color: darken(white, 3%);
+
 .searchbar {
   @include link-color($primary-text-color, none);
 
@@ -20,12 +22,16 @@
     align-items: center;
     height: 100%;
 
-    padding: $spacing-md;
+    padding: $spacing-md $spacing-lg;
 
-    &:hover { background-color: darken(white, 10%); }
+    &:hover { background-color: $focus-color; }
   }
 
+  .dropdown-menu {
+    @include link-color(black, none);
 
+    border-radius: $border-radius;
+  }
 
   .search {
     position: relative;
@@ -45,7 +51,7 @@
 
       border: 0;
 
-      &:focus { background-color: darken(white, 10%); }
+      &:focus { background-color: $focus-color; }
 
       &::-webkit-input-placeholder  { font-style: italic; }
       &:-moz-placeholder  { font-style: italic; }

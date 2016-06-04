@@ -9,6 +9,8 @@
 //= require ng-token-auth
 //= require angular-cookie
 //
+//= require bootstrap
+//
 //= require app
 //= require_tree .
 //= require_tree ./angular

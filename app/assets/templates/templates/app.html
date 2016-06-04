@@ -5,7 +5,7 @@
       <div class="brand">
         <a href="/#/">
           <i class="fa fa-headphones"></i>
-          <span class="hidden-xs hidden-sm">Headbanger</span>
+          <span class="hidden-xs hidden-sm m-r">Headbanger</span>
         </a>
       </div>
 
@@ -14,22 +14,22 @@
         <ul>
           <li>
             <a ui-sref="app.whats-new">
-              <i class="fa fa-fw fa-line-chart"></i> <span class="hidden-xs hidden-sm">What's new</span>
+              <i class="fa fa-fw fa-line-chart m-r"></i> <span class="hidden-xs hidden-sm">What's new</span>
             </a>
           </li>
           <li>
             <a ui-sref="app.by-genre">
-              <i class="fa fa-fw fa-music"></i> <span class="hidden-xs hidden-sm">By genre</span>
+              <i class="fa fa-fw fa-music m-r"></i> <span class="hidden-xs hidden-sm">By genre</span>
             </a>
           </li>
           <li>
             <a ui-sref="app.by-country">
-              <i class="fa fa-fw fa-globe"></i> <span class="hidden-xs hidden-sm">By country</span>
+              <i class="fa fa-fw fa-globe m-r"></i> <span class="hidden-xs hidden-sm">By country</span>
             </a>
           </li>
           <li>
             <a ui-sref="app.by-label">
-              <i class="fa fa-fw fa-tag"></i> <span class="hidden-xs hidden-sm">By record label</span>
+              <i class="fa fa-fw fa-tag m-r"></i> <span class="hidden-xs hidden-sm">By record label</span>
             </a>
           </li>
         </ul>
@@ -37,17 +37,17 @@
         <ul>
           <li>
             <a ui-sref="app.my-account">
-              <i class="fa fa-fw fa-user"></i> <span class="hidden-xs hidden-sm">My account</span>
+              <i class="fa fa-fw fa-user m-r"></i> <span class="hidden-xs hidden-sm">My account</span>
             </a>
           </li>
           <li>
             <a ui-sref="app.preferences">
-              <i class="fa fa-fw fa-gear"></i> <span class="hidden-xs hidden-sm">Preferences</span>
+              <i class="fa fa-fw fa-gear m-r"></i> <span class="hidden-xs hidden-sm">Preferences</span>
             </a>
           </li>
           <li>
             <a ui-sref="signout">
-              <i class="fa fa-fw fa-sign-out"></i> <span class="hidden-xs hidden-sm">Sign out</span>
+              <i class="fa fa-fw fa-sign-out m-r"></i> <span class="hidden-xs hidden-sm">Sign out</span>
             </a>
           </li>
         </ul>
@@ -62,10 +62,17 @@
           <i class="fa fa-search"></i>
           <input type="text" placeholder="Search for artists or albums" />
         </div>
-        <div class="right">
-          <a ui-sref="app.my-account">
-            <i class="fa fa-user"></i> John Doe
+
+        <div class="right btn-group">
+          <a href="javascript:void(0);" data-target="#" data-toggle="dropdown">
+            {{ user.email }} <i class="fa fa-caret-down m-l"></i>
           </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a ui-sref="app.my-account">My Account</a></li>
+            <li><a ui-sref="app.preferences">Preferences</a></li>
+            <li class="divider"></li>
+            <li><a ui-sref="signout">Sign out</a></li>
+          </ul>
         </div>
       </div>
 
