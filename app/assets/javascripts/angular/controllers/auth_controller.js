@@ -4,6 +4,11 @@ angular.module('headbanger')
       function($scope, $location, $auth, $state) {
         $scope.credentials = {};
 
+        $auth.validateUser()
+          .then(function(result) {
+            $state.go('app');
+          });
+
         $scope.authenticate = function() {
           $auth.submitLogin($scope.credentials)
           .then(function(response) {

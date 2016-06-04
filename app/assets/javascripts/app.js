@@ -7,6 +7,10 @@ var headbanger = angular.module('headbanger', [
   'ng-token-auth'
 ]);
 
+/**
+ * Redirection based on authentication status
+ *
+ * */
 var authenticate = function($auth, $state) {
   return $auth.validateUser()
     .catch(function(result) {
@@ -88,13 +92,13 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
 headbanger.run(['$auth', '$state', '$rootScope', function ($auth, $state, $rootScope) {
 
   $rootScope.$on('auth:invalid', function(ev, reason) {
-    console.log('auth failed because ' + reason);
+    console.log(reason);
   });
   $rootScope.$on('auth:validation-error', function(ev, reason) {
-    console.log('auth failed because ' + reason);
+    console.log(reason);
   });
   $rootScope.$on('auth:login-error', function(ev, reason) {
-    console.log('auth failed because ' + reason);
+    console.log(reason);
   });
 
   $rootScope.$on('$stateChangeStart', function(evt, to, params) {
