@@ -1,5 +1,6 @@
 asset 'angular'
-asset 'angular-devise'
+asset 'ng-token-auth'
+asset 'angular-cookie'
 asset 'angular-ui-router'
 
 asset 'bootstrap-sass-official'
