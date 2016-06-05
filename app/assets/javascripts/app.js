@@ -73,6 +73,12 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
       controller: 'SigninController'
     })
     .state({
+      name: 'signup',
+      url: '/signup',
+      templateUrl: t('signup'),
+      controller: 'SignupController'
+    })
+    .state({
       name: 'signout',
       url: '/signout',
       controller: 'SignoutController'

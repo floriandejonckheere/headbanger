@@ -1,0 +1,12 @@
+<div class="signin-container">
+  <i class="fa fa-headphones logo"></i>
+  <div class="alert-signin" ng-show="error">
+    There was a problem signing up. Please try again.
+  </div>
+  <form role="form" ng-submit="register()">
+    <input type="email" placeholder="email" ng-model="credentials.email">
+    <input type="password" placeholder="password" ng-model="credentials.password">
+    <input type="password" placeholder="retype password" ng-model="credentials.password_confirmation">
+    <input type="submit" value="Sign up">
+  </form>
+</div>

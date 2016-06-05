@@ -1,6 +1,7 @@
 GrapeTokenAuth.setup! do |config|
   ## The time span that GTA tokens are valid for
   # config.token_lifespan = 2.weeks
+  config.token_lifespan = 2.days
 
   ## The timeframe in which a subsequent requests
   ## are considered "batch" requests

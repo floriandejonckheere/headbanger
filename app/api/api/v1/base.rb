@@ -27,7 +27,10 @@ module V1
       }
     end
 
-
+    get '/self' do
+      authenticate_user!
+      current_user
+    end
   end
 end
 end

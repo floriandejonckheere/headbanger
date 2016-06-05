@@ -22,6 +22,29 @@ angular.module('headbanger')
       }
     ]
   )
+  .controller('SignupController',
+    ['$scope', '$location', '$auth', '$state',
+      function($scope, $location, $auth, $state) {
+        $scope.credentials = {};
+
+        $auth.validateUser()
+          .then(function(result) {
+            $state.go('app');
+          });
+
+        $scope.register = function() {
+          $auth.submitRegistration($scope.credentials)
+          .then(function(response) {
+            $scope.user = response;
+            $state.go('signin');
+          })
+          .catch(function(response) {
+            $scope.error = response.errors;
+          });
+        };
+      }
+    ]
+  )
   .controller('SignoutController',
     ['$scope', '$location', '$auth', '$state',
       function($scope, $location, $auth, $state) {
