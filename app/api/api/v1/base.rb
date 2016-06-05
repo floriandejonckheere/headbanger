@@ -28,8 +28,10 @@ module V1
     end
 
     get '/self' do
-      authenticate_user!
-      current_user
+      {
+        :email => current_user.email,
+        :admin => current_user.admin?
+      }
     end
   end
 end
