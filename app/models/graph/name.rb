@@ -16,7 +16,8 @@ module Graph
                 :type => :known_as,
                 :model_class => [
                                   'Graph::Artist',
-                                  'Graph::Group'
+                                  'Graph::Group',
+                                  'Graph::Label'
                                 ]
   end
 end

@@ -3,10 +3,15 @@ module Graph
     include Neo4j::ActiveNode
 
     # ISO-3166-1 alpha 2 (e.g. US, BE)
-    property :country,        :index => :exact
+    property :country
     property :year_formed,    :type => Date
 
     id_property :gid
+
+    has_one :out,
+                  :root_node,
+                  :type => :described_by,
+                  :model_class => 'Graph::RootNode'
 
     has_many :out,
                   :names,
@@ -28,11 +33,5 @@ module Graph
                   :releases,
                   :type => :appears_in,
                   :model_class => 'Graph::Release'
-
-    has_many :out,
-                  :data_sources,
-                  :type => :described_by,
-                  :model_class => 'Graph::DataSource',
-                  :dependent => :destroy
   end
 end

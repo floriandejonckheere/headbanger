@@ -22,6 +22,12 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
   $httpProvider.defaults.withCredentials = true;
 
   $stateProvider
+    /** Landing page **/
+    .state({
+      name: 'landing',
+      url: '/landing',
+      templateUrl: t('landing')
+    })
     /** Main application **/
     .state({
       name: 'app',

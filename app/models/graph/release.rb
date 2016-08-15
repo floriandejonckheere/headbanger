@@ -5,6 +5,11 @@ module Graph
     property :title
     property :release_date,  :type => Date
 
+    has_one :out,
+                  :root_node,
+                  :type => :described_by,
+                  :model_class => 'Graph::RootNode'
+
     has_many :in,
                   :performers,
                   :type => :appears_in,
@@ -12,11 +17,5 @@ module Graph
                                     'Graph::Artist',
                                     'Graph::Group'
                                   ]
-
-    has_many :out,
-                  :data_sources,
-                  :type => :described_by,
-                  :model_class => 'Graph::DataSource',
-                  :dependent => :destroy
   end
 end

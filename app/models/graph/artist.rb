@@ -1,9 +1,18 @@
 module Graph
+
+  ##
+  # A single performer (but not a solo artist)
+  #
   class Artist
     include Neo4j::ActiveNode
 
     property :date_of_birth,  :type => Date
     property :date_of_death,  :type => Date
+
+    has_one :out,
+                  :root_node,
+                  :type => :described_by,
+                  :model_class => 'Graph::RootNode'
 
     has_many :out,
                   :names,
@@ -20,15 +29,5 @@ module Graph
                   :releases,
                   :type => :appears_in,
                   :model_class => 'Graph::Release'
-
-    has_many :out,
-                  :data_sources,
-                  :type => :described_by,
-                  :model_class => 'Graph::DataSource',
-                  :dependent => :destroy
-
-    def mbid
-      data_sources.find_by(:type => :musicbrainz).key
-    end
   end
 end
