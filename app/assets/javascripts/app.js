@@ -1,3 +1,12 @@
+/**
+ * app.js - Application
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+
 function t(filename) {
   return '/assets/templates/' + filename + '.html';
 }

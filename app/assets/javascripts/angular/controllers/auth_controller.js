@@ -1,3 +1,12 @@
+/**
+ * auth_controller.js - Session controllers
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+
 angular.module('headbanger')
   .controller('SigninController',
     ['$scope', '$location', '$auth', '$state',

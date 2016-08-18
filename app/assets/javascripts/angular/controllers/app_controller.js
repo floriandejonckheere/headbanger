@@ -1,3 +1,12 @@
+/**
+ * app_controller.js - AppController
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+
 angular.module('headbanger')
   .controller('AppController',
     ['$scope', '$location', '$state',
