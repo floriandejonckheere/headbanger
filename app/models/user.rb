@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include GrapeTokenAuth::ActiveRecord::TokenAuth
 
   # grape_token_auth needs some attributes

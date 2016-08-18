@@ -8,7 +8,7 @@ class Musicbrainz::Base < ActiveRecord::Base
   self.inheritance_column = :_type_disabled
 
   def self.has_artist_credits
-    belongs_to :artist_credit, :foreign_key => :artist_credit
+    belongs_to :artist_credit, :foreign_key => :artist_credit, :optional => true
     has_many :artist_credit_names, :through => :artist_credit
     has_many :artists, :through => :artist_credit_names
   end

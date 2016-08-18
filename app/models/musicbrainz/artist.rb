@@ -3,9 +3,9 @@ class Musicbrainz::Artist < Musicbrainz::Base
 
   has_many :artist_aliases, :foreign_key => :artist
 
-  belongs_to :artist_type, :foreign_key => :type
-  belongs_to :area, :foreign_key => :area
-  belongs_to :gender, :foreign_key => :gender
+  belongs_to :artist_type, :foreign_key => :type, :optional => true
+  belongs_to :area, :foreign_key => :area, :optional => true
+  belongs_to :gender, :foreign_key => :gender, :optional => true
 
   has_many :artist_credit_name, :foreign_key => :artist
   has_many :artist_credits, :through => :artist_credit_name

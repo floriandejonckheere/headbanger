@@ -5,14 +5,14 @@ gem 'grape'
 gem 'grape_token_auth'
 
 ## User management ##
-gem 'devise', '~> 3.5.4'
+gem 'devise'
 
 # Angular
-gem 'angular_rails_csrf'
-gem 'angular-rails-templates'
+gem 'angular_rails_csrf', :git => 'https://github.com/tpmullan/angular_rails_csrf.git'
+gem 'angular-rails-templates', :git => 'https://github.com/pitr/angular-rails-templates.git'
 
 ## Graph store ##
-gem 'neo4j', '~> 7.0.0'
+gem 'neo4j'
 gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
 
 ## Music data ##
@@ -22,22 +22,20 @@ gem 'metal_archives', :github => 'floriandejonckheere/metal_archives'
 ## Sidekiq ##
 gem 'redis-namespace'
 gem 'sidekiq'
-gem 'sinatra' # For the web frontend
+# gem 'sinatra' # For the web frontend
 
 ## Web frontend ##
 gem 'bootstrap', '~> 4.0.0.alpha3'
-gem 'font-awesome-sass', '~> 4.4.0'
-gem 'bower-rails', '~> 0.10.0'
-gem 'listen', '~> 3.0' # for config/initializers/angular_templates.rb
+gem 'font-awesome-sass'
+gem 'bower-rails'
+gem 'listen' # for config/initializers/angular_templates.rb
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -49,12 +47,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# PostGres
-gem 'pg'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
 # Use Puma as the app server
 gem 'puma'
 
@@ -64,26 +56,30 @@ gem 'puma'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Ignore asset logging
-  gem 'quiet_assets'
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
 end
 
 group :test do
-  gem 'rspec', '~> 3.4.0'
-  gem 'rspec-rails', '~> 3.0'
-  gem 'database_cleaner', '~> 1.5.1'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-sidekiq'
 end
 
 group :development do
   # Capistrano deployment
-  gem 'capistrano', '~> 3.4.0'
-  gem 'capistrano-rails', '~> 1.1'
-  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
   gem 'capistrano-rvm'
   gem 'capistrano-upload-config'
   gem 'capistrano3-puma'
+end
+
+group :production, :staging do
+  # Use PostgreSQL as the database for Active Record
+  gem 'pg'
 end
