@@ -8,11 +8,18 @@ class User < ApplicationRecord
   # https://github.com/mcordell/grape_token_auth/issues/37
   @case_insensitive_keys = [:email]
 
-  validates :email, :presence => true
+  validates :email,
+              :presence => true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :trackable
+  devise :database_authenticatable,
+          :registerable,
+          :recoverable,
+          :confirmable,
+          :trackable,
+          :timeoutable,
+          :validatable
 
   ## Methods
   def admin?

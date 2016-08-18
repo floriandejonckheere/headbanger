@@ -14,6 +14,10 @@ module Headbanger
     # -- all .rb files in that directory are automatically loaded.
 
     config.mailer = YAML.load_file(Rails.root.join('config', 'mailer.yml'))[Rails.env]
+    config.action_mailer.default_url_options = {
+        :host => config.mailer['default_host_url'].split.first,
+        :port => config.mailer['default_host_url'].split.last
+    }
 
     # Add bower_components to asset path
     config.assets.paths << Rails.root.join('vendor','assets','bower_components')
