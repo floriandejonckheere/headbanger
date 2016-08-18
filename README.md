@@ -2,6 +2,15 @@
 
 Headbanger is a music recommendation and discovery platform.
 
+## Installation
+
+```
+$ gem install bundler --no-ri --no-rdoc
+$ bundle install
+$ npm install bower
+$ rails bower:install
+```
+
 ## Migrating
 
 Run the following commands to migrate the database.

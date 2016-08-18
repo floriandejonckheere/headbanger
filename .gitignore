@@ -15,10 +15,19 @@
 /log/*
 !/log/.keep
 /tmp
+
+vendor/bundle
+
+# Ignore private settings
+config/database.*yml
+config/neo4j.*yml
+config/mailer.*yml
+config/secrets.*yml
+
 .byebug_history
 
-# Ignore bower components
-vendor/assets
-
-# Ignore node
+# Ignore assets
 node_modules/
+vendor/assets/
+
+TODO.md
