@@ -1,5 +1,13 @@
+/**
+ * application.scss - Main stylesheet
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+
 @import "variables";
-@import "links";
 
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
@@ -12,12 +20,17 @@ $fa-font-path: "../assets/font-awesome";
 @import "components/searchbar";
 @import "components/app";
 
-@import "signin";
+@import "views/session";
 
 html,
 body {
   font-family: 'pt_sans';
 }
+
+/**
+ * Overrides
+ *
+ * */
 
 /* Italic placeholders */
 ::-webkit-input-placeholder { font-style: italic; }

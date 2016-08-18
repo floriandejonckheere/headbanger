@@ -1,3 +1,12 @@
+/**
+ * sidebar.scss - Sidebar stylesheet
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+
 .sidebar {
   @include link-color(white, none);
 
@@ -55,12 +64,6 @@
 
           color: white;
         }
-      }
-
-      @media(max-width: $screen-md-min) {
-        font-size: 125%;
-
-        .fa { margin: 0; }
       }
     }
   }

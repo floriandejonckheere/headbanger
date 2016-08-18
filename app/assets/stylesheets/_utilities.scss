@@ -1,5 +1,9 @@
 /**
- * Utilities
+ * utilities.scss - CSS utility classes
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
  *
  * */
 
@@ -14,5 +18,17 @@
   display: inline-block;
 }
 
-.m-r { margin-right: $spacing-sm; }
-.m-l { margin-left: $spacing-sm; }
+@mixin link-color($color, $decoration-hover: underline) {
+  a {
+    text-decoration: none;
+    color: $color;
+
+    &:visited,
+    &:focus,
+    &:hover,
+    &:active {
+      text-decoration: $decoration-hover;
+      color: $color;
+    }
+  }
+}

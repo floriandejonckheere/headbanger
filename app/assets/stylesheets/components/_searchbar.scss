@@ -1,4 +1,11 @@
-$focus-color: darken(white, 3%);
+/**
+ * searchbar.scss - Searchbar stylesheet
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
 
 .searchbar {
   @include link-color($primary-text-color, none);
@@ -24,7 +31,7 @@ $focus-color: darken(white, 3%);
 
     padding: $spacing-md $spacing-lg;
 
-    &:hover { background-color: $focus-color; }
+    &:hover { background-color: $color-searchbar-focus; }
   }
 
   .dropdown-menu {
@@ -51,7 +58,7 @@ $focus-color: darken(white, 3%);
 
       border: 0;
 
-      &:focus { background-color: $focus-color; }
+      &:focus { background-color: $color-searchbar-focus; }
 
       &::-webkit-input-placeholder  { font-style: italic; }
       &:-moz-placeholder  { font-style: italic; }
