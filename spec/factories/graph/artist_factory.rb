@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :artist, :class => Graph::Artist do
-    gid SecureRandom.uuid
   end
 
   factory :artist_alive, :parent => :artist do

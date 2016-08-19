@@ -11,9 +11,9 @@ describe User do
 
   it { is_expected.to respond_to :email }
   it { is_expected.to respond_to :name }
-  it { is_expected.to respond_to :is_admin? }
+  it { is_expected.to respond_to :admin? }
 
   describe FactoryGirl.build(:user, :admin => true) do
-    it { expect(subject.is_admin?).to be true }
+    it { expect(subject.admin?).to be true }
   end
 end

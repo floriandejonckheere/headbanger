@@ -4,7 +4,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
-    DatabaseCleaner[:active_record].strategy = :truncation, { :only => %w[users] }
+    DatabaseCleaner[:active_record].strategy = :transaction
     DatabaseCleaner[:neo4j,
                     :connection => { :type => Rails.application.config.neo4j.session_type,
                                       :path => Rails.application.config.neo4j.session_path }

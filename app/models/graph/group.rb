@@ -12,8 +12,6 @@ module Graph
     property :country
     property :year_formed,    :type => Date
 
-    id_property :gid
-
     has_many :out,
                   :names,
                   :type => :known_as,
