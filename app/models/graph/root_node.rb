@@ -12,9 +12,9 @@ module Graph
     # TODO: change to Integer for performance reasons
     property :timestamp,            :type => DateTime
 
-    # Node format version
+    # Graph format version
     property :version,              :type => Integer,
-                                    :default => Headbanger::NODE_VERSION
+                                    :default => Headbanger::GRAPH_VERSION
 
     validates :musicbrainz_key,
                   :presence => :true

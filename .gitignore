@@ -23,6 +23,7 @@ config/database.*yml
 config/neo4j.*yml
 config/mailer.*yml
 config/secrets.*yml
+config/api.*yml
 
 .byebug_history
 

@@ -1,0 +1,16 @@
+default: &default
+  name: MyApp
+  contact: myapp@mydomain.com
+
+development: &development
+  <<: *default
+  name: MyApp-dev
+
+test:
+  <<: *development
+
+staging:
+  <<: *development
+
+production:
+  <<: *default

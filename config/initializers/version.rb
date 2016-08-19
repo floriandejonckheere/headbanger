@@ -1,3 +1,6 @@
+##
+# Headbanger
+#
 module Headbanger
   # Application version
   VERSION_MAJOR = 0
