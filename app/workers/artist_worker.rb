@@ -14,7 +14,11 @@ class ArtistWorker < BaseWorker
   end
 
   def metal_archives(key)
-    raise 'Not implemented yet'
+    raise Errors::NotImplementedError
+  end
+
+  def discogs(key)
+    raise Errors::NotImplementedError
   end
 
 
