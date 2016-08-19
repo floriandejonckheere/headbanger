@@ -1,14 +1,15 @@
 module Graph
+  ##
+  # A release
+  #
   class Release
     include Neo4j::ActiveNode
+    include Concerns::HasRootNode
+
+    has_root_node
 
     property :title
     property :release_date,  :type => Date
-
-    has_one :out,
-                  :root_node,
-                  :type => :described_by,
-                  :model_class => 'Graph::RootNode'
 
     has_many :in,
                   :performers,

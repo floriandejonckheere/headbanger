@@ -1,18 +1,15 @@
 module Graph
-
   ##
   # A single performer (but not a solo artist)
   #
   class Artist
     include Neo4j::ActiveNode
+    include Concerns::HasRootNode
+
+    has_root_node
 
     property :date_of_birth,  :type => Date
     property :date_of_death,  :type => Date
-
-    has_one :out,
-                  :root_node,
-                  :type => :described_by,
-                  :model_class => 'Graph::RootNode'
 
     has_many :out,
                   :names,

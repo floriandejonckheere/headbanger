@@ -1,10 +1,9 @@
 module Graph
-
   ##
   # Persistent entity which stores a model's data source keys
   #
   class RootNode
-    include Neo4J::ActiveNode
+    include Neo4j::ActiveNode
 
     property :musicbrainz_key,      :index => :exact
     property :metal_archives_key

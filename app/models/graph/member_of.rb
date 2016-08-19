@@ -1,4 +1,7 @@
 module Graph
+  ##
+  # Relation that indicates an artist contributing in a group
+  #
   class MemberOf
     include Neo4j::ActiveRel
 

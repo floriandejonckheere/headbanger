@@ -1,4 +1,7 @@
 module Graph
+  ##
+  # Generic name node
+  #
   class Name
     include Neo4j::ActiveNode
 

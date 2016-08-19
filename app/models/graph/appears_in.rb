@@ -1,4 +1,7 @@
 module Graph
+  ##
+  # Relation that indicates performers in a release
+  #
   class AppearsIn
     include Neo4j::ActiveRel
 

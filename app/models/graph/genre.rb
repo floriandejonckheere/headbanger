@@ -1,4 +1,7 @@
 module Graph
+  ##
+  # A music genre
+  #
   class Genre
     include Neo4j::ActiveNode
 
