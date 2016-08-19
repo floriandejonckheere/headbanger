@@ -27,6 +27,8 @@ module Headbanger
     # Neo4j configuration
     config.neo4j.module_handling = :demodulize
 
+    config.autoload_paths += %W(#{config.root}/lib)
+
     # Angular templates
     # config.angular_templates.module_name    = 'templates'
     # config.angular_templates.ignore_prefix  = %w(templates/)

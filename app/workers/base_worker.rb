@@ -4,24 +4,36 @@ class BaseWorker
   attr_accessor :object
 
   class << self
-    attr_accessor :attributes, :associations
+    attr_accessor :attributes, :associations, :model
   end
 
+  ##
+  # Declare attribute
+  #
   def self.attribute(*args)
     Array(args.first).each do |attr|
       (@attributes ||= {})[attr] = args.last
     end
   end
 
+  ##
+  # Declare association
+  #
   def self.association(*args)
     Array(args.first).each do |assoc|
       (@associations ||= {})[assoc] = args.last
     end
   end
 
+  ##
+  # Declare model
+  def self.model(model)
+    @model = model
+  end
+
   def perform(id)
-    model = Graph.const_get self.class.name[0..-7]
-    @object = model.find id # raises Neo4j::RecordNotFound
+    # Graph object
+    @object = Graph.const_get(self.class.model).find id # raises Neo4j::RecordNotFound
 
     Neo4j::Transaction.run do
       ## Attributes
@@ -44,29 +56,31 @@ class BaseWorker
         end
       end
 
-      @object.data_sources.each { |ds| ds.save! }
+      @object.root_node.timestamp = DateTime.now
       @object.save!
     end
   end
 
-  ## Private methods ##
-  def valid?(arr, validity)
-    arr.each do |type|
-      data_source = @object.data_sources.find_by!(:type => type)
-      break true if data_source.timestamp? and
-                    (data_source.timestamp + validity).future?
+  private
+    def valid?(arr, validity)
+      arr.each do |type|
+        data_source_key = @object.root_node.send "#{type}_key"
+        break true if @object.root_node.timestamp? and
+                      (@object.root_node.timestamp + validity).future?
 
-      unless instance_variable_defined? "@#{type.to_s}"
-        source_model = send type, data_source.key
-        class_eval { attr_accessor data_source.type }
-        instance_variable_set "@#{type.to_s}", source_model
+        unless instance_variable_defined? "@#{type.to_s}"
+          # Get DataSources::MyDataSource::MyModel.new(key)
+          data_source_api = DataSources.const_get type.to_s.camelize
+          source_model = data_source_api.const_get self.class.model.camelize
+          source_instance = source_model.new data_source_key
 
-        # Set timestamp on data sources, but don't persist yet
-        data_source.timestamp = DateTime.now
+          # Set @mydatasource
+          class_eval { attr_accessor data_source.type }
+          instance_variable_set "@#{type.to_s}", source_model
+        end
+        break false
       end
-      break false
     end
-  end
 
   ############################
   ## Override these methods ##
@@ -92,10 +106,6 @@ class BaseWorker
   ## Override these methods in your subclass
 
   ### Attributes ###
-
-  ## Returns a mydatasource instance for key (available later in @mydatasource)
-  # def mydatasource(key)
-  # end
 
   ## Returns [myattribute ...] using @mydatasource
   # def myattribute
