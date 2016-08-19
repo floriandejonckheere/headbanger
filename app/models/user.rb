@@ -1,10 +1,6 @@
 class User < ApplicationRecord
   include GrapeTokenAuth::ActiveRecord::TokenAuth
 
-  # grape_token_auth needs some attributes
-  alias_attribute :uid, :email
-  alias_attribute :confirmed_at, :created_at
-
   # https://github.com/mcordell/grape_token_auth/issues/37
   @case_insensitive_keys = [:email]
 
@@ -21,16 +17,14 @@ class User < ApplicationRecord
           :timeoutable,
           :validatable
 
-  ## Methods
-  def admin?
-    !!self.admin
-  end
-
   def display_name
     self.name || self.email
   end
 
   # grape_token_auth needs some attributes
+  alias_attribute :uid, :email
+  alias_attribute :confirmed_at, :created_at
+
   def confirmed?
     true
   end
