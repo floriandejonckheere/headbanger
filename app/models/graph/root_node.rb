@@ -17,7 +17,7 @@ module Graph
     validates :musicbrainz_key,
                   :presence => :true
 
-    has_many :in,
+    has_one :in,
                   :model,
                   :type => :described_by,
                   :model_class => [

@@ -8,7 +8,7 @@ class ArtistWorker < BaseWorker
                 :source => [:musicbrainz, :metal_archives],
                 :valid_for => 3.months
 
-  model 'artist'
+  model :artist
 
   ### Attributes ###
   def date_of_birth

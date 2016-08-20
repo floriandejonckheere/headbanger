@@ -4,7 +4,7 @@ class BaseWorker
   attr_accessor :instance
 
   class << self
-    attr_accessor :attributes, :associations, :model
+    attr_accessor :attributes, :associations, :model_name
   end
 
   ##
@@ -27,17 +27,26 @@ class BaseWorker
 
   ##
   # Declare model
-  def self.model(model)
-    @model = model
+  def self.model(model_sym)
+    @model_name = model_sym.to_s
   end
 
   def perform(id)
     # Graph object instance
-    @instance = Graph.const_get(self.class.model).find id # raises Neo4j::RecordNotFound
+    #~ @instance = Graph.const_get(self.class.model_name.camelize).find id # raises Neo4j::RecordNotFound
+    @model = Graph.const_get(self.class.model_name.camelize)
+    root_node = Graph::RootNode.find(id)
+    @instance = root_node.model # raises Neo4j::RecordNotFound
 
     Neo4j::Transaction.run do
+      # Create instance if root_nodes doesn't have it already
+      unless @instance
+        @instance = @model.new
+        root_node.model = @instance
+      end
+
       ## Attributes
-      @instance.attribute_names.each do |attr|
+      @model.attribute_names.each do |attr|
         # Check validity and retrieve data sources accordingly
         unless valid? Array(self.class.attributes[attr.to_sym][:source]),
                             self.class.attributes[attr.to_sym][:valid_for]
@@ -46,8 +55,8 @@ class BaseWorker
       end
 
       ## Associations
-      @instance.associations
-                .select { |k,v| v.direction == :out and k != :data_sources }
+      @model.associations
+                .select { |k,v| v.direction == :out and k != :root_node }
                 .keys.each do |assoc|
         raise "No data source mapping defined for association #{assoc}" unless self.class.associations[assoc.to_sym]
         unless valid? Array(self.class.associations[assoc.to_sym][:source]),
@@ -63,20 +72,20 @@ class BaseWorker
       root_node = @instance.root_node
 
       data_sources.each do |type|
-        data_source_key = root_node.send "#{type}_key"
+        data_source_key = root_node.send :"#{type}_key"
 
         # Continue if a valid timestamp was found
-        break true if root_node.timestamp? and
-                      (root_node.timestamp + validity).future?
+        break true if root_node.send :"#{type}_timestamp?" and
+                      (root_node.send(:"#{type}_timestamp") + validity).future?
 
         unless instance_variable_defined? "@#{type.to_s}"
           # Get DataSources::MyDataSource::MyModel.new(key)
           data_source_api = DataSources.const_get type.to_s.camelize
-          source_model = data_source_api.const_get self.class.model.camelize
+          source_model = data_source_api.const_get self.class.model_name.camelize
           source_instance = source_model.new data_source_key
 
           # Set @mydatasource
-          class_eval { attr_accessor data_source.type }
+          class_eval { attr_accessor  type }
           instance_variable_set "@#{type.to_s}", source_model
 
           # Touch timestamp
