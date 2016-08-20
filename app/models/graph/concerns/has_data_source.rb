@@ -11,12 +11,12 @@ module Concerns
     module ClassMethods
       def has_data_source(name, opts = {})
         if opts[:index]
-          property "#{name}_key".to_sym,    :index => :exact
+          property :"#{name}_key",      :index => :exact
         else
-          property "#{name}_key".to_sym
+          property :"#{name}_key"
         end
 
-        property "#{name}_timestamp",       :type => DateTime
+        property :"#{name}_timestamp",  :type => DateTime
       end
     end
   end

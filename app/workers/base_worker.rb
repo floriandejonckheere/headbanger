@@ -1,7 +1,7 @@
 class BaseWorker
   include Sidekiq::Worker
 
-  attr_accessor :object
+  attr_accessor :instance
 
   class << self
     attr_accessor :attributes, :associations, :model
@@ -32,21 +32,21 @@ class BaseWorker
   end
 
   def perform(id)
-    # Graph object
-    @object = Graph.const_get(self.class.model).find id # raises Neo4j::RecordNotFound
+    # Graph object instance
+    @instance = Graph.const_get(self.class.model).find id # raises Neo4j::RecordNotFound
 
     Neo4j::Transaction.run do
       ## Attributes
-      model.attribute_names.each do |attr|
+      @instance.attribute_names.each do |attr|
         # Check validity and retrieve data sources accordingly
         unless valid? Array(self.class.attributes[attr.to_sym][:source]),
                             self.class.attributes[attr.to_sym][:valid_for]
-          @object[attr] = send attr
+          @instance[attr] = send attr
         end
       end
 
       ## Associations
-      model.associations
+      @instance.associations
                 .select { |k,v| v.direction == :out and k != :data_sources }
                 .keys.each do |assoc|
         raise "No data source mapping defined for association #{assoc}" unless self.class.associations[assoc.to_sym]
@@ -55,18 +55,19 @@ class BaseWorker
           send assoc
         end
       end
-
-      @object.root_node.timestamp = DateTime.now
-      @object.save!
     end
   end
 
   private
-    def valid?(arr, validity)
-      arr.each do |type|
-        data_source_key = @object.root_node.send "#{type}_key"
-        break true if @object.root_node.timestamp? and
-                      (@object.root_node.timestamp + validity).future?
+    def valid?(data_sources, validity)
+      root_node = @instance.root_node
+
+      data_sources.each do |type|
+        data_source_key = root_node.send "#{type}_key"
+
+        # Continue if a valid timestamp was found
+        break true if root_node.timestamp? and
+                      (root_node.timestamp + validity).future?
 
         unless instance_variable_defined? "@#{type.to_s}"
           # Get DataSources::MyDataSource::MyModel.new(key)
@@ -77,9 +78,14 @@ class BaseWorker
           # Set @mydatasource
           class_eval { attr_accessor data_source.type }
           instance_variable_set "@#{type.to_s}", source_model
+
+          # Touch timestamp
+          root_node[:"#{type}_timestamp"] = DateTime.now
         end
         break false
       end
+
+      root_node.save!
     end
 
   ############################
