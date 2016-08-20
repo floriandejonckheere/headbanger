@@ -115,6 +115,8 @@ class BaseWorker
   #               :source => [:mydatasource, myotherdatasource],
   #               :valid_for => 3.months
 
+  ## Define the model class, used for Graph::MyModel
+  # model :mymodel
 
   ## Override these methods in your subclass
 

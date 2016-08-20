@@ -1,5 +1,4 @@
 class ExampleWorker < BaseWorker
-
   def initialize; raise 'This is only an example'; end
 
   ### Attribute -> data source mapping ###
@@ -10,6 +9,8 @@ class ExampleWorker < BaseWorker
   association :myassociation,
                 :source => [:mydatasource, :myotherdatasource],
                 :valid_for => 3.months
+
+  model :example
 
   ### Data source lookup ###
   def mydatasource(key)
