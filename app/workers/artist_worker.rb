@@ -21,17 +21,14 @@ class ArtistWorker < BaseWorker
 
   ### Associations ###
   def names
-    @object.names.delete_all
-
-    @object.names << Graph::Name.create!(:name => @musicbrainz.name)
-    @musicbrainz.artist_aliases.each do |artist_alias|
-      @object.names << Graph::Name.create!(:name => artist_alias.name)
-    end
+    raise Errors::NotImplementedError
   end
 
   def groups
+    raise Errors::NotImplementedError
   end
 
   def releases
+    raise Errors::NotImplementedError
   end
 end
