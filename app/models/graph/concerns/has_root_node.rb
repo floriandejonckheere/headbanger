@@ -1,4 +1,5 @@
-module Graph::Concerns
+module Graph
+module Concerns
   ##
   # Allow a node to have a root node
   #
@@ -16,4 +17,5 @@ module Graph::Concerns
       end
     end
   end
+end
 end

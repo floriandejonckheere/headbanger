@@ -4,13 +4,11 @@ module Graph
   #
   class RootNode
     include Neo4j::ActiveNode
+    include Concerns::HasDataSource
 
-    property :musicbrainz_key,      :index => :exact
-    property :metal_archives_key
-    property :discogs_key
-
-    # TODO: change to Integer for performance reasons
-    property :timestamp,            :type => DateTime
+    has_data_source :musicbrainz,   :index => true
+    has_data_source :metal_archives
+    has_data_source :discogs
 
     # Graph format version
     property :version,              :type => Integer,
