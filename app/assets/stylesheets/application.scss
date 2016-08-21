@@ -9,22 +9,27 @@
 
 @import "variables";
 
+$brand-primary: #F45A3D;
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
 $fa-font-path: "../assets/font-awesome";
 @import "fontawesome/scss/font-awesome";
 
+@import "pt-sans/styles/pt_sans.css";
+
 @import "utilities";
 @import "components/sidebar";
 @import "components/searchbar";
-@import "components/app";
 
 @import "views/session";
 
 html,
 body {
   font-family: 'pt_sans';
+
+  margin: 0;
+  padding: 0;
 }
 
 /**

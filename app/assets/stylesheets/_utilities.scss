@@ -14,9 +14,7 @@
   display:         flex;
 }
 
-.fa {
-  display: inline-block;
-}
+.fa { display: inline-block; }
 
 @mixin link-color($color, $decoration-hover: underline) {
   a {
@@ -32,3 +30,5 @@
     }
   }
 }
+
+.underline { text-decoration: underline; }

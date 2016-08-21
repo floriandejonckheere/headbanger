@@ -7,21 +7,35 @@
  *
  * */
 
-.signin-container {
-  background: $secondary-color;
+.container-session {
+  background-color: $secondary-color;
+  color: white;
 
-  height: 100vh;
+  .wrapper-session {
+    height: 100vh;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  a {
+    color: white;
+
+    &:hover {
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
 
   input[type="text"],
   input[type="password"],
   input[type="email"],
   input[type="submit"],
-  input[type="button"] {
+  input[type="button"],
+  .btn {
     padding: $spacing-md;
 
     width: 25rem;
@@ -33,11 +47,11 @@
     color: $secondary-text-color;
     font-size: 13px;
     font-family: 'Sans', sans-serif;
-  }
 
-  *:not(:last-child) {
-    display: block;
-    margin-bottom: $spacing-md;
+    &.btn-link {
+      background-color: transparent;
+      color: white;
+    }
   }
 
   .logo {
@@ -57,5 +71,10 @@
 
   form {
     margin-top: $spacing-md;
+
+    & > * {
+      display: block;
+      margin-bottom: $spacing-md;
+    }
   }
 }
