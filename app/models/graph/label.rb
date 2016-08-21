@@ -4,10 +4,11 @@ module Graph
   #
   class Label
     include Neo4j::ActiveNode
-    include Concerns::HasRootNode
+    include Concerns::Sourceable
 
-    has_root_node
+    has_sources
 
-    property :name
+    property :name,
+                  :index => :exact
   end
 end

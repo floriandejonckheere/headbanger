@@ -5,9 +5,11 @@ module Graph
   class LyricalTheme
     include Neo4j::ActiveNode
 
-    property :name,           :constraint => :unique
+    property :name,
+                  :constraint => :unique
 
-    validates :name,          :presence => true
+    validates :name,
+                  :presence => true
 
     has_many :in,
                 :lyrical_themes,

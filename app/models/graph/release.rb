@@ -4,19 +4,20 @@ module Graph
   #
   class Release
     include Neo4j::ActiveNode
-    include Concerns::HasRootNode
+    include Concerns::Sourceable
 
-    has_root_node
+    has_sources
 
     property :title
-    property :release_date,  :type => Date
+    property :release_date,
+                          :type => Date
 
     has_many :in,
-                  :performers,
-                  :type => :appears_in,
-                  :model_class => [
-                                    'Graph::Artist',
-                                    'Graph::Group'
-                                  ]
+                :performers,
+                :type => :appears_in,
+                :model_class => [
+                                  'Graph::Artist',
+                                  'Graph::Group'
+                                ]
   end
 end
