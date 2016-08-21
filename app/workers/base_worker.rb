@@ -60,7 +60,7 @@ class BaseWorker
         raise "No data source mapping defined for association #{assoc}" unless self.class.associations[assoc.to_sym]
         unless valid? Array(self.class.associations[assoc.to_sym][:source]),
                             self.class.associations[assoc.to_sym][:valid_for]
-          send assoc
+          send assoc(@instance)
         end
       end
 

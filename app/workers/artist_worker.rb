@@ -20,15 +20,20 @@ class ArtistWorker < BaseWorker
   end
 
   ### Associations ###
-  def names
+  def names(instance)
+    instance.names.delete_all
+    instance.names << Graph::Name.create!(:name => @musicbrainz.name)
+  end
+
+  def groups(instance)
+    raise Errors::IncorrectTypeError unless @musicbrainz.type == 'Person'
     raise Errors::NotImplementedError
   end
 
-  def groups
-    raise Errors::NotImplementedError
-  end
-
-  def releases
-    raise Errors::NotImplementedError
+  def releases(instance)
+    instance.release_groups.each do |release_group|
+      # TODO: accept more than just albums
+      next unless release_group.type == 'Album'
+    end
   end
 end

@@ -8,4 +8,9 @@ module Errors
   # Functionality not implemented (yet)
   #
   class NotImplementedError < WorkerError; end
+
+  ##
+  # Incorrect object type
+  #
+  class IncorrectTypeError < WorkerError; end
 end

@@ -32,10 +32,10 @@ class ExampleWorker < BaseWorker
   end
 
   ### Associations ###
-  def myassociation
-    @object.myassociation.delete_all
+  def myassociation(instance)
+    instance.myassociation.delete_all
     (@mydatasource.myassociation + @myotherdatasource.myassociation).each do |myassoc|
-      @object.myassociation << MyAssociation.new(myassoc)
+      instance.myassociation << MyAssociation.new(myassoc)
     end
   end
 end
