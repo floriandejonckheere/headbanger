@@ -1,3 +1,4 @@
+module Headbanger
 module DataSources
 module Musicbrainz
 module Local
@@ -20,6 +21,7 @@ module Local
                         @object.end_date_day.to_i || 1
     end
   end
+end
 end
 end
 end

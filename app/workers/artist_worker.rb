@@ -26,12 +26,11 @@ class ArtistWorker < BaseWorker
   end
 
   def groups(instance)
-    raise Errors::IncorrectTypeError unless @musicbrainz.type == 'Person'
-    raise Errors::NotImplementedError
+    raise Headbanger::IncorrectTypeError unless @musicbrainz.type == 'Person'
   end
 
   def releases(instance)
-    instance.release_groups.each do |release_group|
+    @musicbrainz.release_groups.each do |release_group|
       # TODO: accept more than just albums
       next unless release_group.type == 'Album'
     end

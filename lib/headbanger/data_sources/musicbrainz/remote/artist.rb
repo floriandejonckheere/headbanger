@@ -1,3 +1,4 @@
+module Headbanger
 module DataSources
 module Musicbrainz
 module Remote
@@ -10,8 +11,12 @@ module Remote
 
     delegate :date_begin,
               :date_end,
+              :name,
+              :type,
+              :release_groups,
               :to => :@object
   end
+end
 end
 end
 end

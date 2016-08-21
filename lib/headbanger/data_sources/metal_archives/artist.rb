@@ -1,3 +1,4 @@
+module Headbanger
 module DataSources
 module MetalArchives
   class Artist < Base
@@ -7,5 +8,6 @@ module MetalArchives
       @object = MetalArchives::Artist.find id
     end
   end
+end
 end
 end
