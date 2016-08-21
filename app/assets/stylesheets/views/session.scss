@@ -11,8 +11,14 @@
   background-color: $secondary-color;
   color: white;
 
+  padding: $spacing-lg;
+
+  text-align: justify;
+
+  overflow: auto;
+
   .wrapper-session {
-    height: 100vh;
+    min-height: calc(100vh - #{2 * $spacing-lg});
 
     display: flex;
     flex-direction: column;

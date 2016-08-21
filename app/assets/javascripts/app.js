@@ -80,7 +80,7 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
         templateUrl: t('app/preferences')
       })
 
-    /** Authentication **/
+    /** Session views **/
     .state({
       name: 'signin',
       url: '/signin',
@@ -97,12 +97,17 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
       name: 'signout',
       url: '/signout',
       controller: 'SignoutController'
+    })
+    .state({
+      name: 'privacy-policy',
+      url: '/privacy-policy',
+      templateUrl: t('privacy-policy')
     });
 
     $urlRouterProvider.otherwise('app');
 
     /**
-     * Authentication
+     * API
      *
      * */
     $authProvider.configure({
