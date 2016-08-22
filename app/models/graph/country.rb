@@ -18,6 +18,7 @@ module Graph
                 :model_class => [
                                   'Graph::Artist',
                                   'Graph::Group'
-                                ]
+                                ],
+                :unique => { :on => :musicbrainz_key }
   end
 end

@@ -14,6 +14,7 @@ module Graph
     has_many :in,
                 :lyrical_themes,
                 :type => :sings_about,
-                :model_class => 'Graph::Group'
+                :model_class => 'Graph::Group',
+                :unique => { :on => :musicbrainz_key }
   end
 end

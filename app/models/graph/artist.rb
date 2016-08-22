@@ -17,21 +17,25 @@ module Graph
                 :names,
                 :type => :known_as,
                 :model_class => 'Graph::Name',
-                :dependent => :destroy
+                :dependent => :destroy,
+                :unique => true
 
     has_many :in,
                 :artists,
                 :type => :member_of,
-                :model_class => 'Graph::Artist'
+                :model_class => 'Graph::Artist',
+                :unique => { :on => :musicbrainz_key }
 
     has_many :out,
                 :groups,
                 :type => :member_of,
-                :model_class => 'Graph::Group'
+                :model_class => 'Graph::Group',
+                :unique => { :on => :musicbrainz_key }
 
     has_many :out,
                 :releases,
                 :type => :appears_in,
-                :model_class => 'Graph::Release'
+                :model_class => 'Graph::Release',
+                :unique => { :on => :musicbrainz_key }
   end
 end

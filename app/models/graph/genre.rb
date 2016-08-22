@@ -17,11 +17,13 @@ module Graph
     has_many :in,
                 :subgenres,
                 :type => :subgenre_of,
-                :model_class => 'Graph::Genre'
+                :model_class => 'Graph::Genre',
+                :unique => true
 
     has_many :out,
                 :supergenres,
                 :type => :subgenre_of,
-                :model_class => 'Graph::Genre'
+                :model_class => 'Graph::Genre',
+                :unique => true
   end
 end
