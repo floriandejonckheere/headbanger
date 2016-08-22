@@ -18,7 +18,6 @@ gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
 ## Music data ##
 gem 'countries'
 gem 'metal_archives', :github => 'floriandejonckheere/metal_archives'
-gem 'musicbrainz'
 
 ## Sidekiq ##
 gem 'redis-namespace'
