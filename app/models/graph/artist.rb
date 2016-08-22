@@ -19,6 +19,11 @@ module Graph
                 :model_class => 'Graph::Name',
                 :dependent => :destroy
 
+    has_many :in,
+                :artists,
+                :type => :member_of,
+                :model_class => 'Graph::Artist'
+
     has_many :out,
                 :groups,
                 :type => :member_of,

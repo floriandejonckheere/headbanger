@@ -8,16 +8,22 @@ module Graph
 
     has_sources
 
-    # ISO-3166-1 alpha 2 (e.g. US, BE)
-    property :country
     property :year_formed,
                           :type => Date
+    property :description
+
+    enum :status => [:active, :split_up, :on_hold, :changed_name, :disputed, :unknown]
 
     has_many :out,
                 :names,
                 :type => :known_as,
                 :model_class => 'Graph::Name',
                 :dependent => :destroy
+
+    has_one :out,
+              :country,
+              :type => :based_in,
+              :model_class => 'Graph::Country'
 
     has_many :in,
                 :artists,
