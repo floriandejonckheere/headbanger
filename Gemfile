@@ -8,8 +8,8 @@ gem 'grape_token_auth'
 gem 'devise'
 
 # Angular
-gem 'angular_rails_csrf', :git => 'https://github.com/tpmullan/angular_rails_csrf.git'
-gem 'angular-rails-templates', :git => 'https://github.com/pitr/angular-rails-templates.git'
+gem 'angular_rails_csrf', :github => 'tpmullan/angular_rails_csrf'
+gem 'angular-rails-templates', :github => 'pitr/angular-rails-templates'
 
 ## Graph store ##
 gem 'neo4j'
@@ -18,6 +18,7 @@ gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
 ## Music data ##
 gem 'countries'
 gem 'metal_archives', :github => 'floriandejonckheere/metal_archives'
+gem 'active_musicbrainz', :github => 'floriandejonckheere/active_musicbrainz'
 
 ## Sidekiq ##
 gem 'redis-namespace'

@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/floriandejonckheere/active_musicbrainz.git
+  revision: 888f49b83f4b0f13e1004927c0ceee00cb2ca9be
+  specs:
+    active_musicbrainz (0.3.2)
+      activerecord
+
+GIT
   remote: git://github.com/floriandejonckheere/metal_archives.git
   revision: 3ce8cab038f12b9f4c20e3f6bff501e11aa9cae8
   specs:
@@ -14,16 +21,16 @@ GIT
     data_migrator (0.9.0)
 
 GIT
-  remote: https://github.com/pitr/angular-rails-templates.git
-  revision: 314811909446fda535350912f16bf3907b19711f
+  remote: git://github.com/pitr/angular-rails-templates.git
+  revision: c00a71bbcb6b857f32ee394e8a80c78c417ce618
   specs:
-    angular-rails-templates (1.0.1)
+    angular-rails-templates (1.0.2)
       railties (>= 4.2, < 6)
       sprockets (>= 3.0, < 5)
       tilt
 
 GIT
-  remote: https://github.com/tpmullan/angular_rails_csrf.git
+  remote: git://github.com/tpmullan/angular_rails_csrf.git
   revision: 3729c779237b64ddecd9054158abbfa362fa1add
   specs:
     angular_rails_csrf (1.0.4)
@@ -342,6 +349,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_musicbrainz!
   angular-rails-templates!
   angular_rails_csrf!
   bootstrap (~> 4.0.0.alpha3)
