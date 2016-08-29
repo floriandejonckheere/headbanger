@@ -11,17 +11,13 @@ $block-size: 150px;
 
 main {
   padding: 0 $spacing-lg;
-
-  h1 {
-    margin-bottom: $spacing-lg;
-  }
 }
 
 .block-list {
   display: flex;
 
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-content: space-between;
   flex-wrap: wrap;
 
@@ -39,26 +35,45 @@ main {
     .block-image-wrapper {
       position: relative;
 
+      .block-image-overlay {
+        @include transition;
+
+        position: absolute;
+        top: 0;
+
+        background: rgba(0, 0, 0, .3);
+
+        opacity: 0;
+
+        width: 100%;
+        height: 100%;
+      }
+
       .block-image-actions {
+        @include transition;
+
         position: absolute;
 
         padding: $spacing-sm $spacing-md;
 
-        text-align: right;
         font-size: $text-lg;
 
         bottom: 0;
-        width: 100%;
+        right: 0;
 
         .not-liked {
           color: white;
           opacity: 0;
         }
-        .liked { color: #EB0000; }
+
+        .liked {
+          color: #EB0000;
+        }
       }
 
       &:hover {
         .not-liked { opacity: 1; }
+        .block-image-overlay { opacity: 1; }
       }
     }
 
@@ -67,10 +82,18 @@ main {
 
       padding-top: $spacing-lg;
       font-weight: bold;
+
+      overflow: hidden;
+      text-wrap: ellipsis;
+      white-space: nowrap;
     }
 
     .block-description {
       @include link-color(black, underline);
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
