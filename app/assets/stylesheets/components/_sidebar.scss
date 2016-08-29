@@ -51,6 +51,12 @@
     ul li {
       list-style: none;
 
+      &.active {
+        background: rgba(255, 255, 255, .1);
+
+        a { color: white; }
+      }
+
       a {
         display: inline-block;
         width: 100%;

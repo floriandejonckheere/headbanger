@@ -51,7 +51,7 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
       .state({
         name: 'app.whats-new',
         url: '/whats-new',
-        templateUrl: t('app/whats-new')
+        templateUrl: t('app/whats-new'),
       })
       .state({
         name: 'app.by-genre',
