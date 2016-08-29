@@ -21,6 +21,8 @@ main {
   align-content: space-between;
   flex-wrap: wrap;
 
+  margin-top: $spacing-xl;
+
   .block {
     width: $block-size;
     min-height: $block-size;
@@ -62,12 +64,14 @@ main {
         right: 0;
 
         .not-liked {
+          @include transition;
           color: white;
           opacity: 0;
         }
 
-        .liked {
-          color: #EB0000;
+        .liked,
+        .not-liked:hover {
+          color: red;
         }
       }
 
@@ -89,7 +93,7 @@ main {
     }
 
     .block-description {
-      @include link-color(black, underline);
+      @include link-color($primary-text-color, underline);
 
       overflow: hidden;
       text-overflow: ellipsis;

@@ -15,6 +15,9 @@
 }
 
 .fa { display: inline-block; }
+.fa-spacing {
+  margin-left: $spacing-sm;
+}
 
 @mixin link-color($color, $decoration-hover: underline) {
   a {

@@ -5,49 +5,64 @@
       <div class="brand m-x-1">
         <a href="/#/">
           <i class="fa fa-headphones"></i>
-          <span class="hidden-xs hidden-sm m-r-1">Headbanger</span>
+          <span class="hidden-xs hidden-sm">Headbanger</span>
         </a>
       </div>
 
       <nav class="p-l-1">
-        <div class="section-head">Discover</div>
+        <div class="section-head">discover</div>
         <ul>
           <li ui-sref-active="active">
             <a ui-sref="app.whats-new">
-              <i class="fa fa-fw fa-line-chart m-r-1"></i> <span class="hidden-xs hidden-sm">What's new</span>
+              <i class="fa fa-fw fa-clock-o"></i> <span class="hidden-xs hidden-sm">What's new</span>
             </a>
           </li>
           <li ui-sref-active="active">
+            <a ui-sref="app.trending">
+              <i class="fa fa-fw fa-fire"></i> <span class="hidden-xs hidden-sm">Trending</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="section-head">explore</div>
+        <ul>
+          <li ui-sref-active="active">
             <a ui-sref="app.by-genre">
-              <i class="fa fa-fw fa-music m-r-1"></i> <span class="hidden-xs hidden-sm">By genre</span>
+              <i class="fa fa-fw fa-headphones"></i> <span class="hidden-xs hidden-sm">By genre</span>
             </a>
           </li>
           <li ui-sref-active="active">
             <a ui-sref="app.by-country">
-              <i class="fa fa-fw fa-globe m-r-1"></i> <span class="hidden-xs hidden-sm">By country</span>
+              <i class="fa fa-fw fa-globe"></i> <span class="hidden-xs hidden-sm">By country</span>
             </a>
           </li>
           <li ui-sref-active="active">
             <a ui-sref="app.by-label">
-              <i class="fa fa-fw fa-tag m-r-1"></i> <span class="hidden-xs hidden-sm">By record label</span>
+              <i class="fa fa-fw fa-tag"></i> <span class="hidden-xs hidden-sm">By record label</span>
             </a>
           </li>
         </ul>
-        <div class="section-head">Account</div>
+
+        <div class="section-head">me, myself and i</div>
         <ul>
           <li ui-sref-active="active">
+            <a ui-sref="app.my-likes">
+              <i class="fa fa-fw fa-heart"></i> <span class="hidden-xs hidden-sm">My likes</span>
+            </a>
+          </li>
+          <li ui-sref-active="active">
             <a ui-sref="app.my-account">
-              <i class="fa fa-fw fa-user m-r-1"></i> <span class="hidden-xs hidden-sm">My account</span>
+              <i class="fa fa-fw fa-user"></i> <span class="hidden-xs hidden-sm">My account</span>
             </a>
           </li>
           <li ui-sref-active="active">
             <a ui-sref="app.preferences">
-              <i class="fa fa-fw fa-gear m-r-1"></i> <span class="hidden-xs hidden-sm">Preferences</span>
+              <i class="fa fa-fw fa-gear"></i> <span class="hidden-xs hidden-sm">Preferences</span>
             </a>
           </li>
           <li ui-sref-active="active">
             <a ui-sref="signout">
-              <i class="fa fa-fw fa-sign-out m-r-1"></i> <span class="hidden-xs hidden-sm">Sign out</span>
+              <i class="fa fa-fw fa-sign-out"></i> <span class="hidden-xs hidden-sm">Sign out</span>
             </a>
           </li>
         </ul>
@@ -65,7 +80,7 @@
 
         <div class="right btn-group">
           <a href="javascript:void(0);" data-target="#" data-toggle="dropdown">
-            {{ user.name || user.email }} <i class="fa fa-caret-down m-l-1"></i>
+            {{ user.name || user.email }} <i class="fa fa-caret-down fa-spacing"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-right">
             <li><a ui-sref="app.my-account">My Account</a></li>

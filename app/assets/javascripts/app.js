@@ -48,11 +48,19 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
         auth: authenticate
       }
     })
+      /* Discover */
       .state({
         name: 'app.whats-new',
         url: '/whats-new',
         templateUrl: t('app/whats-new'),
       })
+      .state({
+        name: 'app.trending',
+        url: '/trending',
+        templateUrl: t('app/trending'),
+      })
+
+      /* Explore */
       .state({
         name: 'app.by-genre',
         url: '/by-genre',
@@ -67,6 +75,13 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
         name: 'app.by-label',
         url: '/by-label',
         templateUrl: t('app/by-label')
+      })
+
+      /* Account */
+      .state({
+        name: 'app.my-likes',
+        url: '/my-likes',
+        templateUrl: t('app/my-likes')
       })
       .state({
         name: 'app.my-account',
