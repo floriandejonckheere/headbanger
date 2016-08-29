@@ -22,7 +22,9 @@ $fa-font-path: "../assets/font-awesome";
 @import "components/sidebar";
 @import "components/searchbar";
 
+@import "views/app";
 @import "views/session";
+@import "views/whats-new";
 
 html,
 body {

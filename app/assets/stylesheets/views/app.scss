@@ -1,0 +1,76 @@
+/**
+ * app.scss - App stylesheet
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+
+$block-size: 150px;
+
+main {
+  padding: 0 $spacing-lg;
+
+  h1 {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.block-list {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: space-between;
+  flex-wrap: wrap;
+
+  .block {
+    width: $block-size;
+    min-height: $block-size;
+
+    margin-bottom: $spacing-lg;
+
+    .block-image {
+      max-width: $block-size;
+      max-height: $block-size;
+    }
+
+    .block-image-wrapper {
+      position: relative;
+
+      .block-image-actions {
+        position: absolute;
+
+        padding: $spacing-sm $spacing-md;
+
+        text-align: right;
+        font-size: $text-lg;
+
+        bottom: 0;
+        width: 100%;
+
+        .not-liked {
+          color: white;
+          opacity: 0;
+        }
+        .liked { color: #EB0000; }
+      }
+
+      &:hover {
+        .not-liked { opacity: 1; }
+      }
+    }
+
+    .block-title {
+      @include link-color(black, underline);
+
+      padding-top: $spacing-lg;
+      font-weight: bold;
+    }
+
+    .block-description {
+      @include link-color(black, underline);
+    }
+  }
+}
