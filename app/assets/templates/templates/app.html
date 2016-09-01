@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row">
     <!-- Sidebar -->
-    <div class="col-xs-2 col-md-3 sidebar">
+    <div class="col-xs-2 sidebar">
       <div class="brand m-x-1">
         <a href="/#/">
-          <i class="fa fa-headphones"></i>
-          <span class="hidden-xs hidden-sm">Headbanger</span>
+          <i class="fa fa-headphones brand-logo"></i>
+          <span class="brand-text">Headbanger</span>
         </a>
       </div>
 
@@ -50,21 +50,6 @@
               <i class="fa fa-fw fa-heart"></i> <span class="hidden-xs hidden-sm">My likes</span>
             </a>
           </li>
-          <li ui-sref-active="active">
-            <a ui-sref="app.my-account">
-              <i class="fa fa-fw fa-user"></i> <span class="hidden-xs hidden-sm">My account</span>
-            </a>
-          </li>
-          <li ui-sref-active="active">
-            <a ui-sref="app.preferences">
-              <i class="fa fa-fw fa-gear"></i> <span class="hidden-xs hidden-sm">Preferences</span>
-            </a>
-          </li>
-          <li ui-sref-active="active">
-            <a ui-sref="signout">
-              <i class="fa fa-fw fa-sign-out"></i> <span class="hidden-xs hidden-sm">Sign out</span>
-            </a>
-          </li>
         </ul>
       </nav>
     </div>
@@ -78,8 +63,8 @@
           <input type="text" placeholder="Search for artists or albums" />
         </div>
 
-        <div class="right btn-group">
-          <a href="javascript:void(0);" data-target="#" data-toggle="dropdown">
+        <div class="right btn-group dropdown">
+          <a href="javascript:void(0);" data-toggle="dropdown">
             {{ user.name || user.email }} <i class="fa fa-caret-down fa-spacing"></i>
           </a>
           <ul class="dropdown-menu dropdown-menu-right">

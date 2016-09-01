@@ -3,6 +3,7 @@ asset 'ng-token-auth'
 asset 'angular-cookie'
 asset 'angular-ui-router'
 
+asset 'tether'
 asset 'bootstrap-sass-official'
 asset 'fontawesome'
 

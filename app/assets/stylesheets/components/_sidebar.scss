@@ -20,6 +20,9 @@
   @media(max-width: $screen-md-min) {
     width: 80px;
 
+    .brand-text { display: none; }
+    i.fa:not(.brand-logo) { font-size: 150%; }
+
     text-align: center;
   }
 

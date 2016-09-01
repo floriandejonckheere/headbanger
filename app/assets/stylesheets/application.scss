@@ -24,7 +24,7 @@ $fa-font-path: "../assets/font-awesome";
 
 @import "views/app";
 @import "views/session";
-@import "views/whats-new";
+@import "views/landing";
 
 html,
 body {
@@ -32,6 +32,8 @@ body {
 
   margin: 0;
   padding: 0;
+
+  height: 100%;
 }
 
 /**

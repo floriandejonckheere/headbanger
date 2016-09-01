@@ -9,6 +9,7 @@
 //= require ng-token-auth
 //= require angular-cookie
 //
+//= require tether
 //= require bootstrap
 //
 //= require app
