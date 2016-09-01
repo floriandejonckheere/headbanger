@@ -5,8 +5,11 @@ module Graph
   class Group
     include Neo4j::ActiveNode
     include Concerns::Sourceable
+    include Concerns::FriendlyId
 
     has_sources
+
+    friendly_id_candidates :names, :country
 
     property :year_formed,
                           :type => Date

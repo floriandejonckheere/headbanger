@@ -20,5 +20,9 @@ module Graph
                                   'Graph::Group'
                                 ],
                 :unique => { :on => :musicbrainz_key }
+
+    def to_s
+      country.to_s
+    end
   end
 end

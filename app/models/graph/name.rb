@@ -25,5 +25,9 @@ module Graph
                                 'Graph::Group',
                                 'Graph::Label'
                               ]
+
+    def to_s
+      name
+    end
   end
 end
