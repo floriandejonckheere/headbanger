@@ -95,6 +95,17 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
         templateUrl: t('app/preferences')
       })
 
+      /** Music views **/
+      .state({
+        name: 'app.group',
+        url: '/group/:id',
+        templateUrl: t('app/music/group'),
+        controller: 'GroupController',
+
+        banner: true
+      })
+
+
     /** Session views **/
     .state({
       name: 'signin',

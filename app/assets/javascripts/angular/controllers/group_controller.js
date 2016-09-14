@@ -1,5 +1,5 @@
 /**
- * app_controller.js - AppController
+ * group_controller.js - GroupController
  *
  * Florian Dejonckheere <florian@floriandejonckheere.be>
  *
@@ -8,12 +8,9 @@
  * */
 
 angular.module('headbanger')
-  .controller('AppController',
+  .controller('GroupController',
     ['$scope', '$location', '$state',
       function($scope, $location, $state) {
-        $scope.hasBanner = function() {
-          return ($state.banner || false);
-        }
       }
     ]
   );

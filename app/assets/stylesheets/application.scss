@@ -26,6 +26,9 @@ $fa-font-path: "../assets/font-awesome";
 @import "views/session";
 @import "views/landing";
 
+@import "views/music/banner";
+@import "views/music/group";
+
 html,
 body {
   font-family: 'pt_sans';
