@@ -21,7 +21,9 @@ $searchbar-height: 50px;
   justify-content: space-between;
   align-items: center;
 
-  z-index: 2;
+  position: relative;
+
+  z-index: 20;
 
   div { height: 100%; }
 
@@ -62,7 +64,10 @@ $searchbar-height: 50px;
 
       border: 0;
 
-      &:focus { background-color: $color-searchbar-focus; }
+      &:focus {
+        background-color: $color-searchbar-focus;
+        border: 0;
+      }
 
       &::-webkit-input-placeholder  { font-style: italic; }
       &:-moz-placeholder  { font-style: italic; }
@@ -71,5 +76,21 @@ $searchbar-height: 50px;
     }
   }
 
-  &.inverse {}
+  &.inverse {
+    color: white;
+
+    input[type="text"],
+    input[type="text"]:focus,
+    a {
+      background-color: transparent;
+      color: white;
+
+      outline: none;
+    }
+
+    ::-webkit-input-placeholder { color: white; }
+    ::-moz-placeholder { color: white; } /* firefox 19+ */
+    :-ms-input-placeholder { color: white; } /* ie */
+    input:-moz-placeholder { color: white; }
+  }
 }

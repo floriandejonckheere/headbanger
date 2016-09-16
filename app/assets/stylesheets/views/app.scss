@@ -9,16 +9,10 @@
 
 $block-size: 150px;
 
-.main-content {
-  z-index: 0;
-}
-
 main {
   padding: 0 $spacing-lg;
 
   position: relative;
-
-  z-index: 2;
 }
 
 .block-list {
