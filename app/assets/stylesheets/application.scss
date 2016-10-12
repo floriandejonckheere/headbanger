@@ -19,22 +19,11 @@ $fa-font-path: "../assets/font-awesome";
 @import "pt-sans/styles/pt_sans.css";
 
 @import "utilities";
-@import "components/sidebar";
-@import "components/searchbar";
-
-@import "views/app";
-@import "views/session";
-@import "views/landing";
-
-@import "views/music/banner";
-@import "views/music/group";
+@import "components/navbar";
 
 html,
 body {
   font-family: 'pt_sans';
-
-  margin: 0;
-  padding: 0;
 
   height: 100%;
 }

@@ -1,15 +1,7 @@
 source 'https://rubygems.org'
 
-## API ##
-gem 'grape'
-gem 'grape_token_auth'
-
 ## User management ##
 gem 'devise'
-
-# Angular
-gem 'angular_rails_csrf', :github => 'tpmullan/angular_rails_csrf'
-gem 'angular-rails-templates', :github => 'pitr/angular-rails-templates'
 
 ## Graph store ##
 gem 'neo4j'
@@ -29,7 +21,6 @@ gem 'sidekiq'
 gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'font-awesome-sass'
 gem 'bower-rails'
-gem 'listen' # for config/initializers/angular_templates.rb
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'

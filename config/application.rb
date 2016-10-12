@@ -31,18 +31,5 @@ module Headbanger
     config.neo4j.module_handling = :demodulize
 
     config.autoload_paths += %W(#{config.root}/lib)
-
-    # Angular templates
-    # config.angular_templates.module_name    = 'templates'
-    # config.angular_templates.ignore_prefix  = %w(templates/)
-    # config.angular_templates.inside_paths   = ['app/assets']
-    # config.angular_templates.markups        = %w(erb)
-    # config.angular_templates.extension      = 'html'
-
-    # Grape Token Auth
-    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
-      manager.failure_app = GrapeTokenAuth::UnauthorizedMiddleware
-      manager.default_scope = :user
-    end
   end
 end

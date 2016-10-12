@@ -5,6 +5,5 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  mount API::Base => '/api'
   # mount Sidekiq::Web => '/sidekiq' if Rails.env == 'development'
 end

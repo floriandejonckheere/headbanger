@@ -14,10 +14,6 @@
   display:         flex;
 }
 
-.fa { display: inline-block; }
-.fa-spacing {
-  margin-left: $spacing-sm;
-}
 
 @mixin link-color($color, $decoration-hover: underline) {
   a {
@@ -33,8 +29,6 @@
     }
   }
 }
-
-.underline { text-decoration: underline; }
 
 @mixin transition {
   -webkit-transition: all .25s ease-in-out;

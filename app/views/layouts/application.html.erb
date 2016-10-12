@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="headbanger">
+<html>
   <head>
     <title>Headbanger</title>
 
@@ -8,6 +8,7 @@
     <%= csrf_meta_tags %>
 
   </head>
-  <body ui-view>
+  <body>
+    <%= yield %>
   </body>
 </html>
