@@ -4,6 +4,7 @@ asset 'tether'
 asset 'bootstrap', '4.0.0-alpha.4'
 
 asset 'fontawesome'
+
 asset 'pt-sans'
 asset 'font-roboto'
 asset 'roboto-slab-font'

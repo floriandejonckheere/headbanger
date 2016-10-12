@@ -18,6 +18,7 @@ $roboto-slab-font-path: "roboto-slab-font/fonts";
 @import "roboto-slab-font/roboto-slab.scss";
 
 @import "pt-sans/styles/pt_sans.css";
+@import "raleway/raleway.css";
 
 /** Bootstrap **/
 $enable-flex: true;
@@ -35,6 +36,7 @@ $nprogress-color: $color-primary;
 
 @import "components/navbar";
 @import "components/form";
+@import "components/poster";
 
 @import "views/session";
 
