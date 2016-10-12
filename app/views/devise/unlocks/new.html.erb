@@ -1,4 +1,4 @@
-<% content_for 'title' do %>Reset password<% end %>
+<% content_for 'title' do %>Resend unlock link<% end %>
 
 <% if flash.any? or devise_error_messages? %>
   <div class="card-block">
@@ -15,20 +15,19 @@
   </div>
 <% end %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
   <div class="card-block">
     <div class="inner-addon left-addon">
       <i class="fa fa-at"></i>
       <%= f.email_field :email,
-                          :placeholder => 'Email address',
+                          :placeholder => 'Email',
                           :autofocus => true,
-                          :required => true,
                           :class => 'form-control m-b-2' %>
     </div>
   </div>
 
   <div class="card-block clearfix">
-    <%= f.submit 'Send reset link', :class => 'btn btn-primary p-x-2' %>
+    <%= f.submit 'Send unlock link', :class => 'btn btn-primary p-x-2' %>
     <%= link_to new_user_session_path, :class => 'btn pull-lg-right' do %>
       <small>Back</small>
     <% end %>

@@ -18,10 +18,11 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="card-block">
     <div class="inner-addon left-addon">
-      <i class="fa fa-user"></i>
-        <%= f.text_field :email,
+      <i class="fa fa-at"></i>
+        <%= f.email_field :email,
                           :placeholder => 'Email',
                           :autofocus => true,
+                          :required => true,
                           :class => 'form-control m-b-2' %>
     </div>
     <div class="inner-addon left-addon">
@@ -29,20 +30,32 @@
         <%= f.password_field :password,
                           :placeholder => 'Password',
                           :autocomplete => 'off',
+                          :required => true,
                           :class => 'form-control m-b-2' %>
     </div>
   </div>
 
   <div class="card-block">
     <%= f.submit 'Sign in', :class => 'btn btn-primary p-x-2' %>
-    <% if devise_mapping.recoverable? %>
+
+    <%= link_to new_user_registration_path, :class => 'btn pull-lg-right' do %>
+      <small>Sign up</small>
+    <% end %>
+
+    <!-- display recovery options on error -->
+    <% if devise_mapping.recoverable? and (flash.any? or devise_error_messages?) %>
       <%= link_to new_password_path(resource_name), :class => 'btn pull-lg-right' do %>
         <small>Forgot password</small>
       <% end %>
     <% end %>
-    <% if devise_mapping.confirmable? %>
+    <% if devise_mapping.confirmable? and (flash.any? or devise_error_messages?) %>
       <%= link_to new_confirmation_path(resource_name), :class => 'btn pull-lg-right' do %>
         <small>Confirm account</small>
+      <% end %>
+    <% end %>
+    <% if devise_mapping.lockable? and (flash.any? or devise_error_messages?) %>
+      <%= link_to new_unlock_path(resource_name), :class => 'btn pull-lg-right' do %>
+        <small>Unlock account</small>
       <% end %>
     <% end %>
   </div>

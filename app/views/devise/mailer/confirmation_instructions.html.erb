@@ -1,5 +1,5 @@
 <h3>Confirm your account</h3>
 
-<p>Hello <%= @resource.first_name %>!</p>
+<p>Hello <%= @resource.display_name %>!</p>
 <p>Before you can sign in, you have to confirm your account through the link below:</p>
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>

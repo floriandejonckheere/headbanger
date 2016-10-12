@@ -1,0 +1,50 @@
+<% content_for 'title' do %>Sign up<% end %>
+
+<% if flash.any? or devise_error_messages? %>
+  <div class="card-block">
+    <% flash.each do |key, value| %>
+      <% if not value.blank? %>
+        <div class="text-danger text-xs-center ">
+          <strong><%= value %></strong>
+        </div>
+      <% end %>
+      <% if devise_error_messages? %>
+        <strong><%= devise_error_messages! %></strong>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="card-block">
+    <div class="inner-addon left-addon">
+      <i class="fa fa-at"></i>
+        <%= f.email_field :email,
+                          :placeholder => 'Email',
+                          :autofocus => true,
+                          :required => true,
+                          :class => 'form-control m-b-2' %>
+    </div>
+    <div class="inner-addon left-addon">
+      <i class="fa fa-user"></i>
+        <%= f.text_field :name,
+                          :placeholder => 'Name (optional)',
+                          :class => 'form-control m-b-2' %>
+    </div>
+    <div class="inner-addon left-addon">
+      <i class="fa fa-lock"></i>
+        <%= f.password_field :password,
+                          :placeholder => 'Password (minimum ' + @minimum_password_length.to_s + ' characters)',
+                          :autocomplete => 'off',
+                          :required => true,
+                          :class => 'form-control m-b-2' %>
+    </div>
+  </div>
+
+  <div class="card-block">
+    <%= f.submit 'Sign up', :class => 'btn btn-primary p-x-2' %>
+    <%= link_to new_user_session_path, :class => 'btn pull-lg-right' do %>
+      <small>Back</small>
+    <% end %>
+  </div>
+<% end %>

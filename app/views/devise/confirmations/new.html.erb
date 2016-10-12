@@ -20,9 +20,10 @@
     <div class="inner-addon left-addon">
       <i class="fa fa-at"></i>
       <%= f.email_field :email,
-                          :placeholder => 'Email address',
+                          :placeholder => 'Email',
                           :autofocus => true,
                           :value => (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                          :required => true,
                           :class => 'form-control m-b-2' %>
     </div>
   </div>
