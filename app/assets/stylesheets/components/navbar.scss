@@ -7,7 +7,40 @@
  *
  * */
 
+$color-navbar-text: rgba(255, 255, 255, .8);
+
 .navbar-brand {
   @extend .m-r-2;
   @include link-color(white);
+}
+
+.navbar-search-input {
+  width: 300px;
+
+  display: block;
+  padding: .5em .75em;
+
+  background-color: lighten($color-primary, 15%);
+  color: white;
+  outline: none;
+
+  border: 0;
+  border-radius: $border-radius;
+
+  &::-webkit-input-placeholder { color: $color-navbar-text; }
+  &::-moz-placeholder { color: $color-navbar-text; }
+  &:-ms-input-placeholder { color: $color-navbar-text; }
+  &:-moz-placeholder { color: $color-navbar-text; }
+
+  &:focus {
+    background-color: lighten($color-primary, 20%);
+  }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: $color-navbar-text;
+
+  &:hover {
+    color: white;
+  }
 }
