@@ -1,0 +1,44 @@
+<nav class="navbar navbar-dark bg-primary">
+  <!-- Logo -->
+  <a class="navbar-brand" href="#">
+    <i class="fa fa-headphones brand-logo"></i>
+    <span class="brand-text">Headbanger</span>
+  </a>
+
+  <!-- Search input -->
+  <form class="form-inline pull-xs-right">
+    <input class="form-control" type="text" placeholder="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+  <!-- Navigation -->
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Features</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Pricing</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">About</a>
+    </li>
+  </ul>
+
+  <!-- Account -->
+  <div class="pull-xs-right">
+    <div class="right btn-group dropdown">
+      <a href="javascript:void(0);" data-toggle="dropdown">
+        {{ user.name || user.email }} <i class="fa fa-caret-down fa-spacing"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li><a ui-sref="app.my-account">My Account</a></li>
+        <li><a ui-sref="app.preferences">Preferences</a></li>
+        <li class="divider"></li>
+        <li><a ui-sref="signout">Sign out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

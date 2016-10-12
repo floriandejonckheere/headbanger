@@ -18,9 +18,11 @@ gem 'sidekiq'
 # gem 'sinatra' # For the web frontend
 
 ## Web frontend ##
-gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'font-awesome-sass'
 gem 'bower-rails'
+gem 'nprogress-rails'
+gem 'turbolinks'
+gem 'jquery-turbolinks'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'

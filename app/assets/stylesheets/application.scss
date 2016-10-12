@@ -21,9 +21,15 @@ $roboto-slab-font-path: "roboto-slab-font/fonts";
 @import "pt-sans/styles/pt_sans.css";
 
 /** Bootstrap **/
+$enable-flex: true;
 $brand-primary: $color-primary;
 $input-border-focus: $color-primary;
 @import "bootstrap/scss/bootstrap";
+
+$nprogress-color: $color-primary;
+@import "nprogress";
+@import "nprogress-bootstrap";
+@import "nprogress-turbolinks5";
 
 /** Views **/
 @import "utilities";

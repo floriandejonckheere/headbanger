@@ -6,3 +6,8 @@
  * This file is part of Headbanger
  *
  * */
+
+.navbar-brand {
+  @extend .m-r-2;
+  @include link-color(white);
+}

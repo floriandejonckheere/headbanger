@@ -1,8 +1,9 @@
+asset 'hint'
 asset 'tether'
+
+asset 'bootstrap', '4.0.0-alpha.4'
+
 asset 'fontawesome'
-
-asset 'bootstrap', '4.0.0-alpha.2'
-
 asset 'pt-sans'
 asset 'font-roboto'
 asset 'roboto-slab-font'

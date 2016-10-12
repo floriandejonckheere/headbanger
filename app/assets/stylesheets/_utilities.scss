@@ -30,6 +30,9 @@
   }
 }
 
+.fa { display: inline-block; }
+.fa-spacing { @extend .m-l-1; }
+
 @mixin transition {
   -webkit-transition: all .25s ease-in-out;
   -moz-transition: all .25s ease-in-out;
