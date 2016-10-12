@@ -1,13 +1,6 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  validates :email,
-              :presence => true
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
           :registerable,
           :recoverable,
@@ -15,6 +8,9 @@ class User < ApplicationRecord
           :trackable,
           :timeoutable,
           :validatable
+
+  validates :email,
+              :presence => true
 
   def display_name
     self.name || self.email

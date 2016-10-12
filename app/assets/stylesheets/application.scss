@@ -9,17 +9,29 @@
 
 @import "variables";
 
-$brand-primary: #F45A3D;
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap";
-
-$fa-font-path: "../assets/font-awesome";
+/** Fonts **/
+$fa-font-path: "fontawesome/fonts";
 @import "fontawesome/scss/font-awesome";
+@import "font-roboto/src/styles/roboto";
+
+$roboto-slab-font-path: "roboto-slab-font/fonts";
+@import "roboto-slab-font/roboto-slab.scss";
+@import "raleway/raleway.css";
 
 @import "pt-sans/styles/pt_sans.css";
 
+/** Bootstrap **/
+$brand-primary: $color-primary;
+$input-border-focus: $color-primary;
+@import "bootstrap/scss/bootstrap";
+
+/** Views **/
 @import "utilities";
+
 @import "components/navbar";
+@import "components/form";
+
+@import "views/session";
 
 html,
 body {
@@ -32,9 +44,3 @@ body {
  * Overrides
  *
  * */
-
-/* Italic placeholders */
-::-webkit-input-placeholder { font-style: italic; }
-::-moz-placeholder { font-style: italic; } /* firefox 19+ */
-:-ms-input-placeholder { font-style: italic; } /* ie */
-input:-moz-placeholder { font-style: italic; }

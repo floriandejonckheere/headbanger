@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '0e98920edf5a40b1c1496ea068b5f1ddc40fad87283acfa195fd746eb7c0e288a75e6e5f80809980ff7aaf30a9ff5dec54e4d1edce72a25c155be665f3bec705'
+  # config.secret_key = 'a8dcfc45c47d42bbd3882f2fd81fe40c03629a36914de43c18ab25556b5777115afbbd71f958db8955ebae16940a61e151e5443d86dc948713c018d3107ec924'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -108,7 +108,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'fb15f1475bf249fa8028ddea2aa5625a756a02acbfb083790b020ca0c424d88eef9f0a0767861504c926c3c626ab22e2c3e6eb5ab0aaf7add95cd20dcc577a4d'
+  # config.pepper = 'faa720d6e9ad3ca0755f9882a36361421124b920e1b8e65478f7b9ca3b860cc65a1810832d15bd1701a4249060392688ce909cee03d99fecd2f6cc494db26bf8'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -119,7 +119,7 @@ Devise.setup do |config|
   # able to access the website for two days without confirming their account,
   # access will be blocked just in the third day. Default is 0.days, meaning
   # the user cannot access the website without confirming their account.
-  # config.allow_unconfirmed_access_for = 0.days
+  # config.allow_unconfirmed_access_for = 2.days
 
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
@@ -154,7 +154,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 6..128
+  config.password_length = 4..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -173,7 +173,7 @@ Devise.setup do |config|
   # config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
-  # config.unlock_keys = [:email]
+  config.unlock_keys = [:email]
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
@@ -271,4 +271,13 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  # Layout configuration
+  Rails.application.config.to_prepare do
+    Devise::SessionsController.layout 'session'
+    Devise::RegistrationsController.layout 'session'
+    Devise::ConfirmationsController.layout 'session'
+    Devise::UnlocksController.layout 'session'
+    Devise::PasswordsController.layout 'session'
+  end
 end

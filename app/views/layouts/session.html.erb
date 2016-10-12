@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield 'title' %> - Headbanger</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+    <%= csrf_meta_tags %>
+    <%= render 'partials/meta' %>
+  </head>
+  <body>
+    <div class="background-shade">
+      <div class="image"></div>
+      <div class="shade"></div>
+    </div>
+
+    <div class="container-fluid signin-container">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-4 col-xl-2 col-xl-offset-5">
+          <header class="header">
+            <%= link_to root_path do %>
+              <h1 class="logo">Headbanger</h1>
+            <% end %>
+          </header>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card signin-card col-xs-10 col-xs-offset-1 col-lg-6 col-lg-offset-3 col-xl-4 col-xl-offset-4 p-a-2">
+          <div class="card-block">
+             <h2 class="card-title text-xs-center m-b-3">
+              <%= yield 'title' %>
+            </h2>
+          </div>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+/**
+ * form.scss - Form controls stylesheet
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+
+
+.dropdown {
+  select {
+    padding: $btn-padding-y-sm $btn-padding-x-lg $btn-padding-y-sm $btn-padding-x-sm;
+    font-size: $font-size-sm;
+
+    color: $btn-secondary-color;
+    background-color: $btn-secondary-bg;
+
+    border: 1px solid $btn-secondary-border;
+    border-radius: $border-radius;
+
+    outline: none;
+    cursor: pointer;
+
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+  }
+
+  &::after {
+    content: $fa-var-caret-down;
+
+    font-family: 'FontAwesome';
+    font-size: 11px;
+    color: $btn-secondary-color;
+
+    position: absolute;
+    right: $btn-padding-x-sm;
+    top: $btn-padding-y;
+  }
+}
+
+/* left-aligned input field addon */
+.inner-addon {
+  position: relative;
+
+  .fa {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+    color: #929292;
+
+    z-index: 10;
+  }
+}
+
+.left-addon .fa  { left:  0px;}
+.right-addon .fa { right: 0px;}
+
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
