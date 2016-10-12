@@ -29,6 +29,8 @@ main {
     width: $block-size;
     min-height: $block-size;
 
+    margin-left: $spacing-sm;
+    margin-right: $spacing-sm;
     margin-bottom: $spacing-lg;
 
     .block-image {

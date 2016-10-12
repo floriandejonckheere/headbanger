@@ -100,9 +100,11 @@ headbanger.config(function($httpProvider, $stateProvider, $urlRouterProvider, $a
         name: 'app.group',
         url: '/group/:id',
         templateUrl: t('app/music/group'),
-        controller: 'GroupController',
 
-        banner: true
+        params: {
+          banner: true
+        },
+        controller: 'GroupController'
       })
 
 

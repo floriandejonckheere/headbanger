@@ -31,8 +31,10 @@ $searchbar-height: 50px;
   .right { margin-left: auto; }
 
   a {
-    display: flex;
+    @include transition;
+
     align-items: center;
+    display: flex;
     height: 100%;
 
     padding: $spacing-md $spacing-lg;
@@ -58,6 +60,7 @@ $searchbar-height: 50px;
 
     input[type="text"] {
       height: 50px;
+      width: 250px;
 
       padding: $spacing-md;
       padding-left: 30px;

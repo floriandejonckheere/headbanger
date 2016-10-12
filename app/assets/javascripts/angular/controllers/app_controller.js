@@ -9,12 +9,13 @@
 
 angular.module('headbanger')
   .controller('AppController',
-    ['$scope', '$location', '$state',
-      function($scope, $location, $state) {
+    ['$scope', '$location', '$state', '$stateParams',
+      function($scope, $location, $state, $stateParams) {
         $scope.text = 'yes';
-        $scope.hasBanner = function() {
-          return ($state.banner || false);
+        $scope.banner = function() {
+          return ($state.params.banner || false);
         }
+        debugger
       }
     ]
   );
