@@ -40,10 +40,13 @@ $nprogress-color: $color-primary;
 @import "components/block";
 
 @import "views/session";
+@import "views/content";
 
 html,
 body {
   font-family: 'pt_sans';
+
+  background-color: $color-background;
 
   height: 100%;
 }
