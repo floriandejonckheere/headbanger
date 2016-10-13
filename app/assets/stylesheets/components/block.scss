@@ -1,0 +1,102 @@
+/**
+ * block.scss - Music blocks
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+
+
+$block-size: 150px;
+
+.block-list {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-wrap: wrap;
+
+  margin-top: 3rem;
+
+  .block {
+    width: $block-size;
+    min-height: $block-size;
+
+    margin-left: .5rem;
+    margin-right: .5rem;
+    margin-bottom: 1rem;
+
+    .block-image {
+      max-width: $block-size;
+      max-height: $block-size;
+    }
+
+    .block-image-wrapper {
+      position: relative;
+
+      .block-image-overlay {
+        @include transition;
+
+        position: absolute;
+        top: 0;
+
+        background: rgba(0, 0, 0, .3);
+
+        opacity: 0;
+
+        width: 100%;
+        height: 100%;
+      }
+
+      .block-image-actions {
+        @include transition;
+
+        position: absolute;
+
+        padding: .5rem 1rem;
+
+        font-size: 1.5em;
+
+        bottom: 0;
+        right: 0;
+
+        .not-liked {
+          @include transition;
+          color: white;
+          opacity: 0;
+        }
+
+        .liked,
+        .not-liked:hover {
+          color: red;
+        }
+      }
+
+      &:hover {
+        .not-liked { opacity: 1; }
+        .block-image-overlay { opacity: 1; }
+      }
+    }
+
+    .block-title {
+      @include link-color(black, underline);
+
+      padding-top: 1rem;
+      font-weight: bold;
+
+      overflow: hidden;
+      text-wrap: ellipsis;
+      white-space: nowrap;
+    }
+
+    .block-description {
+      @include link-color($color-primary-text, underline);
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

@@ -8,6 +8,8 @@
  * */
 
 .poster {
+  @extend .m-b-3;
+
   width: 100%;
   height: 500px;
 
