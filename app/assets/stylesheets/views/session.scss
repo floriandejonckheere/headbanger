@@ -7,6 +7,21 @@
  *
  * */
 
+.overlay {
+  position: fixed;
+
+  background: rgba(0, 0, 0, .6);
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
+
+  .row {
+    height: 100%;
+  }
+}
+
 .background-shade {
   position: fixed;
 
@@ -41,6 +56,9 @@
 }
 
 .signin-card {
+  margin-top: auto;
+  margin-bottom: auto;
+
   .card-title {
     font-family: 'Roboto';
     font-weight: 300;

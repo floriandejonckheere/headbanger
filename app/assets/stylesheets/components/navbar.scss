@@ -42,3 +42,14 @@ $color-navbar-text: rgba(255, 255, 255, .8);
     color: white;
   }
 }
+
+.btn-nav {
+  border: 1px solid white;
+  background: white;
+
+  &:hover {
+    border: 1px solid white;
+    background: $brand-primary;
+    color: white;
+  }
+}

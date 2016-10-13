@@ -1,0 +1,54 @@
+<div class="overlay container-fluid">
+  <div class="row">
+    <div class="card signin-card col-xs-10 offset-xs-1 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 p-a-2">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="card-block">
+         <h2 class="card-title text-xs-center m-b-3">Sign in</h2>
+        </div>
+        <div class="card-block">
+          <div class="inner-addon left-addon">
+            <i class="fa fa-at"></i>
+              <%= f.email_field :email,
+                                :placeholder => 'Email',
+                                :autofocus => true,
+                                :required => true,
+                                :class => 'form-control m-b-2' %>
+          </div>
+          <div class="inner-addon left-addon">
+            <i class="fa fa-lock"></i>
+              <%= f.password_field :password,
+                                :placeholder => 'Password',
+                                :autocomplete => 'off',
+                                :required => true,
+                                :class => 'form-control m-b-2' %>
+          </div>
+        </div>
+
+        <div class="card-block">
+          <%= f.submit 'Sign in', :class => 'btn btn-primary p-x-2' %>
+
+          <%= link_to new_user_registration_path, :class => 'btn pull-lg-right' do %>
+            <small>Sign up</small>
+          <% end %>
+
+          <!-- display recovery options on error -->
+          <% if devise_mapping.recoverable? and (flash.any? or devise_error_messages?) %>
+            <%= link_to new_password_path(resource_name), :class => 'btn pull-lg-right' do %>
+              <small>Forgot password</small>
+            <% end %>
+          <% end %>
+          <% if devise_mapping.confirmable? and (flash.any? or devise_error_messages?) %>
+            <%= link_to new_confirmation_path(resource_name), :class => 'btn pull-lg-right' do %>
+              <small>Confirm account</small>
+            <% end %>
+          <% end %>
+          <% if devise_mapping.lockable? and (flash.any? or devise_error_messages?) %>
+            <%= link_to new_unlock_path(resource_name), :class => 'btn pull-lg-right' do %>
+              <small>Unlock account</small>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

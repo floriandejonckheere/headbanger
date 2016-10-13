@@ -27,15 +27,24 @@
   <!-- Account -->
   <ul class="nav navbar-nav pull-xs-right">
     <li class="nav-item">
-      <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-      My account
-      </a>
-      <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="#">My account</a>
-        <a class="dropdown-item" href="#">Preferences</a>
-        <hr class="divider">
-        <a class="dropdown-item" href="#">Sign out</a>
-      </div>
+      <% if user_signed_in? %>
+        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+        <%= current_user.display_name %>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="#">My account</a>
+          <a class="dropdown-item" href="#">Preferences</a>
+          <hr class="divider">
+          <%= link_to 'Sign out', destroy_user_session_path,
+                                  :method => :delete,
+                                  :class => 'dropdown-item' %>
+        </div>
+      <% else %>
+        <%= link_to 'Sign in', new_user_session_path, :class => 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-nav' %>
+      <% end %>
     </li>
   </ul>
 </nav>
