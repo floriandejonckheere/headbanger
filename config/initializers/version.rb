@@ -14,5 +14,5 @@ module Headbanger
   end
 
   # Graph format version
-  GRAPH_VERSION = 1
+  GRAPH_VERSION = 20161014
 end

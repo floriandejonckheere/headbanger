@@ -27,6 +27,7 @@ class ArtistWorker < BaseWorker
 
   def groups(instance)
     raise Headbanger::IncorrectTypeError unless @musicbrainz.type == 'Person'
+    logger.error 'Not implemented yet'
   end
 
   def releases(instance)

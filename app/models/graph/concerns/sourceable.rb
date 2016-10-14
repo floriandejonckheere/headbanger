@@ -22,7 +22,7 @@ module Concerns
         validates :musicbrainz_key,
                                   :presence => true
 
-        # Graph format version
+        # Graph schema version
         property :version,  :type => Integer,
                             :default => Headbanger::GRAPH_VERSION
         end

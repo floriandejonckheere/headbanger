@@ -38,14 +38,19 @@ class BaseWorker
   def perform(musicbrainz_key)
     @model = Graph.const_get(self.class.model_name.camelize)
     # Instance of Graph::Model
-    @instance = @model.find_by! :musicbrainz_key => musicbrainz_key # raises Neo4j::RecordNotFound
+    begin
+      @instance = @model.find_by! :musicbrainz_key => musicbrainz_key
+    rescue Neo4j::RecordNotFound
+      logger.info "Creating #{self.class.model_name} with mbid #{musicbrainz_key}"
+      @instance = @model.new :musicbrainz_key => musicbrainz_key
+    end
 
     Neo4j::Transaction.run do
       ## Attributes
       self.class.attributes.each do |attr, opts|
         validate_data_sources Array(opts[:source]), opts[:valid_for]
 
-        puts "Refreshing #{attr}"
+        logger.debug "[#{self.class.model_name}][#{musicbrainz_key}] update_attr #{attr}"
         @instance[attr] = send attr
       end
 
@@ -53,7 +58,7 @@ class BaseWorker
       self.class.associations.each do |assoc, opts|
         validate_data_sources Array(opts[:source]), opts[:valid_for]
 
-        puts "Refreshing #{assoc}"
+        logger.debug "[#{self.class.model_name}][#{musicbrainz_key}] update_assoc #{assoc}"
         send assoc, @instance
       end
 
@@ -83,6 +88,10 @@ class BaseWorker
 
         @instance[:"#{source_type}_timestamp"] = DateTime.now
       end
+    end
+
+    def logger
+      Headbanger::Sisyphus.logger
     end
 
   ############################
