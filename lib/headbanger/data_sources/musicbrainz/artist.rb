@@ -9,8 +9,10 @@ module Musicbrainz
 
     def initialize(mbid)
       @object = ActiveMusicbrainz::Model::Artist.by_gid mbid
-      raise Headbanger::InvalidTypeError if @object.artist_type.name != 'Person'
+      raise Headbanger::IncorrectTypeError unless @object.type.name == 'Person'
     end
+
+    delegate :date_begin, :date_end, :to => :object
   end
 end
 end

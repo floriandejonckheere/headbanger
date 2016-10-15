@@ -12,11 +12,21 @@ class ArtistWorker < BaseWorker
 
   ### Attributes ###
   def date_of_birth
-    @musicbrainz.date_begin
+    return Date.new @musicbrainz.begin_date_year.to_i,
+                      @musicbrainz.begin_date_month.to_i,
+                      @musicbrainz.begin_date_day.to_i
+  rescue ArgumentError
+    # Invalid date (one or more args is nil)
+    return nil
   end
 
   def date_of_death
-    @musicbrainz.date_end
+    return Date.new @musicbrainz.end_date_year.to_i,
+                      @musicbrainz.end_date_month.to_i,
+                      @musicbrainz.end_date_day.to_i
+  rescue ArgumentError
+    # Invalid date (one or more args is nil)
+    return nil
   end
 
   ### Associations ###
@@ -26,7 +36,6 @@ class ArtistWorker < BaseWorker
   end
 
   def groups(instance)
-    raise Headbanger::IncorrectTypeError unless @musicbrainz.type == 'Person'
     logger.error 'Not implemented yet'
   end
 
