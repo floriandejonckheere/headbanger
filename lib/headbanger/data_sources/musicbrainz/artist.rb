@@ -12,7 +12,13 @@ module Musicbrainz
       raise Headbanger::IncorrectTypeError unless @object.type.name == 'Person'
     end
 
-    delegate :date_begin, :date_end, :to => :object
+    delegate :begin_date_year,
+              :date_end, :to => :object
+
+    # Delegate missing methods to ActiveMusicbrainz
+    def method_missing(sym, *args)
+      @object.send sym, *args
+    end
   end
 end
 end

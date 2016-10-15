@@ -37,6 +37,7 @@ class ArtistWorker < BaseWorker
 
   def groups(instance)
     logger.error 'Not implemented yet'
+    logger.error e.backtrace.join('\n')
   end
 
   def releases(instance)
