@@ -8,10 +8,19 @@ module Graph
 
     has_sources
 
+    property :gender,
+                    :type => String
     property :date_of_birth,
                           :type => Date
     property :date_of_death,
                           :type => Date
+    property :biography,
+                    :type => String
+
+    has_one :out,
+              :country,
+              :type => :based_in,
+              :model_class => 'Graph::Country'
 
     has_many :out,
                 :names,
@@ -19,12 +28,6 @@ module Graph
                 :model_class => 'Graph::Name',
                 :dependent => :destroy,
                 :unique => true
-
-    has_many :in,
-                :artists,
-                :type => :member_of,
-                :model_class => 'Graph::Artist',
-                :unique => { :on => :musicbrainz_key }
 
     has_many :out,
                 :groups,

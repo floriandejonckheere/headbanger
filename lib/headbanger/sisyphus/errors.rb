@@ -1,4 +1,5 @@
 module Headbanger
+module Sisyphus
   ##
   # Generic error
   #
@@ -34,4 +35,5 @@ module Headbanger
   # Unable to generate human readable id
   #
   class NoSlugAvailableError < PersistentError; end
+end
 end

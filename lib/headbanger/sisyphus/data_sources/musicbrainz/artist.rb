@@ -1,4 +1,5 @@
 module Headbanger
+module Sisyphus
 module DataSources
 module Musicbrainz
   ##
@@ -20,6 +21,7 @@ module Musicbrainz
       @object.send sym, *args
     end
   end
+end
 end
 end
 end

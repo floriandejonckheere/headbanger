@@ -1,4 +1,5 @@
 module Headbanger
+module Sisyphus
 module DataSources
 module Musicbrainz
   ##
@@ -33,6 +34,7 @@ module Musicbrainz
       end
     end
   end
+end
 end
 end
 end

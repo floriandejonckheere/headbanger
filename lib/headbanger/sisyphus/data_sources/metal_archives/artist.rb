@@ -1,4 +1,5 @@
 module Headbanger
+module Sisyphus
 module DataSources
 module MetalArchives
   ##
@@ -11,6 +12,7 @@ module MetalArchives
       @object = MetalArchives::Artist.find id
     end
   end
+end
 end
 end
 end
