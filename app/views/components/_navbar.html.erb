@@ -40,10 +40,10 @@
                                   :class => 'dropdown-item' %>
         </div>
       <% else %>
-        <%= link_to 'Sign in', new_user_session_path, :class => 'nav-link' %>
+        <a href="#signinModal" data-toggle="modal" class="nav-link">Sign in</a>
       </li>
       <li class="nav-item">
-        <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-nav' %>
+        <a href="#signupModal" data-toggle="modal" class="btn btn-nav">Sign up</a>
       <% end %>
     </li>
   </ul>

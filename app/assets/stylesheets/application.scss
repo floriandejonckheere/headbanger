@@ -38,8 +38,8 @@ $nprogress-color: $color-primary;
 @import "components/form";
 @import "components/poster";
 @import "components/block";
+@import "components/modals";
 
-@import "views/session";
 @import "views/content";
 
 html,
