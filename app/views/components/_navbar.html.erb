@@ -6,45 +6,55 @@
   <% end %>
 
   <!-- Navigation -->
-  <ul class="nav navbar-nav">
-    <li class="nav-item">
-      <div class="inner-addon left-addon addon-white">
-        <i class="fa fa-search"></i>
-        <input class="navbar-search-input" type="text" placeholder="Search">
-      </div>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Trending', trending_path, :class => "nav-link #{'active' if controller?('app') and action?('trending')}" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Discover', discover_path, :class => "nav-link #{'active' if controller?('app') and action?('discover')}" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Explore', explore_path, :class => "nav-link #{'active' if controller?('app') and action?('explore_path')}" %>
-    </li>
-  </ul>
-
-  <!-- Account -->
-  <ul class="nav navbar-nav pull-xs-right">
-    <li class="nav-item">
-      <% if user_signed_in? %>
-        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-        <%= current_user.display_name %>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="#">My account</a>
-          <a class="dropdown-item" href="#">Preferences</a>
-          <hr class="divider">
-          <%= link_to 'Sign out', destroy_user_session_path,
-                                  :method => :delete,
-                                  :class => 'dropdown-item' %>
+  <div class="collapse navbar-toggleable-md" id="navbar-collapsable">
+    <ul class="nav navbar-nav">
+      <li class="nav-item hidden-md-down">
+        <div class="inner-addon left-addon addon-white">
+          <i class="fa fa-search"></i>
+          <input class="navbar-search-input" type="text" placeholder="Search">
         </div>
-      <% else %>
-        <a href="#signinModal" data-toggle="modal" class="nav-link">Sign in</a>
+      </li>
+      <li class="nav-item hidden-lg-up">
+        <%= link_to 'Search', search_path, :class => "nav-link #{'active' if controller?('app') and action?('search')}" %>
       </li>
       <li class="nav-item">
-        <a href="#signupModal" data-toggle="modal" class="btn btn-nav">Sign up</a>
-      <% end %>
-    </li>
-  </ul>
+        <%= link_to 'Trending', trending_path, :class => "nav-link #{'active' if controller?('app') and action?('trending')}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Discover', discover_path, :class => "nav-link #{'active' if controller?('app') and action?('discover')}" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Explore', explore_path, :class => "nav-link #{'active' if controller?('app') and action?('explore_path')}" %>
+      </li>
+    </ul>
+
+    <!-- Account -->
+    <ul class="nav navbar-nav pull-lg-right">
+      <li class="nav-item">
+        <% if user_signed_in? %>
+          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+          <%= current_user.display_name %>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="#">My account</a>
+            <a class="dropdown-item" href="#">Preferences</a>
+            <hr class="divider">
+            <%= link_to 'Sign out', destroy_user_session_path,
+                                    :method => :delete,
+                                    :class => 'dropdown-item' %>
+          </div>
+        <% else %>
+          <a href="#signinModal" data-toggle="modal" class="nav-link">Sign in</a>
+        </li>
+        <li class="nav-item">
+          <a href="#signupModal" data-toggle="modal" class="nav-link hidden-lg-up">Sign up</a>
+          <a href="#signupModal" data-toggle="modal" class="btn btn-nav hidden-md-down">Sign up</a>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+  <a href="javascript:void(0);" data-toggle="collapse" data-target="#navbar-collapsable" class="nav-link navbar-toggler hidden-lg-up pull-xs-right">
+    <i class="fa fa-bars"></i>
+  </a>
 </nav>

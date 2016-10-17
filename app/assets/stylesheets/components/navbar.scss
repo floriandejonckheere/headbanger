@@ -13,6 +13,8 @@ $color-navbar-text: rgba(255, 255, 255, .7);
   @extend .m-r-2;
   @include link-color(white);
 
+  display: block;
+
   font-family: 'pt_sans', sans-serif;
 }
 
@@ -39,7 +41,7 @@ $color-navbar-text: rgba(255, 255, 255, .7);
   }
 }
 
-.navbar-dark .navbar-nav .nav-link {
+.navbar-dark .nav-link {
   font-family: 'pt_sans', sans-serif;
   color: $color-navbar-text;
 
