@@ -1,0 +1,22 @@
+/**
+ * typography.scss - Typefaces
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+
+body {
+  font-family: 'pt_sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
+}

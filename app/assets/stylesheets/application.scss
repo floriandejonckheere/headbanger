@@ -17,8 +17,10 @@ $fa-font-path: "fontawesome/fonts";
 $roboto-slab-font-path: "roboto-slab-font/fonts";
 @import "roboto-slab-font/roboto-slab.scss";
 
+$lato-font-path: "lato/font";
+@import "lato/scss/lato";
+
 @import "pt-sans/styles/pt_sans.css";
-@import "raleway/raleway.css";
 
 /** Bootstrap **/
 $enable-flex: true;
@@ -33,19 +35,17 @@ $nprogress-color: $color-primary;
 
 /** Views **/
 @import "utilities";
+@import "typography";
 
 @import "components/navbar";
 @import "components/form";
 @import "components/poster";
 @import "components/block";
-@import "components/modals";
 
 @import "views/content";
 
 html,
 body {
-  font-family: 'pt_sans';
-
   background-color: $color-background;
 
   height: 100%;

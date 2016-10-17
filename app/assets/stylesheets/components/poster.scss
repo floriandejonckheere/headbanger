@@ -8,8 +8,6 @@
  * */
 
 .poster {
-  @extend .m-b-3;
-
   width: 100%;
   height: 500px;
 
@@ -28,7 +26,7 @@
 
     color: white;
 
-    font-family: 'Raleway';
+    font-family: 'Roboto', sans-serif;
     font-size: 3rem;
     font-weight: bold;
   }
@@ -36,7 +34,7 @@
   .poster-tagline {
     color: white;
 
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
     font-weight: lighter;
   }

@@ -7,11 +7,13 @@
  *
  * */
 
-$color-navbar-text: rgba(255, 255, 255, .8);
+$color-navbar-text: rgba(255, 255, 255, .7);
 
 .navbar-brand {
   @extend .m-r-2;
   @include link-color(white);
+
+  font-family: 'pt_sans', sans-serif;
 }
 
 .navbar-search-input {
@@ -25,6 +27,8 @@ $color-navbar-text: rgba(255, 255, 255, .8);
   border: 0;
   border-radius: $border-radius;
 
+  font-family: 'pt_sans', sans-serif;
+
   &::-webkit-input-placeholder { color: $color-navbar-text; }
   &::-moz-placeholder { color: $color-navbar-text; }
   &:-ms-input-placeholder { color: $color-navbar-text; }
@@ -36,6 +40,7 @@ $color-navbar-text: rgba(255, 255, 255, .8);
 }
 
 .navbar-dark .navbar-nav .nav-link {
+  font-family: 'pt_sans', sans-serif;
   color: $color-navbar-text;
 
   &:hover {
