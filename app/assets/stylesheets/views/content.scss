@@ -28,15 +28,18 @@ $color-heart: #E60005;
   align-content: space-between;
   flex-wrap: wrap;
 
-  margin-top: 3rem;
-
   .matrix-cell {
+
+    background: white;
+
     width: $matrix-cell-size;
     min-height: $matrix-cell-size;
 
     margin-left: .5rem;
     margin-right: .5rem;
     margin-bottom: 1rem;
+
+    border-bottom: 5px solid darken(white, 12%);
 
     .matrix-cell-image {
       max-width: $matrix-cell-size;
@@ -72,20 +75,20 @@ $color-heart: #E60005;
         bottom: 0;
         right: 0;
 
-        .not-liked {
+        .matrix-cell-rating {
           @include transition;
           color: white;
           opacity: 0;
         }
 
         .liked,
-        .not-liked:hover {
+        .matrix-cell-rating:hover {
           color: $color-heart;
         }
       }
 
       &:hover {
-        .not-liked { opacity: 1; }
+        .matrix-cell-rating,
         .matrix-cell-image-overlay { opacity: 1; }
       }
     }
@@ -94,15 +97,22 @@ $color-heart: #E60005;
       @include link-color(black, underline);
 
       padding-top: 1rem;
+      padding-left: .5rem;
+      padding-left: .5rem;
       font-weight: bold;
 
+
       overflow: hidden;
-      text-wrap: ellipsis;
+      text-overflow: ellipsis;
       white-space: nowrap;
     }
 
     .matrix-cell-description {
       @include link-color($color-primary-text, underline);
+
+      padding-bottom: 1rem;
+      padding-left: .5rem;
+      padding-left: .5rem;
 
       overflow: hidden;
       text-overflow: ellipsis;
