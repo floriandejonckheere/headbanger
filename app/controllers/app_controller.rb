@@ -13,6 +13,16 @@ class AppController < ApplicationController
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  # Routes
   def index
+  end
+
+  def trending
+  end
+
+  def discover
+  end
+
+  def explore
   end
 end
