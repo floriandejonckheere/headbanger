@@ -1,5 +1,6 @@
 module Headbanger
 module Sisyphus
+module Workers
   ##
   # Artist worker
   #
@@ -57,7 +58,11 @@ module Sisyphus
 
     def names(instance)
       instance.names.delete_all
-      instance.names << Graph::Name.create!(:name => @musicbrainz.name)
+
+      add_name = Proc.new { |name| instance.names << Graph::Name.create!(:name => name) }
+
+      @musicbrainz.artist_credit_names.each { |acn| add_name.call acn.name }
+      @musicbrainz.aliases.each { |a| add_name.call a.name }
     end
 
     def groups(instance)
@@ -71,5 +76,6 @@ module Sisyphus
       raise NotImplementedError
     end
   end
+end
 end
 end

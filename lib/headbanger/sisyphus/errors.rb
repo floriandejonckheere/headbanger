@@ -22,6 +22,11 @@ module Sisyphus
   end
 
   ##
+  # Error in DataSource API
+  #
+  class MappingError < PersistentError; end
+
+  ##
   # Functionality not implemented (yet)
   #
   class NotImplementedError < PersistentError; end

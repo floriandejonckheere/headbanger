@@ -1,5 +1,6 @@
 module Headbanger
 module Sisyphus
+module Workers
   class ExampleWorker < BaseWorker
     def initialize; raise 'This is only an example'; end
 
@@ -41,5 +42,6 @@ module Sisyphus
       end
     end
   end
+end
 end
 end

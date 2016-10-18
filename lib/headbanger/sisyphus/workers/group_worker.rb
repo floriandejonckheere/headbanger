@@ -1,5 +1,6 @@
-module Sisyphus
 module Headbanger
+module Sisyphus
+module Workers
   class GroupWorker < BaseWorker
     ### Attribute -> data source mapping ###
     attribute [:country, :year_formed],
@@ -55,5 +56,6 @@ module Headbanger
     def releases
     end
   end
+end
 end
 end

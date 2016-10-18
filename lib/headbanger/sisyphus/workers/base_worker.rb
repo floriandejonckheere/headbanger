@@ -1,5 +1,6 @@
 module Headbanger
 module Sisyphus
+module Workers
   ##
   # Base worker all Sisyphus workers inherit from
   #
@@ -55,12 +56,12 @@ module Sisyphus
       Neo4j::Transaction.run do
         ## Attributes
         self.class.attributes.each do |attr, opts|
-          validate_data_sources Array(opts[:source]), opts[:valid_for]
+          next if validate_data_sources Array(opts[:source]), opts[:valid_for]
 
           logger.debug "[#{self.class.model_name}][#{musicbrainz_key}] update_attr #{attr}"
           begin
             @instance[attr] = send attr
-          rescue Headbanger::Sisyphus::Error => e
+          rescue Error => e
             logger.error e
             logger.error e.backtrace.join '\n'
           end
@@ -68,12 +69,12 @@ module Sisyphus
 
         ## Associations
         self.class.associations.each do |assoc, opts|
-          validate_data_sources Array(opts[:source]), opts[:valid_for]
+          next if validate_data_sources Array(opts[:source]), opts[:valid_for]
 
           logger.debug "[#{self.class.model_name}][#{musicbrainz_key}] update_assoc #{assoc}"
           begin
             send assoc, @instance
-          rescue Headbanger::Sisyphus::Error
+          rescue Error
             logger.error e
             logger.error e.backtrace.join '\n'
           end
@@ -81,7 +82,7 @@ module Sisyphus
 
         @instance.save!
       end
-    rescue Headbanger::Sisyphus::Error => e
+    rescue Error => e
       logger.error e
       logger.error e.backtrace.join '\n'
     end
@@ -94,13 +95,12 @@ module Sisyphus
           # Break on valid source
           break true if @instance.send :"#{source_type}_timestamp?" and
                         (@instance.send(:"#{source_type}_timestamp") + validity).future?
-
-          # Headbanger::DataSources::MyDataSource
-          data_source_api = Headbanger::DataSources.const_get source_type.to_s.camelize
-          # Headbanger::DataSources::MyDataSource::MyModel
-          source_model = data_source_api.const_get self.class.model_name.camelize
-          # Headbanger::DataSources::MyDataSource::MyModel.new key
+          # DataSources::MyDataSource::MyModel
+          source_model = "Headbanger::Sisyphus::DataSources::#{source_type.to_s.camelize}::#{self.class.model_name.camelize}".constantize
+          # DataSources::MyDataSource::MyModel.new key
           source_instance = source_model.new key
+
+          raise MappingError unless source_instance
 
           # Set @mydatasource
           class_eval { attr_accessor source_type }
@@ -152,5 +152,6 @@ module Sisyphus
     # def myassociation
     # end
   end
+end
 end
 end

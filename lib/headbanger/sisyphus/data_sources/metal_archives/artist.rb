@@ -9,7 +9,26 @@ module MetalArchives
     attr_accessor :object
 
     def initialize(id)
-      @object = MetalArchives::Artist.find id
+    end
+
+    def biography
+      'Stub biography'
+    end
+
+    def country
+      'Belgium'
+    end
+
+    def names
+      []
+    end
+
+    def groups
+      []
+    end
+
+    def releases
+      []
     end
   end
 end

@@ -1,3 +1,5 @@
+require 'headbanger/converters/country_converter'
+
 module Graph
   ##
   # A country
@@ -7,7 +9,6 @@ module Graph
 
     property :country,
                       :type => ISO3166::Country
-
 
     validates :country,
                       :presence => true

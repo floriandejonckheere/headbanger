@@ -1,3 +1,5 @@
+require_relative 'sisyphus/errors'
+
 module Headbanger
 module Sisyphus
   class << self
