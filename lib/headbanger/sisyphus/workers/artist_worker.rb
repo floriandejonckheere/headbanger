@@ -59,10 +59,13 @@ module Workers
     def names(instance)
       instance.names.delete_all
 
-      add_name = Proc.new { |name| instance.names << Graph::Name.create!(:name => name) }
+      names = []
 
-      @musicbrainz.artist_credit_names.each { |acn| add_name.call acn.name }
-      @musicbrainz.aliases.each { |a| add_name.call a.name }
+      names << @musicbrainz.name
+      @musicbrainz.artist_credit_names.each { |acn| names << acn.name }
+      @musicbrainz.aliases.each { |a| names << a.name }
+
+      names.uniq.each { |name| instance.names << Graph::Name.find_or_create_by(:name => name)}
     end
 
     def groups(instance)
