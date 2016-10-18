@@ -30,9 +30,11 @@
 
     <!-- Account -->
     <ul class="nav navbar-nav pull-lg-right">
-      <li class="nav-item m-r-3">
-        <a href="#modal-feedback" data-toggle="modal" class="btn btn-success">Send feedback</a>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item m-r-3">
+          <a href="#modal-feedback" data-toggle="modal" class="btn btn-success">Send feedback</a>
+        </li>
+      <% end %>
       <li class="nav-item">
         <% if user_signed_in? %>
           <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">

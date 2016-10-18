@@ -92,45 +92,47 @@
 </div><!-- /.modal -->
 
 
-<div class="modal fade" id="modal-feedback">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <%= form_for Feedback.new do |f| %>
-          <div class="card-block">
-            <h2 class="card-title text-xs-center">Send feedback or report a problem</h2>
-          </div>
-          <div class="card-block">
-            Did you see something that is missing? Did you encounter a bug? We'd love to hear from you!
-          </div>
-          <div class="card-block">
-            <div class="inner-addon left-addon">
-              <i class="fa fa-at"></i>
-                <%= f.email_field :email,
-                                  :placeholder => 'Email (optional)',
-                                  :class => 'form-control m-b-2' %>
+<% if user_signed_in? %>
+  <div class="modal fade" id="modal-feedback">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <%= form_for Feedback.new do |f| %>
+            <div class="card-block">
+              <h2 class="card-title text-xs-center">Send feedback or report a problem</h2>
             </div>
-            <div class="inner-addon left-addon">
-              <i class="fa fa-bug"></i>
-              <%= select_tag :category,
-                              options_for_select(Feedback::CATEGORIES),
-                              :required => true,
-                              :class => 'form-control m-b-2' %>
+            <div class="card-block">
+              Did you see something that is missing? Did you encounter a bug? We'd love to hear from you!
             </div>
-            <div class="inner-addon left-addon">
-              <i class="fa fa-pencil"></i>
-                <%= f.text_area :description,
-                                  :placeholder => 'Description',
-                                  :required => true,
-                                  :class => 'form-control m-b-2' %>
+            <div class="card-block">
+              <div class="inner-addon left-addon">
+                <i class="fa fa-at"></i>
+                  <%= f.email_field :email,
+                                    :placeholder => 'Email (optional)',
+                                    :class => 'form-control m-b-2' %>
+              </div>
+              <div class="inner-addon left-addon">
+                <i class="fa fa-bug"></i>
+                <%= select_tag :category,
+                                options_for_select(Feedback::CATEGORIES),
+                                :required => true,
+                                :class => 'form-control m-b-2' %>
+              </div>
+              <div class="inner-addon left-addon">
+                <i class="fa fa-pencil"></i>
+                  <%= f.text_area :description,
+                                    :placeholder => 'Description',
+                                    :required => true,
+                                    :class => 'form-control m-b-2' %>
+              </div>
             </div>
-          </div>
 
-          <div class="card-block">
-            <%= f.submit 'Send feedback', :class => 'btn btn-primary p-x-2' %>
-          </div>
-        <% end %>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+            <div class="card-block">
+              <%= f.submit 'Send feedback', :class => 'btn btn-primary p-x-2' %>
+            </div>
+          <% end %>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+<% end %>

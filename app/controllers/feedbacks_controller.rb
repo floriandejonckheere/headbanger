@@ -1,4 +1,6 @@
 class FeedbacksController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @feedback = Feedback.new(params[:feedback])
     @feedback.request = request
