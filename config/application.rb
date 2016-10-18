@@ -9,10 +9,6 @@ Bundler.require(*Rails.groups)
 
 module Headbanger
   class Application < Rails::Application
-    # Explicitly require errors
-    require Rails.root.join 'lib', 'headbanger', 'sisyphus', 'errors'
-
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

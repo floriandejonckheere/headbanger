@@ -60,7 +60,7 @@ module Sisyphus
           logger.debug "[#{self.class.model_name}][#{musicbrainz_key}] update_attr #{attr}"
           begin
             @instance[attr] = send attr
-          rescue Error => e
+          rescue Headbanger::Sisyphus::Error => e
             logger.error e
             logger.error e.backtrace.join '\n'
           end
@@ -73,7 +73,7 @@ module Sisyphus
           logger.debug "[#{self.class.model_name}][#{musicbrainz_key}] update_assoc #{assoc}"
           begin
             send assoc, @instance
-          rescue Error
+          rescue Headbanger::Sisyphus::Error
             logger.error e
             logger.error e.backtrace.join '\n'
           end
@@ -81,7 +81,7 @@ module Sisyphus
 
         @instance.save!
       end
-    rescue Error => e
+    rescue Headbanger::Sisyphus::Error => e
       logger.error e
       logger.error e.backtrace.join '\n'
     end
