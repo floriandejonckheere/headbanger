@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/floriandejonckheere/active_musicbrainz.git
-  revision: 888f49b83f4b0f13e1004927c0ceee00cb2ca9be
+  revision: 3e03bba58993009f42057a48f1fbc8c15d2204a1
   specs:
-    active_musicbrainz (0.3.2)
+    active_musicbrainz (0.3.3)
       activerecord
 
 GIT
@@ -62,7 +62,7 @@ GEM
       tzinfo (~> 1.1)
     airbrussh (1.1.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    arel (7.1.1)
+    arel (7.1.4)
     bcrypt (3.1.11)
     bower-rails (0.10.0)
     builder (3.2.2)
@@ -145,7 +145,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -326,4 +326,4 @@ DEPENDENCIES
   uglifier
 
 BUNDLED WITH
-   1.13.3
+   1.13.5
