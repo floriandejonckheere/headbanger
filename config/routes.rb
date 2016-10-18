@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :feedbacks, :only => [:create]
+
   # mount Sidekiq::Web => '/sidekiq' if Rails.env == 'development'
 end

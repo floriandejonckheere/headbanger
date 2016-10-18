@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ## User management ##
 gem 'devise'
+gem 'mail_form'
 
 ## Graph store ##
 gem 'neo4j'

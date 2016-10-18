@@ -74,21 +74,31 @@ $color-heart: #E60005;
 
         bottom: 0;
         right: 0;
+      }
 
-        .matrix-cell-rating {
-          @include transition;
-          color: white;
-          opacity: 0;
+      .rating {
+        @include transition;
+
+        @extend .fa-heart-o;
+
+        color: white;
+        opacity: 0;
+
+        &:hover {
+          color: $color-heart;
         }
 
-        .liked,
-        .matrix-cell-rating:hover {
+        &.liked {
+          @extend .fa-heart;
+
+          opacity: 1;
+
           color: $color-heart;
         }
       }
 
       &:hover {
-        .matrix-cell-rating,
+        .rating,
         .matrix-cell-image-overlay { opacity: 1; }
       }
     }

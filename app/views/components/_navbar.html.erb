@@ -30,6 +30,9 @@
 
     <!-- Account -->
     <ul class="nav navbar-nav pull-lg-right">
+      <li class="nav-item m-r-3">
+        <a href="#modal-feedback" data-toggle="modal" class="btn btn-success">Send feedback</a>
+      </li>
       <li class="nav-item">
         <% if user_signed_in? %>
           <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -44,11 +47,11 @@
                                     :class => 'dropdown-item' %>
           </div>
         <% else %>
-          <a href="#signinModal" data-toggle="modal" class="nav-link">Sign in</a>
+          <a href="#modal-signin" data-toggle="modal" class="nav-link">Sign in</a>
         </li>
         <li class="nav-item">
-          <a href="#signupModal" data-toggle="modal" class="nav-link hidden-lg-up">Sign up</a>
-          <a href="#signupModal" data-toggle="modal" class="btn btn-nav hidden-md-down">Sign up</a>
+          <a href="#modal-signup" data-toggle="modal" class="nav-link hidden-lg-up">Sign up</a>
+          <a href="#modal-signup" data-toggle="modal" class="btn btn-nav hidden-md-down">Sign up</a>
         <% end %>
       </li>
     </ul>
