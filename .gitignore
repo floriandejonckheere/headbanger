@@ -19,11 +19,9 @@
 vendor/bundle
 
 # Ignore private settings
-config/database.*yml
-config/neo4j.*yml
-config/mailer.*yml
-config/secrets.*yml
-config/api.*yml
+development.env
+staging.env
+production.env
 
 .byebug_history
 

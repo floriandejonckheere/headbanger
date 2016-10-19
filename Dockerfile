@@ -1,5 +1,7 @@
 FROM ruby:alpine
 
+MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
+
 ADD Gemfile /app/
 ADD Gemfile.lock /app/
 

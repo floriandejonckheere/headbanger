@@ -1,0 +1,12 @@
+default: &default
+  type: server_db
+  url: <%= ENV['NEO4J_URL'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

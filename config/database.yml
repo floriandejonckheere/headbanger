@@ -16,18 +16,15 @@ test:
 
 staging: &staging
   adapter: postgresql
-  host: localhost
+  host: <%= ENV['POSTGRES_HOST'] %>
   # Set this to the number of Sidekiq workers
   pool: 25
-  database: staging
-  username: staging
-  password: staging
+  database: <%= ENV['POSTGRES_DB'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASS'] %>
 
 production:
   <<: *staging
-  database: production
-  username: production
-  password: production
 
 #
 # MusicBrainz database
@@ -37,7 +34,7 @@ musicbrainz:
   # Set this to the number of Sidekiq workers
   pool: 25
   timeout: 5000
-  host: localhost
-  database: musicbrainz
-  user: musicbrainz
-  password: musicbrainz
+  host: <%= ENV['MUSICBRAINZ_HOST'] %>
+  database: <%= ENV['MUSICBRAINZ_DB'] %>
+  user: <%= ENV['MUSICBRAINZ_USER'] %>
+  password: <%= ENV['MUSICBRAINZ_PASS'] %>

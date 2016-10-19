@@ -1,0 +1,22 @@
+default: &default
+  default_host_url: <%= ENV['MAILER_DEFAULT_URL'] %>
+  default_sender: <%= ENV['MAILER_SENDER'] %>
+  host: <%= ENV['MAILER_HOST'] %>
+  port: <%= ENV['MAILER_PORT'] %>
+  domain: <%= ENV['MAILER_DOMAIN'] %>
+  username: <%= ENV['MAILER_USER'] %>
+  password: <%= ENV['MAILER_PASS'] %>
+  authentication: <%= ENV['MAILER_AUTH'] %>
+  starttls: <%= ENV['MAILER_STARTTLS'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+  exception_sender: <%= ENV['MAILER_EXCEPTION_SENDER'] %>
+  exception_recipients:
+    - <%= ENV['MAILER_EXCEPTION_RECIPIENT'] %>
