@@ -19,9 +19,7 @@
 vendor/bundle
 
 # Ignore private settings
-development.env
-staging.env
-production.env
+*.env
 
 .byebug_history
 
