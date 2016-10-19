@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.4.0'
+lock '3.6.0'
 
 set :application, 'headbanger'
 set :repo_url, 'git@github.com:floriandejonckheere/headbanger.git'
@@ -42,7 +42,7 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 # SSH deployment keys
-set :ssh_options, {:keys => [File.join(ENV['HOME'], '.ssh', 'headbanger@thalarion.be')]}
+set :ssh_options, {:keys => [File.join(ENV['HOME'], '.ssh', 'headbanger-development-key')]}
 
 # Bundler options
 #~ set :bundle_bins, fetch(:bundle_bins, []).push('my_binary')

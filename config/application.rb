@@ -13,6 +13,11 @@ module Headbanger
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Log to STDOUT
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
+
     config.mailer = YAML.load_file(Rails.root.join('config', 'mailer.yml'))[Rails.env]
     config.action_mailer.default_url_options = {
         :host => config.mailer['default_host_url'].split.first,

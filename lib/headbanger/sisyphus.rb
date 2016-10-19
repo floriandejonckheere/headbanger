@@ -2,10 +2,8 @@ require_relative 'sisyphus/errors'
 
 module Headbanger
 module Sisyphus
-  class << self
-    attr_accessor :logger
+  def logger
+    Rails.application.config.logger.tagged 'sisyphus'
   end
-
-  @logger = Logger.new Rails.root.join('log', 'sisyphus.log')
 end
 end

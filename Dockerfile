@@ -13,13 +13,14 @@ WORKDIR /app
 RUN bundle install --without development test
 
 ADD . /app
+
+ENV RAILS_ENV production
+
 RUN npm install bower
 RUN rails bower:install
 
 RUN chown -R nobody:nogroup /app
 USER nobody
-
-ENV RAILS_ENV production
 
 EXPOSE 8080
 CMD ["bundle", "exec", "rails", "server", "-p", "8080"]

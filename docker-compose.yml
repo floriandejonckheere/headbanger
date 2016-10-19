@@ -1,10 +1,10 @@
 version: '2'
 
 services:
-  headbanger:
+  app:
     build: .
     ports:
-      - 8080
+      - "127.0.0.1:8080:8080"
     volumes:
       - log:/app/log/
     links:
@@ -18,21 +18,21 @@ services:
     env_file:
       - .env
   redis:
-    image: redis
+    image: redis:alpine
     ports:
-      - 6379
+      - "127.0.0.1:6379:6379"
     volumes:
       - redis:/var/lib/redis/data
   postgres:
-    image: postgres:9.5
+    image: postgres:9.6
     ports:
-      - 5432
+      - "127.0.0.1:5432:5432"
     volumes:
       - postgres:/var/lib/postgresql/data
   neo4j:
     image: neo4j:3.0
     ports:
-      - 7474
+      - "127.0.0.1:7474:7474"
     volumes:
       - neo4j:/var/lib/neo4j/data
 
