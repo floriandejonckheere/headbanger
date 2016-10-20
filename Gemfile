@@ -45,9 +45,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Puma as the app server
 gem 'puma'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -62,16 +59,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-sidekiq'
-end
-
-group :development do
-  # Capistrano deployment
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rvm'
-  gem 'capistrano-upload-config'
-  gem 'capistrano3-puma'
 end
 
 group :production, :staging do
