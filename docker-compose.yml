@@ -6,7 +6,7 @@ services:
     ports:
       - "127.0.0.1:8080:8080"
     volumes:
-      - log:/app/log/
+      - assets:/app/assets/public/
     links:
       - redis
       - postgres
@@ -37,7 +37,7 @@ services:
       - neo4j:/var/lib/neo4j/data
 
 volumes:
-  log: {}
   redis: {}
   postgres: {}
   neo4j: {}
+  assets: {}
