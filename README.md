@@ -45,8 +45,4 @@ $ rake db:data:migrate   # Graph
 
 ### Production
 
-```
-$ docker-compose run app rake db:migrate
-$ docker-compose run app rake db:data:migrate
-$ docker-compose run app rake assets:precompile
-```
+Asset precompilation and data migrations are ran on startup.
