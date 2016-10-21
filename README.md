@@ -4,19 +4,27 @@ Headbanger is a music recommendation and discovery platform.
 
 ## Configuration
 
-Rename and edit the `.env.example` file to `.env`. Use the command below to use the variables in development.
+Copy `.env.example` to `production.env` and `development.env`. Edit the two files and symlink `.env` to `production.env`. Use the following commands to use `development.env` outside the Docker container.
 
 ```
-$ set -a    # set allexport
-$ . ./.env  # source .env
+$ set -a                # set allexport
+$ . ./development.env   # source .env
 ```
 
 ## Installation
 
+### Prerequisites
+
+- RVM
+- NPM
+
 ### Development
 
 ```
-$ gem install bundler --no-ri --no-rdoc
+$ rvm install $(cat .ruby-version)
+$ rvm gemset create $(cat .ruby-gemset)
+$ rvm use $(cat .ruby-version)@$(cat .ruby-gemset)
+$ gem install bundler
 $ bundle install
 $ npm install bower
 $ rails bower:install
@@ -25,24 +33,20 @@ $ rails bower:install
 Make sure the following systems are configured and running before starting the server:
  - Neo4j
  - PostgreSQL
-
-### Production
-
-Docker and docker-compose are used to build a stable environment. Use the following command to set up the necessary containers. Don't forget to run any migrations.
  
- ```
- $ docker-compose up
- ```
-
-## Upgrade and first-time setup
-
-### Development
-
+For first-time setup, run the following commands
+ 
 ```
-$ rake db:migrate        # RDBMS
-$ rake db:data:migrate   # Graph
+$ rails db:migrate          # RDBMS
+$ rails db:data:migrate     # Graph
 ```
 
 ### Production
 
-Asset precompilation and data migrations are ran on startup.
+Docker and docker-compose are used in the deployment process. Use the following command to build and run the necessary containers. The environment variables `$SKIP_MIGRATE` and `$SKIP_PRECOMPILE` can be used to skip migrations and asset precompilation respectively.
+ 
+```
+$ docker-compose up
+```
+
+PostgreSQL, Neo4J and Redis data are persisted to disk using Docker volumes.
