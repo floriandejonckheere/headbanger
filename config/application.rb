@@ -20,8 +20,9 @@ module Headbanger
 
     config.mailer = YAML.load_file(Rails.root.join('config', 'mailer.yml'))[Rails.env]
     config.action_mailer.default_url_options = {
-        :host => config.mailer['default_host_url'].split.first,
-        :port => config.mailer['default_host_url'].split.last
+        :host => config.mailer['default_host_host'] || 'localhost',
+        :port => config.mailer['default_host_port'] || '80',
+        :protocol => config.mailer['default_host_proto'] || 'http'
     }
 
     # Add bower_components to asset path
