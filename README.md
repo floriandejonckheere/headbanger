@@ -4,11 +4,14 @@ Headbanger is a music recommendation and discovery platform.
 
 ## Configuration
 
-Copy `.env.example` to `production.env` and `development.env`. Edit the two files and symlink `.env` to `production.env`. Use the following commands to use `development.env` outside the Docker container.
+Copy `musicbrainz.env.example` to `musicbrainz.prod.env` and `musicbrainz.dev.env`. Edit the two files and use the following commands to use `musicbrainz.dev.env` outside the Docker container.
+
+Copy `headbanger.env.example` to `headbanger.prod.env` and `headbanger.dev.env`. Edit the two files and use the following commands to use `headbanger.dev.env` outside the Docker container.
 
 ```
-$ set -a                # set allexport
-$ . ./development.env   # source .env
+$ set -a                    # set allexport
+$ . ./musicbrainz.dev.env    # source .env
+$ . ./headbanger.dev.env    # source .env
 ```
 
 ## Installation
@@ -46,7 +49,13 @@ $ rails db:data:migrate     # Graph
 Docker and docker-compose are used in the deployment process. Use the following command to build and run the necessary containers. The environment variables `$SKIP_MIGRATE` and `$SKIP_PRECOMPILE` can be used to skip migrations and asset precompilation respectively.
  
 ```
-$ docker-compose up
+$ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 ```
 
-PostgreSQL, Neo4J and Redis data are persisted to disk using Docker volumes.
+Data volumes (PostgreSQL, Neo4j, Redis, Musicbrainz) are persisted to disk using Docker volumes.
+
+#### Redeployment
+
+```
+$ docker-compose up --no-deps -d app
+```

@@ -15,8 +15,9 @@ services:
       - redis
       - postgres
       - neo4j
+      - musicbrainz
     env_file:
-      - .env
+      - headbanger.dev.env
   redis:
     image: redis:alpine
     ports:
@@ -35,9 +36,20 @@ services:
       - "7474"
     volumes:
       - neo4j:/var/lib/neo4j/data
+  musicbrainz:
+    image: linuxserver/musicbrainz
+    ports:
+      - "5000"
+    volumes:
+      - mb_config:/config
+      - mb_data:/data
+    env_file:
+      - musicbrainz.env
 
 volumes:
   redis: {}
   postgres: {}
   neo4j: {}
   assets: {}
+  mb_config: {}
+  mb_data: {}
