@@ -44,7 +44,7 @@ services:
       - mb_config:/config
       - mb_data:/data
     env_file:
-      - musicbrainz.env
+      - musicbrainz.dev.env
 
 volumes:
   redis: {}
