@@ -88,13 +88,22 @@ module Workers
     end
 
     private
+      ##
+      # Ensure all data sources are valid
+      #
       def validate_data_sources(data_sources, validity)
+        # Return true if all data sources are valid
+        return true if data_sources.all? do |source_type|
+          key = @instance.send :"#{source_type}_key"
+
+          return (@instance.send :"#{source_type}_timestamp?" and (@instance.send(:"#{source_type}_timestamp") + validity).future?)
+        end
+
+        # At least one data source has expired, set up all instances
         data_sources.each do |source_type|
           key = @instance.send :"#{source_type}_key"
 
-          # Break on valid source
-          break true if @instance.send :"#{source_type}_timestamp?" and
-                        (@instance.send(:"#{source_type}_timestamp") + validity).future?
+          logger.debug "Refreshing #{source_type}"
           # DataSources::MyDataSource::MyModel
           source_model = "Headbanger::Sisyphus::DataSources::#{source_type.to_s.camelize}::#{self.class.model_name.camelize}".constantize
           # DataSources::MyDataSource::MyModel.new key
@@ -109,6 +118,8 @@ module Workers
           # Update data_source timestamp
           @instance[:"#{source_type}_timestamp"] = DateTime.now
         end
+
+        false
       end
 
       def logger
