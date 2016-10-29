@@ -25,7 +25,11 @@ module Concerns
         # Graph schema version
         property :version,  :type => Integer,
                             :default => Headbanger::GRAPH_VERSION
-        end
+      end
+
+      def update_from_source
+        Headbanger::Sisyphus::ArtistWorker.perform_async self.musicbrainz_key
+      end
     end
   end
 end

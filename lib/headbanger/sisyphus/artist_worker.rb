@@ -1,17 +1,19 @@
 module Headbanger
 module Sisyphus
   class ArtistWorker < SisyphusWorker
-    model :artist
+    def model
+      Graph::Artist
+    end
 
     def update_sources
       ## Check source validity
       if valid?(@instance.musicbrainz_timestamp, 6.months) and
           valid?(@instance.metal_archives_timestamp, 6.months)
-        logger.tagged(@instance.musicbrainz_key) { |l| l.info "Sources validated successfully" }
+        logger.info { "[#{@instance.musicbrainz_key}] Sources validated successfully" }
         return
       end
 
-      logger.tagged(@instance.musicbrainz_key) { |l| l.info "Sources not valid" }
+      logger.info { "[#{@instance.musicbrainz_key}] Sources not valid" }
 
       ## Retrieve source instances
       @musicbrainz = ActiveMusicbrainz::Model::Artist.by_gid @instance.musicbrainz_key
@@ -66,6 +68,33 @@ module Sisyphus
     ##
     ## Associations
     ##
+    def country
+      # @instance.country = Graph::Country.find_or_create_by(:country => ISO3166::Country[@metal_archives.country])
+    end
+
+    def names
+      byebug
+      @instance.names.delete_all
+
+      names = []
+
+      names << @musicbrainz.name
+      @musicbrainz.artist_credit_names.each { |acn| names << acn.name }
+      @musicbrainz.aliases.each { |a| names << a.name }
+
+      names.uniq.each { |name| @instance.names << Graph::Name.find_or_create_by(:name => name)}
+    end
+
+    def groups
+        raise Headbanger::NotImplementedError
+    end
+
+    def releases
+      @musicbrainz.release_groups.each do |release_group|
+        next unless release_group.type == 'Album'
+      end
+      raise Headbanger::NotImplementedError
+    end
   end
 end
 end

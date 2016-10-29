@@ -1,5 +1,4 @@
 module Headbanger
-module Sisyphus
   ##
   # Generic error
   #
@@ -22,11 +21,6 @@ module Sisyphus
   end
 
   ##
-  # Error in DataSource API
-  #
-  class MappingError < PersistentError; end
-
-  ##
   # Functionality not implemented (yet)
   #
   class NotImplementedError < PersistentError; end
@@ -40,5 +34,4 @@ module Sisyphus
   # Unable to generate human readable id
   #
   class NoSlugAvailableError < PersistentError; end
-end
 end
