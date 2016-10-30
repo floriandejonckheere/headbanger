@@ -60,6 +60,7 @@ $ PGPASSWORD=abc psql -h $(docker inspect --format '{{ .Networks.IPAddress }}' h
 =# GRANT CONNECT ON DATABASE musicbrainz_db TO musicbrainz;
 =# GRANT USAGE ON SCHEMA musicbrainz TO musicbrainz;
 =# GRANT SELECT ON ALL TABLES IN SCHEMA musicbrainz TO musicbrainz;
+=# GRANT SELECT ON ALL SEQUENCES IN SCHEMA musicbrainz TO musicbrainz;
 ```
 
 #### Redeployment
