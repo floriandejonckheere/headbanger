@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/floriandejonckheere/active_musicbrainz.git
-  revision: 3e03bba58993009f42057a48f1fbc8c15d2204a1
+  revision: 7983539ee6a8bc6ec6f529232d5f15640771cf88
   specs:
-    active_musicbrainz (0.3.3)
+    active_musicbrainz (0.3.4)
       activerecord
 
 GIT

@@ -23,11 +23,21 @@ module Sisyphus
       begin
         transaction = Neo4j::Transaction.new
 
-        update_instance
-        @instance.save
-      rescue Error => e
-        logger.error { "[#{musicbrainz_key}] Failed to update #{model}: #{e}" }
+        begin
+          update_instance
+        rescue Headbanger::NotImplementedError => e
+          # Print warning and ignore
+          logger.warn { "[#{musicbrainz_key}] #{e}" }
+          e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
+        end
+
+        @instance.save!
+      rescue => e
+        logger.error { "[#{musicbrainz_key}] Failed to update #{model}" }
+        logger.error { "[#{musicbrainz_key}] #{e}" }
+        e.backtrace.each { |b| logger.error { "[#{musicbrainz_key}] #{b}" } }
         transaction.mark_failed
+        raise e
       ensure
         transaction.close
       end
@@ -35,10 +45,11 @@ module Sisyphus
 
     def update_attribute(attribute)
       @instance[attribute] = send attribute
-    rescue Error => e
-      logger.error { "[#{musicbrainz_key}] Failed to update #{model}.#{attribute}: #{e}" }
-      logger.error e
-      logger.error e.backtrace.join '\n'
+    rescue => e
+      logger.error { "[#{musicbrainz_key}] Failed to update #{model}.#{attribute}" }
+      logger.error { "[#{musicbrainz_key}] #{e}" }
+      e.backtrace.each { |b| logger.error { "[#{musicbrainz_key}] #{b}" } }
+      raise e
     end
 
     def update_association(association)

@@ -73,13 +73,12 @@ module Sisyphus
     end
 
     def names
-      byebug
       @instance.names.delete_all
 
       names = []
 
       names << @musicbrainz.name
-      @musicbrainz.artist_credit_names.each { |acn| names << acn.name }
+      @musicbrainz.credit_names.each { |acn| names << acn.name }
       @musicbrainz.aliases.each { |a| names << a.name }
 
       names.uniq.each { |name| @instance.names << Graph::Name.find_or_create_by(:name => name)}
