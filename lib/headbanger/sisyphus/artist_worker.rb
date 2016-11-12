@@ -1,9 +1,7 @@
 module Headbanger
 module Sisyphus
   class ArtistWorker < SisyphusWorker
-    def model
-      Graph::Artist
-    end
+    model :artist
 
     def update_sources
       ## Check source validity
