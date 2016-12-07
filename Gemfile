@@ -6,12 +6,12 @@ gem 'mail_form'
 
 ## Graph store ##
 gem 'neo4j'
-gem 'data_migrator', :github => 'ifeelgoods/data-migrator'
+gem 'data_migrator', :git => 'https://github.com/ifeelgoods/data-migrator'
 
 ## Music data ##
 gem 'countries'
-gem 'metal_archives', :github => 'floriandejonckheere/metal_archives'
-gem 'active_musicbrainz', :github => 'floriandejonckheere/active_musicbrainz'
+gem 'metal_archives', '~> 0.5'
+gem 'active_musicbrainz', :git => 'https://github.com/floriandejonckheere/active_musicbrainz'
 
 ## Sidekiq ##
 gem 'redis-namespace'
