@@ -14,27 +14,22 @@ test:
   <<: *default
   database: db/test.sqlite3
 
-staging: &staging
-  adapter: postgresql
+production:
+  adapter: <%= ENV['DB_ADAPTER'] || 'postgresql' %>
   host: <%= ENV['POSTGRES_HOST'] %>
+  port: <%= ENV['POSTGRES_PORT'] || 5432 %>
   # Set this to the number of Sidekiq workers
   pool: 25
   database: <%= ENV['POSTGRES_DB'] %>
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASS'] %>
 
-production:
-  <<: *staging
-
-#
-# MusicBrainz database
-#
 musicbrainz:
-  adapter: postgresql
+  adapter: <%= ENV['DB_ADAPTER'] || 'postgresql' %>
+  host: <%= ENV['MUSICBRAINZ_HOST'] %>
+  port: <%= ENV['MUSICBRAINZ_PORT'] || 5432 %>
   # Set this to the number of Sidekiq workers
   pool: 25
-  timeout: 5000
-  host: <%= ENV['MUSICBRAINZ_HOST'] %>
   database: <%= ENV['MUSICBRAINZ_DB'] %>
-  user: <%= ENV['MUSICBRAINZ_USER'] %>
+  username: <%= ENV['MUSICBRAINZ_USER'] %>
   password: <%= ENV['MUSICBRAINZ_PASS'] %>

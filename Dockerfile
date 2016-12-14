@@ -1,26 +1,32 @@
-FROM ruby:alpine
+FROM floriandejonckheere/docker-ruby-node
 
 MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
 
-RUN apk --update add --virtual build-dependencies build-base ruby-dev openssl-dev libxml2-dev libxslt-dev postgresql-dev libc-dev linux-headers nodejs tzdata git nodejs curl
-RUN gem install bundler
-RUN gem install nokogiri -- --use-system-libraries --with-xml2-config=/usr/local/bin/xml2-config --with-xslt-config=/usr/local/bin/xslt-config
+# Create user and group
+RUN useradd headbanger --create-home --home-dir /app/ --shell /bin/false
 
+# Install dependencies
 ADD Gemfile /app/
 ADD Gemfile.lock /app/
+ADD package.json /app/
 
 WORKDIR /app/
-RUN bundle install --without development test
 
+RUN bundle install --deployment --without development test
+RUN npm install
+
+# Add application
 ADD . /app/
-
 ENV RAILS_ENV production
 
-RUN npm install bower
-RUN rails bower:install
+# Precompile assets
+RUN rails bower:install['--allow-root']
+RUN rails bower:resolve['--allow-root']
+RUN DB_ADAPTER=nulldb SECRET_KEY_BASE=foo bundle exec rake assets:precompile
 
-RUN chown -R nobody:nogroup /app
-USER nobody
+# Correct permissions
+RUN chown -R headbanger:headbanger/app/
+USER headbanger
 
 EXPOSE 8080
 CMD ["/app/docker-entrypoint.sh"]

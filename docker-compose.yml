@@ -6,50 +6,45 @@ services:
     ports:
       - "127.0.0.1:8080:8080"
     volumes:
-      - assets:/app/assets/public/
-    links:
-      - redis
-      - postgres
-      - neo4j
+      - public:/app/public
+      - /var/run/postgresql/:/var/run/postgresql/
     depends_on:
-      - redis
-      - postgres
       - neo4j
-      - musicbrainz
+      - sidekiq
+      - redis
+    links:
+      - neo4j
+      - sidekiq
+      - redis
     env_file:
-      - headbanger.dev.env
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379"
-    volumes:
-      - redis:/var/lib/redis/data
-  postgres:
-    image: postgres:9.6
-    ports:
-      - "5432"
-    volumes:
-      - postgres:/var/lib/postgresql/data
+      - headbanger.env
+    restart: always
   neo4j:
     image: neo4j:3.0
     ports:
       - "7474"
     volumes:
       - neo4j:/var/lib/neo4j/data
-  musicbrainz:
-    image: linuxserver/musicbrainz
-    ports:
-      - "5000"
+    restart: always
+  sidekiq:
+    build: .
     volumes:
-      - mb_config:/config
-      - mb_data:/data
+      - /var/run/postgresql/:/var/run/postgresql/
+    depends_on:
+      - redis
+    links:
+      - redis
     env_file:
-      - musicbrainz.dev.env
+      - headbanger.env
+    restart: always
+    command: bundle exec sidekiq
+  redis:
+    image: redis
+    volumes:
+      - redis:/data
+    restart: always
 
 volumes:
+  public: {}
   redis: {}
-  postgres: {}
   neo4j: {}
-  assets: {}
-  mb_config: {}
-  mb_data: {}

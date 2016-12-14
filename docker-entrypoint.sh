@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 #
-# docker-entrypoint.sh - Start server after ensuring database connections
+# docker-entrypoint.sh - Start server
 #
 
 N=5
 
 while true; do
-    curl -s -I "http://${NEO4J_HOST}:${NEO4J_PORT}" | grep -q "200 OK"
+    curl -s -I -u "#{ENV['NEO4J_USER']}:#{ENV['NEO4J_PASS']}" "http://${NEO4J_HOST}:${NEO4J_PORT}" | grep -q "200 OK"
 
     if [[ $? -eq 0 ]]; then
         echo "Neo4j is up, starting app"
@@ -17,9 +17,11 @@ while true; do
     sleep ${N}
 done
 
+
 cd /app
 
-[[ ${SKIP_MIGRATE} ]] || bundle exec rake db:migrate             # Migrate relational data
-[[ ${SKIP_MIGRATE} ]] || bundle exec rake db:data:migrate        # Migrate graph data
-[[ ${SKIP_PRECOMPILE} ]] || bundle exec rake assets:precompile      # Precompile assets
-bundle exec rails server -p 8080        # Start puma
+rm -f /app/tmp/pids/server.pid
+
+[[ ${SKIP_MIGRATE} ]] || bundle exec rake db:migrate            # Migrate relational data
+[[ ${SKIP_MIGRATE} ]] || bundle exec rake db:data:migrate       # Migrate graph data
+bundle exec rails server -p 8080                                # Start puma
