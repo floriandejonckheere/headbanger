@@ -1,7 +1,7 @@
 # require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  root 'app#index'
+  root 'app#landing'
 
   get '/search' => 'app#search'
   get '/trending' => 'app#trending'

@@ -5,19 +5,15 @@
  *
  * This file is part of Headbanger
  *
+ *= require lato/scss/lato
+ *= require hint/dist/hint
+ *= require pt-sans/styles/pt_sans.css
+ *= require fontawesome/css/font-awesome.css
+ *= require font-roboto/dist/styles/roboto.css
+ *
  * */
 
 @import "variables";
-
-/** Fonts **/
-$fa-font-path: "fontawesome/fonts";
-@import "fontawesome/scss/font-awesome";
-@import "font-roboto/src/styles/roboto";
-
-$lato-font-path: "lato/font";
-@import "lato/scss/lato";
-
-@import "pt-sans/styles/pt_sans.css";
 
 /** Bootstrap **/
 $enable-flex: true;

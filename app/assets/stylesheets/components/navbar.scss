@@ -7,7 +7,7 @@
  *
  * */
 
-$color-navbar-text: rgba(255, 255, 255, .7);
+$color-navbar-text: rgba(255, 255, 255, .8);
 
 .navbar-brand {
   @extend .m-r-2;
@@ -43,10 +43,10 @@ $color-navbar-text: rgba(255, 255, 255, .7);
 
 .navbar-dark .nav-link {
   font-family: 'pt_sans', sans-serif;
-  color: $color-navbar-text;
+  color: $color-navbar-text !important;
 
   &:hover {
-    color: white;
+    color: white !important;
   }
 }
 

@@ -79,7 +79,7 @@ $color-heart: #E60005;
       .rating {
         @include transition;
 
-        @extend .fa-heart-o;
+        // @extend .fa-heart-o;
 
         color: white;
         opacity: 0;
@@ -89,7 +89,7 @@ $color-heart: #E60005;
         }
 
         &.liked {
-          @extend .fa-heart;
+          // @extend .fa-heart;
 
           opacity: 1;
 
