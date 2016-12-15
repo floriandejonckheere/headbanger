@@ -1,8 +1,27 @@
-<% content_for 'title' do %>Home<% end %>
+<nav class="navbar navbar-fixed-top navbar-dark m-t-2 navbar-landing">
+  <div class="container">
+    <!-- Logo -->
+    <%= link_to root_path, :class => 'navbar-brand' do %>
+        <i class="fa fa-headphones brand-logo"></i>
+        <span class="brand-text">Headbanger</span>
+    <% end %>
 
-<% content_for 'poster' do %>
-  <div class="poster">
-    <h1 class="poster-header">personalized music recommendations</h1>
-    <h3 class="poster-tagline">headbanger lets you discover new artists and albums based on music you like</h3>
+    <!-- Navigation -->
+    <ul class="nav navbar-nav pull-right">
+      <li class="nav-item">
+        <a class="nav-link" href="#about">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Get invited</a>
+      </li>
+    </ul>
   </div>
-<% end %>
+</nav>
+
+<div class="container-fluid container-landing">
+  <div class="row flex-items-xs-middle">
+    <div class="col-xs-8 col-xs-offset-2">
+      <%= image_tag 'soth.png' %>
+    </div>
+  </div>
+</div>

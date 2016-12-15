@@ -1,6 +1,8 @@
 class AppController < ApplicationController
   helper_method :resource_name, :resource, :devise_mapping
 
+  layout 'landing', :only => :landing
+
   def resource_name
     :user
   end
@@ -14,6 +16,9 @@ class AppController < ApplicationController
   end
 
   # Routes
+  def landing
+  end
+
   def index
   end
 

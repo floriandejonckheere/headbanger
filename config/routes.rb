@@ -3,14 +3,18 @@
 Rails.application.routes.draw do
   root 'app#landing'
 
-  get '/search' => 'app#search'
-  get '/trending' => 'app#trending'
-  get '/discover' => 'app#discover'
-  get '/explore' => 'app#explore'
+  # TODO: remove when launching
+  if Rails.env.development?
+    get 'app' => 'app#index'
+    get '/search' => 'app#search'
+    get '/trending' => 'app#trending'
+    get '/discover' => 'app#discover'
+    get '/explore' => 'app#explore'
 
-  devise_for :users
+    devise_for :users
 
-  resources :feedbacks, :only => [:create]
+    resources :feedbacks, :only => [:create]
 
-  # mount Sidekiq::Web => '/sidekiq' if Rails.env == 'development'
+    # mount Sidekiq::Web => '/sidekiq'
+  end
 end
