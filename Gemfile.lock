@@ -5,12 +5,6 @@ GIT
     active_musicbrainz (0.3.4)
       activerecord
 
-GIT
-  remote: https://github.com/ifeelgoods/data-migrator
-  revision: 65bf22799c6c9914fb35ef96891f438f0ffa84fe
-  specs:
-    data_migrator (0.9.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -265,7 +259,6 @@ DEPENDENCIES
   bower-rails
   byebug
   countries
-  data_migrator!
   database_cleaner
   devise
   factory_girl_rails

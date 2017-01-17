@@ -1,5 +1,5 @@
 default: &default
-  type: server_db
+  type: http
   url: <%= "http://#{ENV['NEO4J_USER']}:#{ENV['NEO4J_PASS']}@#{ENV['NEO4J_HOST']}:#{ENV['NEO4J_PORT']}" %>
 
 development:

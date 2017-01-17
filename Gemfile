@@ -6,7 +6,6 @@ gem 'mail_form'
 
 ## Graph store ##
 gem 'neo4j'
-gem 'data_migrator', :git => 'https://github.com/ifeelgoods/data-migrator'
 
 ## Music data ##
 gem 'countries'
