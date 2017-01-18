@@ -5,8 +5,7 @@ module Graph
   class Name
     include Neo4j::ActiveNode
 
-    property :name,
-                  :index => :exact
+    property :name
 
     # Properties specifically for Group
     property :start_date,

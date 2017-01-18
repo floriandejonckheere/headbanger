@@ -8,7 +8,6 @@ module Graph
 
     has_sources
 
-    property :name,
-                  :index => :exact
+    property :name
   end
 end

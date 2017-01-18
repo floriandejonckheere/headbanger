@@ -26,7 +26,6 @@ module Concerns
 
         candidates.each do |candidate|
           candidate_id << candidate
-byebug
           unless self.class.find_by_friendly_id(candidate_id)
             self[:friendly_id] = candidate_id
             return
@@ -42,7 +41,8 @@ byebug
       # Define attributes to use as friendly id candidates
       #
       def friendly_id_candidates(*candidate_syms)
-        property :friendly_id,                :index => :exact
+        # Don't forget to use migrations to add an index on :friendly_id when using this concern
+        property :friendly_id
 
         validates :friendly_id,
                               :presence => true

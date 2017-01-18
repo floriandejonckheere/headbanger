@@ -10,7 +10,9 @@ module Concerns
 
     module ClassMethods
       def has_sources
-        property :musicbrainz_key,            :index => :exact
+        # Don't forget to use migrations to add an index on :musicbrainz_key when using this concern
+
+        property :musicbrainz_key
         property :musicbrainz_timestamp,      :type => DateTime
 
         property :metal_archives_key
@@ -25,10 +27,6 @@ module Concerns
         # Graph schema version
         property :version,  :type => Integer,
                             :default => Headbanger::GRAPH_VERSION
-      end
-
-      def update_from_source
-        Headbanger::Sisyphus::ArtistWorker.perform_async self.musicbrainz_key
       end
     end
   end
