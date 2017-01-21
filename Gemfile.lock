@@ -76,8 +76,6 @@ GEM
       i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
-    faraday-http-cache (2.0.0)
-      faraday (~> 0.8)
     faraday_middleware (0.10.1)
       faraday (>= 0.7.4, < 1.0)
     faraday_middleware-multi_json (0.0.6)
@@ -107,10 +105,9 @@ GEM
     mail_form (1.6.0)
       actionmailer (>= 3.2, < 5.1)
       activemodel (>= 3.2, < 5.1)
-    metal_archives (0.5.0)
+    metal_archives (0.6.0)
       countries (~> 1.2.5)
       faraday (~> 0.9)
-      faraday-http-cache (~> 2.0)
       faraday_throttler (~> 0.0.3)
       nokogiri (~> 1.6.8)
     method_source (0.8.2)
@@ -267,7 +264,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   mail_form
-  metal_archives (~> 0.5)
+  metal_archives (~> 0.6)
   neo4j
   nprogress-rails
   pg

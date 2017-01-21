@@ -1,6 +1,6 @@
 {
   "name": "headbanger",
-  "version": "0.2.0",
+  "version": "",
   "description": "Music recommendation and discovery platform",
   "dependencies": {
     "bower": "^1.7.7"

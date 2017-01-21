@@ -9,7 +9,7 @@ gem 'neo4j'
 
 ## Music data ##
 gem 'countries'
-gem 'metal_archives', '~> 0.5'
+gem 'metal_archives', '~> 0.6'
 gem 'active_musicbrainz', :git => 'https://github.com/floriandejonckheere/active_musicbrainz'
 
 ## Sidekiq ##
