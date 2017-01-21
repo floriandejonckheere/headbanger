@@ -10,9 +10,6 @@ module Headbanger
   # App version
   VERSION = "#{VERSION_MAJOR}.#{VERSION_MINOR}.#{VERSION_PATCH}"
 
-  # Graph format version
-  GRAPH_VERSION = 20161014
-
   # Write package.json
   hash = JSON.parse File.read(Rails.root.join('package.json'))
 
