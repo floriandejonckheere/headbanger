@@ -1,27 +1,42 @@
-<nav class="navbar navbar-fixed-top navbar-dark m-t-2 navbar-landing">
-  <div class="container">
-    <!-- Logo -->
-    <%= link_to root_path, :class => 'navbar-brand' do %>
-        <i class="fa fa-headphones brand-logo"></i>
-        <span class="brand-text">Headbanger</span>
-    <% end %>
+<header>
+  <nav class="navbar navbar-dark p-t-1 p-b-1 ">
+    <div class="container">
+      <!-- Logo -->
+      <%= link_to root_path, :class => 'navbar-brand' do %>
+        Headbanger
+      <% end %>
 
-    <!-- Navigation -->
-    <ul class="nav navbar-nav pull-right">
-      <li class="nav-item">
-        <a class="nav-link" href="#about">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Get invited</a>
-      </li>
-    </ul>
+      <!-- Navigation -->
+      <ul class="nav navbar-nav pull-right">
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Get invited</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container heading">
+    <h1><strong>Heavy Metal</strong> recommendation platform</h1>
+    <hr>
+    <h4>We are launching soon. Leave us your email below, and we'll notify you the minute we open our doors.</h4>
+<hr>
+    <!-- Begin MailChimp Signup Form -->
+    <form action="//headbang.us14.list-manage.com/subscribe/post?u=05a67e2df64fda1926a7dc850&amp;id=63171e9699" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="form-inline" target="_blank" novalidate>
+      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+      <div style="position: absolute; left: -5000px;" class="inline" aria-hidden="true"><input type="text" name="b_05a67e2df64fda1926a7dc850_63171e9699" tabindex="-1" value=""></div>
+      <input type="email" value="" name="EMAIL" class="form-control inline-block" id="mce-EMAIL" placeholder="Email" required>
+      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary inline-block">
+    </form>
+    <!--End mc_embed_signup-->
   </div>
-</nav>
+</header>
 
-<div class="container-fluid container-landing">
+<div class="container-fluid">
   <div class="row flex-items-xs-middle">
     <div class="col-xs-8 col-xs-offset-2">
-      <%= image_tag 'soth.png' %>
     </div>
   </div>
 </div>
