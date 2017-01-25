@@ -12,8 +12,8 @@ $matrix-cell-size: 200px;
 $color-heart: #E60005;
 
 .content {
-  @extend .p-a-2;
-  @extend .m-b-3;
+  padding: 2rem;
+  margin-bottom: 3 rem;
 
   background: white;
 

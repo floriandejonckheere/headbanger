@@ -10,12 +10,20 @@
 $color-navbar-text: rgba(255, 255, 255, .8);
 
 .navbar-brand {
-  @extend .m-r-2;
-  @include link-color(white);
+  color: white;
 
-  display: block;
+  &:hover,
+  &:active,
+  &:focus {
+    color: white;
+  }
+}
 
-  font-family: 'pt_sans', sans-serif;
+.brand-app {
+  margin-right: 2rem;
+
+  font-family: 'Grand Hotel', sans-serif;
+  font-size: 1.5rem;
 }
 
 .navbar-search-input {

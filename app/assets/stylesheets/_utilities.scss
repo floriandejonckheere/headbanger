@@ -31,7 +31,7 @@
 }
 
 .fa { display: inline-block; }
-.fa-spacing { @extend .m-l-1; }
+.fa-spacing { margin-left: 1rem; }
 
 @mixin transition {
   -webkit-transition: all .25s ease-in-out;

@@ -1,12 +1,15 @@
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
   <!-- Logo -->
-  <%= link_to root_path, :class => 'navbar-brand' do %>
-    <i class="fa fa-headphones brand-logo"></i>
-    <span class="brand-text">Headbanger</span>
+  <%= link_to root_path, :class => 'navbar-brand brand-app' do %>
+    Headbanger
   <% end %>
 
   <!-- Navigation -->
-  <div class="collapse navbar-toggleable-md" id="navbar-collapsable">
+  <div class="collapse navbar-collapse" id="navbar">
     <ul class="nav navbar-nav">
       <li class="nav-item hidden-md-down">
         <div class="inner-addon left-addon addon-white">
@@ -29,7 +32,7 @@
     </ul>
 
     <!-- Account -->
-    <ul class="nav navbar-nav pull-lg-right">
+    <ul class="nav navbar-nav ml-auto">
       <% if user_signed_in? %>
         <li class="nav-item m-r-3">
           <a href="#modal-feedback" data-toggle="modal" class="btn btn-success">Send feedback</a>

@@ -1,9 +1,10 @@
 asset 'hint'
 asset 'tether'
 
-asset 'bootstrap', '4.0.0-alpha.4'
+asset 'bootstrap', '4.0.0-alpha.6'
 asset 'fontawesome'
 
 asset 'pt-sans'
 asset 'font-roboto'
 asset 'lato'
+asset 'grandhotel-googlefont'
