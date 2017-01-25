@@ -112,9 +112,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
-    mail_form (1.6.0)
-      actionmailer (>= 3.2, < 5.1)
-      activemodel (>= 3.2, < 5.1)
     metal_archives (0.6.0)
       countries (~> 1.2.5)
       faraday (~> 0.9)
@@ -275,7 +272,6 @@ DEPENDENCIES
   font-awesome-sass
   jquery-rails
   jquery-turbolinks
-  mail_form
   metal_archives (~> 0.6)
   neo4j
   nprogress-rails
@@ -292,6 +288,9 @@ DEPENDENCIES
   sqlite3
   turbolinks
   uglifier
+
+RUBY VERSION
+   ruby 2.4.0p0
 
 BUNDLED WITH
    1.13.7

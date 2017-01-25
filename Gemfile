@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
+ruby '2.4.0'
+
 ## User management ##
 gem 'devise'
-gem 'mail_form'
 
 ## Graph store ##
 gem 'neo4j'
@@ -65,7 +66,7 @@ group :production do
 
   # Dummy database for asset precompilation
   gem 'activerecord-nulldb-adapter', :git => 'https://github.com/nulldb/nulldb.git'
-  
+
   # Notify exceptions
   gem 'exception_notification'
 end

@@ -1,4 +1,4 @@
-FROM floriandejonckheere/docker-ruby-node
+FROM floriandejonckheere/docker-ruby-node:2.4.0
 
 MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
 
@@ -11,6 +11,8 @@ ENV RAILS_ENV production
 # Install Gem dependencies
 ADD Gemfile /app/
 ADD Gemfile.lock /app/
+
+RUN gem install bundler
 
 RUN bundle install --deployment --without development test
 

@@ -18,7 +18,7 @@ while true; do
 done
 
 # Correct permissions
-RUN chown -R thalariond:thalariond /app/
+chown -R headbanger:headbanger /app/
 
 # Remove stale lock files
 rm -f /app/tmp/pids/server.pid
