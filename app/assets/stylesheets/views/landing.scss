@@ -7,6 +7,9 @@
  *
  * */
 
+$color-border-inactive: #8c8881;
+$color-border-active: #b4b0a9;
+
 header {
   background-size: cover;
   background-image: image-url('landing');
@@ -15,7 +18,7 @@ header {
 .navbar-brand {
   font-family: 'Grand Hotel';
 
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
 .heading {
@@ -29,21 +32,33 @@ header {
   align-items: center;
 
   text-align: center;
+
+  h1 {
+    text-transform: uppercase;
+  }
 }
 
-h1 {
-  text-transform: uppercase;
-}
-
-#mce-EMAIL {
+#mce-embedded-email {
   width: 300px;
 
   background: transparent;
 
-  border: 1px solid #686c6f;
-  color: #a1a5a8;
+  border: 1px solid $color-border-inactive;
+  color: $color-border-active;
 
   &:focus {
-    border: 1px solid #b6babd;
+    border: 1px solid $color-border-active;
+  }
+}
+
+#mc-embedded-subscribe {
+  background: transparent;
+  color: $color-border-active;
+
+  border: 1px solid $color-border-inactive;
+
+  &:focus {
+    background: $color-border-active;
+    color: lighten($color-border-active, 20%);
   }
 }
