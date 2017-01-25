@@ -58,17 +58,21 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # Mailer configuration
-  config.action_mailer.default_url_options = { :host => config.mailer['default_host_url'] }
+  config.action_mailer.default_url_options = {}
+  config.action_mailer.default_url_options[:host] = ENV['MAILER_DEFAULT_HOST'] if ENV.key? 'MAILER_DEFAULT_HOST'
+  config.action_mailer.default_url_options[:protocol] = ENV['MAILER_DEFAULT_PROTO'] if ENV.key? 'MAILER_DEFAULT_PROTO'
+
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address => config.mailer['host'],
-    :port => config.mailer['port'],
-    :domain => config.mailer['domain'],
-    :user_name => config.mailer['username'],
-    :password => config.mailer['password'],
-    :authentication => config.mailer['authentication'],
-    :enable_starttls_auto => config.mailer['starttls']
-  }
+
+  config.action_mailer.smtp_settings = {}
+  config.action_mailer.smtp_settings[:address] = ENV['MAILER_HOST'] if ENV.key? 'MAILER_HOST'
+  config.action_mailer.smtp_settings[:port] = ENV['MAILER_PORT'] if ENV.key? 'MAILER_PORT'
+  config.action_mailer.smtp_settings[:domain] = ENV['MAILER_DOMAIN'] if ENV.key? 'MAILER_DOMAIN'
+  config.action_mailer.smtp_settings[:user_name] = ENV['MAILER_USER'] if ENV.key? 'MAILER_USER'
+  config.action_mailer.smtp_settings[:password] = ENV['MAILER_PASS'] if ENV.key? 'MAILER_PASS'
+  config.action_mailer.smtp_settings[:authentication] = ENV['MAILER_AUTH'] if ENV.key? 'MAILER_AUTH'
+  config.action_mailer.smtp_settings[:enable_starttls_auto] = ENV['MAILER_STARTTLS'] if ENV.key? 'MAILER_STARTTLS'
+  config.action_mailer.smtp_settings[:openssl_verify_mode] = ENV['MAILER_OPENSSL'] if ENV.key? 'MAILER_OPENSSL'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -88,6 +92,18 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
+  logger           = ActiveSupport::Logger.new(STDOUT)
+  logger.formatter = config.log_formatter
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Notify exceptions
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[ERROR] ",
+      :sender_address => ENV['MAILER_EXCEPTION_SENDER'],
+      :exception_recipients => ENV['MAILER_EXCEPTION_RECIPIENT']
+    }
 end
