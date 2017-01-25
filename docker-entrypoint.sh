@@ -17,11 +17,18 @@ while true; do
     sleep ${N}
 done
 
+# Correct permissions
+RUN chown -R thalariond:thalariond /app/
 
-cd /app
-
+# Remove stale lock files
 rm -f /app/tmp/pids/server.pid
 
-[[ ${SKIP_MIGRATE} ]] || bundle exec rake db:migrate            # Migrate relational data
-[[ ${SKIP_MIGRATE} ]] || bundle exec rake db:data:migrate       # Migrate graph data
-bundle exec rails server -p 8080                                # Start puma
+# Run as regular user
+su - headbanger
+
+# Migrate relational data
+[[ ${SKIP_MIGRATE} ]] || bundle exec rake db:migrate
+[[ ${SKIP_MIGRATE} ]] || bundle exec rake neo4j:migrate
+
+# Start app server
+bundle exec puma -b unix:///app/tmp/sockets/puma.sock
