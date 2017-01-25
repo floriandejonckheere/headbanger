@@ -79,9 +79,13 @@ header {
   .features-box-icon {
     font-size: 6rem;
     line-height: 6rem;
+
+    color: #2f2f2f;
   }
 
   h3 {
+    height: 4rem;
+
     margin-top: 2rem;
   }
 }
@@ -92,6 +96,9 @@ header {
   line-height: 60px;
 
   text-align: center;
+
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
 
   background-size: cover;
   background-image: image-url('landing');
