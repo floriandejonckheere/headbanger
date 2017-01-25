@@ -10,9 +10,15 @@
 $color-border-inactive: #8c8881;
 $color-border-active: #b4b0a9;
 
+.container-landing {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
 header {
   background-size: cover;
   background-image: image-url('landing');
+  background-attachment: fixed;
 }
 
 .brand-landing {
@@ -62,4 +68,34 @@ header {
     background: $color-border-active;
     color: lighten($color-border-active, 20%);
   }
+}
+
+.features-box {
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  text-align: center;
+
+  .features-box-icon {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+
+  h3 {
+    margin-top: 2rem;
+  }
+}
+
+.footer-landing {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+
+  text-align: center;
+
+  background-size: cover;
+  background-image: image-url('landing');
+  background-position: center;
+
+  @include link-color(white);
 }
