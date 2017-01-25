@@ -60,7 +60,9 @@ group :test do
   gem 'rspec-sidekiq'
 end
 
-group :production, :staging do
-  # Use PostgreSQL as the database for Active Record
+group :production do
   gem 'pg'
+
+  # Dummy database for asset precompilation
+  gem 'activerecord-nulldb-adapter', :git => 'https://github.com/nulldb/nulldb.git'
 end
