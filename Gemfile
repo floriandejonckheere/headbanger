@@ -65,4 +65,7 @@ group :production do
 
   # Dummy database for asset precompilation
   gem 'activerecord-nulldb-adapter', :git => 'https://github.com/nulldb/nulldb.git'
+  
+  # Notify exceptions
+  gem 'exception_notification'
 end
