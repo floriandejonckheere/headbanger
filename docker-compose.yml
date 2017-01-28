@@ -8,6 +8,7 @@ services:
     volumes:
       - public:/app/public
       - /var/run/postgresql/:/var/run/postgresql/
+      - sockets:/app/tmp/sockets/
     depends_on:
       - neo4j
       - sidekiq
