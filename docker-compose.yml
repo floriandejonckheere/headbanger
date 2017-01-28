@@ -25,6 +25,8 @@ services:
       - "7474"
     volumes:
       - neo4j:/var/lib/neo4j/data
+    env_file:
+      - neo4j.env
     restart: always
   sidekiq:
     build: .

@@ -26,6 +26,8 @@ rm -f /app/tmp/pids/server.pid
 # Run as regular user
 su - headbanger
 
+cd /app
+
 # Migrate relational data
 [[ ${SKIP_MIGRATE} ]] || bundle exec rake db:migrate
 [[ ${SKIP_MIGRATE} ]] || bundle exec rake neo4j:migrate
