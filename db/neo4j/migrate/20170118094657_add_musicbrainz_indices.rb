@@ -1,4 +1,4 @@
-class AddIndices < Neo4j::Migrations::Base
+class AddMusicbrainzIndices < Neo4j::Migrations::Base
   def up
     [:Label, :Genre, :Release, :Group, :Artist].each do |model|
       add_index model, :musicbrainz_key
