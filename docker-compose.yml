@@ -48,5 +48,6 @@ services:
 
 volumes:
   public: {}
+  sockets: {}
   redis: {}
   neo4j: {}
