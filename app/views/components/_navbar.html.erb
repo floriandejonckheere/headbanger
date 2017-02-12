@@ -4,7 +4,7 @@
   </button>
 
   <!-- Logo -->
-  <%= link_to root_path, :class => 'navbar-brand brand-app' do %>
+  <%= link_to root_path, :class => 'navbar-brand' do %>
     Headbanger
   <% end %>
 
@@ -18,13 +18,13 @@
         </div>
       </li>
       <li class="nav-item hidden-lg-up">
-        <%= link_to 'Search', search_path, :class => "nav-link #{'active' if controller?('app') and action?('search')}" %>
+        <%= link_to 'Search', search_path, :class => "nav-link navbar-link #{'active' if controller?('app') and action?('search')}" %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Discover', discover_path, :class => "nav-link #{'active' if controller?('app') and action?('discover')}" %>
+        <%= link_to 'Discover', discover_path, :class => "nav-link navbar-link #{'active' if controller?('app') and action?('discover')}" %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Explore', explore_path, :class => "nav-link #{'active' if controller?('app') and action?('explore_path')}" %>
+        <%= link_to 'Explore', explore_path, :class => "nav-link navbar-link #{'active' if controller?('app') and action?('explore_path')}" %>
       </li>
     </ul>
 
@@ -35,10 +35,20 @@
           <a href="#modal-feedback" data-toggle="modal" class="btn btn-success">Send feedback</a>
         </li>
       <% end %>
-      <li class="nav-item">
-        <% if user_signed_in? %>
-          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-          <%= current_user.display_name %>
+      <% if !user_signed_in? %>
+        <li class="nav-item nav-icon-item">
+          <a href="#" data-toggle="dropdown">
+            <div class="btn-notifications unread">
+              <i class="fa fa-bell"></i>
+            </div>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            notifications
+          </div>
+        </li>
+        <li class="nav-item nav-icon-item">
+          <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">
+            <%= image_tag 'user.jpg', :class => 'avatar' %>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="#">My account</a>
@@ -48,7 +58,9 @@
                                     :method => :delete,
                                     :class => 'dropdown-item' %>
           </div>
-        <% else %>
+        </li>
+      <% else %>
+        <li class="nav-item">
           <a href="#modal-signin" data-toggle="modal" class="nav-link">Sign in</a>
         </li>
         <li class="nav-item">

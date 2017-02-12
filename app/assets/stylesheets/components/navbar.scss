@@ -9,62 +9,81 @@
 
 $color-navbar-text: rgba(255, 255, 255, .8);
 
-.navbar-brand {
-  color: white;
+.navbar {
+  .navbar-brand {
+    margin-right: 4rem;
 
-  &:hover,
-  &:active,
-  &:focus {
+    font-family: 'Grand Hotel', serif;
+    font-size: 1.5rem;
+
     color: white;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: white;
+    }
   }
-}
 
-.brand-app {
-  margin-right: 2rem;
+  .navbar-search-input {
+    display: block;
+    padding-top: .4em;
+    padding-bottom: .4em;
+    padding-right: .4em;
 
-  font-family: 'Grand Hotel', sans-serif;
-  font-size: 1.5rem;
-}
+    background-color: lighten($color-primary, 15%);
+    color: white;
+    outline: none;
 
-.navbar-search-input {
-  display: block;
-  padding: .4em;
+    border: 0;
+    border-radius: $border-radius;
 
-  background-color: lighten($color-primary, 15%);
-  color: white;
-  outline: none;
+    font-family: 'pt_sans', sans-serif;
 
-  border: 0;
-  border-radius: $border-radius;
+    &::-webkit-input-placeholder {
+      color: $color-navbar-text;
+    }
+    &::-moz-placeholder {
+      color: $color-navbar-text;
+    }
+    &:-ms-input-placeholder {
+      color: $color-navbar-text;
+    }
+    &:-moz-placeholder {
+      color: $color-navbar-text;
+    }
 
-  font-family: 'pt_sans', sans-serif;
-
-  &::-webkit-input-placeholder { color: $color-navbar-text; }
-  &::-moz-placeholder { color: $color-navbar-text; }
-  &:-ms-input-placeholder { color: $color-navbar-text; }
-  &:-moz-placeholder { color: $color-navbar-text; }
-
-  &:focus {
-    background-color: lighten($color-primary, 20%);
+    &:focus {
+      background-color: lighten($color-primary, 20%);
+    }
   }
-}
 
-.navbar-dark .nav-link {
-  font-family: 'pt_sans', sans-serif;
-  color: $color-navbar-text !important;
+  .navbar-link {
+    font-family: 'pt_sans', sans-serif;
+    color: $color-navbar-text !important;
+    text-decoration: none;
 
-  &:hover {
-    color: white !important;
+    &:hover,
+    &:active,
+    &:focus {
+      color: white !important;
+      text-decoration: none;
+    }
   }
-}
 
-.btn-nav {
-  border: 1px solid white;
-  background: white;
+  .nav-icon-item {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
 
-  &:hover {
+  .btn-nav {
     border: 1px solid white;
-    background: $brand-primary;
-    color: white;
+    background: white;
+
+    &:hover {
+      border: 1px solid white;
+      background: $brand-primary;
+      color: white;
+    }
   }
 }
