@@ -20,12 +20,3 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  landing:
-    tagline: personalized music recommendations
-    heading_one: your musical buddy
-    text_one: headbanger helps you discover new artists and albums based on your previous ratings. expand your personal profile by rating artists you like - and artists you don't - and headbanger will recommend new music for you to check out.
-    heading_two: care about content
-    text_two: your unique taste in music is determined by the rhythm and color of artists you like. headbanger uses these and many other qualitative properties to suggest music you might like.
-    footer: join
-
-  copyright_notice: '&copy; Florian Dejonckheere 2016'

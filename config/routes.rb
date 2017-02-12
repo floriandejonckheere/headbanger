@@ -1,20 +1,16 @@
 # require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  root 'app#landing'
+  root 'app#home'
 
-  # TODO: remove when launching
-  if Rails.env.development?
-    get 'app' => 'app#index'
-    get '/search' => 'app#search'
-    get '/trending' => 'app#trending'
-    get '/discover' => 'app#discover'
-    get '/explore' => 'app#explore'
+  get 'app' => 'app#home'
+  get '/search' => 'app#search'
+  get '/discover' => 'app#discover'
+  get '/explore' => 'app#explore'
 
-    devise_for :users
+  devise_for :users
 
-    resources :feedbacks, :only => [:create]
+  resources :feedbacks, :only => [:create]
 
-    # mount Sidekiq::Web => '/sidekiq'
-  end
+  # mount Sidekiq::Web => '/sidekiq'
 end

@@ -8,7 +8,7 @@
  *= require lato/scss/lato
  *= require hint/dist/hint
  *= require pt-sans/styles/pt_sans.css
- *= require fontawesome/css/font-awesome.css
+ *= require fontawesome/scss/font-awesome
  *= require font-roboto/dist/styles/roboto.css
  *
  * */
@@ -34,7 +34,6 @@ $nprogress-color: $color-primary;
 @import "components/form";
 @import "components/poster";
 
-@import "views/landing";
 @import "views/content";
 
 html,
