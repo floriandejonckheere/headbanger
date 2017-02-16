@@ -1,6 +1,7 @@
 # require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  devise_for :users
   root 'app#home'
 
   get 'app' => 'app#home'
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   get '/discover' => 'app#discover'
   get '/explore' => 'app#explore'
 
-  devise_for :users
+  # devise_for :users
 
   resources :feedbacks, :only => [:create]
 

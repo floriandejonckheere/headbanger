@@ -5,8 +5,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
 
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   </head>
   <body>
     <%= render 'components/modals' %>
@@ -14,11 +15,11 @@
 
     <%= yield 'poster' %>
 
-    <!-- TODO: flash -->
-
     <div class="container-fluid m-t-3">
       <div class="row">
         <div class="col-xs-12 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+          <%= render 'partials/messages' %>
+
           <%= yield %>
         </div>
       </div>

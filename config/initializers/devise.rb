@@ -6,13 +6,13 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'a8dcfc45c47d42bbd3882f2fd81fe40c03629a36914de43c18ab25556b5777115afbbd71f958db8955ebae16940a61e151e5443d86dc948713c018d3107ec924'
+  # config.secret_key = '6f6d87f094d665a2604b181f82b8ea9eea45ef7d7eaba6f68b1945df55830951df09d9d51ebe4d7bfb7032a430e4328f36cf6bfc78bf5b93e5431d4277ff6294'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = Rails.application.config.mailer['default_sender']
+  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -34,7 +34,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  config.authentication_keys = [:email]
+  # config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -108,7 +108,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'faa720d6e9ad3ca0755f9882a36361421124b920e1b8e65478f7b9ca3b860cc65a1810832d15bd1701a4249060392688ce909cee03d99fecd2f6cc494db26bf8'
+  # config.pepper = 'b83e679343e7c8521773852332ccfa6c8e9276e2f6e6b2058f1307a111b2767f74fa8f0013647dd8c1366326c2e6627abf159ce73fc6d7ba8c50834a5701bbde'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -154,7 +154,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 4..128
+  config.password_length = 6..128
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
@@ -173,7 +173,7 @@ Devise.setup do |config|
   # config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
-  config.unlock_keys = [:email]
+  # config.unlock_keys = [:email]
 
   # Defines which strategy will be used to unlock an account.
   # :email = Sends an unlock link to the user email
@@ -270,14 +270,15 @@ Devise.setup do |config|
   #
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
-  # config.omniauth_path_prefix = '/my_engine/users/auth'
+  # config.omniauth_path_prefix = '/my_engine/users/auth'-
 
   # Layout configuration
-  Rails.application.config.to_prepare do
-    Devise::SessionsController.layout 'session'
-    Devise::RegistrationsController.layout 'session'
-    Devise::ConfirmationsController.layout 'session'
-    Devise::UnlocksController.layout 'session'
-    Devise::PasswordsController.layout 'session'
-  end
+   Rails.application.config.to_prepare do
+     Devise::SessionsController.layout 'session'
+     Devise::RegistrationsController.layout 'session'
+     Devise::ConfirmationsController.layout 'session'
+     Devise::UnlocksController.layout 'session'
+     Devise::PasswordsController.layout 'session'
+   end
+
 end
