@@ -4,26 +4,30 @@ module Graph
   #
   class Genre
     include Neo4j::ActiveNode
-    include Concerns::Sourceable
 
-    has_sources
-
-    property :name,
-                  :constraint => :unique
+    # Attributes
+    property :name
 
     validates :name,
                   :presence => true
 
+    # Associations
+    has_many :in,
+             :groups,
+             :type => :sings_about,
+             :model_class => 'Graph::Group',
+             :unique => true
+
     has_many :in,
                 :subgenres,
-                :type => :subgenre_of,
+                :type => :related_to,
                 :model_class => 'Graph::Genre',
-                :unique => true
+                :unique => { :on => :name }
 
     has_many :out,
                 :supergenres,
-                :type => :subgenre_of,
+                :type => :related_to,
                 :model_class => 'Graph::Genre',
-                :unique => true
+                :unique => { :on => :name}
   end
 end

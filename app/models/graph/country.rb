@@ -7,23 +7,24 @@ module Graph
   class Country
     include Neo4j::ActiveNode
 
+    # Attributes
     property :country,
                       :type => ISO3166::Country
 
     validates :country,
                       :presence => true
 
-    has_many :out,
-                :performers,
+    # Associations
+    has_many :in,
+                :groups,
                 :type => :based_in,
-                :model_class => [
-                                  'Graph::Artist',
-                                  'Graph::Group'
-                                ],
-                :unique => { :on => :musicbrainz_key }
+                :model_class => 'Graph::Group',
+                :unique => true
 
-    def to_s
-      country.to_s
-    end
+    has_many :in,
+               :artists,
+               :type => :based_in,
+               :model_class => 'Graph::Artist',
+               :unique => true
   end
 end

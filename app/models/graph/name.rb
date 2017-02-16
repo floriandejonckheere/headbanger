@@ -5,28 +5,21 @@ module Graph
   class Name
     include Neo4j::ActiveNode
 
+    # Attributes
     property :name
-
-    # Properties specifically for Group
-    property :start_date,
-                        :type => Date
-    property :end_date,
-                        :type => Date
+    property :primary,
+                      :type => Boolean
 
     validates :name,
                   :presence => true
 
+    # Associations
     has_one :in,
               :performer,
               :type => :known_as,
               :model_class => [
                                 'Graph::Artist',
-                                'Graph::Group',
-                                'Graph::Label'
+                                'Graph::Group'
                               ]
-
-    def to_s
-      name
-    end
   end
 end

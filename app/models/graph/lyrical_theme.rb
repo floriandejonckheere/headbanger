@@ -5,16 +5,17 @@ module Graph
   class LyricalTheme
     include Neo4j::ActiveNode
 
-    property :name,
-                  :constraint => :unique
+    # Attributes
+    property :name
 
     validates :name,
                   :presence => true
 
+    # Associations
     has_many :in,
-                :lyrical_themes,
+                :groups,
                 :type => :sings_about,
                 :model_class => 'Graph::Group',
-                :unique => { :on => :musicbrainz_key }
+                :unique => true
   end
 end
