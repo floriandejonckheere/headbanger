@@ -2,16 +2,7 @@ module Graph
   ##
   # A group of performers
   #
-  class Group
-    include Neo4j::ActiveNode
-
-    # Data sources
-    property :musicbrainz_key
-    property :metal_archives_key
-
-    property :updated_at,
-                        :type => DateTime
-
+  class Group < DataNode
     # Properties
     property :year_formed,
                           :type => Date

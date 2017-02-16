@@ -2,16 +2,7 @@ module Graph
   ##
   # A single performer (but not a solo artist)
   #
-  class Artist
-    include Neo4j::ActiveNode
-
-    # Data sources
-    property :musicbrainz_key
-    property :metal_archives_key
-
-    property :updated_at,
-                        :type => DateTime
-
+  class Artist < DataNode
     # Attributes
     property :gender,
                     :type => String

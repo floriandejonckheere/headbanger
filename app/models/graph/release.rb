@@ -2,16 +2,7 @@ module Graph
   ##
   # A release
   #
-  class Release
-    include Neo4j::ActiveNode
-
-    # Data sources
-    property :musicbrainz_key
-    property :metal_archives_key
-
-    property :updated_at,
-                        :type => DateTime
-
+  class Release < DataNode
     # Attributes
     property :title
     property :release_date,
