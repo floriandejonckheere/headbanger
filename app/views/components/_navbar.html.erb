@@ -34,8 +34,6 @@
         <li class="nav-item m-r-3">
           <a href="#modal-feedback" data-toggle="modal" class="btn btn-success">Send feedback</a>
         </li>
-      <% end %>
-      <% if !user_signed_in? %>
         <li class="nav-item nav-icon-item">
           <a href="#" data-toggle="dropdown">
             <div class="btn-notifications unread">
@@ -47,8 +45,11 @@
           </div>
         </li>
         <li class="nav-item nav-icon-item">
-          <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">
+          <!-- <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">
             <%= image_tag 'user.jpg', :class => 'avatar' %>
+          </a> -->
+          <a href="#" class="dropdown-toggle nav-link navbar-link" data-toggle="dropdown">
+            <%= current_user.display_name %>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="#">My account</a>
@@ -61,7 +62,7 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <a href="#modal-signin" data-toggle="modal" class="nav-link">Sign in</a>
+          <a href="#modal-signin" data-toggle="modal" class="nav-link navbar-link">Sign in</a>
         </li>
         <li class="nav-item">
           <a href="#modal-signup" data-toggle="modal" class="nav-link hidden-lg-up">Sign up</a>

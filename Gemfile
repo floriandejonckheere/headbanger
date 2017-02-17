@@ -4,6 +4,9 @@ ruby '2.4.0'
 
 ## User management ##
 gem 'devise'
+gem 'omniauth-facebook'
+
+gem 'mail_form'
 
 ## Graph store ##
 gem 'neo4j'
