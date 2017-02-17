@@ -8,7 +8,7 @@ class User < ApplicationRecord
           :trackable,
           :timeoutable,
           :validatable,
-          :omniauthable, :omniauth_providers => [:facebook]
+          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   validates :email,
               :presence => true
@@ -23,7 +23,7 @@ class User < ApplicationRecord
         user.provider = auth.provider
         user.uid = auth.uid
 
-        user.name = auth.info.name
+        user.name = auth.info.first_name || auth.info.name
         user.email = auth.info.email if auth.info.email
 
         # Dummy password

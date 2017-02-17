@@ -5,6 +5,7 @@ ruby '2.4.0'
 ## User management ##
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 gem 'mail_form'
 

@@ -12,6 +12,4 @@ Rails.application.routes.draw do
                     :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :feedbacks, :only => [:create]
-
-  # mount Sidekiq::Web => '/sidekiq'
 end
