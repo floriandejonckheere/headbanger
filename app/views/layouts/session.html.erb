@@ -10,27 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   </head>
   <body>
-    <div class="background-shade">
-      <div class="image"></div>
-      <div class="shade"></div>
-    </div>
-
-    <div class="container-fluid signin-container">
+    <div class="container p-4">
       <div class="row">
-        <div class="col-xs-10 offset-xs-1 col-lg-4 offset-lg-4 col-xl-2 offset-xl-5">
-          <header class="header">
-            <%= link_to root_path do %>
-              <h1 class="logo">Headbanger</h1>
-            <% end %>
-          </header>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card signin-card col-xs-10 offset-xs-1 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 p-a-2">
-          <div class="card-block">
-             <h2 class="card-title text-xs-center m-b-3">
-              <%= yield 'title' %>
-            </h2>
+        <div class="card col-xs-10 offset-xs-1 col-lg-6 offset-lg-3 p-a-2">
+          <div class="card-title text-center brand brand-lg">
+            <%= link_to 'Headbanger', root_path %>
           </div>
           <%= render 'partials/messages' %>
 

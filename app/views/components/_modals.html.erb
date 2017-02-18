@@ -1,55 +1,3 @@
-<div class="modal fade" id="modal-signin">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="card-block">
-            <h2 class="card-title text-xs-center">Sign in</h2>
-          </div>
-          <div class="card-block">
-            <div class="inner-addon left-addon">
-              <i class="fa fa-at"></i>
-                <%= f.email_field :email,
-                                  :placeholder => 'Email',
-                                  :autofocus => true,
-                                  :required => true,
-                                  :class => 'form-control m-b-2' %>
-            </div>
-            <div class="inner-addon left-addon">
-              <i class="fa fa-lock"></i>
-                <%= f.password_field :password,
-                                  :placeholder => 'Password',
-                                  :autocomplete => 'off',
-                                  :required => true,
-                                  :class => 'form-control m-b-2' %>
-            </div>
-          </div>
-
-          <div class="card-block">
-            <%= f.submit 'Sign in', :class => 'btn btn-primary p-x-2' %>
-
-            <% if devise_mapping.recoverable? and (flash.any? or devise_error_messages?) %>
-              <%= link_to new_password_path(resource_name), :class => 'btn pull-lg-right' do %>
-                <small>Forgot password</small>
-              <% end %>
-            <% end %>
-            <% if devise_mapping.confirmable? and (flash.any? or devise_error_messages?) %>
-              <%= link_to new_confirmation_path(resource_name), :class => 'btn pull-lg-right' do %>
-                <small>Confirm account</small>
-              <% end %>
-            <% end %>
-            <% if devise_mapping.lockable? and (flash.any? or devise_error_messages?) %>
-              <%= link_to new_unlock_path(resource_name), :class => 'btn pull-lg-right' do %>
-                <small>Unlock account</small>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 <div class="modal fade" id="modal-signup">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -59,20 +7,20 @@
             <h2 class="card-title text-xs-center">Sign up</h2>
           </div>
           <div class="card-block">
-            <div class="inner-addon left-addon">
+            <div class="inner-addon left-addon form-group">
               <i class="fa fa-at"></i>
                 <%= f.email_field :email,
                                   :placeholder => 'Email',
                                   :required => true,
                                   :class => 'form-control m-b-2' %>
             </div>
-            <div class="inner-addon left-addon">
+            <div class="inner-addon left-addon form-group">
               <i class="fa fa-user"></i>
                 <%= f.text_field :name,
                                   :placeholder => 'Name (optional)',
                                   :class => 'form-control m-b-2' %>
             </div>
-            <div class="inner-addon left-addon">
+            <div class="inner-addon left-addon form-group">
               <i class="fa fa-lock"></i>
                 <%= f.password_field :password,
                                   :placeholder => 'Password (minimum ' + Rails.application.config.devise.password_length.first.to_s + ' characters)',

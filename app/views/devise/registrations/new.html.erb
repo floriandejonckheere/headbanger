@@ -1,29 +1,56 @@
-<h2>Sign up</h2>
-
+<div class="card-block">
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <%= link_to new_session_path(resource_name), :class => 'nav-link' do %>
+        Sign in
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to new_registration_path(resource_name), :class => 'nav-link active' do %>
+        Sign up
+      <% end %>
+    </li>
+  </ul>
+</div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="card-block">
+    <div class="inner-addon left-addon form-group">
+      <i class="fa fa-at"></i>
+      <%= f.email_field :email,
+                        :placeholder => 'Email',
+                        :required => true,
+                        :class => 'form-control m-b-2' %>
+    </div>
+    <div class="inner-addon left-addon form-group">
+      <i class="fa fa-user"></i>
+      <%= f.text_field :name,
+                       :placeholder => 'Name (optional)',
+                       :class => 'form-control m-b-2' %>
+    </div>
+    <div class="inner-addon left-addon form-group">
+      <i class="fa fa-lock"></i>
+      <%= f.password_field :password,
+                           :placeholder => 'Password (minimum ' + Rails.application.config.devise.password_length.first.to_s + ' characters)',
+                           :autocomplete => 'off',
+                           :required => true,
+                           :class => 'form-control m-b-2' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="card-block">
+    <%= f.submit 'Sign up', :class => 'btn btn-primary p-x-2' %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+  <hr>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="card-block">
+    <%= link_to user_facebook_omniauth_authorize_path, :class => 'btn btn-block btn-social btn-facebook' do %>
+      <span class="fa fa-facebook"></span>
+      Connect with Facebook
+    <% end %>
+    <%= link_to user_google_oauth2_omniauth_authorize_path, :class => 'btn btn-block btn-social btn-google' do %>
+      <span class="fa fa-google"></span>
+      Connect with Google
+    <% end %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>

@@ -62,11 +62,11 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <a href="#modal-signin" data-toggle="modal" class="nav-link navbar-link">Sign in</a>
+          <%= link_to 'Sign in', new_session_path(resource), :class => 'nav-link navbar-link' %>
         </li>
         <li class="nav-item">
-          <a href="#modal-signup" data-toggle="modal" class="nav-link hidden-lg-up">Sign up</a>
-          <a href="#modal-signup" data-toggle="modal" class="btn btn-nav hidden-md-down">Sign up</a>
+          <%= link_to 'Sign up', new_registration_path(resource), :class => 'nav-link hidden-lg-up' %>
+          <%= link_to 'Sign up', new_registration_path(resource), :class => 'btn btn-nav hidden-md-down' %>
         <% end %>
       </li>
     </ul>

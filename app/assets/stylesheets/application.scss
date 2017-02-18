@@ -21,6 +21,8 @@ $brand-primary: $color-primary;
 $input-border-focus: $color-primary;
 @import "bootstrap/scss/bootstrap";
 
+@import "bootstrap-social/bootstrap-social.css";
+
 $nprogress-color: $color-primary;
 @import "nprogress";
 @import "nprogress-bootstrap";
@@ -30,6 +32,7 @@ $nprogress-color: $color-primary;
 @import "utilities";
 @import "typography";
 
+@import "components/branding";
 @import "components/navbar";
 @import "components/form";
 @import "components/poster";
