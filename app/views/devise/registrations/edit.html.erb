@@ -1,43 +1,67 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="card-block">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <%= link_to new_session_path(resource_name), :class => 'nav-link' do %>
+        &laquo; Back
+      <% end %>
+    </li>
+  </ul>
+</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <%= render 'partials/devise_messages' %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="card-block">
+    <div class="inner-addon left-addon form-group">
+      <i class="fa fa-at"></i>
+      <%= f.email_field :email,
+                        :placeholder => 'Email',
+                        :autofocus => true,
+                        :required => true,
+                        :class => 'form-control' %>
+    </div>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <div class="card-block">
+    <div class="inner-addon left-addon form-group">
+      <i class="fa fa-lock"></i>
+      <%= f.password_field :password,
+                           :placeholder => 'New password',
+                           :autocomplete => 'off',
+                           :required => true,
+                           :class => 'form-control' %>
+    </div>
+    <div class="inner-addon left-addon form-group">
+      <i class="fa fa-lock"></i>
+      <%= f.password_field :password_confirmation,
+                           :placeholder => 'Confirm password',
+                           :autocomplete => 'off',
+                           :required => true,
+                           :class => 'form-control' %>
+    </div>
+    <div class="inner-addon left-addon form-group">
+      <i class="fa fa-lock"></i>
+      <%= f.password_field :password,
+                           :placeholder => 'current password',
+                           :autocomplete => 'off',
+                           :required => true,
+                           :class => 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="card-block">
+    <%= f.submit 'Update', :class => 'btn btn-primary' %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+  <div class="card-block">
+    <hr>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="card-block">
+    <%= link_to 'Cancel my account', registration_path(resource_name),
+                                    :data => { :confirm => 'Are you sure you wish to cancel your account? This will delete all your information and is irreversible!' },
+                                    :method => :delete,
+                                    :class => 'btn btn-link' %>
   </div>
+
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
