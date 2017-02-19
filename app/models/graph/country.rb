@@ -1,4 +1,4 @@
-require 'headbanger/converters/country_converter'
+require 'graph/converters/country_converter'
 
 module Graph
   ##

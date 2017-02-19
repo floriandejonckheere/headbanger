@@ -1,4 +1,4 @@
-module Headbanger
+module Graph
 module Converters
   class CountryConverter
     class << self
