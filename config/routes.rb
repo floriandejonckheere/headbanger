@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get '/discover' => 'app#discover'
   get '/explore' => 'app#explore'
 
+  get '/tos' => 'app#terms_of_service'
+  get '/privacy' => 'app#privacy_policy'
+
   devise_for :users,
                     :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
