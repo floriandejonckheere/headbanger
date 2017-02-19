@@ -1,13 +1,17 @@
-require_relative '../errors'
-
 module Headbanger
 module Sisyphus
+  ##
+  # Framework for background information aggregation
+  #
   class SisyphusWorker
     include Sidekiq::Worker
 
     class << self
       attr_accessor :graph_model
 
+      ##
+      # Define the graph model sym
+      #
       def model(model_sym)
         @graph_model = Graph.const_get model_sym.to_s.camelize
       end
@@ -17,8 +21,11 @@ module Sisyphus
                   :musicbrainz,
                   :metal_archives
 
+    ##
+    # Create or update a data node
+    #
     def perform(musicbrainz_key)
-      ## Find or create instance of Graph::MyModel
+      # Find or create instance of Graph::MyModel
       begin
         @instance = self.class.graph_model.find_by! :musicbrainz_key => musicbrainz_key
       rescue Neo4j::RecordNotFound
@@ -26,47 +33,72 @@ module Sisyphus
         @instance = self.class.graph_model.new :musicbrainz_key => musicbrainz_key
       end
 
-      ## Update instance
+      # Update instance
       update_sources
-      begin
-        transaction = Neo4j::Transaction.new
-
+      Neo4j::Transaction.run do |tx|
         begin
           update_instance
-        rescue Headbanger::NotImplementedError => e
+        rescue NotImplementedError => e
           # Print warning and ignore
           logger.warn { "[#{musicbrainz_key}] #{e}" }
           e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
-        end
+        rescue => e
+          logger.warn { "[#{musicbrainz_key}] #{e}" }
+          logger.error { "[#{musicbrainz_key}] Failed to update #{self.class.graph_model}" }
+          e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
 
-        @instance.save!
-      rescue => e
-        logger.error { "[#{musicbrainz_key}] Failed to update #{self.class.graph_model}" }
-        logger.error { "[#{musicbrainz_key}] #{e}" }
-        e.backtrace.each { |b| logger.error { "[#{musicbrainz_key}] #{b}" } }
-        transaction.mark_failed
-        raise e
-      ensure
-        transaction.close
+          # Fail transaction
+          if e.is_a? PersistentError
+            # Hard-fail transaction
+            logger.error { "[#{musicbrainz_key}] Rolling back transaction" }
+            tx.mark_failed
+          else
+            # TODO: Soft-fail transaction
+          end
+        end
       end
     end
 
+    ##
+    # Update an attribute on @instance
+    #
     def update_attribute(attribute)
       @instance[attribute] = send attribute
-    rescue => e
-      logger.error { "[#{musicbrainz_key}] Failed to update #{self.class.graph_model}.#{attribute}" }
-      logger.error { "[#{musicbrainz_key}] #{e}" }
-      e.backtrace.each { |b| logger.error { "[#{musicbrainz_key}] #{b}" } }
-      raise e
+      do_handle_error(:attribute => attribute) { @instance[attribute] = send attribute }
     end
 
     def update_association(association)
-      send association
+      do_handle_error(:association => association) { send association }
     end
 
+    ##
+    # Contingency method error handling
+    #
+    def do_handle_error(hash = nil)
+      yield
+    rescue => e
+      logger.error { "[#{@instance.musicbrainz_key}] Failed to update #{self.class.graph_model}" }
+      logger.error { "[#{@instance.musicbrainz_key}] #{hash.to_s}"} if hash
+      logger.error { "[#{@instance.musicbrainz_key}] #{e}" }
+      e.backtrace.each { |b| logger.error { "[#{@instance.musicbrainz_key}] #{b}" } }
+      raise e
+    end
+
+    ##
+    # Helper method
+    #
     def valid?(timestamp, valid_for)
       (timestamp.is_a? Date and (timestamp + valid_for).future?)
     end
+
+    ##
+    # Overridable method; sets data sources when @instance is out of date
+    #
+    def update_sources; end
+
+    ##
+    # Overridable method; updates @instance
+    def update_instance; end
   end
 end
 end

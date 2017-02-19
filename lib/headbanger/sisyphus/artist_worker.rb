@@ -1,23 +1,25 @@
 module Headbanger
 module Sisyphus
+  ##
+  # Implements aggregation methods for Artist
+  #
   class ArtistWorker < SisyphusWorker
     model :artist
 
     def update_sources
-      ## Check source validity
+      # Check source validity
       if valid?(@instance.musicbrainz_timestamp, 6.months) and
           valid?(@instance.metal_archives_timestamp, 6.months)
         logger.info { "[#{@instance.musicbrainz_key}] Sources validated successfully" }
-        return
+      else
+        logger.info { "[#{@instance.musicbrainz_key}] Sources not valid" }
+
+        # Retrieve source instances
+        @musicbrainz = ActiveMusicbrainz::Model::Artist.by_gid @instance.musicbrainz_key
+        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Person'
+
+        @metal_archives = MetalArchives::Artist.find @instance.metal_archives_key
       end
-
-      logger.info { "[#{@instance.musicbrainz_key}] Sources not valid" }
-
-      ## Retrieve source instances
-      @musicbrainz = ActiveMusicbrainz::Model::Artist.by_gid @instance.musicbrainz_key
-      raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Person'
-
-      # @metal_archives = MetalArchives::Artist.find @instance.metal_archives_key
     end
 
     def update_instance
