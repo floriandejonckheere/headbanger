@@ -41,11 +41,6 @@
         <small>Forgot password?</small>
       <% end %>
     <% end %>
-    <% if devise_mapping.confirmable? %>
-      <%= link_to new_confirmation_path(resource_name), :class => 'btn pull-lg-right' do %>
-        <small>Confirm account</small>
-      <% end %>
-    <% end %>
   </div>
 
   <div class="card-block">

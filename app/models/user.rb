@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable,
           :registerable,
           :recoverable,
-          :confirmable,
           :trackable,
           :timeoutable,
           :validatable,
@@ -28,8 +27,6 @@ class User < ApplicationRecord
 
         # Dummy password
         user.password = Devise.friendly_token[0,20]
-
-        user.skip_confirmation!
       end
     end
 
