@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
           :registerable,
           :recoverable,
@@ -8,6 +6,10 @@ class User < ApplicationRecord
           :timeoutable,
           :validatable,
           :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :twitter]
+
+  has_many :authentications,
+                          :class_name => 'UserAuthentication',
+                          :dependent => :destroy
 
   validates :email,
               :presence => true
@@ -17,27 +19,14 @@ class User < ApplicationRecord
   end
 
   class << self
-    def from_omniauth(auth)
-      where(:provider => auth.provider, :uid => auth.uid).first_or_create do |user|
-        user.provider = auth.provider
-        user.uid = auth.uid
+    def create_from_omniauth(auth)
+      attributes = {
+          :name => auth.info.first_name || auth.info.name || auth.info.email,
+          :email => auth.info.email,
+          :password => Devise.friendly_token
+      }
 
-        user.name = auth.info.first_name || auth.info.name
-        user.email = auth.info.email if auth.info.email
-
-        # Dummy password
-        user.password = Devise.friendly_token[0,20]
-
-        require 'byebug'; byebug
-      end
-    end
-
-    def new_with_session(params, session)
-      super.tap do |user|
-        if session and data = session['devise.facebook_data'] and session['devise.facebook_data']['extra'] and session['devise.facebook_data']['extra']['raw_info']
-          user.email = data['email'] if user.email.blank?
-        end
-      end
+      create attributes
     end
   end
 end
