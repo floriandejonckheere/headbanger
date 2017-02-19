@@ -39,6 +39,7 @@ $nprogress-color: $color-primary;
 @import "components/user";
 
 @import "views/content";
+@import "views/session";
 
 html,
 body {
@@ -51,3 +52,6 @@ body {
  * Overrides
  *
  * */
+input {
+  font-family: 'pt_sans', sans-serif;
+}

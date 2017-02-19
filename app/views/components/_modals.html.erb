@@ -1,45 +1,3 @@
-<div class="modal fade" id="modal-signup">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <div class="card-block">
-            <h2 class="card-title text-xs-center">Sign up</h2>
-          </div>
-          <div class="card-block">
-            <div class="inner-addon left-addon form-group">
-              <i class="fa fa-at"></i>
-                <%= f.email_field :email,
-                                  :placeholder => 'Email',
-                                  :required => true,
-                                  :class => 'form-control m-b-2' %>
-            </div>
-            <div class="inner-addon left-addon form-group">
-              <i class="fa fa-user"></i>
-                <%= f.text_field :name,
-                                  :placeholder => 'Name (optional)',
-                                  :class => 'form-control m-b-2' %>
-            </div>
-            <div class="inner-addon left-addon form-group">
-              <i class="fa fa-lock"></i>
-                <%= f.password_field :password,
-                                  :placeholder => 'Password (minimum ' + Rails.application.config.devise.password_length.first.to_s + ' characters)',
-                                  :autocomplete => 'off',
-                                  :required => true,
-                                  :class => 'form-control m-b-2' %>
-            </div>
-          </div>
-
-          <div class="card-block">
-            <%= f.submit 'Sign up', :class => 'btn btn-primary p-x-2' %>
-          </div>
-        <% end %>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
 <% if user_signed_in? %>
   <div class="modal fade" id="modal-feedback">
     <div class="modal-dialog" role="document">
@@ -57,26 +15,26 @@
                 <i class="fa fa-at"></i>
                   <%= f.email_field :email,
                                     :placeholder => 'Email (optional)',
-                                    :class => 'form-control m-b-2' %>
+                                    :class => 'form-control' %>
               </div>
               <div class="inner-addon left-addon">
                 <i class="fa fa-bug"></i>
                 <%= select_tag :category,
                                 options_for_select(Feedback::CATEGORIES),
                                 :required => true,
-                                :class => 'form-control m-b-2' %>
+                                :class => 'form-control' %>
               </div>
               <div class="inner-addon left-addon">
                 <i class="fa fa-pencil"></i>
                   <%= f.text_area :description,
                                     :placeholder => 'Description',
                                     :required => true,
-                                    :class => 'form-control m-b-2' %>
+                                    :class => 'form-control' %>
               </div>
             </div>
 
             <div class="card-block">
-              <%= f.submit 'Send feedback', :class => 'btn btn-primary p-x-2' %>
+              <%= f.submit 'Send feedback', :class => 'btn btn-primary' %>
             </div>
           <% end %>
         </div>

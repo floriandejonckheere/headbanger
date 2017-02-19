@@ -2,12 +2,12 @@
   <ul class="nav nav-pills nav-fill">
     <li class="nav-item">
       <%= link_to new_session_path(resource_name), :class => 'nav-link' do %>
-        Sign in
+        I have an account
       <% end %>
     </li>
     <li class="nav-item">
       <%= link_to new_registration_path(resource_name), :class => 'nav-link active' do %>
-        Sign up
+        I'm new here
       <% end %>
     </li>
   </ul>
@@ -18,14 +18,15 @@
       <i class="fa fa-at"></i>
       <%= f.email_field :email,
                         :placeholder => 'Email',
+                        :autofocus => true,
                         :required => true,
-                        :class => 'form-control m-b-2' %>
+                        :class => 'form-control' %>
     </div>
     <div class="inner-addon left-addon form-group">
       <i class="fa fa-user"></i>
       <%= f.text_field :name,
                        :placeholder => 'Name (optional)',
-                       :class => 'form-control m-b-2' %>
+                       :class => 'form-control' %>
     </div>
     <div class="inner-addon left-addon form-group">
       <i class="fa fa-lock"></i>
@@ -33,24 +34,21 @@
                            :placeholder => 'Password (minimum ' + Rails.application.config.devise.password_length.first.to_s + ' characters)',
                            :autocomplete => 'off',
                            :required => true,
-                           :class => 'form-control m-b-2' %>
+                           :class => 'form-control' %>
     </div>
   </div>
 
   <div class="card-block">
-    <%= f.submit 'Sign up', :class => 'btn btn-primary p-x-2' %>
+    <%= f.submit 'Create account', :class => 'btn btn-primary' %>
   </div>
 
-  <hr>
+  <div class="card-block">
+    <div class="hr-title">
+      <span class="hr-overlay">or</span>
+    </div>
+  </div>
 
   <div class="card-block">
-    <%= link_to user_facebook_omniauth_authorize_path, :class => 'btn btn-block btn-social btn-facebook' do %>
-      <span class="fa fa-facebook"></span>
-      Connect with Facebook
-    <% end %>
-    <%= link_to user_google_oauth2_omniauth_authorize_path, :class => 'btn btn-block btn-social btn-google' do %>
-      <span class="fa fa-google"></span>
-      Connect with Google
-    <% end %>
+    <%= render 'devise/shared/omniauth' %>
   </div>
 <% end %>
