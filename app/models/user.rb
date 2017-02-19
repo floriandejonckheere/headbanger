@@ -7,7 +7,7 @@ class User < ApplicationRecord
           :trackable,
           :timeoutable,
           :validatable,
-          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
+          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :twitter]
 
   validates :email,
               :presence => true
@@ -27,6 +27,8 @@ class User < ApplicationRecord
 
         # Dummy password
         user.password = Devise.friendly_token[0,20]
+
+        require 'byebug'; byebug
       end
     end
 
