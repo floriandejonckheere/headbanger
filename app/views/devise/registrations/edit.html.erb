@@ -25,30 +25,42 @@
   </div>
 
   <div class="card-block">
-    <div class="inner-addon left-addon form-group">
-      <i class="fa fa-lock"></i>
-      <%= f.password_field :password,
-                           :placeholder => 'New password',
-                           :autocomplete => 'off',
-                           :required => true,
-                           :class => 'form-control' %>
-    </div>
-    <div class="inner-addon left-addon form-group">
-      <i class="fa fa-lock"></i>
-      <%= f.password_field :password_confirmation,
-                           :placeholder => 'Confirm password',
-                           :autocomplete => 'off',
-                           :required => true,
-                           :class => 'form-control' %>
-    </div>
-    <div class="inner-addon left-addon form-group">
-      <i class="fa fa-lock"></i>
-      <%= f.password_field :password,
-                           :placeholder => 'current password',
-                           :autocomplete => 'off',
-                           :required => true,
-                           :class => 'form-control' %>
-    </div>
+    <% if resource.authentications.any? %>
+      <p>You have registered your account using the following providers:</p>
+
+      <div>
+        <ul>
+          <% resource.authentications.joins(:authentication_provider).pluck(:display_name).each do |provider| %>
+            <li><%= provider %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% else %>
+      <div class="inner-addon left-addon form-group">
+        <i class="fa fa-lock"></i>
+        <%= f.password_field :password,
+                             :placeholder => 'New password',
+                             :autocomplete => 'off',
+                             :required => true,
+                             :class => 'form-control' %>
+      </div>
+      <div class="inner-addon left-addon form-group">
+        <i class="fa fa-lock"></i>
+        <%= f.password_field :password_confirmation,
+                             :placeholder => 'Confirm password',
+                             :autocomplete => 'off',
+                             :required => true,
+                             :class => 'form-control' %>
+      </div>
+      <div class="inner-addon left-addon form-group">
+        <i class="fa fa-lock"></i>
+        <%= f.password_field :password,
+                             :placeholder => 'current password',
+                             :autocomplete => 'off',
+                             :required => true,
+                             :class => 'form-control' %>
+      </div>
+    <% end %>
   </div>
 
   <div class="card-block">
