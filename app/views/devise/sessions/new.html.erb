@@ -14,6 +14,7 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render 'partials/devise_messages' %>
   <div class="card-block">
     <div class="inner-addon left-addon form-group">
       <i class="fa fa-at"></i>
