@@ -5,11 +5,11 @@ Headbanger is a music recommendation and discovery platform.
 
 ## Configuration
 
-Copy `headbanger.env.example` to `headbanger.prod.env` and `headbanger.dev.env`. Edit the two files and use the following commands to use `headbanger.dev.env` outside the Docker container.
+Copy `headbanger.env.example` to `headbanger.env` and edit the file. Execute the following commands to use `headbanger.env` outside the Docker container.
 
 ```
 $ set -a                    # set allexport
-$ . ./headbanger.dev.env    # source .env
+$ . ./headbanger.env        # source .env
 ```
 
 ## Installation
@@ -39,12 +39,12 @@ For first-time setup, run the following commands
 
 ```
 $ rails db:migrate          # RDBMS
-$ rails db:data:migrate     # Graph
+$ rails neo4j:migrate       # Neo4j
 ```
 
 ### Production
 
-Docker and docker-compose are used in the deployment process. The environment variables `$SKIP_MIGRATE` can be used to skip database migrations. Don't forget to allow your webserver to serve the static assets.
+Docker and docker-compose are used in the deployment process. The environment variable `$SKIP_MIGRATE` can be used to skip database migrations. Don't forget to allow your webserver to serve the static assets.
 
 ```
 # docker-compose up
