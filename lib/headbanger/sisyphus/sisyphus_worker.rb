@@ -6,6 +6,8 @@ module Sisyphus
   class SisyphusWorker
     include Sidekiq::Worker
 
+    VALID_FOR = 6.months
+
     class << self
       attr_accessor :graph_model
 
@@ -33,29 +35,35 @@ module Sisyphus
         @instance = self.class.graph_model.new :musicbrainz_key => musicbrainz_key
       end
 
-      # Update instance
-      update_sources
-      Neo4j::Transaction.run do |tx|
-        begin
-          update_instance
-        rescue NotImplementedError => e
-          # Print warning and ignore
-          logger.warn { "[#{musicbrainz_key}] #{e}" }
-          e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
-        rescue => e
-          logger.warn { "[#{musicbrainz_key}] #{e}" }
-          logger.error { "[#{musicbrainz_key}] Failed to update #{self.class.graph_model}" }
-          e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
+      # Update instances
+      require 'byebug'; byebug
+      unless @instance.updated_at? and (@instance.updated_at + VALID_FOR).future?
+        update_sources
 
-          # Fail transaction
-          if e.is_a? PersistentError
-            # Hard-fail transaction
-            logger.error { "[#{musicbrainz_key}] Rolling back transaction" }
-            tx.mark_failed
-          else
-            # TODO: Soft-fail transaction
+        Neo4j::Transaction.run do |tx|
+          begin
+            update_instance
+          rescue NotImplementedError => e
+            # Print warning and ignore
+            logger.warn { "[#{musicbrainz_key}] #{e}" }
+            e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
+          rescue => e
+            logger.warn { "[#{musicbrainz_key}] #{e}" }
+            logger.error { "[#{musicbrainz_key}] Failed to update #{self.class.graph_model}" }
+            e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
+
+            # Fail transaction
+            if e.is_a? PersistentError
+              # Hard-fail transaction
+              logger.error { "[#{musicbrainz_key}] Rolling back transaction" }
+              tx.mark_failed
+            else
+              # TODO: Soft-fail transaction
+            end
           end
         end
+      else
+        logger.info { "[#{musicbrainz_key}] #{self.class.graph_model} up to date" }
       end
     end
 
@@ -76,19 +84,15 @@ module Sisyphus
     #
     def do_handle_error(hash = nil)
       yield
+    rescue NotImplementedError => e
+      logger.warn { "[#{@instance.musicbrainz_key}] #{e}" }
+      e.backtrace.each { |b| logger.error { "[#{@instance.musicbrainz_key}] #{b}" } }
     rescue => e
       logger.error { "[#{@instance.musicbrainz_key}] Failed to update #{self.class.graph_model}" }
       logger.error { "[#{@instance.musicbrainz_key}] #{hash.to_s}"} if hash
       logger.error { "[#{@instance.musicbrainz_key}] #{e}" }
       e.backtrace.each { |b| logger.error { "[#{@instance.musicbrainz_key}] #{b}" } }
       raise e
-    end
-
-    ##
-    # Helper method
-    #
-    def valid?(timestamp, valid_for)
-      (timestamp.is_a? Date and (timestamp + valid_for).future?)
     end
 
     ##

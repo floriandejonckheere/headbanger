@@ -8,7 +8,8 @@ module Graph
     # Attributes
     property :name
     property :primary,
-                      :type => Boolean
+                      :type => Boolean,
+                      :default => false
 
     validates :name,
                   :presence => true

@@ -7,19 +7,10 @@ module Sisyphus
     model :artist
 
     def update_sources
-      # Check source validity
-      if valid?(@instance.musicbrainz_timestamp, 6.months) and
-          valid?(@instance.metal_archives_timestamp, 6.months)
-        logger.info { "[#{@instance.musicbrainz_key}] Sources validated successfully" }
-      else
-        logger.info { "[#{@instance.musicbrainz_key}] Sources not valid" }
+      @musicbrainz = ActiveMusicbrainz::Model::Artist.by_gid @instance.musicbrainz_key
+      raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Person'
 
-        # Retrieve source instances
-        @musicbrainz = ActiveMusicbrainz::Model::Artist.by_gid @instance.musicbrainz_key
-        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Person'
-
-        @metal_archives = MetalArchives::Artist.find @instance.metal_archives_key
-      end
+      @metal_archives = MetalArchives::Artist.find @instance.metal_archives_key
     end
 
     def update_instance
@@ -48,7 +39,7 @@ module Sisyphus
                 @musicbrainz.begin_date_month.to_i,
                 @musicbrainz.begin_date_day.to_i
     rescue ArgumentError
-      # Invalid date (one or more args is nil)
+      # TODO: Invalid date (one or more args is nil)
       nil
     end
 
@@ -57,12 +48,12 @@ module Sisyphus
                 @musicbrainz.end_date_month.to_i,
                 @musicbrainz.end_date_day.to_i
     rescue ArgumentError
-      # Invalid date (one or more args is nil)
+      # TODO: Invalid date (one or more args is nil)
       nil
     end
 
     def biography
-      # @metal_archives.biography
+      ActionView::Base.full_sanitizer.sanitize @metal_archives.biography
     end
 
     ##
@@ -70,22 +61,23 @@ module Sisyphus
     ##
     def country
       # @instance.country = Graph::Country.find_or_create_by(:country => ISO3166::Country[@metal_archives.country])
+      raise Headbanger::NotImplementedError
     end
 
     def names
-      @instance.names.delete_all
+      @instance.names.destroy_all
+
+      @instance.names << Graph::Name.create(:name => @musicbrainz.name, :primary => true)
 
       names = []
-
-      names << @musicbrainz.name
       @musicbrainz.credit_names.each { |acn| names << acn.name }
       @musicbrainz.aliases.each { |a| names << a.name }
 
-      names.uniq.each { |name| @instance.names << Graph::Name.find_or_create_by(:name => name)}
+      names.uniq.each { |name| @instance.names << Graph::Name.create(:name => name) }
     end
 
     def groups
-        raise Headbanger::NotImplementedError
+      raise Headbanger::NotImplementedError
     end
 
     def releases
