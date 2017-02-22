@@ -1,3 +1,5 @@
+require_relative '../errors'
+
 module Headbanger
 module Sisyphus
   ##
@@ -39,7 +41,7 @@ module Sisyphus
       if @instance.updated_at? and (@instance.updated_at + VALID_FOR).future?
         logger.info { "[#{musicbrainz_key}] #{self.class.graph_model} up to date" }
       else
-        Neo4j::Transaction.run do |tx|
+        # Neo4j::Transaction.run do |tx|
           begin
             update_sources
 
@@ -50,7 +52,7 @@ module Sisyphus
             e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
           rescue => e
             logger.warn { "[#{musicbrainz_key}] #{e}" }
-            logger.error { "[#{musicbrainz_key}] Failed to update #{self.class.graph_model}" }
+            logger.warn { "[#{musicbrainz_key}] Failed to update #{self.class.graph_model}" }
             e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
 
             # Fail transaction
@@ -60,9 +62,12 @@ module Sisyphus
               tx.mark_failed
             else
               # TODO: Soft-fail transaction
+              logger.error { "[#{musicbrainz_key}] Soft-failing transaction" }
             end
           end
-        end
+
+          @instance.save
+        # end
       end
     end
 
