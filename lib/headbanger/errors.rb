@@ -26,6 +26,11 @@ module Headbanger
   class NotImplementedError < PersistentError; end
 
   ##
+  # No determinant available (usually :musicbrainz_key)
+  #
+  class NoDeterminantError < PersistentError; end
+
+  ##
   # Incorrect object type
   #
   class IncorrectTypeError < PersistentError; end

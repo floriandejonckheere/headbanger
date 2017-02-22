@@ -7,8 +7,23 @@ module Sisyphus
     model :artist
 
     def update_sources
+      # Fail unless a :musicbrainz_key is given
+      raise NoDeterminantError, 'No :musicbrainz_key available' unless @instance.musicbrainz_key
+
       @musicbrainz = ActiveMusicbrainz::Model::Artist.by_gid @instance.musicbrainz_key
-      raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Person'
+      raise IncorrectTypeError unless @musicbrainz.type.name == 'Person'
+
+      # No :metal_archives_key, try to find one
+      unless @instance.metal_archives_key
+        @musicbrainz.l_artist_urls.each do |link|
+          if link.url.url =~ /(http:\/\/)?(www.)?metal-archives.com/
+            @instance.metal_archives_key = link.url.url.split('/').last
+            break
+          end
+        end
+      end
+
+      raise NoDeterminantError, 'No :metal_archives_key available' unless @instance.metal_archives_key
 
       @metal_archives = MetalArchives::Artist.find @instance.metal_archives_key
     end

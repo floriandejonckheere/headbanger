@@ -36,12 +36,13 @@ module Sisyphus
       end
 
       # Update instances
-      require 'byebug'; byebug
-      unless @instance.updated_at? and (@instance.updated_at + VALID_FOR).future?
-        update_sources
-
+      if @instance.updated_at? and (@instance.updated_at + VALID_FOR).future?
+        logger.info { "[#{musicbrainz_key}] #{self.class.graph_model} up to date" }
+      else
         Neo4j::Transaction.run do |tx|
           begin
+            update_sources
+
             update_instance
           rescue NotImplementedError => e
             # Print warning and ignore
@@ -62,8 +63,6 @@ module Sisyphus
             end
           end
         end
-      else
-        logger.info { "[#{musicbrainz_key}] #{self.class.graph_model} up to date" }
       end
     end
 
