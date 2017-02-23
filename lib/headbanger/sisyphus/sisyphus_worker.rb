@@ -2,9 +2,6 @@ require_relative '../errors'
 
 module Headbanger
 module Sisyphus
-  ##
-  # Framework for background information aggregation
-  #
   class SisyphusWorker
     include Sidekiq::Worker
 
@@ -29,9 +26,12 @@ module Sisyphus
     # Create or update a data node
     #
     def perform(musicbrainz_key)
+      logger.info { "[#{musicbrainz_key}] Starting update of #{self.class.graph_model}" }
+
       # Find or create instance of Graph::MyModel
       begin
         @instance = self.class.graph_model.find_by! :musicbrainz_key => musicbrainz_key
+        logger.debug { "[#{musicbrainz_key}] Found instance of #{self.class.graph_model}" }
       rescue Neo4j::RecordNotFound
         logger.info { "[#{musicbrainz_key}] Creating #{self.class.graph_model}" }
         @instance = self.class.graph_model.new :musicbrainz_key => musicbrainz_key
@@ -39,20 +39,22 @@ module Sisyphus
 
       # Update instances
       if @instance.updated_at? and (@instance.updated_at + VALID_FOR).future?
-        logger.info { "[#{musicbrainz_key}] #{self.class.graph_model} up to date" }
+        logger.info { "[#{musicbrainz_key}] Up to date" }
       else
-        # Neo4j::Transaction.run do |tx|
+        logger.info { "[#{musicbrainz_key}] Out of date" }
+        Neo4j::ActiveBase.run_transaction do |tx|
           begin
+            logger.debug { "[#{musicbrainz_key}] Updating sources" }
             update_sources
 
+            logger.debug { "[#{musicbrainz_key}] Updating instance" }
             update_instance
           rescue NotImplementedError => e
             # Print warning and ignore
             logger.warn { "[#{musicbrainz_key}] #{e}" }
-            e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
           rescue => e
-            logger.warn { "[#{musicbrainz_key}] #{e}" }
-            logger.warn { "[#{musicbrainz_key}] Failed to update #{self.class.graph_model}" }
+            logger.error { "[#{musicbrainz_key}] Failed to update" }
+            logger.error { "[#{musicbrainz_key}] #{e}" }
             e.backtrace.each { |b| logger.warn { "[#{musicbrainz_key}] #{b}" } }
 
             # Fail transaction
@@ -67,7 +69,7 @@ module Sisyphus
           end
 
           @instance.save
-        # end
+        end
       end
     end
 
