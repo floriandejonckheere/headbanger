@@ -13,10 +13,7 @@ module Headbanger
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # Log to STDOUT
-    logger           = ActiveSupport::Logger.new(STDOUT)
-    logger.formatter = config.log_formatter
-    config.logger = ActiveSupport::TaggedLogging.new(logger)
+    config.autoload_paths += %W(#{config.root}/lib)
 
     config.mailer = YAML.load_file(Rails.root.join('config', 'mailer.yml'))[Rails.env]
     config.action_mailer.default_url_options = {
@@ -29,9 +26,8 @@ module Headbanger
     config.assets.paths << Rails.root.join('vendor','assets','bower_components')
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
 
-    # Neo4j configuration
-    config.neo4j.module_handling = :demodulize
-
-    config.autoload_paths += %W(#{config.root}/lib)
+    # Logger
+    logger = Logging.logger STDOUT
+    logger.level = (ENV['RAILS_LOG_LEVEL'] || 'info').to_sym
   end
 end
