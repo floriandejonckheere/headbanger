@@ -18,9 +18,6 @@ module Graph
     has_one :in,
               :performer,
               :type => :known_as,
-              :model_class => [
-                                'Graph::Artist',
-                                'Graph::Group'
-                              ]
+              :model_class => %w(Graph::Artist Graph::Group)
   end
 end

@@ -24,12 +24,12 @@ module Graph
                 :type => :known_as,
                 :model_class => 'Graph::Name',
                 :dependent => :destroy,
-                :unique => true
+                :unique => { :on => :name }
 
     has_many :out,
                 :releases,
                 :type => :appears_in,
                 :model_class => 'Graph::Release',
-                :unique => true
+                :unique => { :on => :musicbrainz_key }
   end
 end
