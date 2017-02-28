@@ -44,7 +44,7 @@ gem 'uglifier'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+# gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -60,12 +60,16 @@ group :development, :test do
 end
 
 group :test do
+  # BDD testing for Ruby
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'database_cleaner'
+
+  # Factory pattern for testing
+  gem 'factory_girl'
   gem 'factory_girl_rails'
+
+  # Fake data generator
   gem 'faker'
-  gem 'rspec-sidekiq'
 end
 
 group :production do

@@ -1,6 +1,6 @@
 default: &default
   type: <%= ENV['NEO4J_PROTOCOL'] %>
-  url: <%= "#{ENV['NEO4J_PROTOCOL']}://#{ENV['NEO4J_USER']}:#{ENV['NEO4J_PASS']}@#{ENV['NEO4J_HOST']}:#{ENV['NEO4J_PORT']}" %>
+  url: <%= ENV['NEO4J_URL'] %>
 
 development:
   <<: *default
