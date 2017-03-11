@@ -31,7 +31,7 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 
 # Logging
-gem 'logging'
+gem 'lograge'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
 # Use SCSS for stylesheets

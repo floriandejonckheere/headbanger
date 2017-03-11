@@ -95,4 +95,19 @@ Rails.application.configure do
       :sender_address => ENV['MAILER_EXCEPTION_SENDER'],
       :exception_recipients => ENV['MAILER_EXCEPTION_RECIPIENT']
     }
+
+  if defined? Rails::Console
+    config.logger = Logger.new '/dev/null'
+    config.after_initialize { ActiveRecord::Base.logger.level = 0 }
+  else
+    config.logger = Logger.new STDOUT
+    config.log_formatter = Logger::Formatter.new
+
+    config.lograge.enabled = true
+    config.lograge.custom_options = lambda do |event|
+      if event.payload[:exception]
+        { :params => event.payload[:params].except('controller', 'action', 'format', 'status') }
+      end
+    end
+  end
 end
