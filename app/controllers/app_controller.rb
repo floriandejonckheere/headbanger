@@ -1,6 +1,4 @@
 class AppController < ApplicationController
-  helper_method :resource_name, :resource, :devise_mapping
-
   layout 'session', :only => [:terms_of_service, :privacy_policy]
 
   # Routes

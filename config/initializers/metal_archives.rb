@@ -2,7 +2,7 @@ MetalArchives.configure do |c|
   # Application identity (required)
   c.app_name = 'Headbanger'
   c.app_version = Headbanger::VERSION
-  c.app_contact = Rails.application.config.mailer['default_sender']
+  c.app_contact = ENV['MAILER_SENDER']
 
   # Request throttling (optional, overrides defaults)
   # c.request_rate = 1

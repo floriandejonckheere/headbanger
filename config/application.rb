@@ -25,13 +25,6 @@ module Headbanger
 
     config.autoload_paths += %W(#{config.root}/lib)
 
-    config.mailer = YAML.load_file(Rails.root.join('config', 'mailer.yml'))[Rails.env]
-    config.action_mailer.default_url_options = {
-        :host => config.mailer['default_host_host'] || 'localhost',
-        :port => config.mailer['default_host_port'] || '80',
-        :protocol => config.mailer['default_host_proto'] || 'http'
-    }
-
     # Add bower_components to asset path
     config.assets.paths << Rails.root.join('vendor','assets','bower_components')
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff|woff2)$)
