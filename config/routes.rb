@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   get '/privacy' => 'app#privacy_policy'
 
   devise_for :users,
-                    :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+                    :controllers => {
+                      :omniauth_callbacks => 'users/omniauth_callbacks',
+                      :registrations => 'users/registrations'
+                    }
 
   resources :feedbacks, :only => [:create]
 end

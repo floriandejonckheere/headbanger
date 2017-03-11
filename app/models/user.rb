@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :authentications,
                           :class_name => 'UserAuthentication',
                           :dependent => :destroy
+  has_many :authentication_providers,
+                                    :through => :authentications
 
   validates :email,
               :presence => true

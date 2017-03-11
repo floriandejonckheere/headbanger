@@ -10,6 +10,7 @@ class CreateAuthenticationProviders < ActiveRecord::Migration
     AuthenticationProvider.create(name: 'facebook', display_name: 'Facebook')
     AuthenticationProvider.create(name: 'google_oauth2', display_name: 'Google')
     AuthenticationProvider.create(name: 'twitter', display_name: 'Twitter')
+    AuthenticationProvider.create(name: 'email', display_name: 'Email')
   end
 end
 
