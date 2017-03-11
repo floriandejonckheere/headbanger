@@ -17,15 +17,6 @@
           <input class="navbar-search-input" type="text" placeholder="Search">
         </div>
       </li>
-      <li class="nav-item hidden-lg-up">
-        <%= link_to 'Search', search_path, :class => "nav-link navbar-link #{'active' if controller?('app') and action?('search')}" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Discover', discover_path, :class => "nav-link navbar-link #{'active' if controller?('app') and action?('discover')}" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Explore', explore_path, :class => "nav-link navbar-link #{'active' if controller?('app') and action?('explore_path')}" %>
-      </li>
     </ul>
 
     <!-- Account -->
@@ -33,16 +24,6 @@
       <% if user_signed_in? %>
         <li class="nav-item mr-3">
           <a href="#modal-feedback" data-toggle="modal" class="btn btn-success">Send feedback</a>
-        </li>
-        <li class="nav-item nav-icon-item">
-          <a href="#" data-toggle="dropdown">
-            <div class="btn-notifications unread">
-              <i class="fa fa-bell"></i>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            notifications
-          </div>
         </li>
         <li class="nav-item nav-icon-item">
           <!-- <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">
