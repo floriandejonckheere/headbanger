@@ -15,7 +15,7 @@ gem 'neo4j'
 
 ## Music data ##
 gem 'countries'
-gem 'metal_archives', '~> 0.6'
+gem 'metal_archives'
 gem 'active_musicbrainz', :git => 'https://github.com/floriandejonckheere/active_musicbrainz'
 
 ## Sidekiq ##
@@ -33,7 +33,7 @@ gem 'jquery-turbolinks'
 # Logging
 gem 'logging'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
