@@ -11,8 +11,6 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render 'partials/devise_messages' %>
-
   <div class="card-block">
     <div class="inner-addon left-addon form-group">
       <i class="fa fa-at"></i>
@@ -22,26 +20,22 @@
                         :required => true,
                         :class => 'form-control' %>
     </div>
+    <div class="inner-addon left-addon form-group">
+      <i class="fa fa-user"></i>
+      <%= f.text_field :name,
+                       :placeholder => 'Name (optional)',
+                       :class => 'form-control' %>
+    </div>
   </div>
 
-  <div class="card-block">
-    <% if resource.authentications.any? %>
-      <p>You have registered your account using the following providers:</p>
+  <% if resource.authentication_providers.where(:name => 'email').any? %>
 
-      <div>
-        <ul>
-          <% resource.authentications.joins(:authentication_provider).pluck(:display_name).each do |provider| %>
-            <li><%= provider %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% else %>
+    <div class="card-block">
       <div class="inner-addon left-addon form-group">
         <i class="fa fa-lock"></i>
         <%= f.password_field :password,
                              :placeholder => 'New password',
                              :autocomplete => 'off',
-                             :required => true,
                              :class => 'form-control' %>
       </div>
       <div class="inner-addon left-addon form-group">
@@ -49,16 +43,29 @@
         <%= f.password_field :password_confirmation,
                              :placeholder => 'Confirm password',
                              :autocomplete => 'off',
-                             :required => true,
                              :class => 'form-control' %>
       </div>
       <div class="inner-addon left-addon form-group">
         <i class="fa fa-lock"></i>
         <%= f.password_field :password,
-                             :placeholder => 'current password',
+                             :placeholder => 'Current password',
                              :autocomplete => 'off',
                              :required => true,
                              :class => 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="card-block">
+    <% if resource.authentications.any? %>
+      <p>You have signed up with the following external services:</p>
+
+      <div>
+        <ul>
+          <% resource.authentications.joins(:authentication_provider).pluck(:display_name).each do |provider| %>
+            <li><%= provider %></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
   </div>

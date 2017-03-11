@@ -11,8 +11,6 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render 'partials/devise_messages' %>
-
   <div class="card-block">
     If you have forgotten your password, you may request to reset it using the email address you registered with.
   </div>
