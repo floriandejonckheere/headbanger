@@ -14,4 +14,9 @@ Rails.application.routes.draw do
                       :omniauth_callbacks => 'users/omniauth_callbacks',
                       :registrations => 'users/registrations'
                     }
+
+  # Resources
+  resources :groups, :only => [:show], :controller => 'graph/groups'
+  resources :artists, :only => [:show], :controller => 'graph/artists'
+  resources :releases, :only => [:show], :controller => 'graph/releases'
 end

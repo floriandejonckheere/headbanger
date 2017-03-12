@@ -10,24 +10,15 @@ module Graph
 
     # Associations
     has_many :in,
-                :performers,
-                :type => :appears_in,
-                :model_class => [
-                                  'Graph::Artist',
-                                  'Graph::Group'
-                                ],
-                :unique => { :on => :musicbrainz_key }
-
-    has_many :in,
                :groups,
-               :type => :appears_in,
+               :type => :has_released,
                :model_class => 'Graph::Group',
-               :unique => true
+               :unique => { :on => :musicbrainz_key }
 
     has_many :in,
                :artists,
                :type => :appears_in,
                :model_class => 'Graph::Artist',
-               :unique => true
+               :unique => { :on => :musicbrainz_key }
   end
 end
