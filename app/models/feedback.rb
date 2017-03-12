@@ -4,8 +4,6 @@ class Feedback < MailForm::Base
   attribute :category
   attribute :description
 
-  append :remote_ip, :user_agent
-
   # Declare the e-mail headers. It accepts anything the mail method
   # in ActionMailer accepts.
   def headers
