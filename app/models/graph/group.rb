@@ -2,7 +2,10 @@ module Graph
   ##
   # A group of performers
   #
-  class Group < DataNode
+  class Group
+    include Neo4j::ActiveNode
+    include Graph::DataNode
+
     # Properties
     property :year_formed,
                           :type => Date

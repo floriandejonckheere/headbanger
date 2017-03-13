@@ -2,7 +2,10 @@ module Graph
   ##
   # A release
   #
-  class Release < DataNode
+  class Release
+    include Neo4j::ActiveNode
+    include Graph::DataNode
+
     # Attributes
     property :title
     property :release_date,

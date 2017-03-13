@@ -2,7 +2,10 @@ module Graph
   ##
   # A single performer (but not a solo artist)
   #
-  class Artist < DataNode
+  class Artist
+    include Neo4j::ActiveNode
+    include Graph::DataNode
+
     # Attributes
     property :gender,
                     :type => String
