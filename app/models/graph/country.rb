@@ -9,7 +9,8 @@ module Graph
 
     # Attributes
     property :country,
-                      :type => ISO3166::Country
+              :type => ISO3166::Country
+              # :unique => true
 
     validates :country,
                       :presence => true

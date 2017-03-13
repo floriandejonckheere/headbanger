@@ -2,10 +2,10 @@ class AddConstraintToGenre < Neo4j::Migrations::Base
   disable_transactions!
 
   def up
-    add_constraint 'Graph::Genre', :name
+    add_constraint :Genre, :name, force: true
   end
 
   def down
-    drop_constraint 'Graph::Genre', :name
+    drop_constraint :Genre, :name
   end
 end

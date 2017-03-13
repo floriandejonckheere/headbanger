@@ -7,6 +7,7 @@ module Graph
 
     # Attributes
     property :name
+              # :unique => true
 
     validates :name,
                   :presence => true
