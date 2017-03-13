@@ -3,5 +3,7 @@
 <h2>Discover</h2>
 
 <div class="matrix">
-  <%= render 'components/matrix-cell', :release => @a_flame_to_the_ground_beneath %>
+  <% @releases.each do |release| %>
+    <%= render 'components/matrix-cell', :release => release %>
+  <% end %>
 </div>
