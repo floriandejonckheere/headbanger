@@ -9,7 +9,8 @@
 
 $matrix-cell-size: 200px;
 
-$color-heart: #E60005;
+$color-rating: #E0EBF0;
+$color-rating-liked: #E64C65;
 
 .content {
   padding: 2rem;
@@ -63,43 +64,33 @@ $color-heart: #E60005;
         height: 100%;
       }
 
-      .matrix-cell-image-actions {
+      &:hover .matrix-cell-image-overlay {
+        opacity: 1;
+      }
+
+      .rating {
         @include transition;
 
         position: absolute;
 
         padding: .5rem 1rem;
 
-        font-size: 1.5em;
+        top: .5rem;
+        left: .5rem;
 
-        bottom: 0;
-        right: 0;
-      }
+        color: $color-rating;
+        text-decoration: none;
 
-      .rating {
-        @include transition;
+        font-weight: bold;
+        font-size: 1.1em;
 
-        // @extend .fa-heart-o;
-
-        color: white;
-        opacity: 0;
-
-        &:hover {
-          color: $color-heart;
+        .rating-heart {
+          @include transition;
+          margin-right: .25rem;
         }
 
-        &.liked {
-          // @extend .fa-heart;
-
-          opacity: 1;
-
-          color: $color-heart;
-        }
-      }
-
-      &:hover {
-        .rating,
-        .matrix-cell-image-overlay { opacity: 1; }
+        &:hover { color: white; }
+        &.liked .rating-heart { color: $color-rating-liked; }
       }
     }
 
