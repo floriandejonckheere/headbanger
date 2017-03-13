@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   root 'app#discover'
 
+  get '/queue' => 'app#queue'
+
   get '/tos' => 'app#terms_of_service'
   get '/privacy' => 'app#privacy_policy'
 

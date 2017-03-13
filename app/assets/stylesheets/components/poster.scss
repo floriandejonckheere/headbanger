@@ -9,12 +9,12 @@
 
 .poster {
   width: 100%;
-  height: 500px;
+  height: 750px;
 
   background-size: cover;
-  background-image: image-url('poster');
+  background-image: image-url('banner');
   background-repeat: no-repeat;
-  background-position: fixed;
+  background-position: center;
 
   display: flex;
   align-items: center;

@@ -17,6 +17,9 @@
           <input class="navbar-search-input" type="text" placeholder="Search">
         </div>
       </li>
+      <li class="nav-item">
+        <%= link_to 'Queue', queue_path, :class => 'nav-link navbar-link' %>
+      </li>
     </ul>
 
     <!-- Account -->
@@ -26,9 +29,6 @@
           <%= link_to 'Send feedback', feedback_path, :class => 'btn btn-success' %>
         </li>
         <li class="nav-item nav-icon-item">
-          <!-- <a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown">
-            <%= image_tag 'user.jpg', :class => 'avatar' %>
-          </a> -->
           <a href="#" class="dropdown-toggle nav-link navbar-link" data-toggle="dropdown">
             <%= current_user.display_name %>
           </a>

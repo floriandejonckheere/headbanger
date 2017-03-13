@@ -6,6 +6,8 @@ class AppController < ApplicationController
     @releases = Graph::Release.all
   end
 
+  def queue; end
+
   def terms_of_service; end
   def privacy_policy; end
 end
