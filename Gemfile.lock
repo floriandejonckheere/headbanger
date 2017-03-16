@@ -120,7 +120,7 @@ GEM
     mail_form (1.6.0)
       actionmailer (>= 3.2, < 5.1)
       activemodel (>= 3.2, < 5.1)
-    metal_archives (0.6.0)
+    metal_archives (0.7.1)
       countries (~> 1.2.5)
       faraday (~> 0.9)
       faraday_throttler (~> 0.0.3)
