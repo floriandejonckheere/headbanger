@@ -1,0 +1,26 @@
+/**
+ * footer.scss - Sticky footer
+ *
+ * Florian Dejonckheere <florian@floriandejonckheere.be>
+ *
+ * This file is part of Headbanger
+ *
+ * */
+.footer {
+  @include link-color($text-muted);
+
+  position: relative;
+  margin-top: -1 * $footer-height; /* negative value of footer height */
+  clear: both;
+
+  height: $footer-height;
+  line-height: $footer-height;
+
+  text-align: center;
+
+  background: darken($color-background, 10%);
+
+  i.fa-heart {
+    color: $color-rating-liked;
+  }
+}

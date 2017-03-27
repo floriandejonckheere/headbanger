@@ -36,6 +36,7 @@ $nprogress-color: $color-primary;
 @import "components/navbar";
 @import "components/form";
 @import "components/poster";
+@import "components/footer";
 
 @import "views/content";
 @import "views/session";
@@ -46,6 +47,15 @@ body {
   background-color: $color-background;
 
   height: 100%;
+}
+
+.wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow: auto;
+  padding-bottom: $footer-height;
 }
 
 /**
