@@ -1,5 +1,3 @@
-require 'graph/converters/country_converter'
-
 module Graph
   ##
   # A country
@@ -9,7 +7,7 @@ module Graph
 
     # Attributes
     property :country,
-              :type => ISO3166::Country
+              :type => String
               # :unique => true
 
     validates :country,
