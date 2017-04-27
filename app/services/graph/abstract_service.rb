@@ -5,19 +5,22 @@ module Graph
   class AbstractService
     include Sidekiq::Worker
 
-    def initialize
-      raise NotImplementedError, 'Cannot instantiate abstract class'
-    end
-
     def perform(metal_archives_key)
+      raise Headbanger::NoKeyError unless metal_archives_key
+
+      debug 'Starting update'
+      @instance = model.find_or_initialize_by :metal_archives_key => metal_archives_key
+
+      debug 'Fresh instance' if @instance.fresh?
+      return if @instance.fresh?
+
       Neo4j::ActiveBase.run_transaction do |tx|
         begin
-          @instance = model.find_or_initialize_by :metal_archives_key => metal_archives_key
-
-          update_instance if @instance.stale?
+          debug 'Stale instance'
+          update_instance
         rescue => e
-          logger.error e
           tx.mark_failed
+          raise e
         end
       end
     end
@@ -33,5 +36,16 @@ module Graph
     # Returns Graph model constant
     #
     def model; end
+
+    ##
+    # Format log message
+    #
+    def format(msg)
+      "[#{model}] [#{@instance&.metal_archives_key}] #{msg}"
+    end
+
+    [:debug, :warn, :info, :error].each do |level|
+      define_method("#{level}") { |msg| logger.send level, format(msg) }
+    end
   end
 end
