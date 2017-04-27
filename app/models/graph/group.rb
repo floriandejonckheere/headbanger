@@ -49,5 +49,10 @@ module Graph
                 :type => :has_released,
                 :model_class => 'Graph::Release',
                 :unique => true
+
+    # Methods
+    def primary_name
+      self.names.find_by :primary => true
+    end
   end
 end
