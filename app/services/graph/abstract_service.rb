@@ -5,6 +5,9 @@ module Graph
   class AbstractService
     include Sidekiq::Worker
 
+    ##
+    # Add or update a graph node
+    #
     def perform(metal_archives_key)
       raise Headbanger::NoKeyError unless metal_archives_key
 
@@ -25,17 +28,24 @@ module Graph
       end
     end
 
+    protected
+
     ##
     # Returns lazy Enumerable collection over all objects
     #
     def enumerate; end
 
-    protected
-
     ##
     # Returns Graph model constant
     #
     def model; end
+
+    ##
+    # Sanitize string
+    #
+    def sanitize(string); end
+      ActionView::Base.full_sanitizer.sanitize string
+    end
 
     ##
     # Format log message

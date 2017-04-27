@@ -11,6 +11,7 @@ module Graph
     def update_instance
       source_instance
       update_attributes
+      update_associations
 
       @instance.save
     end
@@ -18,18 +19,11 @@ module Graph
     protected
 
     def source_instance
-      raise Headbanger::NoKeyError unless @instance.metal_archives_key
-
       # Find MA instance
       @metal_archives = MetalArchives::Band.find! @instance.metal_archives_key
 
-      begin
-        # Try to find musicbrainz instance
-        find_musicbrainz_instance
-      rescue Headbanger::NoKeyError, Headbanger::IncorrectTypeError => e
-        warn "No musicbrainz instance found: #{e}"
-        warn e.backtrace
-      end
+      # Try to find musicbrainz instance
+      find_musicbrainz_instance
     end
 
     def update_attributes
@@ -46,11 +40,9 @@ module Graph
 
       # Status
       @instance.status = @metal_archives.status
+    end
 
-      ##
-      # Update associations
-      #
-
+    def update_associations
       # Country
       country = @metal_archives.country&.alpha3
 
@@ -67,8 +59,9 @@ module Graph
       @instance.names << Graph::Name.new(:name => primary_name, :primary => true)
 
       names = []
-      @musicbrainz.credit_names.each { |acn| names << acn.name unless acn.name == primary_name }
-      @musicbrainz.aliases.each { |aa| names << aa.name unless aa.name == primary_name }
+      (@musicbrainz.credit_names + @musicbrainz.aliases + @metal_archives.aliases).each do |acn|
+        names << acn.name unless acn.name == primary_name
+      end
 
       names.uniq.each { |name| @instance.names << Graph::Name.new(:name => name) }
 
