@@ -13,14 +13,14 @@ module Graph
       update_attributes
       update_associations
 
-      @instance.save
+      instance.save
     end
 
     protected
 
     def source_instance
       # Find MA instance
-      @metal_archives = MetalArchives::Band.find! @instance.metal_archives_key
+      @metal_archives = MetalArchives::Band.find! instance.metal_archives_key
 
       # Try to find musicbrainz instance
       find_musicbrainz_instance
@@ -28,18 +28,18 @@ module Graph
 
     def update_attributes
       # Year formed
-      @instance.year_formed = @metal_archives.date_formed
-      unless @instance.year_formed
-        @instance.year_formed = Date.new @musicbrainz.begin_date_year.to_i,
+      instance.year_formed = @metal_archives.date_formed
+      unless instance.year_formed
+        instance.year_formed = Date.new @musicbrainz.begin_date_year.to_i,
                                         @musicbrainz.begin_date_month.to_i,
                                         @musicbrainz.begin_date_day.to_i
       end
 
       # Description
-      @instance.description = @metal_archives.comment
+      instance.description = @metal_archives.comment
 
       # Status
-      @instance.status = @metal_archives.status
+      instance.status = @metal_archives.status
     end
 
     def update_associations
@@ -47,23 +47,23 @@ module Graph
       country = @metal_archives.country&.alpha3
 
       if country
-        @instance.country = Graph::Country.find_or_create_by :country => country
+        instance.country = Graph::Country.find_or_create_by :country => country
       else
         warn 'No country found'
       end
 
       # Names
-      @instance.names.destroy_all
+      instance.names.destroy_all
 
       primary_name = @musicbrainz.name
-      @instance.names << Graph::Name.new(:name => primary_name, :primary => true)
+      instance.names << Graph::Name.new(:name => primary_name, :primary => true)
 
       names = []
       (@musicbrainz.credit_names + @musicbrainz.aliases + @metal_archives.aliases).each do |acn|
         names << acn.name unless acn.name == primary_name
       end
 
-      names.uniq.each { |name| @instance.names << Graph::Name.new(:name => name) }
+      names.uniq.each { |name| instance.names << Graph::Name.new(:name => name) }
 
       # TODO: Artists
       # TODO: Lyrical themes
@@ -102,8 +102,8 @@ module Graph
           end
         end
 
-        if metal_archives_key === @instance.metal_archives_key
-          @instance.musicbrainz_key = @musicbrainz.gid
+        if metal_archives_key === instance.metal_archives_key
+          instance.musicbrainz_key = @musicbrainz.gid
 
           @musicbrainz = band
           break

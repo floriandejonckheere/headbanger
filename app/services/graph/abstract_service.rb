@@ -5,6 +5,8 @@ module Graph
   class AbstractService
     include Sidekiq::Worker
 
+    attr_accessor :instance
+
     ##
     # Add or update a graph node
     #
@@ -12,10 +14,10 @@ module Graph
       raise Headbanger::NoKeyError unless metal_archives_key
 
       debug 'Starting update'
-      @instance = model.find_or_initialize_by :metal_archives_key => metal_archives_key
+      instance = model.find_or_initialize_by :metal_archives_key => metal_archives_key
 
-      debug 'Fresh instance' if @instance.fresh?
-      return if @instance.fresh?
+      debug 'Fresh instance' if instance.fresh?
+      return if instance.fresh?
 
       Neo4j::ActiveBase.run_transaction do |tx|
         begin
