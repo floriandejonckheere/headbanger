@@ -4,6 +4,9 @@ MetalArchives.configure do |c|
   c.app_version = Headbanger::VERSION
   c.app_contact = ENV['MAILER_SENDER']
 
+  # Metal Archives endpoint (optional, overrides default)
+  # c.endpoint = 'http://ma.headbang.re/'
+
   # Request throttling (optional, overrides defaults)
   # c.request_rate = 1
   # c.request_timeout = 3
