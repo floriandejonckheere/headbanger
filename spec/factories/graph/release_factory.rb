@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :release, :class => Graph::Release do
     name { Faker::Lorem.words 3 }

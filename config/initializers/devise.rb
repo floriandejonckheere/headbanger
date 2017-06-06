@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -6,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '6f6d87f094d665a2604b181f82b8ea9eea45ef7d7eaba6f68b1945df55830951df09d9d51ebe4d7bfb7032a430e4328f36cf6bfc78bf5b93e5431d4277ff6294'
+  # config.secret_key = 'mysecret'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -108,7 +110,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'b83e679343e7c8521773852332ccfa6c8e9276e2f6e6b2058f1307a111b2767f74fa8f0013647dd8c1366326c2e6627abf159ce73fc6d7ba8c50834a5701bbde'
+  # config.pepper = 'mypepper'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -276,12 +278,11 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'-
 
   # Layout configuration
-   Rails.application.config.to_prepare do
-     Devise::SessionsController.layout 'session'
-     Devise::RegistrationsController.layout 'session'
-     Devise::ConfirmationsController.layout 'session'
-     Devise::UnlocksController.layout 'session'
-     Devise::PasswordsController.layout 'session'
-   end
-
+  Rails.application.config.to_prepare do
+    Devise::SessionsController.layout 'session'
+    Devise::RegistrationsController.layout 'session'
+    Devise::ConfirmationsController.layout 'session'
+    Devise::UnlocksController.layout 'session'
+    Devise::PasswordsController.layout 'session'
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   ##
   # A single performer (but not a solo artist)
@@ -8,31 +10,31 @@ module Graph
 
     # Attributes
     property :gender,
-                    :type => String
+             :type => String
     property :date_of_birth,
-                          :type => Date
+             :type => Date
     property :date_of_death,
-                          :type => Date
+             :type => Date
     property :biography,
-                    :type => String
+             :type => String
 
     # Associations
     has_one :out,
-              :country,
-              :type => :based_in,
-              :model_class => 'Graph::Country'
+            :country,
+            :type => :based_in,
+            :model_class => 'Graph::Country'
 
     has_many :out,
-                :names,
-                :type => :known_as,
-                :model_class => 'Graph::Name',
-                :dependent => :destroy,
-                :unique => { :on => :name }
+             :names,
+             :type => :known_as,
+             :model_class => 'Graph::Name',
+             :dependent => :destroy,
+             :unique => { :on => :name }
 
     has_many :out,
-                :releases,
-                :type => :appears_in,
-                :model_class => 'Graph::Release',
-                :unique => { :on => :musicbrainz_key }
+             :releases,
+             :type => :appears_in,
+             :model_class => 'Graph::Release',
+             :unique => { :on => :musicbrainz_key }
   end
 end

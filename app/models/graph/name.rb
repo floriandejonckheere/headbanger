@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   ##
   # Generic name node
@@ -8,16 +10,16 @@ module Graph
     # Attributes
     property :name
     property :primary,
-                      :type => Boolean,
-                      :default => false
+             :type => Boolean,
+             :default => false
 
     validates :name,
-                  :presence => true
+              :presence => true
 
     # Associations
     has_one :in,
-              :performer,
-              :type => :known_as,
-              :model_class => %w(Graph::Artist Graph::Group)
+            :performer,
+            :type => :known_as,
+            :model_class => %w[Graph::Artist Graph::Group]
   end
 end

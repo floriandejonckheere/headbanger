@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   ##
   # A lyrical theme
@@ -7,16 +9,16 @@ module Graph
 
     # Attributes
     property :name
-              # :unique => true
+    # :unique => true
 
     validates :name,
-                  :presence => true
+              :presence => true
 
     # Associations
     has_many :in,
-                :groups,
-                :type => :sings_about,
-                :model_class => 'Graph::Group',
-                :unique => true
+             :groups,
+             :type => :sings_about,
+             :model_class => 'Graph::Group',
+             :unique => true
   end
 end

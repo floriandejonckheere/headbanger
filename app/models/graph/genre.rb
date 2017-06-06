@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   ##
   # A music genre
@@ -7,10 +9,10 @@ module Graph
 
     # Attributes
     property :name
-              # :unique => true
+    # :unique => true
 
     validates :name,
-                  :presence => true
+              :presence => true
 
     # Associations
     has_many :in,
@@ -20,15 +22,15 @@ module Graph
              :unique => true
 
     has_many :in,
-                :subgenres,
-                :type => :related_to,
-                :model_class => 'Graph::Genre',
-                :unique => { :on => :name }
+             :subgenres,
+             :type => :related_to,
+             :model_class => 'Graph::Genre',
+             :unique => { :on => :name }
 
     has_many :out,
-                :supergenres,
-                :type => :related_to,
-                :model_class => 'Graph::Genre',
-                :unique => { :on => :name}
+             :supergenres,
+             :type => :related_to,
+             :model_class => 'Graph::Genre',
+             :unique => { :on => :name }
   end
 end

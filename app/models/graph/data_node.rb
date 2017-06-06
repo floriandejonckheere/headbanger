@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   ##
   # Node containing data source information
@@ -8,20 +10,20 @@ module Graph
     included do
       # Data sources
       property :musicbrainz_key,
-                :type => String
-                # :unique => true
+               :type => String
+      # :unique => true
       property :metal_archives_key,
-                :type => String
-                # :unique => true
+               :type => String
+      # :unique => true
 
       property :updated_at,
-                :type => DateTime
+               :type => DateTime
 
       ##
       # Whether the instance is up to date
       #
       def fresh?
-        updated_at? and (updated_at + 6.months).future?
+        updated_at? && (updated_at + 6.months).future?
       end
 
       ##

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :artist, :class => Graph::Artist do
     gender { Faker::Lorem.word }

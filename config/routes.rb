@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # require 'sidekiq/web'
 
 Rails.application.routes.draw do
@@ -12,10 +14,10 @@ Rails.application.routes.draw do
   post '/feedback' => 'feedback#create'
 
   devise_for :users,
-                    :controllers => {
-                      :omniauth_callbacks => 'users/omniauth_callbacks',
-                      :registrations => 'users/registrations'
-                    }
+             :controllers => {
+               :omniauth_callbacks => 'users/omniauth_callbacks',
+               :registrations => 'users/registrations'
+             }
 
   # Resources
   resources :groups, :only => [:show], :controller => 'graph/groups'

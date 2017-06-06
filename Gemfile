@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '>= 2.3.4'
@@ -14,9 +16,9 @@ gem 'mail_form'
 gem 'neo4j'
 
 ## Music data ##
+gem 'active_musicbrainz', :git => 'https://github.com/floriandejonckheere/active_musicbrainz'
 gem 'countries'
 gem 'metal_archives'
-gem 'active_musicbrainz', :git => 'https://github.com/floriandejonckheere/active_musicbrainz'
 
 ## Sidekiq ##
 gem 'redis-namespace'
@@ -24,11 +26,11 @@ gem 'sidekiq'
 # gem 'sinatra' # For the web frontend
 
 ## Web frontend ##
-gem 'font-awesome-sass'
 gem 'bower-rails'
+gem 'font-awesome-sass'
+gem 'jquery-turbolinks'
 gem 'nprogress-rails'
 gem 'turbolinks'
-gem 'jquery-turbolinks'
 
 # Logging
 gem 'lograge'

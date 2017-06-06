@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 namespace :neo4j do
   desc 'Populates the database with sample data'
   task :populate => :environment do
@@ -43,7 +44,6 @@ namespace :neo4j do
         lost_horizon.releases << a_flame_to_the_ground_beneath
 
         lost_horizon.save!
-
 
         ##
         # Pathfinder

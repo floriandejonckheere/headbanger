@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -47,7 +49,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -90,11 +92,11 @@ Rails.application.configure do
 
   # Notify exceptions
   Rails.application.config.middleware.use ExceptionNotification::Rack,
-    :email => {
-      :email_prefix => "[ERROR] ",
-      :sender_address => ENV['MAILER_EXCEPTION_SENDER'],
-      :exception_recipients => ENV['MAILER_EXCEPTION_RECIPIENT']
-    }
+                                          :email => {
+                                            :email_prefix => '[ERROR] ',
+                                            :sender_address => ENV['MAILER_EXCEPTION_SENDER'],
+                                            :exception_recipients => ENV['MAILER_EXCEPTION_RECIPIENT']
+                                          }
 
   if defined? Rails::Console
     config.logger = Logger.new '/dev/null'

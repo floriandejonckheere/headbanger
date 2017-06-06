@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedbackController < ApplicationController
   before_action :authenticate_user!
 
@@ -12,11 +14,11 @@ class FeedbackController < ApplicationController
     @feedback.request = request
     if @feedback.deliver
       flash[:notice] = 'Thank you for taking a moment to provide feedback!'
-      redirect_to root_path
     else
       flash[:error] = 'Unable to send message'
-      redirect_to root_path
     end
+
+    redirect_to root_path
   end
 
   private

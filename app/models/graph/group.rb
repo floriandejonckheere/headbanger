@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   ##
   # A group of performers
@@ -8,51 +10,51 @@ module Graph
 
     # Properties
     property :year_formed,
-                          :type => Date
+             :type => Date
     property :description
 
-    enum :status => [:active, :split_up, :on_hold, :changed_name, :disputed, :unknown]
+    enum :status => %i[active split_up on_hold changed_name disputed unknown]
 
     # Associations
     has_many :out,
-                :names,
-                :type => :known_as,
-                :model_class => 'Graph::Name',
-                :dependent => :destroy,
-                :unique => true
+             :names,
+             :type => :known_as,
+             :model_class => 'Graph::Name',
+             :dependent => :destroy,
+             :unique => true
 
     has_one :out,
-              :country,
-              :type => :based_in,
-              :model_class => 'Graph::Country'
+            :country,
+            :type => :based_in,
+            :model_class => 'Graph::Country'
 
     has_many :in,
-                :artists,
-                :type => :member_of,
-                :model_class => 'Graph::Artist',
-                :unique => true
+             :artists,
+             :type => :member_of,
+             :model_class => 'Graph::Artist',
+             :unique => true
 
     has_many :out,
-                :lyrical_themes,
-                :type => :sings_about,
-                :model_class => 'Graph::LyricalTheme',
-                :unique => true
+             :lyrical_themes,
+             :type => :sings_about,
+             :model_class => 'Graph::LyricalTheme',
+             :unique => true
 
     has_many :out,
-                :genres,
-                :type => :plays_genre,
-                :model_class => 'Graph::Genre',
-                :unique => true
+             :genres,
+             :type => :plays_genre,
+             :model_class => 'Graph::Genre',
+             :unique => true
 
     has_many :out,
-                :releases,
-                :type => :has_released,
-                :model_class => 'Graph::Release',
-                :unique => true
+             :releases,
+             :type => :has_released,
+             :model_class => 'Graph::Release',
+             :unique => true
 
     # Methods
     def primary_name
-      self.names.find_by :primary => true
+      names.find_by :primary => true
     end
   end
 end

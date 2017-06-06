@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class ForceCreateGroupStatusIndex < Neo4j::Migrations::Base
   def up
-    add_index :Group, :status, force: true
+    add_index :Group, :status, :force => true
   end
 
   def down

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Feedback < MailForm::Base
-  CATEGORIES = ['Bug or error', 'Missing feature', 'Content (artists, albums, ...)', 'Other']
+  CATEGORIES = ['Bug or error', 'Missing feature', 'Content (artists, albums, ...)', 'Other'].freeze
 
   attribute :category
   attribute :description
@@ -8,9 +10,9 @@ class Feedback < MailForm::Base
   # in ActionMailer accepts.
   def headers
     {
-        :subject => 'Headbanger feedback',
-        :from => ENV['MAILER_FEEDBACK_SENDER'],
-        :to => ENV['MAILER_FEEDBACK_RECIPIENT']
+      :subject => 'Headbanger feedback',
+      :from => ENV['MAILER_FEEDBACK_SENDER'],
+      :to => ENV['MAILER_FEEDBACK_RECIPIENT']
     }
   end
 end

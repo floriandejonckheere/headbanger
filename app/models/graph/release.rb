@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   ##
   # A release
@@ -9,19 +11,19 @@ module Graph
     # Attributes
     property :title
     property :release_date,
-                          :type => Date
+             :type => Date
 
     # Associations
     has_many :in,
-               :groups,
-               :type => :has_released,
-               :model_class => 'Graph::Group',
-               :unique => { :on => :musicbrainz_key }
+             :groups,
+             :type => :has_released,
+             :model_class => 'Graph::Group',
+             :unique => { :on => :musicbrainz_key }
 
     has_many :in,
-               :artists,
-               :type => :appears_in,
-               :model_class => 'Graph::Artist',
-               :unique => { :on => :musicbrainz_key }
+             :artists,
+             :type => :appears_in,
+             :model_class => 'Graph::Artist',
+             :unique => { :on => :musicbrainz_key }
   end
 end

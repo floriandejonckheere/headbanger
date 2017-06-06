@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def controller?(*controller)
     controller.include? params[:controller]
@@ -12,7 +14,7 @@ module ApplicationHelper
   end
 
   # Bootstrap alert classes
-  def bootstrap_class_for flash_type
+  def bootstrap_class_for(flash_type)
     {
       :success => 'alert-success',
       :error => 'alert-danger',

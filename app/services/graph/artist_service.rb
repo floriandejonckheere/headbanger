@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   class ArtistService < AbstractService
     def model
@@ -32,13 +34,13 @@ module Graph
 
       # Date of birth
       instance.date_of_birth = Date.new @musicbrainz.begin_date_year.to_i,
-                                         @musicbrainz.begin_date_month.to_i,
-                                         @musicbrainz.begin_date_day.to_i
+                                        @musicbrainz.begin_date_month.to_i,
+                                        @musicbrainz.begin_date_day.to_i
 
       # Date of death
       instance.date_of_death = Date.new @musicbrainz.end_date_year.to_i,
-                                         @musicbrainz.end_date_month.to_i,
-                                         @musicbrainz.end_date_day.to_i
+                                        @musicbrainz.end_date_month.to_i,
+                                        @musicbrainz.end_date_day.to_i
 
       instance.biography = sanitize @metal_archives.biography
     end
@@ -65,12 +67,12 @@ module Graph
 
     def find_musicbrainz_instance
       query = ActiveMusicbrainz::Model::Artist.joins(:area)
-                  .joins(:type)
-                  .where 'artist.name ILIKE :name', :name => @metal_archives.name
+                                              .joins(:type)
+                                              .where 'artist.name ILIKE :name', :name => @metal_archives.name
 
       if query.one?
         @musicbrainz = query.first
-        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name === 'Person'
+        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Person'
 
         return
       end
@@ -79,7 +81,7 @@ module Graph
 
       if query.one?
         @musicbrainz = query.first
-        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name === 'Person'
+        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Person'
 
         return
       end
@@ -88,18 +90,17 @@ module Graph
         next if band.type.name == 'Person'
 
         band.urls.each do |url|
-          if url.url =~ /(http:\/\/)?(www.)?metal-archives.com/
+          if url.url.match?(%r{(http:\/\/)?(www.)?metal-archives.com})
             metal_archives_key = url.url.split('/').last
             break
           end
         end
 
-        if metal_archives_key === instance.metal_archives_key
-          instance.musicbrainz_key = @musicbrainz.gid
+        next unless metal_archives_key == instance.metal_archives_key
+        instance.musicbrainz_key = @musicbrainz.gid
 
-          @musicbrainz = band
-          break
-        end
+        @musicbrainz = band
+        break
       end
 
       raise Headbanger::NoKeyError unless @musicbrainz

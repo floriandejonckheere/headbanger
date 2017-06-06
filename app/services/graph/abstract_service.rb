@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   ##
   # Headbanger data aggregation framework (single datanode)
@@ -45,7 +47,7 @@ module Graph
     ##
     # Sanitize string
     #
-    def sanitize(string); end
+    def sanitize(string)
       ActionView::Base.full_sanitizer.sanitize string
     end
 
@@ -56,8 +58,8 @@ module Graph
       "[#{model}] [#{@instance&.metal_archives_key}] #{msg}"
     end
 
-    [:debug, :warn, :info, :error].each do |level|
-      define_method("#{level}") { |msg| logger.send level, format(msg) }
+    %i[debug warn info error].each do |level|
+      define_method(level.to_s) { |msg| logger.send level, format(msg) }
     end
   end
 end

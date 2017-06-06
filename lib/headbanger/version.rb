@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Headbanger
   # Application version
   VERSION_MAJOR = 0

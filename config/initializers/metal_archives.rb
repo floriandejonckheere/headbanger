@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 MetalArchives.configure do |c|
   # Application identity (required)
   c.app_name = 'Headbanger'

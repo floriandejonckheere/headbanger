@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   ##
   # A country
@@ -7,23 +9,23 @@ module Graph
 
     # Attributes
     property :country,
-              :type => String
-              # :unique => true
+             :type => String
+    # :unique => true
 
     validates :country,
-                      :presence => true
+              :presence => true
 
     # Associations
     has_many :in,
-                :groups,
-                :type => :based_in,
-                :model_class => 'Graph::Group',
-                :unique => true
+             :groups,
+             :type => :based_in,
+             :model_class => 'Graph::Group',
+             :unique => true
 
     has_many :in,
-               :artists,
-               :type => :based_in,
-               :model_class => 'Graph::Artist',
-               :unique => true
+             :artists,
+             :type => :based_in,
+             :model_class => 'Graph::Artist',
+             :unique => true
   end
 end

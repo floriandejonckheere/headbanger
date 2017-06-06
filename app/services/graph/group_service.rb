@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Graph
   class GroupService < AbstractService
     def model
@@ -78,7 +80,7 @@ module Graph
 
       if query.one?
         @musicbrainz = query.first
-        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name === 'Group'
+        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Group'
 
         return
       end
@@ -87,7 +89,7 @@ module Graph
 
       if query.one?
         @musicbrainz = query.first
-        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name === 'Group'
+        raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Group'
 
         return
       end
@@ -96,18 +98,17 @@ module Graph
         next if band.type.name == 'Group'
 
         band.urls.each do |url|
-          if url.url =~ /(http:\/\/)?(www.)?metal-archives.com/
+          if url.url.match?(/(http:\/\/)?(www.)?metal-archives.com/)
             metal_archives_key = url.url.split('/').last
             break
           end
         end
 
-        if metal_archives_key === instance.metal_archives_key
-          instance.musicbrainz_key = @musicbrainz.gid
+        next unless metal_archives_key == instance.metal_archives_key
+        instance.musicbrainz_key = @musicbrainz.gid
 
-          @musicbrainz = band
-          break
-        end
+        @musicbrainz = band
+        break
       end
 
       raise Headbanger::NoKeyError unless @musicbrainz

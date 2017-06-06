@@ -1,13 +1,25 @@
-class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def facebook; create; end
-  def google_oauth2; create; end
-  def twitter; create; end
+# frozen_string_literal: true
 
-  private
+module Users
+  class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+    def facebook
+      create
+    end
+
+    def google_oauth2
+      create
+    end
+
+    def twitter
+      create
+    end
+
+    private
+
     def create
       auth_params = request.env['omniauth.auth']
       provider = AuthenticationProvider.find_by :name => auth_params.provider
-      authentication = provider.user_authentications.where(uid: auth_params.uid).first
+      authentication = provider.user_authentications.where(:uid => auth_params.uid).first
       existing_user = current_user || User.find_by(:email => auth_params.info.email)
 
       if authentication
@@ -38,4 +50,5 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to new_user_registration_url
       end
     end
+  end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AppController < ApplicationController
-  layout 'session', :only => [:terms_of_service, :privacy_policy]
+  layout 'session', :only => %i[terms_of_service privacy_policy]
 
   # Routes
   def discover
@@ -9,5 +11,6 @@ class AppController < ApplicationController
   def queue; end
 
   def terms_of_service; end
+
   def privacy_policy; end
 end
