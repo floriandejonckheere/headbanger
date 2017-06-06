@@ -6,6 +6,7 @@ ruby '>= 2.3.4'
 
 ## User management ##
 gem 'devise'
+gem 'devise-neo4j'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter'

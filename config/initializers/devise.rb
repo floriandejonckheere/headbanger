@@ -26,7 +26,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require 'devise/orm/neo4j'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -112,7 +112,10 @@ Devise.setup do |config|
   # Set up a pepper to generate the hashed password.
   # config.pepper = 'mypepper'
 
-  # Send a notification email when the user's password is changed
+  # Send a notification to the original email when the user's email is changed.
+  # config.send_email_changed_notification = false
+
+  # Send a notification email when the user's password is changed.
   # config.send_password_change_notification = false
 
   # ==> Configuration for :confirmable
@@ -249,7 +252,6 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, ENV['OAUTH_FB_ID'], ENV['OAUTH_FB_SECRET'], :scope => 'email', :info_fields => 'email,name'
   config.omniauth :google_oauth2, ENV['OAUTH_GOOGLE_ID'], ENV['OAUTH_GOOGLE_SECRET'], :scope => 'email,profile'
   config.omniauth :twitter, ENV['OAUTH_TWITTER_ID'], ENV['OAUTH_TWITTER_SECRET']
