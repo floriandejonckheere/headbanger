@@ -5,7 +5,7 @@ class AppController < ApplicationController
 
   # Routes
   def discover
-    @releases = Graph::Release.all
+    @releases = Release.all
   end
 
   def queue; end

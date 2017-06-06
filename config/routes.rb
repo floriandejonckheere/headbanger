@@ -20,7 +20,7 @@ Rails.application.routes.draw do
              }
 
   # Resources
-  resources :groups, :only => :show, :controller => 'graph/groups'
-  resources :artists, :only => :show, :controller => 'graph/artists'
-  resources :releases, :only => :show, :controller => 'graph/releases'
+  resources :groups, :only => :show
+  resources :artists, :only => :show
+  resources :releases, :only => :show
 end
