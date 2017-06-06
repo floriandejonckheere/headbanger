@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Graph::Artist do
+describe Artist do
   it { is_expected.to respond_to :gender }
   it { is_expected.to respond_to :date_of_birth }
   it { is_expected.to respond_to :date_of_death }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryGirl.define do
-  factory :artist, :class => Graph::Artist do
+  factory :artist do
     gender { Faker::Lorem.word }
     date_of_birth { Faker::Date.between 60.years.ago, 20.years.ago }
     date_of_death { Faker::Date.between 20.years.ago, Date.today }
