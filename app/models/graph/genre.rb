@@ -7,14 +7,18 @@ module Graph
   class Genre
     include Neo4j::ActiveNode
 
+    ##
     # Attributes
+    #
     property :name
     # :unique => true
 
     validates :name,
               :presence => true
 
+    ##
     # Associations
+    #
     has_many :in,
              :groups,
              :type => :sings_about,
@@ -32,5 +36,9 @@ module Graph
              :type => :related_to,
              :model_class => 'Graph::Genre',
              :unique => { :on => :name }
+
+    ##
+    # Methods
+    #
   end
 end

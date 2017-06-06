@@ -8,7 +8,9 @@ module Graph
     extend ActiveSupport::Concern
 
     included do
+      ##
       # Data sources
+      #
       property :musicbrainz_key,
                :type => String
       # :unique => true

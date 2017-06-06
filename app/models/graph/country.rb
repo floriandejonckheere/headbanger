@@ -7,7 +7,9 @@ module Graph
   class Country
     include Neo4j::ActiveNode
 
+    ##
     # Attributes
+    #
     property :country,
              :type => String
     # :unique => true
@@ -15,7 +17,9 @@ module Graph
     validates :country,
               :presence => true
 
+    ##
     # Associations
+    #
     has_many :in,
              :groups,
              :type => :based_in,
@@ -27,5 +31,9 @@ module Graph
              :type => :based_in,
              :model_class => 'Graph::Artist',
              :unique => true
+
+    ##
+    # Methods
+    #
   end
 end

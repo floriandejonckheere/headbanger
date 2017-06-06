@@ -8,14 +8,18 @@ module Graph
     include Neo4j::ActiveNode
     include Graph::DataNode
 
+    ##
     # Properties
+    #
     property :year_formed,
              :type => Date
     property :description
 
     enum :status => %i[active split_up on_hold changed_name disputed unknown]
 
+    ##
     # Associations
+    #
     has_many :out,
              :names,
              :type => :known_as,
@@ -52,7 +56,9 @@ module Graph
              :model_class => 'Graph::Release',
              :unique => true
 
+    ##
     # Methods
+    #
     def primary_name
       names.find_by :primary => true
     end

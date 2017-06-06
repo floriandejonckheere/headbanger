@@ -8,7 +8,9 @@ module Graph
     include Neo4j::ActiveNode
     include Graph::DataNode
 
+    ##
     # Attributes
+    #
     property :gender,
              :type => String
     property :date_of_birth,
@@ -18,7 +20,9 @@ module Graph
     property :biography,
              :type => String
 
+    ##
     # Associations
+    #
     has_one :out,
             :country,
             :type => :based_in,
@@ -36,5 +40,9 @@ module Graph
              :type => :appears_in,
              :model_class => 'Graph::Release',
              :unique => { :on => :musicbrainz_key }
+
+    ##
+    # Methods
+    #
   end
 end

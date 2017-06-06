@@ -8,12 +8,16 @@ module Graph
     include Neo4j::ActiveNode
     include Graph::DataNode
 
+    ##
     # Attributes
+    #
     property :title
     property :release_date,
              :type => Date
 
+    ##
     # Associations
+    #
     has_many :in,
              :groups,
              :type => :has_released,
@@ -25,5 +29,9 @@ module Graph
              :type => :appears_in,
              :model_class => 'Graph::Artist',
              :unique => { :on => :musicbrainz_key }
+
+    ##
+    # Methods
+    #
   end
 end
