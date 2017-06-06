@@ -58,6 +58,9 @@ group :development, :test do
 
   # Debugger
   gem 'debase', '~> 0.2.1'
+
+  # RuboCop
+  gem 'rubocop'
 end
 
 group :test do
