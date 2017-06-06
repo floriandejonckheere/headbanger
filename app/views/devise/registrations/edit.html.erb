@@ -28,8 +28,7 @@
     </div>
   </div>
 
-  <% if resource.authentication_providers.where(:name => 'email').any? %>
-
+  <% if resource.identities.where(:provider => 'email').any? %>
     <div class="card-block">
       <div class="inner-addon left-addon form-group">
         <i class="fa fa-lock"></i>
@@ -57,12 +56,12 @@
   <% end %>
 
   <div class="card-block">
-    <% if resource.authentications.any? %>
+    <% if resource.identities.any? %>
       <p>You have signed up with the following external services:</p>
 
       <div>
         <ul>
-          <% resource.authentications.joins(:authentication_provider).pluck(:display_name).each do |provider| %>
+          <% resource.identities.pluck(:provider).each do |provider| %>
             <li><%= provider %></li>
           <% end %>
         </ul>

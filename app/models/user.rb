@@ -18,7 +18,7 @@ class User
 
   ## Database authenticatable
   property :email, :type => String, :default => ''
-  validates :email, presence: true
+  validates :email, :presence => true
 
   property :encrypted_password
 
@@ -33,7 +33,7 @@ class User
 
   ## Trackable
   property :sign_in_count, :type => Integer, :default => 0
-  validates :sign_in_count, presence: true
+  validates :sign_in_count, :presence => true
   property :current_sign_in_at, :type => DateTime
   property :last_sign_in_at, :type => DateTime
   property :current_sign_in_ip, :type =>  String
@@ -47,7 +47,7 @@ class User
 
   ## Lockable
   # property :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
-  # validates :failed_attempts, presence: true
+  # validates :failed_attempts, :presence => true
   # property :unlock_token, :type => String # Only if unlock strategy is :email or :both
   # property :locked_at, :type => DateTime
 
@@ -55,7 +55,7 @@ class User
   # property :authentication_token, :type => String
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :rememberable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -67,7 +67,6 @@ class User
   # Attributes
   #
   property :name
-  # :unique => true
 
   ##
   # Associations
@@ -81,13 +80,12 @@ class User
   ##
   # Methods
   #
-  def self.create_from_omniauth(auth)
-    attributes = {
-      :name => auth.info.first_name || auth.info.name || auth.info.email,
-      :email => auth.info.email,
-      :password => Devise.friendly_token
-    }
+  def display_name
+    name || email
+  end
 
-    create attributes
+  # Somehow Devise doesn't define this method
+  def will_save_change_to_email?
+    true
   end
 end

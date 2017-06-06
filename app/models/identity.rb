@@ -21,9 +21,4 @@ class Identity
   ##
   # Methods
   #
-  def self.create_from_omniauth(params, user, provider)
-    create :user => user,
-           :provider => provider,
-           :uid => params['uid']
-  end
 end

@@ -33,12 +33,10 @@ $ rails bower:install
 
 Make sure the following systems are configured and running before starting the server:
  - Neo4j
- - PostgreSQL
 
 For first-time setup, run the following commands
 
 ```
-$ rails db:migrate          # RDBMS
 $ rails neo4j:migrate       # Neo4j
 ```
 
