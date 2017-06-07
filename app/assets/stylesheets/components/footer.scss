@@ -6,19 +6,17 @@
  * This file is part of Headbanger
  *
  * */
-.footer {
+footer {
   @include link-color($text-muted);
 
-  position: relative;
-  margin-top: -1 * $footer-height; /* negative value of footer height */
-  clear: both;
-
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   height: $footer-height;
   line-height: $footer-height;
+  background: darken($color-background, 10%);
 
   text-align: center;
-
-  background: darken($color-background, 10%);
 
   i.fa-heart {
     color: $color-rating-liked;

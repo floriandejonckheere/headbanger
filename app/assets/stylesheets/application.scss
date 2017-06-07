@@ -46,15 +46,16 @@ html,
 body {
   background-color: $color-background;
 
+  margin: 0;
+  padding: 0;
+
   height: 100%;
 }
 
 .wrap {
   min-height: 100%;
-}
+  position: relative;
 
-#main {
-  overflow: auto;
   padding-bottom: $footer-height;
 }
 
