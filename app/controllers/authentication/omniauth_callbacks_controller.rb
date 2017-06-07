@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Users
+module Authentication
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def facebook
       create

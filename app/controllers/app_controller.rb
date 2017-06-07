@@ -1,16 +1,18 @@
 # frozen_string_literal: true
 
 class AppController < ApplicationController
-  layout 'session', :only => %i[terms_of_service privacy_policy]
+  ##
+  # Home
+  #
+  def home; end
 
-  # Routes
-  def discover
-    @releases = Release.all
-  end
+  ##
+  # Discover (recommendations)
+  #
+  def discover; end
 
+  ##
+  # Listening queue
+  #
   def queue; end
-
-  def terms_of_service; end
-
-  def privacy_policy; end
 end

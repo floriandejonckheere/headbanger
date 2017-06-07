@@ -17,9 +17,18 @@
           <input class="navbar-search-input" type="text" placeholder="Search">
         </div>
       </li>
+
       <li class="nav-item">
-        <%= link_to 'Queue', queue_path, :class => 'nav-link navbar-link' %>
+        <%= link_to 'Discover', discover_path, :class => 'nav-link navbar-link' %>
       </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'Queue', queue_path, :class => 'nav-link navbar-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My lists', lists_path, :class => 'nav-link navbar-link' %>
+        </li>
+      <% end %>
     </ul>
 
     <!-- Account -->
@@ -33,7 +42,7 @@
             <%= current_user.display_name %>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <%= link_to 'My account', edit_user_registration_path(resource), :class => 'dropdown-item' %>
+            <%= link_to 'My account', edit_user_registration_path, :class => 'dropdown-item' %>
             <hr class="divider">
             <%= link_to 'Sign out', destroy_user_session_path,
                                     :method => :delete,
@@ -42,11 +51,11 @@
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to 'Sign in', new_session_path(resource), :class => 'nav-link navbar-link' %>
+          <%= link_to 'Sign in', new_user_session_path, :class => 'nav-link navbar-link' %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Sign up', new_registration_path(resource), :class => 'nav-link hidden-lg-up' %>
-          <%= link_to 'Sign up', new_registration_path(resource), :class => 'btn btn-nav hidden-md-down' %>
+          <%= link_to 'Sign up', new_user_registration_path, :class => 'nav-link hidden-lg-up' %>
+          <%= link_to 'Sign up', new_user_registration_path, :class => 'btn btn-nav hidden-md-down' %>
         <% end %>
       </li>
     </ul>

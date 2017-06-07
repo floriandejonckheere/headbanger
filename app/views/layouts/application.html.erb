@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield 'title' %> - Headbanger</title>
+    <title><%= yield :title %> - Headbanger</title>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -13,7 +13,7 @@
     <div class="wrap">
       <%= render 'components/navbar' %>
 
-      <%= yield 'poster' %>
+      <%= yield :poster %>
 
       <main class="container-fluid my-3">
         <div class="row">

@@ -3,23 +3,36 @@
 # require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  root 'app#discover'
+  root 'app#home'
 
+  ##
+  # Pages
+  #
+  get '/discover' => 'app#discover'
   get '/queue' => 'app#queue'
+  get '/lists' => 'app#lists'
 
-  get '/tos' => 'app#terms_of_service'
-  get '/privacy' => 'app#privacy_policy'
-
+  ##
+  # Feedback
+  #
   get '/feedback' => 'feedback#new'
   post '/feedback' => 'feedback#create'
 
+  ##
+  # Authentication
+  #
   devise_for :users,
              :controllers => {
-               :omniauth_callbacks => 'users/omniauth_callbacks',
-               :registrations => 'users/registrations'
+               :omniauth_callbacks => 'authentication/omniauth_callbacks',
+               :registrations => 'authentication/registrations'
              }
 
+  get '/tos' => 'authentication/terms#terms_of_service'
+  get '/privacy' => 'authentication/terms#privacy_policy'
+
+  ##
   # Resources
+  #
   resources :groups, :only => :show
   resources :artists, :only => :show
   resources :releases, :only => :show

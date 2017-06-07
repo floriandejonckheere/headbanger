@@ -6,9 +6,9 @@
   <% end %>
 <% end %>
 
-<% unless resource.errors.empty? %>
+<% if @resource && @resource.errors.any? %>
   <div class="alert alert-danger">
-    <% resource.errors.full_messages.each do |msg| %>
+    <% @resource.errors.full_messages.each do |msg| %>
       <%= msg %><br />
     <% end %>
   </div>
