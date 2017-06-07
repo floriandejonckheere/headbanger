@@ -12,13 +12,15 @@ module Authentication
 
     # POST /resource
     def create
-      super
+      super do |user|
+        return unless user.persisted?
+        # Add 'email' identity
+        identity = Identity.create :user => user,
+                                   :provider => 'email',
+                                   :uid => user.id
 
-      # Add 'email' provider authentication
-      provider = AuthenticationProvider.find_by :name => 'email'
-      UserAuthentication.create :user => resource,
-                                :authentication_provider => provider,
-                                :uid => resource.id
+        user.identities << identity
+      end
     end
 
     # GET /resource/edit

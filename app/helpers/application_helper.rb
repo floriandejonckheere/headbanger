@@ -24,4 +24,8 @@ module ApplicationHelper
       :info => 'alert-info'
     }[flash_type.to_sym] || flash_type.to_s
   end
+
+  def resource
+    @resource ||= User.new
+  end
 end
