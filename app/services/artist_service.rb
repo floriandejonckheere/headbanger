@@ -10,11 +10,17 @@ class ArtistService < AbstractService
     instance.gender = @metal_archives.gender&.to_s&.capitalize
 
     # Date of birth
-    dob = "#{@musicbrainz.begin_date_year || 0}-#{@musicbrainz.begin_date_month || 0}-#{@musicbrainz.begin_date_day || 0}"
+    dob = @metal_archives.date_of_birth
+    if dob.nil? && !(@musicbrainz.begin_date_year.nil? && @musicbrainz.begin_date_month.nil? && @musicbrainz.begin_date_day.nil?)
+      dob = "#{@musicbrainz.begin_date_year || 0}-#{@musicbrainz.begin_date_month || 0}-#{@musicbrainz.begin_date_day || 0}"
+    end
     instance.date_of_birth = dob
 
     # Date of death
-    dod = "#{@musicbrainz.end_date_year || 0}-#{@musicbrainz.end_date_month || 0}-#{@musicbrainz.end_date_day || 0}"
+    dod = @metal_archives.date_of_death
+    if dod.nil? && !(@musicbrainz.end_date_year.nil? && @musicbrainz.end_date_month.nil? && @musicbrainz.end_date_day.nil?)
+      dod = "#{@musicbrainz.end_date_year || 0}-#{@musicbrainz.end_date_month || 0}-#{@musicbrainz.end_date_day || 0}"
+    end
     instance.date_of_death = dod
 
     instance.biography = sanitize @metal_archives.biography
