@@ -1,0 +1,73 @@
+---
+:constraints:
+- CONSTRAINT ON ( `graph::artist`:`Graph::Artist` ) ASSERT `graph::artist`.metal_archives_key
+  IS UNIQUE
+- CONSTRAINT ON ( `graph::artist`:`Graph::Artist` ) ASSERT `graph::artist`.musicbrainz_key
+  IS UNIQUE
+- CONSTRAINT ON ( `graph::artist`:`Graph::Artist` ) ASSERT `graph::artist`.uuid IS
+  UNIQUE
+- CONSTRAINT ON ( `graph::country`:`Graph::Country` ) ASSERT `graph::country`.country
+  IS UNIQUE
+- CONSTRAINT ON ( `graph::datanode`:`Graph::DataNode` ) ASSERT `graph::datanode`.musicbrainz_key
+  IS UNIQUE
+- CONSTRAINT ON ( `graph::genre`:`Graph::Genre` ) ASSERT `graph::genre`.name IS UNIQUE
+- CONSTRAINT ON ( `graph::group`:`Graph::Group` ) ASSERT `graph::group`.metal_archives_key
+  IS UNIQUE
+- CONSTRAINT ON ( `graph::group`:`Graph::Group` ) ASSERT `graph::group`.musicbrainz_key
+  IS UNIQUE
+- CONSTRAINT ON ( `graph::group`:`Graph::Group` ) ASSERT `graph::group`.uuid IS UNIQUE
+- CONSTRAINT ON ( `graph::lyricaltheme`:`Graph::LyricalTheme` ) ASSERT `graph::lyricaltheme`.name
+  IS UNIQUE
+- CONSTRAINT ON ( `graph::release`:`Graph::Release` ) ASSERT `graph::release`.metal_archives_key
+  IS UNIQUE
+- CONSTRAINT ON ( `graph::release`:`Graph::Release` ) ASSERT `graph::release`.musicbrainz_key
+  IS UNIQUE
+- CONSTRAINT ON ( `graph::release`:`Graph::Release` ) ASSERT `graph::release`.uuid
+  IS UNIQUE
+- CONSTRAINT ON ( `neo4j::migrations::schemamigration`:`Neo4j::Migrations::SchemaMigration`
+  ) ASSERT `neo4j::migrations::schemamigration`.migration_id IS UNIQUE
+- CONSTRAINT ON ( artist:Artist ) ASSERT artist.metal_archives_key IS UNIQUE
+- CONSTRAINT ON ( artist:Artist ) ASSERT artist.musicbrainz_key IS UNIQUE
+- CONSTRAINT ON ( artist:Artist ) ASSERT artist.uuid IS UNIQUE
+- CONSTRAINT ON ( country:Country ) ASSERT country.country IS UNIQUE
+- CONSTRAINT ON ( country:Country ) ASSERT country.uuid IS UNIQUE
+- CONSTRAINT ON ( datanode:DataNode ) ASSERT datanode.uuid IS UNIQUE
+- CONSTRAINT ON ( genre:Genre ) ASSERT genre.name IS UNIQUE
+- CONSTRAINT ON ( genre:Genre ) ASSERT genre.uuid IS UNIQUE
+- CONSTRAINT ON ( group:Group ) ASSERT group.metal_archives_key IS UNIQUE
+- CONSTRAINT ON ( group:Group ) ASSERT group.musicbrainz_key IS UNIQUE
+- CONSTRAINT ON ( group:Group ) ASSERT group.uuid IS UNIQUE
+- CONSTRAINT ON ( identity:Identity ) ASSERT identity.uuid IS UNIQUE
+- CONSTRAINT ON ( list:List ) ASSERT list.uuid IS UNIQUE
+- CONSTRAINT ON ( lyricaltheme:LyricalTheme ) ASSERT lyricaltheme.name IS UNIQUE
+- CONSTRAINT ON ( lyricaltheme:LyricalTheme ) ASSERT lyricaltheme.uuid IS UNIQUE
+- CONSTRAINT ON ( name:Name ) ASSERT name.uuid IS UNIQUE
+- CONSTRAINT ON ( release:Release ) ASSERT release.metal_archives_key IS UNIQUE
+- CONSTRAINT ON ( release:Release ) ASSERT release.musicbrainz_key IS UNIQUE
+- CONSTRAINT ON ( release:Release ) ASSERT release.uuid IS UNIQUE
+- CONSTRAINT ON ( schemamigration:SchemaMigration ) ASSERT schemamigration.migration_id
+  IS UNIQUE
+- CONSTRAINT ON ( user:User ) ASSERT user.email IS UNIQUE
+- CONSTRAINT ON ( user:User ) ASSERT user.remember_token IS UNIQUE
+- CONSTRAINT ON ( user:User ) ASSERT user.reset_password_token IS UNIQUE
+- CONSTRAINT ON ( user:User ) ASSERT user.uuid IS UNIQUE
+:indexes:
+- INDEX ON :Group(status)
+:versions:
+- '20170216172740'
+- '20170216173241'
+- '20170216173242'
+- '20170216173243'
+- '20170220182632'
+- '20170220182809'
+- '20170220182827'
+- '20170220182845'
+- '20170220182910'
+- '20170220182925'
+- '20170313084132'
+- '20170313084134'
+- '20170313084335'
+- '20170606174256'
+- '20170606193452'
+- '20170606200116'
+- '20170608072403'
