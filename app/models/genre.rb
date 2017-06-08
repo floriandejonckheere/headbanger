@@ -23,13 +23,14 @@ class Genre
            :type => :sings_about,
            :unique => true
 
-  has_many :in,
+  has_many :out,
            :subgenres,
            :type => :related_to,
            :model_class => :genre,
+           :dependent => :delete_orphans, # No callbacks are run
            :unique => { :on => :name }
 
-  has_many :out,
+  has_many :in,
            :supergenres,
            :type => :related_to,
            :model_class => :genre,

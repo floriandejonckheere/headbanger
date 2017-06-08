@@ -14,7 +14,7 @@ class Identity
   ##
   # Associations
   #
-  has_one :out,
+  has_one :in,
           :user,
           :type => :identifies_with
 

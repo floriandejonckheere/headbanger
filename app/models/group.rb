@@ -22,8 +22,8 @@ class Group
   has_many :out,
            :names,
            :type => :known_as,
-           :dependent => :destroy,
-           :unique => true
+           :dependent => :delete, # No callbacks are run
+           :unique => { :on => :name }
 
   has_one :out,
           :country,
@@ -37,6 +37,7 @@ class Group
   has_many :out,
            :lyrical_themes,
            :type => :sings_about,
+           :dependent => :delete_orphans, # No callbacks are run
            :unique => true
 
   has_many :out,

@@ -29,7 +29,7 @@ class Artist
   has_many :out,
            :names,
            :type => :known_as,
-           :dependent => :destroy,
+           :dependent => :delete, # No callbacks are run
            :unique => { :on => :name }
 
   has_many :out,

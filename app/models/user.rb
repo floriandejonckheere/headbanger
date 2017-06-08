@@ -74,8 +74,8 @@ class User
   has_many :out,
            :identities,
            :type => :identifies_with,
-           :unique => { :on => :provider },
-           :dependent => :delete
+           :dependent => :delete, # No callbacks are run
+           :unique => { :on => :provider }
 
   ##
   # Methods
