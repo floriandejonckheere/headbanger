@@ -11,7 +11,7 @@ class Country
   #
   property :country,
            :type => String
-  # :unique => true
+           # :constraint => :unique
 
   validates :country,
             :presence => true
@@ -22,12 +22,12 @@ class Country
   has_many :in,
            :groups,
            :type => :based_in,
-           :unique => true
+           :unique => { :on => :metal_archives_key }
 
   has_many :in,
            :artists,
            :type => :based_in,
-           :unique => true
+           :unique => { :on => :metal_archives_key }
 
   ##
   # Methods

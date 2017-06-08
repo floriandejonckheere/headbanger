@@ -13,12 +13,20 @@ class User
   # uncomment the property definitions for those modules. Otherwise, the unused property definitions can be deleted.
   #
 
-  property :created_at, :type => DateTime
-  property :updated_at, :type => DateTime
+  property :created_at,
+           :type => DateTime
+
+  property :updated_at,
+           :type => DateTime
 
   ## Database authenticatable
-  property :email, :type => String, :default => ''
-  validates :email, :presence => true
+  property :email,
+           :type => String,
+           :default => ''
+           # :constraint => :unique
+
+  validates :email,
+            :presence => true
 
   property :encrypted_password
 
@@ -26,18 +34,31 @@ class User
 
   ## Recoverable
   property :reset_password_token
-  property :reset_password_sent_at, :type => DateTime
+  property :reset_password_sent_at,
+           :type => DateTime
 
   ## Rememberable
   # property :remember_created_at, :type => DateTime
 
   ## Trackable
-  property :sign_in_count, :type => Integer, :default => 0
-  validates :sign_in_count, :presence => true
-  property :current_sign_in_at, :type => DateTime
-  property :last_sign_in_at, :type => DateTime
-  property :current_sign_in_ip, :type =>  String
-  property :last_sign_in_ip, :type => String
+  property :sign_in_count,
+           :type => Integer,
+           :default => 0
+
+  validates :sign_in_count,
+            :presence => true
+
+  property :current_sign_in_at,
+           :type => DateTime
+
+  property :last_sign_in_at,
+           :type => DateTime
+
+  property :current_sign_in_ip,
+           :type =>  String
+
+  property :last_sign_in_ip,
+           :type => String
 
   ## Confirmable
   # property :confirmation_token
@@ -75,12 +96,13 @@ class User
            :identities,
            :type => :identifies_with,
            :dependent => :delete, # No callbacks are run
-           :unique => { :on => :provider }
+           :unique => { :on => %i[provider uid] }
 
   has_many :out,
            :lists,
            :type => :has_listed,
-           :dependent => :delete # No callbacks are run
+           :dependent => :delete, # No callbacks are run
+           :unique => { :on => :uuid }
 
   ##
   # Methods

@@ -10,6 +10,8 @@ class Name
   # Attributes
   #
   property :name
+           # :index => :exact
+
   property :primary,
            :type => Boolean,
            :default => false
@@ -23,7 +25,7 @@ class Name
   has_one :in,
           :performer,
           :type => :known_as,
-          :model_class => %i[artist group]
+          :model_class => %i[Artist Group]
 
   ##
   # Methods

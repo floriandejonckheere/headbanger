@@ -11,6 +11,8 @@ class Release
   # Attributes
   #
   property :title
+           # :index => :exact
+
   property :release_date,
            :type => Date
 
@@ -20,12 +22,12 @@ class Release
   has_many :in,
            :groups,
            :type => :has_released,
-           :unique => { :on => :musicbrainz_key }
+           :unique => { :on => :metal_archives_key }
 
   has_many :in,
            :artists,
            :type => :appears_in,
-           :unique => { :on => :musicbrainz_key }
+           :unique => { :on => :metal_archives_key }
 
   ##
   # Methods

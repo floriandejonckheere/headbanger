@@ -11,6 +11,7 @@ class List
   #
   property :name,
            :type => String
+
   property :description,
            :type => Date
 
@@ -20,13 +21,13 @@ class List
   has_one :in,
           :author,
           :type => :has_listed,
-          :model_class => :user
+          :model_class => :User
 
   has_many :out,
            :items,
            :type => :includes,
-           :model_class => %i[artist group release],
-           :unique => { :on => :musicbrainz_key }
+           :model_class => %i[Artist Group Release],
+           :unique => { :on => :metal_archives_key }
 
   ##
   # Methods

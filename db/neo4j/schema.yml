@@ -53,6 +53,9 @@
 - CONSTRAINT ON ( user:User ) ASSERT user.uuid IS UNIQUE
 :indexes:
 - INDEX ON :Group(status)
+- INDEX ON :Identity(provider)
+- INDEX ON :Name(name)
+- INDEX ON :Release(title)
 :versions:
 - '20170216172740'
 - '20170216173241'
@@ -71,3 +74,6 @@
 - '20170606193452'
 - '20170606200116'
 - '20170608072403'
+- '20170608081016'
+- '20170608081402'
+- '20170608081527'

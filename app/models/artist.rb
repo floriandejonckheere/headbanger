@@ -12,10 +12,13 @@ class Artist
   #
   property :gender,
            :type => String
+
   property :date_of_birth,
            :type => Date
+
   property :date_of_death,
            :type => Date
+
   property :biography,
            :type => String
 
@@ -35,7 +38,7 @@ class Artist
   has_many :out,
            :releases,
            :type => :appears_in,
-           :unique => { :on => :musicbrainz_key }
+           :unique => { :on => :metal_archives_key }
 
   ##
   # Methods

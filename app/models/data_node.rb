@@ -12,10 +12,11 @@ module DataNode
     #
     property :musicbrainz_key,
              :type => String
-    # :unique => true
+             # :constraint => :unique
+
     property :metal_archives_key,
              :type => String
-    # :unique => true
+             # :constraint => :unique
 
     property :updated_at,
              :type => DateTime
@@ -26,7 +27,7 @@ module DataNode
     has_many :in,
              :lists,
              :type => :includes,
-             :model_class => :list
+             :unique => { :on => :uuid }
 
     ##
     # Methods

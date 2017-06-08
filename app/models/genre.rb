@@ -10,7 +10,7 @@ class Genre
   # Attributes
   #
   property :name
-  # :unique => true
+           # :constraint => :unique
 
   validates :name,
             :presence => true
@@ -21,19 +21,19 @@ class Genre
   has_many :in,
            :groups,
            :type => :sings_about,
-           :unique => true
+           :unique => { :on => :metal_archives_key }
 
   has_many :out,
            :subgenres,
            :type => :related_to,
-           :model_class => :genre,
+           :model_class => :Genre,
            :dependent => :delete_orphans, # No callbacks are run
            :unique => { :on => :name }
 
   has_many :in,
            :supergenres,
            :type => :related_to,
-           :model_class => :genre,
+           :model_class => :Genre,
            :unique => { :on => :name }
 
   ##

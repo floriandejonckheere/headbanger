@@ -12,6 +12,7 @@ class Group
   #
   property :year_formed,
            :type => Date
+
   property :description
 
   enum :status => %i[active split_up on_hold changed_name disputed unknown]
@@ -32,23 +33,23 @@ class Group
   has_many :in,
            :artists,
            :type => :member_of,
-           :unique => true
+           :unique => { :on => :metal_archives_key }
 
   has_many :out,
            :lyrical_themes,
            :type => :sings_about,
            :dependent => :delete_orphans, # No callbacks are run
-           :unique => true
+           :unique => { :on => :metal_archives_key }
 
   has_many :out,
            :genres,
            :type => :plays_genre,
-           :unique => true
+           :unique => { :on => :name }
 
   has_many :out,
            :releases,
            :type => :has_released,
-           :unique => true
+           :unique => { :on => :metal_archives_key }
 
   ##
   # Methods

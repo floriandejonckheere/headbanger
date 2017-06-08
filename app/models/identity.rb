@@ -9,6 +9,8 @@ class Identity
   # Attributes
   #
   property :provider
+           # :index => :exact
+
   property :uid
 
   ##
