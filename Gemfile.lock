@@ -132,7 +132,7 @@ GEM
     mail (2.6.5)
       mime-types (>= 1.16, < 4)
     mail_form (1.3.0)
-    metal_archives (1.0.0)
+    metal_archives (2.0.0)
       countries
       faraday
       faraday_throttler
