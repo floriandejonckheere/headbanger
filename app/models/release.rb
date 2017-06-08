@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'converters/metal_archives/nil_date_converter'
+
 ##
 # A release
 #
@@ -14,7 +16,7 @@ class Release
            # :index => :exact
 
   property :release_date,
-           :type => Date
+           :type => MetalArchives::NilDate
 
   ##
   # Associations

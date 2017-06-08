@@ -9,9 +9,8 @@ class GroupService < AbstractService
     # Year formed
     instance.year_formed = @metal_archives.date_formed
     unless instance.year_formed
-      instance.year_formed = Date.new @musicbrainz.begin_date_year.to_i,
-                                      @musicbrainz.begin_date_month.to_i,
-                                      @musicbrainz.begin_date_day.to_i
+      dof = "#{@musicbrainz.begin_date_year || 0}-#{@musicbrainz.begin_date_month || 0}-#{@musicbrainz.begin_date_day || 0}"
+      instance.year_formed = dof
     end
 
     # Description

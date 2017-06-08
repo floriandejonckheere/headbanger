@@ -13,7 +13,7 @@ class List
            :type => String
 
   property :description,
-           :type => Date
+           :type => String
 
   ##
   # Associations

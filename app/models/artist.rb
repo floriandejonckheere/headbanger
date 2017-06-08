@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'converters/metal_archives/nil_date_converter'
+
 ##
 # A single performer (but not a solo artist)
 #
@@ -14,10 +16,10 @@ class Artist
            :type => String
 
   property :date_of_birth,
-           :type => Date
+           :type => MetalArchives::NilDate
 
   property :date_of_death,
-           :type => Date
+           :type => MetalArchives::NilDate
 
   property :biography,
            :type => String

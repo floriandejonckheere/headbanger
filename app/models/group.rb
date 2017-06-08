@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'converters/metal_archives/nil_date_converter'
+
 ##
 # A group of performers
 #
@@ -11,7 +13,7 @@ class Group
   # Properties
   #
   property :year_formed,
-           :type => Date
+           :type => MetalArchives::NilDate
 
   property :description
 

@@ -10,14 +10,12 @@ class ArtistService < AbstractService
     instance.gender = @metal_archives.gender&.to_s&.capitalize
 
     # Date of birth
-    instance.date_of_birth = Date.new @musicbrainz.begin_date_year.to_i,
-                                      @musicbrainz.begin_date_month.to_i,
-                                      @musicbrainz.begin_date_day.to_i
+    dob = "#{@musicbrainz.begin_date_year || 0}-#{@musicbrainz.begin_date_month || 0}-#{@musicbrainz.begin_date_day || 0}"
+    instance.date_of_birth = dob
 
     # Date of death
-    instance.date_of_death = Date.new @musicbrainz.end_date_year.to_i,
-                                      @musicbrainz.end_date_month.to_i,
-                                      @musicbrainz.end_date_day.to_i
+    dod = "#{@musicbrainz.end_date_year || 0}-#{@musicbrainz.end_date_month || 0}-#{@musicbrainz.end_date_day || 0}"
+    instance.date_of_death = dod
 
     instance.biography = sanitize @metal_archives.biography
   end
@@ -30,7 +28,7 @@ class ArtistService < AbstractService
     instance.names.destroy_all
 
     primary_name = @musicbrainz.name
-    instance.names << Name.new(:name => primary_name, :primary_name => true)
+    instance.names << Name.new(:name => primary_name, :primary => true)
 
     names = []
     (@musicbrainz.credit_names + @musicbrainz.aliases + @metal_archives.aliases).each do |acn|
