@@ -77,6 +77,11 @@ class User
            :dependent => :delete, # No callbacks are run
            :unique => { :on => :provider }
 
+  has_many :out,
+           :lists,
+           :type => :has_listed,
+           :dependent => :delete # No callbacks are run
+
   ##
   # Methods
   #

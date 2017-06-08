@@ -8,7 +8,7 @@ module DataNode
 
   included do
     ##
-    # Data sources
+    # Attributes
     #
     property :musicbrainz_key,
              :type => String
@@ -20,6 +20,17 @@ module DataNode
     property :updated_at,
              :type => DateTime
 
+    ##
+    # Associations
+    #
+    has_many :in,
+             :lists,
+             :type => :includes,
+             :model_class => :list
+
+    ##
+    # Methods
+    #
     ##
     # Whether the instance is up to date
     #
