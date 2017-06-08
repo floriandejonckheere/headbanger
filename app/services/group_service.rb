@@ -1,30 +1,8 @@
 # frozen_string_literal: true
 
 class GroupService < AbstractService
-  def model
-    Group
-  end
-
-  def enumerate
-    MetalArchives::Band.all
-  end
-
-  def update_instance
-    source_instance
-    update_attributes
-    update_associations
-
-    instance.save
-  end
-
-  protected
-
-  def source_instance
-    # Find MA instance
-    @metal_archives = MetalArchives::Band.find! instance.metal_archives_key
-
-    # Try to find musicbrainz instance
-    find_musicbrainz_instance
+  def source_model
+    MetalArchives::Band
   end
 
   def update_attributes
@@ -70,46 +48,5 @@ class GroupService < AbstractService
     # TODO: Lyrical themes
     # TODO: Genres
     # TODO: Releases
-  end
-
-  def find_musicbrainz_instance
-    query = ActiveMusicbrainz::Model::Artist.joins(:area)
-                                            .joins(:type)
-                                            .where 'artist.name ILIKE :name', :name => @metal_archives.name
-
-    if query.one?
-      @musicbrainz = query.first
-      raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Group'
-
-      return
-    end
-
-    query = query.where 'area.name ILIKE :name', :name => @metal_archives.country.name
-
-    if query.one?
-      @musicbrainz = query.first
-      raise Headbanger::IncorrectTypeError unless @musicbrainz.type.name == 'Group'
-
-      return
-    end
-
-    query.each do |band|
-      next if band.type.name == 'Group'
-
-      band.urls.each do |url|
-        if url.url.match?(/(http:\/\/)?(www.)?metal-archives.com/)
-          metal_archives_key = url.url.split('/').last
-          break
-        end
-      end
-
-      next unless metal_archives_key == instance.metal_archives_key
-      instance.musicbrainz_key = @musicbrainz.gid
-
-      @musicbrainz = band
-      break
-    end
-
-    raise Headbanger::NoKeyError unless @musicbrainz
   end
 end

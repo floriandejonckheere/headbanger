@@ -8,7 +8,7 @@ class AggregationService
 
   def perform
     [GroupService, ArtistService].each do |service|
-      service.enumerate.each do |resource|
+      service.source_model.all.each do |resource|
         service.perform_async resource.id
       end
     end
