@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AppController < ApplicationController
+  before_action :authenticate_user!, :except => %i[home discover]
+
   ##
   # Home
   #

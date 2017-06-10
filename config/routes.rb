@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   root 'app#home'
 
   ##
-  # Pages
+  # User pages
   #
   get '/discover' => 'app#discover'
   get '/queue' => 'app#queue'
-  get '/lists' => 'app#lists'
+  resources :lists
 
   ##
   # Feedback

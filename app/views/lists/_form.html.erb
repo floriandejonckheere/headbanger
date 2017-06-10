@@ -1,0 +1,32 @@
+<%= form_for @list do |f| %>
+  <% if @list.errors.any? %>
+    <div class="alert alert-danger">
+      <strong><%= pluralize(@list.errors.count, 'error') %> prohibited this list from being saved:</strong>
+      <ul>
+        <% @list.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset class="form-group">
+    <label for="name">Name</label>
+    <%= f.text_field :name,
+                     :placeholder => :name,
+                     :class => 'form-control',
+                     :id => 'name',
+                     :autofocus => 'true',
+                     :required => 'true' %>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="description">Description</label>
+    <%= f.text_field :description,
+                     :placeholder => :description,
+                     :class => 'form-control',
+                     :id => 'description' %>
+  </fieldset>
+
+  <%= f.submit 'Save', :class => 'btn btn-primary' %>
+<% end %>

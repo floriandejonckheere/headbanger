@@ -1,0 +1,15 @@
+<% content_for :title do %>My lists<% end %>
+
+<h2>My lists</h2>
+
+<p>
+  <%= link_to 'New', new_list_path %>
+</p>
+
+<p>
+  <ul>
+    <% @lists.each do |list| %>
+      <li><%= link_to list.name, list_path(list) %></li>
+    <% end %>
+  </ul>
+</p>
