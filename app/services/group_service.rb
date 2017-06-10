@@ -34,14 +34,14 @@ class GroupService < AbstractService
     instance.names.destroy_all
 
     primary_name = @musicbrainz.name
-    instance.names << Name.new(:name => primary_name, :primary => true)
+    Name.create :performer => instance, :name => primary_name, :primary => true
 
     names = []
     (@musicbrainz.credit_names + @musicbrainz.aliases + @metal_archives.aliases).each do |acn|
       names << acn.name unless acn.name == primary_name
     end
 
-    names.uniq.each { |name| instance.names << Name.new(:name => name) }
+    names.uniq.each { |name| Name.create :performer => instance, :name => name }
 
     # TODO: Artists
     # TODO: Lyrical themes
