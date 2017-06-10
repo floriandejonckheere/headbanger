@@ -20,6 +20,9 @@ class Identity
           :user,
           :type => :identifies_with
 
+  validates :user,
+            :presence => true
+
   ##
   # Methods
   #

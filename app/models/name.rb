@@ -27,6 +27,9 @@ class Name
           :type => :known_as,
           :model_class => %i[Artist Group]
 
+  validates :performer,
+            :presence => true
+
   ##
   # Methods
   #

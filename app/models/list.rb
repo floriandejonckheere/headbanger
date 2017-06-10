@@ -19,9 +19,12 @@ class List
   # Associations
   #
   has_one :in,
-          :author,
+          :owner,
           :type => :has_listed,
           :model_class => :User
+
+  validates :owner,
+            :presence => true
 
   has_many :out,
            :items,
