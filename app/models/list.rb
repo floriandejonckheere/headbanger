@@ -12,6 +12,9 @@ class List
   property :name,
            :type => String
 
+  validates :name,
+            :presence => true
+
   property :description,
            :type => String
 
