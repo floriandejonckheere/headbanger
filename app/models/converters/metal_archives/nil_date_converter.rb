@@ -23,7 +23,7 @@ module Converters
             ::MetalArchives::NilDate.parse value
           end
         end
-        alias_method :call, :to_ruby
+        alias :call :to_ruby
       end
 
       include Neo4j::Shared::Typecaster

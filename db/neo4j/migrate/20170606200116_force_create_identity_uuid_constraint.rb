@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ForceCreateIdentityUuidConstraint < Neo4j::Migrations::Base
   def up
     add_constraint :Identity, :uuid, :force => true

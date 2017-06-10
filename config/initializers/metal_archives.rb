@@ -17,7 +17,7 @@ MetalArchives.configure do |c|
   # c.cache_size = 100
 
   ## Metal Archives endpoint (optional, overrides default)
-  c.endpoint = ENV['MA_ENDPOINT'] if ENV.has_key? 'MA_ENDPOINT'
+  c.endpoint = ENV['MA_ENDPOINT'] if ENV.key? 'MA_ENDPOINT'
   Rails.logger.info "Using #{c.endpoint || c.default_endpoint} as Metal Archives endpoint"
 
   ## Custom logger (optional)

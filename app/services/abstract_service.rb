@@ -95,8 +95,8 @@ class AbstractService
 
   def find_musicbrainz_instance
     query = ActiveMusicbrainz::Model::Artist.joins(:area)
-              .joins(:type)
-              .where 'artist.name ILIKE :name', :name => @metal_archives.name
+                                            .joins(:type)
+                                            .where 'artist.name ILIKE :name', :name => @metal_archives.name
 
     if query.one?
       @musicbrainz = query.first
@@ -116,6 +116,8 @@ class AbstractService
 
     query.each do |band|
       next if band.type.name == 'Person'
+
+      metal_archives_key = nil
 
       band.urls.each do |url|
         if url.url.match?(%r{(http:\/\/)?(www.)?metal-archives.com})

@@ -55,7 +55,7 @@ class User
            :type => DateTime
 
   property :current_sign_in_ip,
-           :type =>  String
+           :type => String
 
   property :last_sign_in_ip,
            :type => String
@@ -103,6 +103,11 @@ class User
            :type => :has_listed,
            :dependent => :delete, # No callbacks are run
            :unique => { :on => :uuid }
+
+  has_one :out,
+          :queue,
+          :type => :has_listed,
+          :dependent => :delete
 
   ##
   # Methods
