@@ -2,6 +2,7 @@
 
 class GroupsController < ApplicationController
   include FollowableController
+  include QueueableController
 
   def show
     @group = Group.find params[:id]

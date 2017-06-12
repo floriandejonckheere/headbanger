@@ -8,6 +8,14 @@
   <% else %>
     <%= link_to 'Follow', follow_group_path(@group), :method => :post %>
   <% end %>
+
+  |
+
+  <% if current_user.queued_items.include? @group %>
+    <%= link_to 'Remove from queue', unqueue_group_path(@group), :method => :post %>
+  <% else %>
+    <%= link_to 'Queue', queue_group_path(@group), :method => :post %>
+  <% end %>
 </p>
 
 <p>

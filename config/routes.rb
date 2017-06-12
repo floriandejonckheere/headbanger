@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     member do
       post '/follow' => 'groups#follow'
       post '/unfollow' => 'groups#unfollow'
+
+      post '/queue' => 'groups#queue'
+      post '/unqueue' => 'groups#unqueue'
     end
   end
 
@@ -43,6 +46,9 @@ Rails.application.routes.draw do
     member do
       post '/follow' => 'artists#follow'
       post '/unfollow' => 'artists#unfollow'
+
+      post '/queue' => 'artists#queue'
+      post '/unqueue' => 'artists#unqueue'
     end
   end
 

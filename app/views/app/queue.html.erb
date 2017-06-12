@@ -1,8 +1,22 @@
 <% content_for :title do %>Queue<% end %>
 
-<div class="queue-empty">
-  <i class="fa fa-music queue-icon"></i>
-  <div class="queue-text">
-    your listening queue is empty
+<h2>My listening queue</h2>
+
+<% if @queue.empty? %>
+  <div class="queue-empty">
+    <i class="fa fa-music queue-icon"></i>
+    <div class="queue-text">
+      your listening queue is empty
+    </div>
   </div>
-</div>
+<% else %>
+  <% @queue.each do |queued| %>
+    <li>
+      <% if queued.instance_of? Artist %>
+        <%= link_to queued.display_name, queued %> (<%= link_to 'remove from queue', unqueue_artist_path(queued), :method => :post %>)
+      <% elsif queued.instance_of? Group %>
+        <%= link_to queued.display_name, queued %> (<%= link_to 'remove from queue', unqueue_group_path(queued), :method => :post %>)
+      <% end %>
+    </li>
+  <% end %>
+<% end %>

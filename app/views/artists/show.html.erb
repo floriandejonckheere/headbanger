@@ -8,6 +8,14 @@
   <% else %>
     <%= link_to 'Follow', follow_artist_path(@artist), :method => :post %>
   <% end %>
+
+  |
+
+  <% if current_user.queued_items.include? @artist %>
+    <%= link_to 'Remove from queue', unqueue_artist_path(@artist), :method => :post %>
+  <% else %>
+    <%= link_to 'Add to queue', queue_artist_path(@artist), :method => :post %>
+  <% end %>
 </p>
 
 <p>

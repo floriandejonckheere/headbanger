@@ -33,7 +33,7 @@ class List
            :items,
            :type => :includes,
            :model_class => %i[Artist Group Release],
-           :unique => { :on => :metal_archives_key }
+           :unique => { :on => :uuid }
 
   ##
   # Methods

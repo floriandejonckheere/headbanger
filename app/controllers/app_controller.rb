@@ -6,15 +6,20 @@ class AppController < ApplicationController
   ##
   # Home
   #
+  # GET /
   def home; end
 
   ##
   # Discover (recommendations)
   #
+  # GET /discover
   def discover; end
 
   ##
   # Listening queue
   #
-  def queue; end
+  # GET /queue
+  def queue
+    @queue = current_user.queued_items
+  end
 end

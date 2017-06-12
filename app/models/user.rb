@@ -109,6 +109,12 @@ class User
            :dependent => :delete, # No callbacks are run
            :unique => { :on => :uuid }
 
+  has_many :out,
+           :queued_items,
+           :type => :has_queued,
+           :model_class => %i[Artist Group Release],
+           :unique => { :on => :uuid }
+
   ##
   # Methods
   #
