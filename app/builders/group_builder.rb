@@ -80,9 +80,11 @@ class GroupBuilder < DataNodeBuilder
   private
 
   def find_musicbrainz_source
+    name = @metal_archives.name.gsub(/[^a-zA-Z0-9 ]+/, '%')
+
     query = ActiveMusicbrainz::Model::Artist.joins(:area)
               .joins(:type)
-              .where 'artist.name ILIKE :name', :name => @metal_archives.name
+              .where 'artist.name ILIKE :name', :name => name
 
     if query.one?
       @musicbrainz = query.first
