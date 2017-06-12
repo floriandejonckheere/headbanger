@@ -3,7 +3,7 @@
 ##
 # Node containing data source information
 #
-module DataNode
+module Sourceable
   extend ActiveSupport::Concern
 
   included do
