@@ -63,9 +63,11 @@ class ArtistBuilder < DataNodeBuilder
     Name.create :performer => @instance, :name => primary_name, :primary => true
 
     names = []
-    (@musicbrainz.credit_names + @musicbrainz.aliases + @metal_archives.aliases).each do |acn|
+    (@musicbrainz.credit_names + @musicbrainz.aliases).each do |acn|
       names << acn.name unless acn.name == primary_name
     end
+
+    @metal_archives.aliases.each { |a| names << a unless a == primary_name }
 
     names.uniq.each { |name| Name.create :performer => @instance, :name => name }
 
