@@ -5,6 +5,8 @@
 #
 class User
   include Neo4j::ActiveNode
+  include Neo4j::Timestamps
+
   #
   # Neo4j.rb needs to have property definitions before any validations. So, the property block needs to come before
   # loading your devise modules.

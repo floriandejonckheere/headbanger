@@ -7,6 +7,8 @@ module DataNode
   extend ActiveSupport::Concern
 
   included do
+    include Neo4j::Timestamps
+
     ##
     # Attributes
     #
@@ -17,9 +19,6 @@ module DataNode
     property :metal_archives_key,
              :type => String
              # :constraint => :unique
-
-    property :updated_at,
-             :type => DateTime
 
     ##
     # Associations
