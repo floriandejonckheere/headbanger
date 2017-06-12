@@ -58,7 +58,7 @@ class Group
   ##
   # Methods
   #
-  def primary_name
-    names.find_by :primary => true
+  def display_name
+    names.find_by(:primary => true).name
   end
 end

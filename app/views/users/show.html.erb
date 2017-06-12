@@ -32,7 +32,7 @@
   <strong>Following: </strong>
   <ul>
     <% @user.following.each do |following| %>
-      <li><%= following %> (<%= following.class %>)</li>
+      <li><%= link_to following.display_name, following %></li>
     <% end %>
   </ul>
 </p>
