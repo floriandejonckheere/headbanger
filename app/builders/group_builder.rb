@@ -80,46 +80,48 @@ class GroupBuilder < DataNodeBuilder
   private
 
   def find_musicbrainz_source
-    name = @metal_archives.name.gsub(/[^a-zA-Z0-9 ]+/, '%')
+    ([@metal_archives.name] + @metal_archives.aliases).each do |name|
+      name.gsub!(/[^a-zA-Z0-9 ]+/, '%')
 
-    query = ActiveMusicbrainz::Model::Artist.joins(:area)
-              .joins(:type)
-              .where 'artist.name ILIKE :name', :name => name
+      query = ActiveMusicbrainz::Model::Artist.joins(:area)
+                .joins(:type)
+                .where 'artist.name ILIKE :name', :name => name
 
-    if query.one?
-      @musicbrainz = query.first
-      raise Headbanger::IncorrectTypeError, 'Instance must be a person' unless @musicbrainz.type.name == 'Group'
+      if query.one?
+        @musicbrainz = query.first
+        raise Headbanger::IncorrectTypeError, 'Instance must be a person' unless @musicbrainz.type.name == 'Group'
 
-      return
-    end
-
-    query = query.where 'area.name ILIKE :name', :name => @metal_archives.country.name
-
-    if query.one?
-      @musicbrainz = query.first
-      raise Headbanger::IncorrectTypeError, 'Instance must be a person' unless @musicbrainz.type.name == 'Group'
-
-      return
-    end
-
-    query.each do |row|
-      next if row.type.name == 'Person'
-
-      metal_archives_key = nil
-
-      row.urls.each do |url|
-        if url.url.match?(%r{(http:\/\/)?(www.)?metal-archives.com})
-          metal_archives_key = url.url.split('/').last
-          break
-        end
+        break
       end
 
-      next unless metal_archives_key == @instance.metal_archives_key
+      query = query.where 'area.name ILIKE :name', :name => @metal_archives.country.name
 
-      @musicbrainz = row
-      break
+      if query.one?
+        @musicbrainz = query.first
+        raise Headbanger::IncorrectTypeError, 'Instance must be a person' unless @musicbrainz.type.name == 'Group'
+
+        break
+      end
+
+      query.each do |row|
+        next if row.type.name == 'Person'
+
+        metal_archives_key = nil
+
+        row.urls.each do |url|
+          if url.url.match?(%r{(http:\/\/)?(www.)?metal-archives.com})
+            metal_archives_key = url.url.split('/').last
+            break
+          end
+        end
+
+        next unless metal_archives_key == @instance.metal_archives_key
+
+        @musicbrainz = row
+        break
+      end
     end
 
-    raise Headbanger::NoKeyError, 'Could not find Musicbrainz instance' unless @musicbrainz
+    raise Headbanger::NoKeyError, "Could not find Musicbrainz instance for #{@metal_archives_key}" unless @musicbrainz
   end
 end
