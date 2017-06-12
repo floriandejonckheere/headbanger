@@ -3,7 +3,7 @@
 ##
 # Allows a node to follow and be followed
 #
-module Followable
+module Following
   extend ActiveSupport::Concern
 
   included do
@@ -13,8 +13,8 @@ module Followable
     ##
     # Associations
     #
-    has_many :in,
-             :followers,
+    has_many :out,
+             :following,
              :type => :following,
              :model_class => %i[Artist Group User]
 
