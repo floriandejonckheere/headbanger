@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'ethon'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -54,6 +56,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   config.logger = Logger.new STDOUT
+  config.logger.level = Logger::DEBUG
   config.log_formatter = Logger::Formatter.new
 
   config.lograge.enabled = true
@@ -63,4 +66,8 @@ Rails.application.configure do
       { :params => event.payload[:params].except('controller', 'action', 'format', 'status') }
     end
   end
+
+  # Neo4j
+  config.neo4j.logger = config.logger
+  Ethon.logger = config.logger
 end

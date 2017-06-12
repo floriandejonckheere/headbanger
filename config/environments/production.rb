@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'ethon'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -112,4 +114,8 @@ Rails.application.configure do
       end
     end
   end
+
+  # Neo4j
+  config.neo4j.logger = config.logger
+  Ethon.logger = config.logger
 end
