@@ -6,19 +6,6 @@ Rails.application.routes.draw do
   root 'app#home'
 
   ##
-  # User pages
-  #
-  get '/discover' => 'app#discover'
-  get '/queue' => 'app#queue'
-  resources :lists
-
-  ##
-  # Feedback
-  #
-  get '/feedback' => 'feedback#new'
-  post '/feedback' => 'feedback#create'
-
-  ##
   # Authentication
   #
   devise_for :users,
@@ -27,11 +14,25 @@ Rails.application.routes.draw do
                :registrations => 'authentication/registrations'
              }
 
+  ##
+  # User pages
+  #
+  get '/discover' => 'app#discover'
+  get '/queue' => 'app#queue'
+  resources :users, :only => :show
+  resources :lists
+
+  ##
+  # Application pages
+  #
+  get '/feedback' => 'feedback#new'
+  post '/feedback' => 'feedback#create'
+
   get '/tos' => 'authentication/terms#terms_of_service'
   get '/privacy' => 'authentication/terms#privacy_policy'
 
   ##
-  # Resources
+  # Data pages
   #
   resources :groups, :only => :show
   resources :artists, :only => :show

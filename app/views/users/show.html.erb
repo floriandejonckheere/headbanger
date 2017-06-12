@@ -1,0 +1,28 @@
+<% content_for :title do %><%= @user.name %><% end %>
+
+<h2><%= @user.name %></h2>
+
+<p>
+  <strong>Name: </strong> <%= @user.name || '<em>No name</em>' %> <br/>
+  <strong>Email: </strong> <%= @user.email %> <br/>
+  <strong>Member since: </strong> <%= time_ago_in_words @user.created_at %>
+</p>
+
+<p>
+  <strong>Followers: </strong>
+  <ul>
+    <% @user.followers.each do |follower| %>
+      <li><%= follower %> (<%= follower.class %>)</li>
+    <% end %>
+  </ul>
+</p>
+
+
+<p>
+  <strong>Following: </strong>
+  <ul>
+    <% @user.following.each do |following| %>
+      <li><%= following %> (<%= following.class %>)</li>
+    <% end %>
+  </ul>
+</p>
