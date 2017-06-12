@@ -16,7 +16,8 @@ module Following
     has_many :out,
              :following,
              :type => :following,
-             :model_class => %i[Artist Group User]
+             :model_class => %i[Artist Group User],
+             :unique => { :on => :uuid }
 
     ##
     # Methods

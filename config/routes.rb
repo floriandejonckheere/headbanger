@@ -19,22 +19,41 @@ Rails.application.routes.draw do
   #
   get '/discover' => 'app#discover'
   get '/queue' => 'app#queue'
-  resources :users, :only => :show
+
+  resources :users, :only => :show do
+    member do
+      post '/follow' => 'users#follow'
+      post '/unfollow' => 'users#unfollow'
+    end
+  end
+
   resources :lists
 
   ##
-  # Application pages
+  # Data pages
+  #
+  resources :groups, :only => :show do
+    member do
+      post '/follow' => 'groups#follow'
+      post '/unfollow' => 'groups#unfollow'
+    end
+  end
+
+  resources :artists, :only => :show do
+    member do
+      post '/follow' => 'artists#follow'
+      post '/unfollow' => 'artists#unfollow'
+    end
+  end
+
+  resources :releases, :only => :show
+
+  ##
+  # General
   #
   get '/feedback' => 'feedback#new'
   post '/feedback' => 'feedback#create'
 
   get '/tos' => 'authentication/terms#terms_of_service'
   get '/privacy' => 'authentication/terms#privacy_policy'
-
-  ##
-  # Data pages
-  #
-  resources :groups, :only => :show
-  resources :artists, :only => :show
-  resources :releases, :only => :show
 end

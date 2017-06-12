@@ -3,6 +3,16 @@
 <h2><%= @user.name %></h2>
 
 <p>
+  <% unless current_user == @user %>
+    <% if current_user.following.include? @user %>
+      <%= link_to 'Unfollow', unfollow_user_path(@user), :method => :post %>
+    <% else %>
+      <%= link_to 'Follow', follow_user_path(@user), :method => :post %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>
   <strong>Name: </strong> <%= @user.name || '<em>No name</em>' %> <br/>
   <strong>Email: </strong> <%= @user.email %> <br/>
   <strong>Member since: </strong> <%= time_ago_in_words @user.created_at %>
@@ -12,7 +22,7 @@
   <strong>Followers: </strong>
   <ul>
     <% @user.followers.each do |follower| %>
-      <li><%= follower %> (<%= follower.class %>)</li>
+      <li><%= link_to follower.name, user_path(follower) %></li>
     <% end %>
   </ul>
 </p>

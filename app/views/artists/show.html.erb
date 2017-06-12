@@ -1,0 +1,26 @@
+<% content_for :title do %><%= @artist.names.where(:primary => true).first.name %><% end %>
+
+<h2><%= @artist.names.where(:primary => true).first.name %></h2>
+
+<p>
+  <% if current_user.following.include? @artist %>
+    <%= link_to 'Unfollow', unfollow_artist_path(@artist), :method => :post %>
+  <% else %>
+    <%= link_to 'Follow', follow_artist_path(@artist), :method => :post %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Names: </strong> <%= @artist.names.pluck(:name).join ', ' %> <br/>
+  <strong>Birthday: </strong> <%= @artist.date_of_birth %> <br />
+  <strong>Biography: </strong> <%= @artist.biography %> <br />
+</p>
+
+<p>
+  <strong>Followers: </strong>
+  <ul>
+    <% @artist.followers.each do |follower| %>
+      <li><%= link_to follower.name, user_path(follower) %></li>
+    <% end %>
+  </ul>
+</p>
