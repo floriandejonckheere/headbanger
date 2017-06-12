@@ -21,8 +21,6 @@ MetalArchives.configure do |c|
   Rails.logger.info "Using #{c.endpoint || c.default_endpoint} as Metal Archives endpoint"
 
   ## Custom logger (optional)
-  # c.logger = Logger.new File.new('metal_archives.log')
-
-  ## Verbose output
-  # c.debug = false
+  c.logger = Logger.new STDOUT
+  c.logger.level = Logger::WARN
 end
