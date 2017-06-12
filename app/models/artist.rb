@@ -7,7 +7,9 @@ require 'converters/metal_archives/nil_date_converter'
 #
 class Artist
   include Neo4j::ActiveNode
+
   include Sourceable
+  include Followable
 
   ##
   # Attributes

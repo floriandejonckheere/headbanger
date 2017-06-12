@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ##
-# Node containing data source information
+# Allows a node to be updated from a data source
 #
 module Sourceable
   extend ActiveSupport::Concern
