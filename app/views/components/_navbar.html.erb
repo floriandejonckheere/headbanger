@@ -42,7 +42,8 @@
             <%= current_user.display_name %>
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-            <%= link_to 'My account', edit_user_registration_path, :class => 'dropdown-item' %>
+            <%= link_to 'My profile', user_path(current_user), :class => 'dropdown-item' %>
+            <%= link_to 'Settings', edit_user_registration_path, :class => 'dropdown-item' %>
             <hr class="divider">
             <%= link_to 'Sign out', destroy_user_session_path,
                                     :method => :delete,

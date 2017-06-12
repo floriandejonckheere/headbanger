@@ -62,7 +62,7 @@
       <div>
         <ul>
           <% resource.identities.pluck(:provider).each do |provider| %>
-            <li><%= provider %></li>
+            <li><%= provider.split('_').first.capitalize %></li>
           <% end %>
         </ul>
       </div>
@@ -70,7 +70,7 @@
   </div>
 
   <div class="card-block">
-    <%= f.submit 'Update', :class => 'btn btn-primary' %>
+    <%= f.submit 'Save', :class => 'btn btn-primary' %>
   </div>
 
   <div class="card-block">
