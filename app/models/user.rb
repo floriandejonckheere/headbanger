@@ -104,11 +104,6 @@ class User
            :dependent => :delete, # No callbacks are run
            :unique => { :on => :uuid }
 
-  has_one :out,
-          :queue,
-          :type => :has_listed,
-          :dependent => :delete
-
   ##
   # Methods
   #
