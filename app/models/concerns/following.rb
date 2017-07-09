@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ##
-# Allows a node to follow and be followed
+# Allows a node to follow
 #
 module Following
   extend ActiveSupport::Concern
@@ -15,7 +15,7 @@ module Following
     #
     has_many :out,
              :following,
-             :type => :following,
+             :type => :follows,
              :model_class => %i[Artist Group User],
              :unique => { :on => :uuid }
 
