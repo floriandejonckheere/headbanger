@@ -10,6 +10,7 @@ class Artist
 
   include Sourceable
   include Followable
+  include Rateable
 
   ##
   # Attributes

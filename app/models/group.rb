@@ -10,6 +10,7 @@ class Group
 
   include Sourceable
   include Followable
+  include Rateable
 
   ##
   # Properties
