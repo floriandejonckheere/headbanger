@@ -9,8 +9,26 @@
 
 <h2>Discover</h2>
 
+<h3>Releases</h3>
+
 <div class="matrix">
   <% @releases.each do |release| %>
-    <%= render 'components/matrix-cell', :release => release %>
+    <%= render 'components/matrix-release', :release => release %>
+  <% end %>
+</div>
+
+<h3>Groups</h3>
+
+<div class="matrix">
+  <% @groups.each do |group| %>
+    <%= render 'components/matrix-group', :group => group %>
+  <% end %>
+</div>
+
+<h3>Artists</h3>
+
+<div class="matrix">
+  <% @artists.each do |artist| %>
+    <%= render 'components/matrix-artist', :artist => artist %>
   <% end %>
 </div>

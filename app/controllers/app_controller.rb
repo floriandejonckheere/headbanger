@@ -13,7 +13,11 @@ class AppController < ApplicationController
   # Discover (recommendations)
   #
   # GET /discover
-  def discover; end
+  def discover
+    @artists = Artist.all
+    @releases = Release.all
+    @groups = Group.all
+  end
 
   ##
   # Listening queue

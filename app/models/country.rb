@@ -32,4 +32,7 @@ class Country
   ##
   # Methods
   #
+  def display_name
+    ISO3166::Country.find_country_by_alpha3(country).to_s
+  end
 end

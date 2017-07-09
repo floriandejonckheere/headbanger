@@ -40,8 +40,11 @@ $matrix-cell-size: 200px;
     border-bottom: 5px solid darken(white, 12%);
 
     .matrix-cell-image {
-      max-width: $matrix-cell-size;
-      max-height: $matrix-cell-size;
+      width: $matrix-cell-size;
+      height: $matrix-cell-size;
+
+      object-fit: cover;
+      object-position: top;
     }
 
     .matrix-cell-image-wrapper {
