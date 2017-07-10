@@ -29,9 +29,6 @@ gem 'sidekiq'
 ## Web frontend ##
 gem 'bower-rails'
 gem 'font-awesome-sass'
-gem 'jquery-turbolinks'
-gem 'nprogress-rails'
-gem 'turbolinks'
 
 ## Search engine ##
 gem 'searchkick'

@@ -23,11 +23,6 @@ $input-border-focus: $color-primary;
 
 @import "bootstrap-social/bootstrap-social.css";
 
-$nprogress-color: $color-primary;
-@import "nprogress";
-@import "nprogress-bootstrap";
-@import "nprogress-turbolinks5";
-
 /** Views **/
 @import "utilities";
 @import "typography";
