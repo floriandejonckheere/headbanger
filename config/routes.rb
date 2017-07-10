@@ -39,6 +39,9 @@ Rails.application.routes.draw do
 
       post '/queue' => 'groups#queue'
       post '/unqueue' => 'groups#unqueue'
+
+      post '/rate' => 'groups#rate'
+      post '/unrate' => 'groups#unrate'
     end
   end
 
@@ -49,6 +52,9 @@ Rails.application.routes.draw do
 
       post '/queue' => 'artists#queue'
       post '/unqueue' => 'artists#unqueue'
+
+      post '/rate' => 'artists#rate'
+      post '/unrate' => 'artists#unrate'
     end
   end
 
