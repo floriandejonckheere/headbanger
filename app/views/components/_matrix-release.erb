@@ -4,7 +4,11 @@
       <img src="http://coverartarchive.org/release-group/<%= release.musicbrainz_key %>/front-250" class="matrix-cell-image" alt="<%= release.title %>">
       <div class="matrix-cell-image-overlay"></div>
     <% end %>
-    <a href="javascript:void(0)" onclick="$(this).toggleClass('liked');" class="rating"><i class="fa fa-heart rating-heart"></i> <%= Random.rand 100 %></a>
+    <% if current_user.rated.include? release %>
+      <%= link_to rate_release_path(release), :method => :post do %><i class="fa fa-heart rating-heart liked"></i> <%= release.raters.count %><% end %>
+    <% else %>
+      <%= link_to unrate_release_path(release), :method => :post do %><i class="fa fa-heart rating-heart"></i> <%= release.raters.count %><% end %>
+    <% end %>
   </div>
   <div class="matrix-cell-title">
     <%= link_to release.title, release %>

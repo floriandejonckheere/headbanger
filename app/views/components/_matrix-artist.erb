@@ -1,10 +1,14 @@
 <div class="matrix-cell">
   <div class="matrix-cell-image-wrapper">
     <%= link_to artist do %>
-      <img src="<%= MetalArchives::Artist.find(artist.metal_archives_key).photo.to_s %>" class="matrix-cell-image" alt="<%= artist.display_name %>">
+      <img src="" class="matrix-cell-image" alt="<%= artist.display_name %>">
       <div class="matrix-cell-image-overlay"></div>
     <% end %>
-    <a href="javascript:void(0)" onclick="$(this).toggleClass('liked');" class="rating"><i class="fa fa-heart rating-heart"></i> <%= Random.rand 100 %></a>
+    <% if current_user.rated.include? artist %>
+      <%= link_to unrate_artist_path(artist), :method => :post, :class => 'rating liked' do %><i class="fa fa-heart rating-heart"></i> <%= artist.raters.count %><% end %>
+    <% else %>
+      <%= link_to rate_artist_path(artist), :method => :post, :class => 'rating' do %><i class="fa fa-heart rating-heart"></i> <%= artist.raters.count %><% end %>
+    <% end %>
   </div>
   <div class="matrix-cell-title">
     <%= link_to artist.display_name, artist %>
