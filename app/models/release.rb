@@ -17,8 +17,8 @@ class Release
   property :title
            # :index => :exact
 
-  property :release_date,
-           :type => MetalArchives::NilDate
+  property :year,
+           :type => Integer
 
   ##
   # Associations

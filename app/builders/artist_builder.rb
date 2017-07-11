@@ -80,7 +80,8 @@ class ArtistBuilder < DataNodeBuilder
     ([@metal_archives.name] + @metal_archives.aliases).each do |name|
       name.gsub!(/[^a-zA-Z0-9 ]+/, '%')
 
-      query = ActiveMusicbrainz::Model::Artist.joins(:area)
+      query = ActiveMusicbrainz::Model::Artist
+                .joins(:area)
                 .joins(:type)
                 .where 'artist.name ILIKE :name', :name => name
 
