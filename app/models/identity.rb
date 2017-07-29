@@ -3,8 +3,7 @@
 ##
 # A user's identity
 #
-class Identity
-  include Neo4j::ActiveNode
+class Identity < ApplicationRecord
   include Neo4j::Timestamps
 
   ##

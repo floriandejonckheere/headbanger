@@ -3,9 +3,7 @@
 ##
 # A list of DataNodes
 #
-class List
-  include Neo4j::ActiveNode
-
+class List < ApplicationRecord
   ##
   # Attributes
   #

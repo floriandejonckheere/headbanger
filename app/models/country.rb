@@ -3,9 +3,7 @@
 ##
 # A country
 #
-class Country
-  include Neo4j::ActiveNode
-
+class Country < ApplicationRecord
   ##
   # Attributes
   #

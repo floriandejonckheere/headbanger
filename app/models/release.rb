@@ -5,9 +5,7 @@ require 'converters/metal_archives/nil_date_converter'
 ##
 # A release
 #
-class Release
-  include Neo4j::ActiveNode
-
+class Release < ApplicationRecord
   include Sourceable
   include Rateable
 

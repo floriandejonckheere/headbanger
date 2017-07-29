@@ -3,8 +3,7 @@
 ##
 # A user
 #
-class User
-  include Neo4j::ActiveNode
+class User < ApplicationRecord
   include Neo4j::Timestamps
 
   include Followable

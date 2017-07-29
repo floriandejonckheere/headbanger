@@ -3,9 +3,7 @@
 ##
 # A lyrical theme
 #
-class LyricalTheme
-  include Neo4j::ActiveNode
-
+class LyricalTheme < ApplicationRecord
   ##
   # Attributes
   #

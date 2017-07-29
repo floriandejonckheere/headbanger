@@ -3,9 +3,7 @@
 ##
 # Generic name node
 #
-class Name
-  include Neo4j::ActiveNode
-
+class Name < ApplicationRecord
   searchkick :searchable => %i[name]
 
   ##

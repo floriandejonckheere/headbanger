@@ -3,9 +3,7 @@
 ##
 # A music genre
 #
-class Genre
-  include Neo4j::ActiveNode
-
+class Genre < ApplicationRecord
   searchkick :searchable => %i[name]
 
   ##

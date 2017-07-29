@@ -5,9 +5,7 @@ require 'converters/metal_archives/nil_date_converter'
 ##
 # A group of performers
 #
-class Group
-  include Neo4j::ActiveNode
-
+class Group < ApplicationRecord
   include Sourceable
   include Followable
   include Rateable
