@@ -6,7 +6,7 @@ require 'converters/metal_archives/nil_date_converter'
 # A group of performers
 #
 class Group < ApplicationRecord
-  include Sourceable
+  include Identifiable
   include Followable
   include Rateable
 

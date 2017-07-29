@@ -3,7 +3,7 @@
 ##
 # Allows a node to be updated from a data source
 #
-module Sourceable
+module Identifiable
   extend ActiveSupport::Concern
 
   included do

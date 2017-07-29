@@ -6,7 +6,7 @@ require 'converters/metal_archives/nil_date_converter'
 # A release
 #
 class Release < ApplicationRecord
-  include Sourceable
+  include Identifiable
   include Rateable
 
   searchkick :searchable => %i[title]

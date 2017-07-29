@@ -6,7 +6,7 @@ require 'converters/metal_archives/nil_date_converter'
 # A single performer (but not a solo artist)
 #
 class Artist < ApplicationRecord
-  include Sourceable
+  include Identifiable
   include Followable
   include Rateable
 
