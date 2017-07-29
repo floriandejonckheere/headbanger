@@ -1,29 +1,17 @@
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of ActiveNode to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.yml definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using neo4j:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
 ---
 :constraints:
-- CONSTRAINT ON ( `graph::artist`:`Graph::Artist` ) ASSERT `graph::artist`.metal_archives_key
-  IS UNIQUE
-- CONSTRAINT ON ( `graph::artist`:`Graph::Artist` ) ASSERT `graph::artist`.musicbrainz_key
-  IS UNIQUE
-- CONSTRAINT ON ( `graph::artist`:`Graph::Artist` ) ASSERT `graph::artist`.uuid IS
-  UNIQUE
-- CONSTRAINT ON ( `graph::country`:`Graph::Country` ) ASSERT `graph::country`.country
-  IS UNIQUE
-- CONSTRAINT ON ( `graph::datanode`:`Graph::DataNode` ) ASSERT `graph::datanode`.musicbrainz_key
-  IS UNIQUE
-- CONSTRAINT ON ( `graph::genre`:`Graph::Genre` ) ASSERT `graph::genre`.name IS UNIQUE
-- CONSTRAINT ON ( `graph::group`:`Graph::Group` ) ASSERT `graph::group`.metal_archives_key
-  IS UNIQUE
-- CONSTRAINT ON ( `graph::group`:`Graph::Group` ) ASSERT `graph::group`.musicbrainz_key
-  IS UNIQUE
-- CONSTRAINT ON ( `graph::group`:`Graph::Group` ) ASSERT `graph::group`.uuid IS UNIQUE
-- CONSTRAINT ON ( `graph::lyricaltheme`:`Graph::LyricalTheme` ) ASSERT `graph::lyricaltheme`.name
-  IS UNIQUE
-- CONSTRAINT ON ( `graph::release`:`Graph::Release` ) ASSERT `graph::release`.metal_archives_key
-  IS UNIQUE
-- CONSTRAINT ON ( `graph::release`:`Graph::Release` ) ASSERT `graph::release`.musicbrainz_key
-  IS UNIQUE
-- CONSTRAINT ON ( `graph::release`:`Graph::Release` ) ASSERT `graph::release`.uuid
-  IS UNIQUE
 - CONSTRAINT ON ( `neo4j::migrations::schemamigration`:`Neo4j::Migrations::SchemaMigration`
   ) ASSERT `neo4j::migrations::schemamigration`.migration_id IS UNIQUE
 - CONSTRAINT ON ( artist:Artist ) ASSERT artist.metal_archives_key IS UNIQUE
@@ -31,7 +19,6 @@
 - CONSTRAINT ON ( artist:Artist ) ASSERT artist.uuid IS UNIQUE
 - CONSTRAINT ON ( country:Country ) ASSERT country.country IS UNIQUE
 - CONSTRAINT ON ( country:Country ) ASSERT country.uuid IS UNIQUE
-- CONSTRAINT ON ( datanode:DataNode ) ASSERT datanode.uuid IS UNIQUE
 - CONSTRAINT ON ( genre:Genre ) ASSERT genre.name IS UNIQUE
 - CONSTRAINT ON ( genre:Genre ) ASSERT genre.uuid IS UNIQUE
 - CONSTRAINT ON ( group:Group ) ASSERT group.metal_archives_key IS UNIQUE
@@ -45,10 +32,7 @@
 - CONSTRAINT ON ( release:Release ) ASSERT release.metal_archives_key IS UNIQUE
 - CONSTRAINT ON ( release:Release ) ASSERT release.musicbrainz_key IS UNIQUE
 - CONSTRAINT ON ( release:Release ) ASSERT release.uuid IS UNIQUE
-- CONSTRAINT ON ( schemamigration:SchemaMigration ) ASSERT schemamigration.migration_id
-  IS UNIQUE
 - CONSTRAINT ON ( user:User ) ASSERT user.email IS UNIQUE
-- CONSTRAINT ON ( user:User ) ASSERT user.remember_token IS UNIQUE
 - CONSTRAINT ON ( user:User ) ASSERT user.reset_password_token IS UNIQUE
 - CONSTRAINT ON ( user:User ) ASSERT user.uuid IS UNIQUE
 :indexes:
