@@ -6,6 +6,8 @@
 class Genre
   include Neo4j::ActiveNode
 
+  searchkick :searchable => %i[name]
+
   ##
   # Attributes
   #

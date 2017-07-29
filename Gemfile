@@ -33,6 +33,9 @@ gem 'jquery-turbolinks'
 gem 'nprogress-rails'
 gem 'turbolinks'
 
+## Search engine ##
+gem 'searchkick'
+
 # Logging
 gem 'lograge'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

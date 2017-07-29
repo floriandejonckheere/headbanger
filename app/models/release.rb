@@ -11,6 +11,8 @@ class Release
   include Sourceable
   include Rateable
 
+  searchkick :searchable => %i[title]
+
   ##
   # Attributes
   #

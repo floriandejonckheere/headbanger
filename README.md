@@ -33,6 +33,7 @@ $ rails bower:install
 
 Make sure the following systems are configured and running before starting the server:
  - Neo4j
+ - Elasticsearch
 
 For first-time setup, run the following commands
 

@@ -6,6 +6,8 @@
 class Name
   include Neo4j::ActiveNode
 
+  searchkick :searchable => %i[name]
+
   ##
   # Attributes
   #
