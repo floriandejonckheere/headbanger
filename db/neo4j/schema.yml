@@ -14,6 +14,8 @@
 :constraints:
 - CONSTRAINT ON ( `neo4j::migrations::schemamigration`:`Neo4j::Migrations::SchemaMigration`
   ) ASSERT `neo4j::migrations::schemamigration`.migration_id IS UNIQUE
+- CONSTRAINT ON ( applicationrecord:ApplicationRecord ) ASSERT applicationrecord.uuid
+  IS UNIQUE
 - CONSTRAINT ON ( artist:Artist ) ASSERT artist.metal_archives_key IS UNIQUE
 - CONSTRAINT ON ( artist:Artist ) ASSERT artist.musicbrainz_key IS UNIQUE
 - CONSTRAINT ON ( artist:Artist ) ASSERT artist.uuid IS UNIQUE
@@ -61,3 +63,4 @@
 - '20170608081016'
 - '20170608081402'
 - '20170608081527'
+- '20170801171938'
