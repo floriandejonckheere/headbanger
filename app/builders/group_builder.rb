@@ -51,7 +51,7 @@ class GroupBuilder < DataNodeBuilder
     country = @metal_archives.country&.alpha3
 
     if country
-      @instance.country = Country.find_or_create_by :country => country
+      @instance.country = Country.find_or_create_by! :country => country
     else
       warn 'No country found'
     end
@@ -60,7 +60,7 @@ class GroupBuilder < DataNodeBuilder
     @instance.names.destroy_all
 
     primary_name = @musicbrainz.name
-    Name.create :performer => @instance, :name => primary_name, :primary => true
+    Name.create! :performer => @instance, :name => primary_name, :primary => true
 
     names = []
     (@musicbrainz.credit_names + @musicbrainz.aliases).each do |acn|
@@ -69,7 +69,7 @@ class GroupBuilder < DataNodeBuilder
 
     @metal_archives.aliases.each { |a| names << a unless a == primary_name }
 
-    names.uniq.each { |name| Name.create :performer => @instance, :name => name }
+    names.uniq.each { |name| Name.create! :performer => @instance, :name => name }
 
     # TODO: Artists
     # TODO: Lyrical themes
