@@ -26,6 +26,9 @@ gem 'redis-namespace'
 gem 'sidekiq'
 # gem 'sinatra' # For the web frontend
 
+## JSON API ##
+gem 'jsonapi-resources'
+
 ## Web frontend ##
 gem 'bower-rails'
 gem 'font-awesome-sass'
