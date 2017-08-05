@@ -1,8 +1,1 @@
-asset 'bootstrap', '4.0.0-alpha.6'
-asset 'bootstrap-social'
-asset 'fontawesome'
-
-asset 'pt-sans'
-asset 'font-roboto'
-asset 'lato'
 asset 'grandhotel-googlefont'

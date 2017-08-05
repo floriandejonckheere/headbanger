@@ -28,10 +28,6 @@ gem 'sidekiq'
 gem 'jsonapi-resources'
 gem 'jsonapi-utils'
 
-## Web frontend ##
-gem 'bower-rails'
-gem 'font-awesome-sass'
-
 ## Search engine ##
 gem 'searchkick'
 
@@ -39,15 +35,6 @@ gem 'searchkick'
 gem 'lograge'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
-# Use SCSS for stylesheets
-gem 'sass-rails'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 # gem 'sdoc', '~> 0.4.0', group: :doc
@@ -93,3 +80,4 @@ group :production do
   # Notify exceptions
   gem 'exception_notification'
 end
+
