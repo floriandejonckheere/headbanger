@@ -3,69 +3,20 @@
 # require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  root 'app#home'
+  root 'application#index'
 
   ##
-  # Authentication
+  # User resources
   #
-  devise_for :users,
-             :controllers => {
-               :omniauth_callbacks => 'authentication/omniauth_callbacks',
-               :registrations => 'authentication/registrations'
-             }
 
-  ##
-  # User pages
-  #
-  get '/discover' => 'app#discover'
-  get '/queue' => 'app#queue'
-
-  resources :users, :only => :show do
-    member do
-      post '/follow' => 'users#follow'
-      post '/unfollow' => 'users#unfollow'
-    end
-  end
-
-  resources :lists
+  jsonapi_resources :users, :only => %i[show]
+  jsonapi_resources :lists
+  # jsonapi_resource :queue
 
   ##
   # Data pages
   #
-  resources :groups, :only => :show do
-    member do
-      post '/follow' => 'groups#follow'
-      post '/unfollow' => 'groups#unfollow'
-
-      post '/queue' => 'groups#queue'
-      post '/unqueue' => 'groups#unqueue'
-
-      post '/rate' => 'groups#rate'
-      post '/unrate' => 'groups#unrate'
-    end
-  end
-
-  resources :artists, :only => :show do
-    member do
-      post '/follow' => 'artists#follow'
-      post '/unfollow' => 'artists#unfollow'
-
-      post '/queue' => 'artists#queue'
-      post '/unqueue' => 'artists#unqueue'
-
-      post '/rate' => 'artists#rate'
-      post '/unrate' => 'artists#unrate'
-    end
-  end
-
-  resources :releases, :only => :show
-
-  ##
-  # General
-  #
-  get '/feedback' => 'feedback#new'
-  post '/feedback' => 'feedback#create'
-
-  get '/tos' => 'authentication/terms#terms_of_service'
-  get '/privacy' => 'authentication/terms#privacy_policy'
+  jsonapi_resources :groups
+  jsonapi_resources :artists
+  jsonapi_resources :releases
 end
