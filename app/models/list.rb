@@ -20,11 +20,10 @@ class List < ApplicationRecord
   # Associations
   #
   has_one :in,
-          :owner,
-          :type => :has_listed,
-          :model_class => :User
+          :user,
+          :type => :has_listed
 
-  validates :owner,
+  validates :user,
             :presence => true
 
   has_many :out,

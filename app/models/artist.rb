@@ -39,6 +39,11 @@ class Artist < ApplicationRecord
            :unique => { :on => :name }
 
   has_many :out,
+           :groups,
+           :type => :member_of,
+           :unique => { :on => :metal_archives_key }
+
+  has_many :out,
            :releases,
            :type => :appears_in,
            :unique => { :on => :metal_archives_key }
