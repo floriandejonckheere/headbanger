@@ -142,9 +142,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.6)
       mime-types (>= 1.16, < 4)
-    mail_form (1.7.0)
-      actionmailer (>= 3.2, < 5.2)
-      activemodel (>= 3.2, < 5.2)
     metal_archives (2.2.0)
       countries
       faraday
@@ -355,7 +352,6 @@ DEPENDENCIES
   jsonapi-resources
   jsonapi-utils
   lograge
-  mail_form
   metal_archives
   neo4j
   omniauth-facebook
