@@ -28,6 +28,7 @@ gem 'sidekiq'
 
 ## JSON API ##
 gem 'jsonapi-resources'
+gem 'jsonapi-utils'
 
 ## Web frontend ##
 gem 'bower-rails'
