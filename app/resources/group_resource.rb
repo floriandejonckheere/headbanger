@@ -10,7 +10,6 @@ class GroupResource < ApplicationResource
              :aliases,
              :country,
              :year_formed,
-             :description,
              :status,
              :genres
 
@@ -35,7 +34,7 @@ class GroupResource < ApplicationResource
   end
 
   def country
-    @model.country&.country
+    @model.country&.display_name
   end
 
   def genres
