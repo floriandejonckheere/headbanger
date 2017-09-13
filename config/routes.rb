@@ -6,10 +6,10 @@ Rails.application.routes.draw do
   ##
   # User resources
   #
-
   jsonapi_resources :users, :only => %i[show]
   jsonapi_resources :lists
   # jsonapi_resource :queue
+  jsonapi_resources :search, :only => %i[create]
 
   ##
   # Data pages
