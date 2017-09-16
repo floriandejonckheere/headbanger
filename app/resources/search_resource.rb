@@ -8,6 +8,8 @@ class SearchResource < ApplicationResource
   #
   attributes :query, :display_name
 
+  key_type :string
+
   ##
   # Relationships
   #

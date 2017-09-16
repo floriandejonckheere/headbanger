@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class SearchController < ApplicationController
-  # POST /search
-  def create
-    # TODO: search in Genre and Release
-    results = Name.search(resource_params[:query]).map(&:performer)
+  # GET /search/:id
+  def show
+    results = Name.search(params[:id]).map(&:performer) +
+              Genre.search(params[:id]) +
+              Release.search(params[:id])
 
     @resources = SearchResource.resources_for results, context
 
