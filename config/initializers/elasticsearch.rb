@@ -3,5 +3,6 @@
 begin
   Searchkick.client.info
 rescue
-  abort 'Searchkick not running'
+  Rails.logger.error 'ElasticSearch not running'
+  abort
 end
