@@ -18,5 +18,6 @@ Rails.application.routes.draw do
     jsonapi_resources :groups
     jsonapi_resources :artists
     jsonapi_resources :releases
+    jsonapi_resources :genres
   end
 end
