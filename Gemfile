@@ -27,6 +27,7 @@ gem 'sidekiq'
 ## JSON API ##
 gem 'jsonapi-resources'
 gem 'jsonapi-utils'
+gem 'rack-cors'
 
 ## Search engine ##
 gem 'searchkick'
