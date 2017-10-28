@@ -21,6 +21,9 @@ const apiEndpoints = {
   /* Genres */
   getGenres:    { method: get,      path: '/genres' },
   getGenre:     { method: get,      path: '/genres/:id' },
+
+  /* Search */
+  search:       { method: get,      path: '/search/:query' },
 };
 
 const config = {

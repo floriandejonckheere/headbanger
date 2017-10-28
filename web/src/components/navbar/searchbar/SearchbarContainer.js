@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
 import { setFilter } from 'actions/ActionCreators'
 
-import * as Constants from 'actions/Constants'
+import Api from 'api/Api'
+
 import Searchbar from 'components/navbar/searchbar/Searchbar'
 
 function mapStateToProps(state, ownProps) {
@@ -11,6 +12,9 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
+    doSearch: function(query) {
+      dispatch(Api.search({ query }))
+    }
   }
 }
 
