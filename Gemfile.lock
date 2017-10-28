@@ -112,6 +112,8 @@ GEM
     faraday_throttler (0.0.3)
       faraday (>= 0.9.1)
     ffi (1.9.18)
+    foreman (0.84.0)
+      thor (~> 0.19.1)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashie (3.5.6)
@@ -321,6 +323,7 @@ DEPENDENCIES
   factory_girl
   factory_girl_rails
   faker
+  foreman
   jsonapi-resources
   jsonapi-utils
   lograge

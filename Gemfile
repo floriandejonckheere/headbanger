@@ -45,6 +45,11 @@ gem 'rails'
 # Use Puma as the app server
 gem 'puma'
 
+group :development do
+  # Start API server and web app
+  gem 'foreman'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
