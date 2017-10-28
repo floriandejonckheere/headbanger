@@ -9,8 +9,10 @@ import Navbar from 'components/navbar/Navbar'
 import Main from 'components/main/Main'
 
 import App from 'components/app/App'
+
 import Discover from 'components/pages/Discover'
 import Explore from 'components/pages/Explore'
+import Queue from 'components/pages/Queue'
 
 export default class AppRouter extends Component {
   render() {
@@ -25,8 +27,23 @@ export default class AppRouter extends Component {
                 <Main>
                   <Switch>
                     <Route exact path="/" component={App}>
-                      <Route exact path="/discover" component={Discover}/>
-                      <Route exact path="/explore" component={Explore}/>
+                      {/* User pages */}
+                      <Route exact path="/discover" component={Discover} />
+                      <Route exact path="/explore" component={Explore} />
+                      <Route exact path="/queue" component={Queue} />
+
+                      {/* Catalog pages */}
+                      <Route exact path="/artists">
+                        <Route exact path="/artists/:id" />
+                      </Route>
+
+                      <Route exact path="/groups">
+                        <Route exact path="/groups/:id" />
+                      </Route>
+
+                      <Route exact path="/releases">
+                        <Route exact path="/releases/:id" />
+                      </Route>
                     </Route>
                   </Switch>
                 </Main>
