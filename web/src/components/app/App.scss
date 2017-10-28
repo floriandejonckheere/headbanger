@@ -1,0 +1,10 @@
+.re-app-content {
+  position: relative;
+
+  z-index: 1;
+}
+
+/* Style anchors without href (which is valid HTML5) */
+a {
+  cursor: pointer;
+}
