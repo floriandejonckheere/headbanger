@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { setFilter } from 'actions/ActionCreators'
 
 import Api from 'api/Api'
 

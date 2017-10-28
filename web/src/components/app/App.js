@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 
 import './App.css'
 
-import Navbar from 'components/navbar/Navbar'
-import MainContainer from 'components/main/MainContainer'
-
 class App extends Component {
   render() {
     return (
