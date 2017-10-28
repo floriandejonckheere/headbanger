@@ -8,8 +8,9 @@ import store from 'store'
 import Navbar from 'components/navbar/Navbar'
 import Main from 'components/main/Main'
 
-import Home from 'components/pages/Home'
+import App from 'components/app/App'
 import Discover from 'components/pages/Discover'
+import Explore from 'components/pages/Explore'
 
 export default class AppRouter extends Component {
   render() {
@@ -23,7 +24,7 @@ export default class AppRouter extends Component {
               <div className="uk-width-1-2@l uk-width-1-2@m">
                 <Main>
                   <Switch>
-                    <Route exact path="/" component={Home}>
+                    <Route exact path="/" component={App}>
                       <Route exact path="/discover" component={Discover}/>
                       <Route exact path="/explore" component={Explore}/>
                     </Route>
