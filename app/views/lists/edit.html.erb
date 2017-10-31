@@ -1,7 +1,0 @@
-<% content_for :title do %>Edit list<% end %>
-
-<h2>Edit list '<%= @list.name %>'</h2>
-
-<p><%= link_to 'Delete', list_path(@list), :method => :delete %></p>
-
-<%= render 'form' %>
