@@ -2,7 +2,7 @@
 
 class ForceCreateIdentityProviderIndex < Neo4j::Migrations::Base
   def up
-    add_index :Identity, :provider, :force => true
+    add_index :Identity, :provider, force: true
   end
 
   def down

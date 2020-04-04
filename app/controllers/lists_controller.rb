@@ -5,13 +5,13 @@ class ListsController < ApplicationController
   def index
     @resources = List.all
 
-    jsonapi_render :json => @resources
+    jsonapi_render json: @resources
   end
 
   # GET /lists/:id
   def show
     @resource = List.find params[:id]
 
-    jsonapi_render :json => @resource
+    jsonapi_render json: @resource
   end
 end

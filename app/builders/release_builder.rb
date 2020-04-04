@@ -8,9 +8,9 @@ class ReleaseBuilder < DataNodeBuilder
   # Find or create object
   #
   def find_or_initialize
-    raise Headbanger::NoKeyError, 'No Metal Archives key specified' unless @metal_archives_key
+    raise Headbanger::NoKeyError, "No Metal Archives key specified" unless @metal_archives_key
 
-    @instance = Release.find_or_initialize_by :metal_archives_key => metal_archives_key
+    @instance = Release.find_or_initialize_by metal_archives_key: metal_archives_key
   end
 
   ##
@@ -47,10 +47,10 @@ class ReleaseBuilder < DataNodeBuilder
   private
 
   def find_musicbrainz_source
-    name = @metal_archives.title.gsub /[^a-zA-Z0-9 ]+/, '%'
+    name = @metal_archives.title.gsub(/[^a-zA-Z0-9 ]+/, "%")
 
     query = ActiveMusicbrainz::Model::ReleaseGroup
-              .where 'release_group.name ILIKE :name', :name => name
+      .where "release_group.name ILIKE :name", name: name
 
     return @musicbrainz = query.first if query.one?
 

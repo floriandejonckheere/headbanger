@@ -14,7 +14,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = ENV['MAILER_SENDER']
+  config.mailer_sender = ENV["MAILER_SENDER"]
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -26,7 +26,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/neo4j'
+  require "devise/orm/neo4j"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -252,9 +252,9 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, ENV['OAUTH_FB_ID'], ENV['OAUTH_FB_SECRET'], :scope => 'email', :info_fields => 'email,name'
-  config.omniauth :google_oauth2, ENV['OAUTH_GOOGLE_ID'], ENV['OAUTH_GOOGLE_SECRET'], :scope => 'email,profile'
-  config.omniauth :twitter, ENV['OAUTH_TWITTER_ID'], ENV['OAUTH_TWITTER_SECRET']
+  config.omniauth :facebook, ENV["OAUTH_FB_ID"], ENV["OAUTH_FB_SECRET"], scope: "email", info_fields: "email,name"
+  config.omniauth :google_oauth2, ENV["OAUTH_GOOGLE_ID"], ENV["OAUTH_GOOGLE_SECRET"], scope: "email,profile"
+  config.omniauth :twitter, ENV["OAUTH_TWITTER_ID"], ENV["OAUTH_TWITTER_SECRET"]
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

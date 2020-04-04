@@ -15,9 +15,9 @@ module Followable
     #
     has_many :in,
              :followers,
-             :type => :follows,
-             :model_class => %i[Artist Group User],
-             :unique => { :on => :uuid }
+             type: :follows,
+             model_class: %i(Artist Group User),
+             unique: { on: :uuid }
 
     ##
     # Methods

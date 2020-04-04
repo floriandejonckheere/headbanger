@@ -2,9 +2,9 @@
 
 MetalArchives.configure do |c|
   ## Application identity (required)
-  c.app_name = 'Headbanger'
+  c.app_name = "Headbanger"
   c.app_version = Headbanger::VERSION
-  c.app_contact = ENV['MAILER_SENDER'] || 'headbanger@localhost'
+  c.app_contact = ENV["MAILER_SENDER"] || "headbanger@localhost"
 
   ## Request throttling (optional, overrides defaults)
   # c.request_rate = 1
@@ -17,7 +17,7 @@ MetalArchives.configure do |c|
   # c.cache_size = 100
 
   ## Metal Archives endpoint (optional, overrides default)
-  c.endpoint = ENV['MA_ENDPOINT'] if ENV.key? 'MA_ENDPOINT'
+  c.endpoint = ENV["MA_ENDPOINT"] if ENV.key? "MA_ENDPOINT"
   Rails.logger.info "Using #{c.endpoint || c.default_endpoint} as Metal Archives endpoint"
 
   ## Custom logger (optional)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'extensions/jsonapi/utils/response/formatters'
+require "extensions/jsonapi/utils/response/formatters"
 
 class SearchController < ApplicationController
   # GET /search/:id
@@ -9,6 +9,6 @@ class SearchController < ApplicationController
                  Genre.search(params[:id]) +
                  Release.search(params[:id])
 
-    jsonapi_render :json => @resources
+    jsonapi_render json: @resources
   end
 end

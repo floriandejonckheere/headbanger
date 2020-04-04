@@ -12,8 +12,8 @@ class UserResource < ApplicationResource
   # Relationships
   #
   has_many :lists
-  has_many :followers, :class_name => 'User'
-  has_many :following, :polymorphic => true
+  has_many :followers, class_name: "User"
+  has_many :following, polymorphic: true
 
   ##
   # Filters

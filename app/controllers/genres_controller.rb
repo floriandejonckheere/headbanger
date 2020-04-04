@@ -5,13 +5,13 @@ class GenresController < ApplicationController
   def index
     @resources = Genre.all
 
-    jsonapi_render :json => @resources
+    jsonapi_render json: @resources
   end
 
   # GET /genres/:id
   def show
     @resource = Genre.find params[:id]
 
-    jsonapi_render :json => @resource
+    jsonapi_render json: @resource
   end
 end

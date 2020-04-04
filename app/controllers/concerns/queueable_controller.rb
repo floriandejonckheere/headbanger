@@ -7,13 +7,13 @@ module QueueableController
     def queue
       current_user.queued_items << resource
 
-      redirect_to request.env['HTTP_REFERER']
+      redirect_to request.env["HTTP_REFERER"]
     end
 
     def unqueue
       current_user.queued_items.delete resource
 
-      redirect_to request.env['HTTP_REFERER']
+      redirect_to request.env["HTTP_REFERER"]
     end
 
     private

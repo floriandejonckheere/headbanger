@@ -4,31 +4,31 @@
 # Generic name node
 #
 class Name < ApplicationRecord
-  searchkick :searchable => %i[name]
+  searchkick searchable: %i(name)
 
   ##
   # Attributes
   #
   property :name
-           # :index => :exact
+  # :index => :exact
 
   property :primary,
-           :type => Boolean,
-           :default => false
+           type: Boolean,
+           default: false
 
   validates :name,
-            :presence => true
+            presence: true
 
   ##
   # Associations
   #
   has_one :in,
           :performer,
-          :type => :known_as,
-          :model_class => %i[Artist Group]
+          type: :known_as,
+          model_class: %i(Artist Group)
 
   validates :performer,
-            :presence => true
+            presence: true
 
   ##
   # Methods

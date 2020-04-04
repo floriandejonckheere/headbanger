@@ -8,24 +8,24 @@ class Country < ApplicationRecord
   # Attributes
   #
   property :country,
-           :type => String
-           # :constraint => :unique
+           type: String
+  # :constraint => :unique
 
   validates :country,
-            :presence => true
+            presence: true
 
   ##
   # Associations
   #
   has_many :in,
            :groups,
-           :type => :based_in,
-           :unique => { :on => :metal_archives_key }
+           type: :based_in,
+           unique: { on: :metal_archives_key }
 
   has_many :in,
            :artists,
-           :type => :based_in,
-           :unique => { :on => :metal_archives_key }
+           type: :based_in,
+           unique: { on: :metal_archives_key }
 
   ##
   # Methods

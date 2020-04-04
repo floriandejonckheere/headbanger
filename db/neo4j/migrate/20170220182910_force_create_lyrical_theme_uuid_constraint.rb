@@ -2,7 +2,7 @@
 
 class ForceCreateLyricalThemeUuidConstraint < Neo4j::Migrations::Base
   def up
-    add_constraint :LyricalTheme, :uuid, :force => true
+    add_constraint :LyricalTheme, :uuid, force: true
   end
 
   def down

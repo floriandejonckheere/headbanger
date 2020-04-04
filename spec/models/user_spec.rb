@@ -1,27 +1,29 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe User do
   it { is_expected.to respond_to :email }
   it { is_expected.to respond_to :name }
   it { is_expected.to respond_to :display_name }
 
-  it 'is valid with attributes' do
+  it "is valid with attributes" do
     user = build :user
     expect(user).to be_valid
   end
 
-  it 'is invalid without email' do
-    user = build :user, :email => nil
+  it "is invalid without email" do
+    user = build :user, email: nil
     expect(user).not_to be_valid
   end
 
-  it 'has a fallback display name' do
+  it "uses name as fallback display name" do
     user = build :user
     expect(user.display_name).to equal(user.name)
+  end
 
-    user = build :user, :name => nil
+  it "uses email as fallback display name" do
+    user = build :user, name: nil
     expect(user.display_name).to equal(user.email)
   end
 end

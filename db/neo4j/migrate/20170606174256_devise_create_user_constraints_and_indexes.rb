@@ -2,9 +2,9 @@
 
 class DeviseCreateUserConstraintsAndIndexes < Neo4j::Migrations::Base
   def up
-    add_constraint :User, :email, :force => true
+    add_constraint :User, :email, force: true
     # add_constraint :User, :remember_token, :force => true
-    add_constraint :User, :reset_password_token, :force => true
+    add_constraint :User, :reset_password_token, force: true
     # add_constraint :User, :confirmation_token, :force => true
     # add_constraint :User, :unlock_token, :force => true
     # add_constraint :User, :authentication_token, :force => true

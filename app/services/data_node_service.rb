@@ -19,8 +19,8 @@ class DataNodeService
 
     builder.update_sources
 
-    Neo4j::ActiveBase.run_transaction do |tx|
-      builder.update_attributes
+    Neo4j::ActiveBase.run_transaction do |_tx|
+      builder.update
       builder.update_associations
 
       builder.instance.save

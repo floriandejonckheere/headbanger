@@ -17,9 +17,9 @@ module Authentication
     private
 
     def create
-      auth_params = request.env['omniauth.auth']
-      identity = Identity.where(:provider => auth_params.provider, :uid => auth_params.uid).first
-      existing_user = current_user || User.find_by(:email => auth_params.info.email)
+      auth_params = request.env["omniauth.auth"]
+      identity = Identity.where(provider: auth_params.provider, uid: auth_params.uid).first
+      existing_user = current_user || User.find_by(email: auth_params.info.email)
 
       if identity
         sign_in_with_existing_authentication identity
@@ -35,9 +35,9 @@ module Authentication
     end
 
     def create_identity_and_sign_in(auth_params, user, provider)
-      identity = Identity.create :user => user,
-                                 :provider => provider,
-                                 :uid => auth_params.uid
+      identity = Identity.create user: user,
+                                 provider: provider,
+                                 uid: auth_params.uid
 
       user.identities << identity
 
@@ -46,9 +46,9 @@ module Authentication
 
     def create_user_and_identity_and_sign_in(auth_params, provider)
       attributes = {
-        :name => auth_params.info.first_name || auth_params.info.name || auth_params.info.email,
-        :email => auth_params.info.email,
-        :password => Devise.friendly_token
+        name: auth_params.info.first_name || auth_params.info.name || auth_params.info.email,
+        email: auth_params.info.email,
+        password: Devise.friendly_token,
       }
 
       user = User.create attributes

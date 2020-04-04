@@ -5,13 +5,13 @@ class UsersController < ApplicationController
   def index
     @resources = User.all
 
-    jsonapi_render :json => @resources
+    jsonapi_render json: @resources
   end
 
   # GET /users/:id
   def show
     @resource = User.find params[:id]
 
-    jsonapi_render :json => @resource
+    jsonapi_render json: @resource
   end
 end

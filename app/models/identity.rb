@@ -10,7 +10,7 @@ class Identity < ApplicationRecord
   # Attributes
   #
   property :provider
-           # :index => :exact
+  # :index => :exact
 
   property :uid
 
@@ -19,10 +19,10 @@ class Identity < ApplicationRecord
   #
   has_one :in,
           :user,
-          :type => :identifies_with
+          type: :identifies_with
 
   validates :user,
-            :presence => true
+            presence: true
 
   ##
   # Methods

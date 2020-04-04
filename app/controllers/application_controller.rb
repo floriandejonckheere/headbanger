@@ -3,8 +3,8 @@
 class ApplicationController < ActionController::API
   include JSONAPI::Utils
 
-  rescue_from JSONAPI::Exceptions::Error, :with => :jsonapi_render_errors
-  rescue_from ActiveRecord::RecordNotFound, :with => :jsonapi_render_not_found
+  rescue_from JSONAPI::Exceptions::Error, with: :jsonapi_render_errors
+  rescue_from ActiveRecord::RecordNotFound, with: :jsonapi_render_not_found
 
   ##
   # API url for link generation

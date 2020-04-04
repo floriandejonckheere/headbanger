@@ -2,7 +2,7 @@
 
 class ForceCreateCountryUuidConstraint < Neo4j::Migrations::Base
   def up
-    add_constraint :Country, :uuid, :force => true
+    add_constraint :Country, :uuid, force: true
   end
 
   def down

@@ -8,9 +8,9 @@ class ArtistBuilder < DataNodeBuilder
   # Find or create object
   #
   def find_or_initialize
-    raise Headbanger::NoKeyError, 'No Metal Archives key specified' unless @metal_archives_key
+    raise Headbanger::NoKeyError, "No Metal Archives key specified" unless @metal_archives_key
 
-    @instance = Artist.find_or_initialize_by :metal_archives_key => metal_archives_key
+    @instance = Artist.find_or_initialize_by metal_archives_key: metal_archives_key
   end
 
   ##
@@ -60,7 +60,7 @@ class ArtistBuilder < DataNodeBuilder
     @instance.names.destroy_all
 
     primary_name = @musicbrainz.name
-    Name.create :performer => @instance, :name => primary_name, :primary => true
+    Name.create performer: @instance, name: primary_name, primary: true
 
     names = []
     (@musicbrainz.credit_names + @musicbrainz.aliases).each do |acn|
@@ -69,7 +69,7 @@ class ArtistBuilder < DataNodeBuilder
 
     @metal_archives.aliases.each { |a| names << a unless a == primary_name }
 
-    names.uniq.each { |name| Name.create :performer => @instance, :name => name }
+    names.uniq.each { |name| Name.create performer: @instance, name: name }
 
     # TODO: Releases
   end
@@ -78,37 +78,37 @@ class ArtistBuilder < DataNodeBuilder
 
   def find_musicbrainz_source
     ([@metal_archives.name] + @metal_archives.aliases).each do |name|
-      name.gsub!(/[^a-zA-Z0-9 ]+/, '%')
+      name.gsub!(/[^a-zA-Z0-9 ]+/, "%")
 
       query = ActiveMusicbrainz::Model::Artist
-                .joins(:area)
-                .joins(:type)
-                .where 'artist.name ILIKE :name', :name => name
+        .joins(:area)
+        .joins(:type)
+        .where "artist.name ILIKE :name", name: name
 
       if query.one?
         @musicbrainz = query.first
-        raise Headbanger::IncorrectTypeError, 'Instance must be a person' unless @musicbrainz.type.name == 'Person'
+        raise Headbanger::IncorrectTypeError, "Instance must be a person" unless @musicbrainz.type.name == "Person"
 
         break
       end
 
-      query = query.where 'area.name ILIKE :name', :name => @metal_archives.country.name
+      query = query.where "area.name ILIKE :name", name: @metal_archives.country.name
 
       if query.one?
         @musicbrainz = query.first
-        raise Headbanger::IncorrectTypeError, 'Instance must be a person' unless @musicbrainz.type.name == 'Person'
+        raise Headbanger::IncorrectTypeError, "Instance must be a person" unless @musicbrainz.type.name == "Person"
 
         break
       end
 
       query.each do |row|
-        next if row.type.name == 'Person'
+        next if row.type.name == "Person"
 
         metal_archives_key = nil
 
         row.urls.each do |url|
           if url.url.match?(%r{(http:\/\/)?(www.)?metal-archives.com})
-            metal_archives_key = url.url.split('/').last
+            metal_archives_key = url.url.split("/").last
             break
           end
         end

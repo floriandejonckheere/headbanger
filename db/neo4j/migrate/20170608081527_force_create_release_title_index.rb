@@ -2,7 +2,7 @@
 
 class ForceCreateReleaseTitleIndex < Neo4j::Migrations::Base
   def up
-    add_index :Release, :title, :force => true
+    add_index :Release, :title, force: true
   end
 
   def down

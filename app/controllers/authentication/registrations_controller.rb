@@ -14,10 +14,11 @@ module Authentication
     def create
       super do |user|
         return unless user.persisted?
+
         # Add 'email' identity
-        identity = Identity.create :user => user,
-                                   :provider => 'email',
-                                   :uid => user.id
+        identity = Identity.create user: user,
+                                   provider: "email",
+                                   uid: user.id
 
         user.identities << identity
       end

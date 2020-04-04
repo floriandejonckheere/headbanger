@@ -1,34 +1,77 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
 AllCops:
   Exclude:
+    - tmp/**/*
+    - vendor/**/*
     - db/schema.rb
-    - node_modules/**/*
+  TargetRubyVersion: 2.7
 
-Documentation:
-  Enabled: false
-
-Metrics/AbcSize:
-  Max: 40
-
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
-  Exclude:
-    - db/**/*.rb
 
-Metrics/MethodLength:
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Lint/AssignmentInCondition:
+  AllowSafeAssignment: true
+
+Lint/SafeNavigationWithEmpty:
   Enabled: false
 
-Metrics/BlockLength:
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Rails:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+  AllowInnerSlashes: false
+
+Style/Documentation:
   Enabled: false
 
-Rails/HasAndBelongsToMany:
-  Enabled: False
-
-Style/HashSyntax:
-  EnforcedStyle: hash_rockets
-
-Style/NestedParenthesizedCalls:
+Style/SymbolArray:
   Enabled: false
 
-Style/BlockDelimiters:
-  Exclude:
-    - config/routes.rb
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    "%i": "()"
+    "%I": "()"
+    "%r": "()"
+    "%w": "()"
+    "%W": "()"

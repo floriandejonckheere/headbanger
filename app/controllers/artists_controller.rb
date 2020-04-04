@@ -5,13 +5,13 @@ class ArtistsController < ApplicationController
   def index
     @resources = Artist.all
 
-    jsonapi_render :json => @resources
+    jsonapi_render json: @resources
   end
 
   # GET /artists/:id
   def show
     @resource = Artist.find params[:id]
 
-    jsonapi_render :json => @resource
+    jsonapi_render json: @resource
   end
 end

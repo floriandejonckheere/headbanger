@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe Artist do
   it { is_expected.to respond_to :gender }
@@ -12,7 +12,7 @@ describe Artist do
   it { is_expected.to respond_to :names }
   it { is_expected.to respond_to :releases }
 
-  it 'is valid with attributes' do
+  it "is valid with attributes" do
     artist = build :artist
 
     expect(artist).to be_valid

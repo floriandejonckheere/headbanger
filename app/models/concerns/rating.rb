@@ -15,9 +15,9 @@ module Rating
     #
     has_many :out,
              :rated,
-             :type => :rates,
-             :model_class => %i[Artist Group Release],
-             :unique => { :on => :uuid }
+             type: :rates,
+             model_class: %i(Artist Group Release),
+             unique: { on: :uuid }
 
     ##
     # Methods

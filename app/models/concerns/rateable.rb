@@ -15,9 +15,9 @@ module Rateable
     #
     has_many :in,
              :raters,
-             :type => :rates,
-             :model_class => :User,
-             :unique => { :on => :uuid }
+             type: :rates,
+             model_class: :User,
+             unique: { on: :uuid }
 
     ##
     # Methods

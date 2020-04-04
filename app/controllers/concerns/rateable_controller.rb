@@ -27,7 +27,7 @@ module RateableController
         @url = params[:redirect]
       else
         @url = request.env["HTTP_REFERER"]
-        @url ||= url_for :controller => 'app', :action => 'home'
+        @url ||= url_for controller: "app", action: "home"
       end
     end
   end

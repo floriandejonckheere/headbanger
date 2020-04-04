@@ -4,37 +4,37 @@
 # A music genre
 #
 class Genre < ApplicationRecord
-  searchkick :searchable => %i[name]
+  searchkick searchable: %i(name)
 
   ##
   # Attributes
   #
   property :name
-           # :constraint => :unique
+  # :constraint => :unique
 
   validates :name,
-            :presence => true
+            presence: true
 
   ##
   # Associations
   #
   has_many :in,
            :groups,
-           :type => :sings_about,
-           :unique => { :on => :metal_archives_key }
+           type: :sings_about,
+           unique: { on: :metal_archives_key }
 
   has_many :out,
            :subgenres,
-           :type => :related_to,
-           :model_class => :Genre,
-           :dependent => :delete_orphans, # No callbacks are run
-           :unique => { :on => :name }
+           type: :related_to,
+           model_class: :Genre,
+           dependent: :delete_orphans, # No callbacks are run
+           unique: { on: :name }
 
   has_many :in,
            :supergenres,
-           :type => :related_to,
-           :model_class => :Genre,
-           :unique => { :on => :name }
+           type: :related_to,
+           model_class: :Genre,
+           unique: { on: :name }
 
   ##
   # Methods

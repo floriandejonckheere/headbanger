@@ -2,7 +2,7 @@
 
 class ForceCreateListUuidConstraint < Neo4j::Migrations::Base
   def up
-    add_constraint :List, :uuid, :force => true
+    add_constraint :List, :uuid, force: true
   end
 
   def down

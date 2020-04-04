@@ -2,7 +2,7 @@
 
 class ForceCreateArtistUuidConstraint < Neo4j::Migrations::Base
   def up
-    add_constraint :Artist, :uuid, :force => true
+    add_constraint :Artist, :uuid, force: true
   end
 
   def down

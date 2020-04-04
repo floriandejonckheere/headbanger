@@ -5,13 +5,13 @@ class GroupsController < ApplicationController
   def index
     @resources = Group.all
 
-    jsonapi_render :json => @resources
+    jsonapi_render json: @resources
   end
 
   # GET /groups/:id
   def show
     @resource = Group.find params[:id]
 
-    jsonapi_render :json => @resource
+    jsonapi_render json: @resource
   end
 end

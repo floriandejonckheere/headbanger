@@ -8,29 +8,29 @@ class List < ApplicationRecord
   # Attributes
   #
   property :name,
-           :type => String
+           type: String
 
   validates :name,
-            :presence => true
+            presence: true
 
   property :description,
-           :type => String
+           type: String
 
   ##
   # Associations
   #
   has_one :in,
           :user,
-          :type => :has_listed
+          type: :has_listed
 
   validates :user,
-            :presence => true
+            presence: true
 
   has_many :out,
            :items,
-           :type => :includes,
-           :model_class => %i[Artist Group Release],
-           :unique => { :on => :uuid }
+           type: :includes,
+           model_class: %i(Artist Group Release),
+           unique: { on: :uuid }
 
   ##
   # Methods

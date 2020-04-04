@@ -26,11 +26,11 @@ class GroupResource < ApplicationResource
   # Methods
   #
   def name
-    @model.names.find_by(:primary => true).name
+    @model.names.find_by(primary: true).name
   end
 
   def aliases
-    @model.names.where(:primary => false).pluck :name
+    @model.names.where(primary: false).pluck :name
   end
 
   def country

@@ -2,7 +2,7 @@
 
 class ForceCreateIdentityUuidConstraint < Neo4j::Migrations::Base
   def up
-    add_constraint :Identity, :uuid, :force => true
+    add_constraint :Identity, :uuid, force: true
   end
 
   def down

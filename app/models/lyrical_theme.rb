@@ -8,18 +8,18 @@ class LyricalTheme < ApplicationRecord
   # Attributes
   #
   property :name
-           # :constraint => :unique
+  # :constraint => :unique
 
   validates :name,
-            :presence => true
+            presence: true
 
   ##
   # Associations
   #
   has_many :in,
            :groups,
-           :type => :sings_about,
-           :unique => { :on => :metal_archives_key }
+           type: :sings_about,
+           unique: { on: :metal_archives_key }
 
   ##
   # Methods

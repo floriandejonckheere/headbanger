@@ -2,7 +2,7 @@
 
 begin
   Searchkick.client.info
-rescue
-  Rails.logger.error 'ElasticSearch not running'
+rescue StandardError
+  Rails.logger.error "ElasticSearch not running"
   abort
 end

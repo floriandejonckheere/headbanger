@@ -11,7 +11,7 @@ class ListResource < ApplicationResource
   #
   has_one :user
 
-  has_many :items, :polymorphic => true
+  has_many :items, polymorphic: true
 
   ##
   # Filters

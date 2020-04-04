@@ -2,7 +2,7 @@
 
 module Authentication
   class TermsController < ApplicationController
-    layout 'session'
+    layout "session"
 
     ##
     # Terms of Service

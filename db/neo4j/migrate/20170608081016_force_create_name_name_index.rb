@@ -2,7 +2,7 @@
 
 class ForceCreateNameNameIndex < Neo4j::Migrations::Base
   def up
-    add_index :Name, :name, :force => true
+    add_index :Name, :name, force: true
   end
 
   def down

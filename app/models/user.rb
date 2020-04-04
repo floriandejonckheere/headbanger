@@ -19,19 +19,19 @@ class User < ApplicationRecord
   #
 
   property :created_at,
-           :type => DateTime
+           type: DateTime
 
   property :updated_at,
-           :type => DateTime
+           type: DateTime
 
   ## Database authenticatable
   property :email,
-           :type => String,
-           :default => ''
-           # :constraint => :unique
+           type: String,
+           default: ""
+  # :constraint => :unique
 
   validates :email,
-            :presence => true
+            presence: true
 
   property :encrypted_password
 
@@ -40,30 +40,30 @@ class User < ApplicationRecord
   ## Recoverable
   property :reset_password_token
   property :reset_password_sent_at,
-           :type => DateTime
+           type: DateTime
 
   ## Rememberable
   # property :remember_created_at, :type => DateTime
 
   ## Trackable
   property :sign_in_count,
-           :type => Integer,
-           :default => 0
+           type: Integer,
+           default: 0
 
   validates :sign_in_count,
-            :presence => true
+            presence: true
 
   property :current_sign_in_at,
-           :type => DateTime
+           type: DateTime
 
   property :last_sign_in_at,
-           :type => DateTime
+           type: DateTime
 
   property :current_sign_in_ip,
-           :type => String
+           type: String
 
   property :last_sign_in_ip,
-           :type => String
+           type: String
 
   ## Confirmable
   # property :confirmation_token
@@ -87,7 +87,7 @@ class User < ApplicationRecord
          :recoverable,
          :trackable,
          :validatable,
-         :omniauthable, :omniauth_providers => %i[facebook google_oauth2 twitter]
+         :omniauthable, omniauth_providers: %i(facebook google_oauth2 twitter)
 
   ##
   # Attributes
@@ -99,21 +99,21 @@ class User < ApplicationRecord
   #
   has_many :out,
            :identities,
-           :type => :identifies_with,
-           :dependent => :delete, # No callbacks are run
-           :unique => { :on => %i[provider uid] }
+           type: :identifies_with,
+           dependent: :delete, # No callbacks are run
+           unique: { on: %i(provider uid) }
 
   has_many :out,
            :lists,
-           :type => :has_listed,
-           :dependent => :delete, # No callbacks are run
-           :unique => { :on => :uuid }
+           type: :has_listed,
+           dependent: :delete, # No callbacks are run
+           unique: { on: :uuid }
 
   has_many :out,
            :queued_items,
-           :type => :has_queued,
-           :model_class => %i[Artist Group Release],
-           :unique => { :on => :uuid }
+           type: :has_queued,
+           model_class: %i(Artist Group Release),
+           unique: { on: :uuid }
 
   ##
   # Methods

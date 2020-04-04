@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ForceCreateApplicationRecordUuidConstraint < Neo4j::Migrations::Base
   def up
     add_constraint :ApplicationRecord, :uuid, force: true

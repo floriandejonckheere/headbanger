@@ -11,8 +11,8 @@ class GenreResource < ApplicationResource
   ##
   # Relationships
   #
-  has_many :subgenres, :class_name => 'Genre'
-  has_many :supergenres, :class_name => 'Genre'
+  has_many :subgenres, class_name: "Genre"
+  has_many :supergenres, class_name: "Genre"
 
   ##
   # Filters

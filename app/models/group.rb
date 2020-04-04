@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'converters/metal_archives/nil_date_converter'
+require "converters/metal_archives/nil_date_converter"
 
 ##
 # A group of performers
@@ -14,50 +14,50 @@ class Group < ApplicationRecord
   # Properties
   #
   property :year_formed,
-           :type => MetalArchives::NilDate
+           type: MetalArchives::NilDate
 
   property :description
 
-  enum :status => %i[active split_up on_hold changed_name disputed unknown]
+  enum status: { active: 0, split_up: 1, on_hold: 2, changed_name: 3, disputed: 4, unknown: 5 }
 
   ##
   # Associations
   #
   has_many :out,
            :names,
-           :type => :known_as,
-           :dependent => :delete, # No callbacks are run
-           :unique => { :on => :name }
+           type: :known_as,
+           dependent: :delete, # No callbacks are run
+           unique: { on: :name }
 
   has_one :out,
           :country,
-          :type => :based_in
+          type: :based_in
 
   has_many :in,
            :artists,
-           :type => :member_of,
-           :unique => { :on => :metal_archives_key }
+           type: :member_of,
+           unique: { on: :metal_archives_key }
 
   has_many :out,
            :lyrical_themes,
-           :type => :sings_about,
-           :dependent => :delete_orphans, # No callbacks are run
-           :unique => { :on => :metal_archives_key }
+           type: :sings_about,
+           dependent: :delete_orphans, # No callbacks are run
+           unique: { on: :metal_archives_key }
 
   has_many :out,
            :genres,
-           :type => :plays_genre,
-           :unique => { :on => :name }
+           type: :plays_genre,
+           unique: { on: :name }
 
   has_many :out,
            :releases,
-           :type => :has_released,
-           :unique => { :on => :metal_archives_key }
+           type: :has_released,
+           unique: { on: :metal_archives_key }
 
   ##
   # Methods
   #
   def display_name
-    names.find_by(:primary => true).name
+    names.find_by(primary: true).name
   end
 end

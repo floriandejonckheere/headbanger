@@ -13,20 +13,20 @@ module Identifiable
     # Attributes
     #
     property :musicbrainz_key,
-             :type => String
-             # :constraint => :unique
+             type: String
+    # :constraint => :unique
 
     property :metal_archives_key,
-             :type => String
-             # :constraint => :unique
+             type: String
+    # :constraint => :unique
 
     ##
     # Associations
     #
     has_many :in,
              :lists,
-             :type => :includes,
-             :unique => { :on => :uuid }
+             type: :includes,
+             unique: { on: :uuid }
 
     ##
     # Methods

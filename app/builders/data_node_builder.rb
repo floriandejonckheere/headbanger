@@ -43,7 +43,7 @@ class DataNodeBuilder
     "[#{self.class}] [#{metal_archives_key}] #{msg}"
   end
 
-  %i[debug warn info error].each do |level|
+  %i(debug warn info error).each do |level|
     define_method(level.to_s) { |msg| logger.send level, format(msg) }
   end
 end
