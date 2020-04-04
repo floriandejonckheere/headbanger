@@ -17,14 +17,8 @@ while true; do
     sleep ${N}
 done
 
-# Correct permissions
-chown -R headbanger:headbanger /app/
-
 # Remove stale lock files
 rm -f /app/tmp/pids/server.pid
-
-# Run as regular user
-su - headbanger
 
 cd /app
 

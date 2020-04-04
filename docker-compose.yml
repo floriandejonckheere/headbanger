@@ -20,6 +20,7 @@ services:
     env_file:
       - headbanger.env
     restart: always
+
   neo4j:
     image: neo4j:3.0
     ports:
@@ -29,8 +30,10 @@ services:
     env_file:
       - neo4j.env
     restart: always
+
   sidekiq:
     build: .
+    command: bundle exec sidekiq
     volumes:
       - /var/run/postgresql/:/var/run/postgresql/
     depends_on:
@@ -40,7 +43,7 @@ services:
     env_file:
       - headbanger.env
     restart: always
-    command: bundle exec sidekiq
+
   redis:
     image: redis
     volumes:
@@ -48,7 +51,7 @@ services:
     restart: always
 
 volumes:
-  public: {}
-  sockets: {}
-  redis: {}
-  neo4j: {}
+  public:
+  sockets:
+  redis:
+  neo4j:
