@@ -64,9 +64,6 @@ GEM
       money (~> 6.9)
       sixarm_ruby_unaccent (~> 1.1)
       unicode_utils (~> 1.4)
-    debase (0.2.1)
-      debase-ruby_core_source
-    debase-ruby_core_source (0.9.9)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -317,7 +314,6 @@ DEPENDENCIES
   activerecord-nulldb-adapter!
   byebug
   countries
-  debase (~> 0.2.1)
   devise
   devise-neo4j
   exception_notification
@@ -346,7 +342,7 @@ DEPENDENCIES
   sqlite3
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.7.0p0
 
 BUNDLED WITH
    1.15.3

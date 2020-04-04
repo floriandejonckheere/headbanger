@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '>= 2.3.4'
+ruby '2.7.0'
 
 ## User management ##
 gem 'devise'
@@ -58,7 +58,7 @@ group :development, :test do
   gem 'sqlite3'
 
   # Debugger
-  gem 'debase', '~> 0.2.1'
+  # gem 'debase', '~> 0.2.1'
 
   # RuboCop
   gem 'rubocop'
