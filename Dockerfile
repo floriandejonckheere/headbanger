@@ -29,7 +29,7 @@ ADD Gemfile.lock $APP_HOME/
 RUN bundle install
 
 # Add application
-ADD . $APP_HOME
+ADD . $APP_HOME/
 
 RUN mkdir -p $APP_HOME/tmp/pids/
 

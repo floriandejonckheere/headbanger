@@ -1,8 +1,12 @@
+Dockerfile
+.dockerignore
+
 tmp
 log
 db/*.sqlite3
 .git
 vendor
 web
+vendor
 
 *.env
