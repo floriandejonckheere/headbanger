@@ -4,8 +4,9 @@ services:
   app:
     build: .
     ports:
-      - "127.0.0.1:8080:8080"
+      - "3000:3000"
     volumes:
+      - .:/app/
       - public:/app/public
       - /var/run/postgresql/:/var/run/postgresql/
       - sockets:/app/tmp/sockets/
@@ -19,6 +20,12 @@ services:
       - redis
     env_file:
       - headbanger.env
+    restart: always
+
+  web:
+    build: web
+    ports:
+      - "8080:8080"
     restart: always
 
   neo4j:
