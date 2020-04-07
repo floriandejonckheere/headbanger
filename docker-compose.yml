@@ -7,9 +7,6 @@ services:
       - "3000:3000"
     volumes:
       - .:/app/
-      - public:/app/public
-      - /var/run/postgresql/:/var/run/postgresql/
-      - sockets:/app/tmp/sockets/
     depends_on:
       - neo4j
       - sidekiq
@@ -29,7 +26,7 @@ services:
     restart: always
 
   neo4j:
-    image: neo4j:3.0
+    image: neo4j:4.0
     ports:
       - "7474"
     volumes:
@@ -42,7 +39,7 @@ services:
     build: .
     command: bundle exec sidekiq
     volumes:
-      - /var/run/postgresql/:/var/run/postgresql/
+      - .:/app/
     depends_on:
       - redis
     links:
