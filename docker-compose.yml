@@ -7,6 +7,7 @@ services:
       - "3000:3000"
     volumes:
       - .:/app/
+      - ./logs/app/:/app/log/
     depends_on:
       - neo4j
       - sidekiq
@@ -19,20 +20,15 @@ services:
       - headbanger.env
     restart: always
 
-  web:
-    build: web
-    ports:
-      - "8080:8080"
-    restart: always
-
   neo4j:
     image: neo4j:4.0
     ports:
-      - "7474"
+      - "7474:7474"
     volumes:
-      - neo4j:/var/lib/neo4j/data
-    env_file:
-      - neo4j.env
+      - neo4j:/data/
+      - ./logs/neo4j/:/logs/
+    environment:
+      NEO4J_AUTH: neo4j/password
     restart: always
 
   sidekiq:
@@ -49,7 +45,7 @@ services:
     restart: always
 
   redis:
-    image: redis
+    image: redis:alpine
     volumes:
       - redis:/data
     restart: always
