@@ -1,17 +1,3 @@
-GIT
-  remote: https://github.com/floriandejonckheere/active_musicbrainz.git
-  revision: 75e333de9e50b0205ed4475ac839f2242ad4c1bc
-  specs:
-    active_musicbrainz (0.3.4)
-      activerecord
-
-GIT
-  remote: https://github.com/nulldb/nulldb.git
-  revision: a3c63447345c5dab26864af55930e1cbbee066d9
-  specs:
-    activerecord-nulldb-adapter (0.4.0)
-      activerecord (>= 2.0.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -70,89 +56,22 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2)
-    ast (2.4.0)
-    bcrypt (3.1.13)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.1)
     concurrent-ruby (1.1.6)
-    connection_pool (2.2.2)
-    countries (3.0.1)
-      i18n_data (~> 0.10.0)
-      sixarm_ruby_unaccent (~> 1.1)
-      unicode_utils (~> 1.4)
     crass (1.0.6)
-    devise (4.7.1)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
-    devise-neo4j (2.1.1)
-      bcrypt (>= 3.0)
-      devise (>= 3.5.2)
-      neo4j (>= 3.0.0)
-      orm_adapter (~> 0.5.0)
-      railties (>= 4.2)
-      warden (>= 1.2.1)
-    diff-lcs (1.3)
-    elasticsearch (7.4.0)
-      elasticsearch-api (= 7.4.0)
-      elasticsearch-transport (= 7.4.0)
-    elasticsearch-api (7.4.0)
-      multi_json
-    elasticsearch-transport (7.4.0)
-      faraday
-      multi_json
     erubi (1.9.0)
-    ethon (0.12.0)
-      ffi (>= 1.3.0)
-    exception_notification (4.4.0)
-      actionmailer (>= 4.0, < 7)
-      activesupport (>= 4.0, < 7)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
-    faker (2.11.0)
-      i18n (>= 1.6, < 2)
-    faraday (1.0.1)
-      multipart-post (>= 1.2, < 3)
-    faraday_middleware (1.0.0)
-      faraday (~> 1.0)
-    faraday_middleware-multi_json (0.0.6)
-      faraday_middleware
-      multi_json
-    faraday_throttler (0.0.3)
-      faraday (>= 0.9.1)
     ffi (1.12.2)
-    foreman (0.87.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    hashie (4.1.0)
-    httpclient (2.8.3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
-    i18n_data (0.10.0)
-    jaro_winkler (1.5.4)
-    json (2.3.0)
-    jsonapi-resources (0.9.0)
-      activerecord (>= 4.1)
-      concurrent-ruby
-      railties (>= 4.1)
-    jsonapi-utils (0.7.2)
-      jsonapi-resources (= 0.9.0)
-    jwt (2.2.1)
-    listen (3.2.1)
-      rb-fsevent (~> 0.10, >= 0.10.3)
-      rb-inotify (~> 0.9, >= 0.9.10)
-    lograge (0.11.2)
-      actionpack (>= 4)
-      activesupport (>= 4)
-      railties (>= 4)
-      request_store (~> 1.0)
+    listen (3.1.5)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -160,77 +79,21 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
-    metal_archives (2.2.0)
-      countries
-      faraday
-      faraday_throttler
-      nokogiri
     method_source (1.0.0)
     mimemagic (0.3.4)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
     msgpack (1.3.3)
-    multi_json (1.14.1)
-    multi_xml (0.6.0)
-    multipart-post (2.1.1)
-    neo4j (9.6.1)
-      activemodel (>= 4.0)
-      activesupport (>= 4.0)
-      i18n (!= 1.3.0)
-      neo4j-core (>= 9.0.0)
-      orm_adapter (~> 0.5.0)
-    neo4j-core (9.0.0)
-      activesupport (>= 4.0)
-      faraday (>= 0.9.0)
-      faraday_middleware (>= 0.10.0)
-      faraday_middleware-multi_json
-      httpclient
-      json
-      multi_json
-      net_tcp_client (>= 2.0.1)
-      typhoeus (>= 1.1.2)
-    net_tcp_client (2.2.0)
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
-    oauth (0.5.4)
-    oauth2 (1.4.4)
-      faraday (>= 0.8, < 2.0)
-      jwt (>= 1.0, < 3.0)
-      multi_json (~> 1.3)
-      multi_xml (~> 0.5)
-      rack (>= 1.2, < 3)
-    omniauth (1.9.1)
-      hashie (>= 3.4.6)
-      rack (>= 1.6.2, < 3)
-    omniauth-facebook (6.0.0)
-      omniauth-oauth2 (~> 1.2)
-    omniauth-google-oauth2 (0.8.0)
-      jwt (>= 2.0)
-      omniauth (>= 1.1.1)
-      omniauth-oauth2 (>= 1.6)
-    omniauth-oauth (1.1.0)
-      oauth
-      omniauth (~> 1.0)
-    omniauth-oauth2 (1.6.0)
-      oauth2 (~> 1.1)
-      omniauth (~> 1.9)
-    omniauth-twitter (1.4.0)
-      omniauth-oauth (~> 1.1)
-      rack
-    orm_adapter (0.5.0)
-    parallel (1.19.1)
-    parser (2.7.1.0)
-      ast (~> 2.4.0)
     pg (1.2.3)
     puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-protection (2.0.8.1)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.2.2)
@@ -259,68 +122,15 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
-    rainbow (3.0.0)
     rake (13.0.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.1.3)
-    redis-namespace (1.7.0)
-      redis (>= 3.0.4)
-    request_store (1.5.0)
-      rack (>= 1.4)
-    responders (3.0.0)
-      actionpack (>= 5.0)
-      railties (>= 5.0)
-    rexml (3.2.4)
-    rspec (3.9.0)
-      rspec-core (~> 3.9.0)
-      rspec-expectations (~> 3.9.0)
-      rspec-mocks (~> 3.9.0)
-    rspec-core (3.9.1)
-      rspec-support (~> 3.9.1)
-    rspec-expectations (3.9.1)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.9.0)
-    rspec-mocks (3.9.1)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (~> 3.9.0)
-    rspec-rails (4.0.0)
-      actionpack (>= 4.2)
-      activesupport (>= 4.2)
-      railties (>= 4.2)
-      rspec-core (~> 3.9)
-      rspec-expectations (~> 3.9)
-      rspec-mocks (~> 3.9)
-      rspec-support (~> 3.9)
-    rspec-support (3.9.2)
-    rubocop (0.81.0)
-      jaro_winkler (~> 1.5.1)
-      parallel (~> 1.10)
-      parser (>= 2.7.0.1)
-      rainbow (>= 2.2.2, < 4.0)
-      rexml
-      ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-performance (1.5.2)
-      rubocop (>= 0.71.0)
-    rubocop-rails (2.5.1)
-      activesupport
-      rack (>= 1.1)
-      rubocop (>= 0.72.0)
-    rubocop-rspec (1.38.1)
-      rubocop (>= 0.68.1)
-    ruby-progressbar (1.10.1)
-    searchkick (4.3.0)
-      activemodel (>= 5)
-      elasticsearch (>= 6)
-      hashie
-    sidekiq (6.0.6)
-      connection_pool (>= 2.2.2)
-      rack (~> 2.0)
-      rack-protection (>= 2.0.0)
-      redis (>= 4.1.0)
-    sixarm_ruby_unaccent (1.2.0)
+    ruby_dep (1.5.0)
+    spring (2.1.0)
+    spring-watcher-listen (2.0.1)
+      listen (>= 2.7, < 4.0)
+      spring (>= 1.2, < 3.0)
     sprockets (4.0.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -330,14 +140,8 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.0.1)
     thread_safe (0.3.6)
-    typhoeus (1.3.1)
-      ethon (>= 0.9.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
-    unicode-display_width (1.7.0)
-    unicode_utils (1.4.0)
-    warden (1.2.8)
-      rack (>= 2.0.6)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -347,40 +151,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_musicbrainz!
-  activerecord-nulldb-adapter!
-  bootsnap (>= 1.1.0)
+  bootsnap (>= 1.4.2)
   byebug
-  countries
-  devise
-  devise-neo4j
-  exception_notification
-  factory_girl
-  factory_girl_rails
-  faker
-  foreman
-  jsonapi-resources
-  jsonapi-utils
-  listen
-  lograge
-  metal_archives
-  neo4j
-  omniauth-facebook
-  omniauth-google-oauth2
-  omniauth-twitter
-  pg
-  puma
+  listen (>= 3.0.5, < 3.2)
+  pg (>= 0.18, < 2.0)
+  puma (~> 4.1)
   rack-cors
-  rails (~> 6.0)
-  redis-namespace
-  rspec
-  rspec-rails
-  rubocop
-  rubocop-performance
-  rubocop-rails
-  rubocop-rspec
-  searchkick
-  sidekiq
+  rails (~> 6.0.2, >= 6.0.2.2)
+  spring
+  spring-watcher-listen (~> 2.0.0)
+  tzinfo-data
 
 RUBY VERSION
    ruby 2.7.1p83

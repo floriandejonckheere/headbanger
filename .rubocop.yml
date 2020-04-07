@@ -5,6 +5,7 @@ require:
 
 AllCops:
   Exclude:
+    - bin/bundle
     - tmp/**/*
     - vendor/**/*
     - db/schema.rb

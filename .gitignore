@@ -61,3 +61,6 @@ Gemfile.lock
 ## Temp files
 .byebug_history
 html/
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
