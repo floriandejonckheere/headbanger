@@ -1,6 +1,33 @@
-version: '2'
+version: "3.7"
 
 services:
+  postgres:
+    image: postgres:12
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis:/data
+    restart: always
+
+  neo4j:
+    image: neo4j:4.0
+    ports:
+      - "7474:7474"
+    volumes:
+      - neo4j:/data/
+      - ./logs/neo4j/:/logs/
+    environment:
+      NEO4J_AUTH: neo4j/password
+    restart: always
+
   app:
     build: .
     ports:
@@ -30,17 +57,6 @@ services:
       - app
     restart: always
 
-  neo4j:
-    image: neo4j:4.0
-    ports:
-      - "7474:7474"
-    volumes:
-      - neo4j:/data/
-      - ./logs/neo4j/:/logs/
-    environment:
-      NEO4J_AUTH: neo4j/password
-    restart: always
-
   sidekiq:
     build: .
     command: bundle exec sidekiq
@@ -54,14 +70,7 @@ services:
       - headbanger.env
     restart: always
 
-  redis:
-    image: redis:alpine
-    volumes:
-      - redis:/data
-    restart: always
-
 volumes:
-  public:
-  sockets:
+  postgres:
   redis:
   neo4j:
