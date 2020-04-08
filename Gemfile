@@ -21,6 +21,9 @@ gem "rack-cors"
 # Use sidekiq as asynchronous job queue
 gem "sidekiq"
 
+# Use neo4j as the graph database
+gem "neo4j"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug"
