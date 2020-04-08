@@ -51,7 +51,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: headbanger-app:${{ steps.get_version.outputs.VERSION }}
+          name: headbanger/app:${{ steps.get_version.outputs.VERSION }}
           registry: registry.dejonckhee.re
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
@@ -106,7 +106,7 @@ jobs:
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: headbanger-web/${{ steps.get_version.outputs.VERSION }}
+          name: headbanger/web:${{ steps.get_version.outputs.VERSION }}
           registry: registry.dejonckhee.re
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
