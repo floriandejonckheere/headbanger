@@ -9,8 +9,6 @@ module Graph
 
     GENDERS = %w(male female other unknown).freeze
 
-    STATES = %w(active split_up on_hold changed_name disputed unknown).freeze
-
     property :name,
              type: String
 
@@ -49,10 +47,6 @@ module Graph
     validates :gender,
               presence: true,
               inclusion: { in: GENDERS }
-
-    validates :state,
-              presence: true,
-              inclusion: { in: STATES }
 
     serialize :alt_names
   end

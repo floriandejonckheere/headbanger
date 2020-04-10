@@ -18,9 +18,6 @@ RSpec.describe Graph::Artist do
   it { is_expected.to define_property :gender, :String }
   it { is_expected.to validate_presence_of :gender }
 
-  it { is_expected.to define_property :state, :String }
-  it { is_expected.to validate_presence_of :state }
-
   it { is_expected.to define_property :musicbrainz_key, :String }
   it { is_expected.to validate_presence_of(:musicbrainz_key).allow_nil }
   it { is_expected.to define_constraint :musicbrainz_key, :unique }
