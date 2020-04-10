@@ -47,6 +47,9 @@ group :development, :test do
   # Neo4j matchers
   gem "neo4j-rspec"
 
+  # Shoulda-matchers
+  gem "shoulda-matchers"
+
   # Factory testing pattern
   gem "factory_bot"
   gem "factory_bot_rails"
