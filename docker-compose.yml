@@ -37,12 +37,7 @@ services:
       - ./logs/app/:/app/log/
     depends_on:
       - neo4j
-      - sidekiq
-      - redis
-    links:
-      - neo4j
-      - sidekiq
-      - redis
+      - postgres
     env_file:
       - headbanger.env
     restart: always
