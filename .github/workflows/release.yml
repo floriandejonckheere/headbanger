@@ -13,24 +13,37 @@ jobs:
     services:
       redis:
         image: redis:alpine
-        ports:
-          - 6379:6379
+
+      postgres:
+        image: postgres:12
+        env:
+          POSTGRES_DB: postgres
+          POSTGRES_USERNAME: postgres
+          POSTGRES_PASSWORD: postgres
+
+      neo4j:
+        image: neo4j:3.5
+        env:
+          NEO4J_AUTH: neo4j/password
+
+    container:
+      image: ruby:2.7-alpine
 
     steps:
       - uses: actions/checkout@v1
 
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.x
+      - name: Install dependencies
+        run: |
+          apk add postgresql
+          apk add build-base curl-dev git postgresql-dev
 
       - name: Cache Gems
         uses: actions/cache@v1
         with:
           path: vendor/bundle
-          key: ${{ runner.os }}-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
-            ${{ runner.os }}
+            ${{ runner.os }}-gems-
 
       - name: Install Gems
         run: |
@@ -39,7 +52,10 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Test
-        run: bundle exec rspec --profile 10 --format progress
+        run: |
+          bundle exec rails db:create db:schema:load --trace
+          bundle exec rails neo4j:schema:load --trace
+          bundle exec rspec --profile 10 --format progress
 
       - name: Lint
         run: bundle exec rubocop --parallel --display-cop-names
