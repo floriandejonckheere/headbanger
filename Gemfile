@@ -24,6 +24,9 @@ gem "sidekiq"
 # Use neo4j as the graph database
 gem "neo4j"
 
+# ISO3166 countries
+gem "countries"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug"

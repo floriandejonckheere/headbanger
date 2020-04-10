@@ -63,6 +63,10 @@ GEM
     byebug (11.1.1)
     concurrent-ruby (1.1.6)
     connection_pool (2.2.2)
+    countries (3.0.1)
+      i18n_data (~> 0.10.0)
+      sixarm_ruby_unaccent (~> 1.1)
+      unicode_utils (~> 1.4)
     crass (1.0.6)
     debase (0.2.4.1)
       debase-ruby_core_source (>= 0.10.2)
@@ -90,6 +94,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
+    i18n_data (0.10.0)
     jaro_winkler (1.5.4)
     json (2.3.0)
     listen (3.1.5)
@@ -222,6 +227,7 @@ GEM
       rack (~> 2.0)
       rack-protection (>= 2.0.0)
       redis (>= 4.1.0)
+    sixarm_ruby_unaccent (1.2.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -240,6 +246,7 @@ GEM
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
+    unicode_utils (1.4.0)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
@@ -251,6 +258,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  countries
   debase
   factory_bot
   factory_bot_rails
