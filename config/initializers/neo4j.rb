@@ -6,4 +6,7 @@ Rails.application.configure do
 
   # Disable TLS
   config.neo4j.session.options = { ssl: false }
+
+  # Demodulize models
+  config.neo4j.module_handling = :demodulize
 end
