@@ -44,6 +44,9 @@ group :development, :test do
   gem "rspec"
   gem "rspec-rails"
 
+  # Neo4j matchers
+  gem "neo4j-rspec"
+
   # Factory testing pattern
   gem "factory_bot"
   gem "factory_bot_rails"

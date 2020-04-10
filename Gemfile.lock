@@ -132,6 +132,9 @@ GEM
       multi_json
       net_tcp_client (>= 2.0.1)
       typhoeus (>= 1.1.2)
+    neo4j-rspec (0.2.7)
+      neo4j (>= 6.0.0)
+      rspec (>= 3.0)
     net_tcp_client (2.2.0)
     nio4r (2.5.2)
     nokogiri (1.10.9)
@@ -265,6 +268,7 @@ DEPENDENCIES
   ffaker
   listen (>= 3.0.5, < 3.2)
   neo4j
+  neo4j-rspec
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rack-cors
