@@ -14,5 +14,27 @@
 :constraints:
 - CONSTRAINT ON ( `neo4j::migrations::schemamigration`:`Neo4j::Migrations::SchemaMigration`
   ) ASSERT `neo4j::migrations::schemamigration`.migration_id IS UNIQUE
-:indexes: []
-:versions: []
+- CONSTRAINT ON ( applicationrecord:ApplicationRecord ) ASSERT applicationrecord.uuid
+  IS UNIQUE
+- CONSTRAINT ON ( artist:Artist ) ASSERT artist.metal_archives_key IS UNIQUE
+- CONSTRAINT ON ( artist:Artist ) ASSERT artist.musicbrainz_key IS UNIQUE
+- CONSTRAINT ON ( country:Country ) ASSERT country.code IS UNIQUE
+- CONSTRAINT ON ( genre:Genre ) ASSERT genre.name IS UNIQUE
+- CONSTRAINT ON ( group:Group ) ASSERT group.metal_archives_key IS UNIQUE
+- CONSTRAINT ON ( group:Group ) ASSERT group.musicbrainz_key IS UNIQUE
+- CONSTRAINT ON ( release:Release ) ASSERT release.metal_archives_key IS UNIQUE
+- CONSTRAINT ON ( release:Release ) ASSERT release.musicbrainz_key IS UNIQUE
+- CONSTRAINT ON ( schemamigration:SchemaMigration ) ASSERT schemamigration.migration_id
+  IS UNIQUE
+- CONSTRAINT ON ( theme:Theme ) ASSERT theme.name IS UNIQUE
+:indexes:
+- INDEX ON :Artist(gender)
+- INDEX ON :Artist(state)
+- INDEX ON :Group(state)
+:versions:
+- '20200410184435'
+- '20200410185405'
+- '20200410210242'
+- '20200410210243'
+- '20200410210244'
+- '20200410212224'
