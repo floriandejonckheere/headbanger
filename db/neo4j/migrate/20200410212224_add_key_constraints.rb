@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AddKeyConstraints < Neo4j::Migrations::Base
+  disable_transactions!
+
   def up
     add_constraint :Artist, :musicbrainz_key, force: true
     add_constraint :Group, :musicbrainz_key, force: true
