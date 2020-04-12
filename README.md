@@ -2,6 +2,20 @@
 
 Headbanger is a music recommendation and discovery platform.
 
+## Set up
+
+Migrate the PostgreSQL database:
+
+```
+rails db:migrate
+```
+
+Migrate the Neo4j database:
+
+```
+rails neo4j:migrate
+```
+
 ## Releasing
 
 Update the changelog and bump the version in `lib/headbanger/version.rb` and `web/package.json`.

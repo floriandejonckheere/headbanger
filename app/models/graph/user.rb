@@ -17,5 +17,17 @@ module Graph
 
     validates :name,
               presence: true
+
+    has_one :out,
+            :country,
+            type: :based_in,
+            model_class: :Country,
+            unique: { on: :id }
+
+    has_many :out,
+             :rated,
+             type: :rates,
+             model_class: %i(Artist Group Release),
+             unique: { on: :id }
   end
 end

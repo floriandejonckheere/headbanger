@@ -42,5 +42,42 @@ module Graph
               inclusion: { in: STATES }
 
     serialize :alt_names
+
+    has_one :out,
+            :country,
+            type: :based_in,
+            model_class: :Country,
+            unique: { on: :id }
+
+    has_many :in,
+             :artists,
+             type: :member_of,
+             model_class: :Artist,
+             unique: { on: :id }
+
+    has_many :out,
+             :releases,
+             type: :released_by,
+             model_class: :Release,
+             unique: { on: :id }
+
+    has_many :out,
+             :themes,
+             type: :narrates_of,
+             dependent: :destroy_orphans,
+             model_class: :Theme,
+             unique: { on: :id }
+
+    has_many :out,
+             :genres,
+             type: :associated_with,
+             model_class: :Genre,
+             unique: { on: :id }
+
+    has_many :in,
+             :raters,
+             type: :rates,
+             model_class: :User,
+             unique: { on: :uuid }
   end
 end
