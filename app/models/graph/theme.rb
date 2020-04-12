@@ -15,7 +15,7 @@ module Graph
     has_many :in,
              :groups,
              type: :narrates_of,
-             model_class: :Group,
+             model_class: "Graph::Group",
              unique: { on: :id }
   end
 end

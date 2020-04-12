@@ -46,38 +46,38 @@ module Graph
     has_one :out,
             :country,
             type: :based_in,
-            model_class: :Country,
+            model_class: "Graph::Country",
             unique: { on: :id }
 
     has_many :in,
              :artists,
              type: :member_of,
-             model_class: :Artist,
+             model_class: "Graph::Artist",
              unique: { on: :id }
 
     has_many :out,
              :releases,
              type: :released_by,
-             model_class: :Release,
+             model_class: "Graph::Release",
              unique: { on: :id }
 
     has_many :out,
              :themes,
              type: :narrates_of,
              dependent: :destroy_orphans,
-             model_class: :Theme,
+             model_class: "Graph::Theme",
              unique: { on: :id }
 
     has_many :out,
              :genres,
              type: :associated_with,
-             model_class: :Genre,
+             model_class: "Graph::Genre",
              unique: { on: :id }
 
     has_many :in,
              :raters,
              type: :rates,
-             model_class: :User,
+             model_class: "Graph::User",
              unique: { on: :uuid }
   end
 end

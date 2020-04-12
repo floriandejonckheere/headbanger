@@ -21,13 +21,13 @@ module Graph
     has_one :out,
             :country,
             type: :based_in,
-            model_class: :Country,
+            model_class: "Graph::Country",
             unique: { on: :id }
 
     has_many :out,
              :rated,
              type: :rates,
-             model_class: %i(Artist Group Release),
+             model_class: %w(Graph::Artist Graph::Group Graph::Release),
              unique: { on: :id }
   end
 end

@@ -16,19 +16,19 @@ module Graph
     has_many :in,
              :users,
              type: :based_in,
-             model_class: :User,
+             model_class: "Graph::User",
              unique: { on: :id }
 
     has_many :in,
              :artists,
              type: :based_in,
-             model_class: :Artist,
+             model_class: "Graph::Artist",
              unique: { on: :id }
 
     has_many :in,
              :groups,
              type: :based_in,
-             model_class: :Group,
+             model_class: "Graph::Group",
              unique: { on: :id }
   end
 end

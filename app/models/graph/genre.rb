@@ -15,19 +15,19 @@ module Graph
     has_many :in,
              :groups,
              type: :associated_with,
-             model_class: :Group,
+             model_class: "Graph::Group",
              unique: { on: :id }
 
     has_many :out,
              :subgenres,
              type: :related_to,
-             model_class: :Genre,
+             model_class: "Graph::Genre",
              unique: { on: :id }
 
     has_many :in,
              :supergenres,
              type: :related_to,
-             model_class: :Genre,
+             model_class: "Graph::Genre",
              unique: { on: :id }
   end
 end

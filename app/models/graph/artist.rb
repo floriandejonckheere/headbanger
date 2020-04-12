@@ -53,25 +53,25 @@ module Graph
     has_one :out,
             :country,
             type: :based_in,
-            model_class: :Country,
+            model_class: "Graph::Country",
             unique: { on: :id }
 
     has_many :in,
              :raters,
              type: :rates,
-             model_class: :User,
+             model_class: "Graph::User",
              unique: { on: :uuid }
 
     has_many :out,
              :groups,
              type: :member_of,
-             model_class: :Group,
+             model_class: "Graph::Group",
              unique: { on: :uuid }
 
     has_many :out,
              :releases,
              type: :appears_in,
-             model_class: :Release,
+             model_class: "Graph::Release",
              unique: { on: :uuid }
   end
 end
