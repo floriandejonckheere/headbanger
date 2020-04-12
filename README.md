@@ -22,6 +22,12 @@ Initialize database seeds (for both PostgreSQL and Neo4j):
 rails db:seed
 ```
 
+Generate TLS client certificates for NGINX:
+
+```
+openssl req  -nodes -new -x509  -keyout web/nginx/client.key -out web/nginx/client.pem
+```
+
 ## Releasing
 
 Update the changelog and bump the version in `lib/headbanger/version.rb` and `web/package.json`.

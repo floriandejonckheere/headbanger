@@ -24,4 +24,6 @@ MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
 
 # Copy
 COPY --from=build /app/dist/ /usr/share/nginx/html
-COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/nginx/ /etc/nginx/conf.d/
+
+EXPOSE 81

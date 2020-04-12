@@ -2,6 +2,10 @@
 node_modules
 /dist
 
+# SSL Certificates
+*.key
+*.pem
+
 # local env files
 .env.local
 .env.*.local

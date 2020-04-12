@@ -47,6 +47,9 @@ services:
     build: web
     ports:
       - "80:80"
+    volumes:
+      - ./web/nginx/:/etc/nginx/conf.d/
+      - nginx:/cache/
     depends_on:
       - app
     links:
@@ -70,3 +73,4 @@ volumes:
   postgres:
   redis:
   neo4j:
+  nginx:
