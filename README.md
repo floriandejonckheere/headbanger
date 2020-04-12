@@ -16,6 +16,12 @@ Migrate the Neo4j database:
 rails neo4j:migrate
 ```
 
+Initialize database seeds (for both PostgreSQL and Neo4j):
+
+```
+rails db:seed
+```
+
 ## Releasing
 
 Update the changelog and bump the version in `lib/headbanger/version.rb` and `web/package.json`.
