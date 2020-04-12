@@ -6,8 +6,7 @@ module Graph
   #
   class Country < ApplicationRecord
     property :code,
-             type: String,
-             constraint: :unique
+             type: String
 
     validates :code,
               presence: true,

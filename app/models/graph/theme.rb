@@ -6,8 +6,7 @@ module Graph
   #
   class Theme < ApplicationRecord
     property :name,
-             type: String,
-             constraint: :unique
+             type: String
 
     validates :name,
               presence: true,
