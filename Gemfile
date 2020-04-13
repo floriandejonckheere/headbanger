@@ -27,6 +27,9 @@ gem "neo4j"
 # ISO3166 countries
 gem "countries"
 
+# Data sources
+gem "metal_archives"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug"
