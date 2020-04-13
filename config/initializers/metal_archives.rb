@@ -20,7 +20,7 @@ MetalArchives.configure do |c|
   c.cache_size = 100
 
   ## Metal Archives endpoint (optional, overrides default)
-  c.endpoint = "http://web:81/"
+  c.endpoint = ENV.fetch("MA_ENDPOINT", "http://web:81/")
 
   ## Custom logger (optional)
   c.logger = Logger.new File.open("/dev/null")
