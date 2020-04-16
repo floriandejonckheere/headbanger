@@ -110,11 +110,12 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
-    metal_archives (2.2.0)
+    metal_archives (3.0.0)
       countries
       faraday
       faraday_throttler
       nokogiri
+      zeitwerk
     method_source (1.0.0)
     mimemagic (0.3.4)
     mini_mime (1.0.2)
