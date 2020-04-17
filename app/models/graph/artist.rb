@@ -32,7 +32,8 @@ module Graph
               presence: true
 
     validates :alt_names,
-              presence: true
+              presence: true,
+              allow_blank: true
 
     validates :description,
               presence: true
