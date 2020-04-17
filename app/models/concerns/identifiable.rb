@@ -8,10 +8,10 @@ module Identifiable
 
   included do
     property :musicbrainz_key,
-             type: String
+             type: Integer
 
     property :metal_archives_key,
-             type: String
+             type: Integer
 
     validates :musicbrainz_key,
               uniqueness: true,
