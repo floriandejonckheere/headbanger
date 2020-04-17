@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 module Headbanger
+  def self.config
+    Config.instance
+  end
+
   class Config
     include Singleton
 
