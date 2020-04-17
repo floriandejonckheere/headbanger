@@ -10,5 +10,5 @@ RSpec.describe Graph::Artists::Build do
   it { is_expected.to have_attributes born_at: a_kind_of(Date), died_at: nil }
   it { is_expected.to have_attributes gender: "male" }
 
-  it { is_expected.to have_attributes country: Graph::Country.new(code: "ES") }
+  it { is_expected.to have_attributes country: country("ES") }
 end
