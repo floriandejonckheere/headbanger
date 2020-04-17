@@ -6,6 +6,7 @@ module Graph
   #
   class Group < ApplicationRecord
     include Identifiable
+    include Refreshable
 
     STATES = %w(active split_up on_hold changed_name disputed unknown).freeze
 

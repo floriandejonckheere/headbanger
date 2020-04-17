@@ -6,6 +6,7 @@ module Graph
   #
   class Release < ApplicationRecord
     include Identifiable
+    include Refreshable
 
     property :name,
              type: String
