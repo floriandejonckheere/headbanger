@@ -34,7 +34,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app/
+      - .:/app/:cached
       - ./logs/app/:/app/log/
     depends_on:
       - neo4j
@@ -60,7 +60,7 @@ services:
     build: .
     command: bundle exec sidekiq
     volumes:
-      - .:/app/
+      - .:/app/:cached
     depends_on:
       - redis
     links:
