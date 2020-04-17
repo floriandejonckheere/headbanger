@@ -28,10 +28,6 @@ module Graph
              type: String,
              default: :unknown
 
-    property :state,
-             type: String,
-             default: :active
-
     validates :name,
               presence: true
 
