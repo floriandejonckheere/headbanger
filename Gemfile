@@ -28,7 +28,7 @@ gem "neo4j"
 gem "countries"
 
 # Data sources
-gem "metal_archives"
+gem "metal_archives", github: "floriandejonckheere/metal_archives"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
