@@ -21,6 +21,9 @@ module Graph
         model.died_at = metal_archives.date_of_death&.date
         model.gender = metal_archives.gender
 
+        # Assemble associations
+        model.country = Graph::Country.find_or_initialize_by(code: metal_archives.country.alpha2)
+
         model
       end
 
