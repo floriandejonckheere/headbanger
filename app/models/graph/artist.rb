@@ -19,10 +19,10 @@ module Graph
              type: String
 
     property :born_at,
-             type: DateTime
+             type: Date
 
     property :died_at,
-             type: DateTime
+             type: Date
 
     property :gender,
              type: String,

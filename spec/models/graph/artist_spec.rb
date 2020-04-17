@@ -10,10 +10,10 @@ RSpec.describe Graph::Artist do
   it { is_expected.to define_property :description, :String }
   it { is_expected.to validate_presence_of :description }
 
-  it { is_expected.to define_property :born_at, :DateTime }
+  it { is_expected.to define_property :born_at, :Date }
   it { is_expected.to validate_presence_of :born_at }
 
-  it { is_expected.to define_property :died_at, :DateTime }
+  it { is_expected.to define_property :died_at, :Date }
 
   it { is_expected.to define_property :gender, :String }
   it { is_expected.to validate_presence_of :gender }
