@@ -1,0 +1,47 @@
+---
+alternative:
+  - electronic
+  - industrial
+  - funk
+  - nu
+  - rap
+black:
+death:
+  - death_doom
+  - death_trash
+  - deathcore
+  - grindcore
+  - melodic_death
+  - symphonic_death
+doom:
+  - death_doom
+  - drone
+  - gothic
+  - stoner
+  - sludge
+folk:
+  - christian
+  - celtic
+  - pagan
+  - pirate
+  - viking
+heavy:
+  - epic
+  - glam
+  - groove
+  - gothic
+  - neoclassical
+  - power
+  - speed
+  - stoner
+  - symphonic
+metalcore:
+  - deathcore
+thrash:
+  - death_trash
+  - funk
+  - groove
+  - blackened_thrash
+progressive:
+  - avantgarde
+  - djent

@@ -29,5 +29,15 @@ module Graph
              type: :related_to,
              model_class: "Graph::Genre",
              unique: { on: :id }
+
+    class << self
+      def taxonomy
+        @taxonomy ||= YAML.load_file(Rails.root.join("data/genres.yml"))
+      end
+
+      def flat_taxonomy
+        @flat_taxonomy ||= taxonomy.flatten.flatten.compact
+      end
+    end
   end
 end
