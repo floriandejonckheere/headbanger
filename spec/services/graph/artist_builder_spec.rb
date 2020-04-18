@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Graph::Artists::Build do
-  subject(:artist) { described_class.new(id: 60908).call }
+RSpec.describe Graph::ArtistBuilder do
+  subject(:artist) { described_class.new(metal_archives_key: 60908).call }
 
   it { is_expected.to have_attributes metal_archives_key: 60908 }
 
