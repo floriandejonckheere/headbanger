@@ -11,4 +11,6 @@ RSpec.describe Graph::Artists::Build do
   it { is_expected.to have_attributes gender: "male" }
 
   it { is_expected.to have_attributes country: country("ES") }
+
+  it { is_expected.to have_attributes groups: [group(3540361100), group(5795)] }
 end

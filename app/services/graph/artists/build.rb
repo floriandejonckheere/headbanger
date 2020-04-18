@@ -10,9 +10,6 @@ module Graph
       end
 
       def call
-        # Do not build recent models
-        return model if model.fresh?
-
         # Assemble attributes
         model.name = metal_archives.name
         model.alt_names = metal_archives.aliases
@@ -23,6 +20,7 @@ module Graph
 
         # Assemble associations
         model.country = Graph::Country.find_or_initialize_by(code: metal_archives.country.alpha2)
+        model.groups = groups
 
         model
       end
@@ -31,6 +29,14 @@ module Graph
 
       def metal_archives
         @metal_archives ||= MetalArchives::Artist.find!(model.metal_archives_key)
+      end
+
+      def groups
+        @bands ||= metal_archives
+          .bands
+          .map { |b| b[:band] }
+          .select { |b| b.respond_to? :id }
+          .map { |b| Graph::Group.find_or_initialize_by(metal_archives_key: b.id) }
       end
     end
   end
