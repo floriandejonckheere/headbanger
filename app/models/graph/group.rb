@@ -19,7 +19,7 @@ module Graph
              type: String
 
     property :formed_at,
-             type: DateTime
+             type: Date
 
     property :state,
              type: String,

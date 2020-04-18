@@ -10,7 +10,7 @@ RSpec.describe Graph::Group do
   it { is_expected.to define_property :description, :String }
   it { is_expected.to validate_presence_of :description }
 
-  it { is_expected.to define_property :formed_at, :DateTime }
+  it { is_expected.to define_property :formed_at, :Date }
   it { is_expected.to validate_presence_of :formed_at }
 
   it { is_expected.to define_property :state, :String }
