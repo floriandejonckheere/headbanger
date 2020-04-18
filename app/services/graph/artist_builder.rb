@@ -14,6 +14,7 @@ module Graph
     def associations
       model.country = CountryBuilder.new(code: metal_archives.country.alpha2).call
       model.groups = groups
+      # TODO: model.releases
     end
 
     private
