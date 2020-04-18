@@ -23,6 +23,10 @@ require "neo4j/railtie"
 Bundler.require(*Rails.groups)
 
 module Headbanger
+  def self.config
+    Config.instance
+  end
+
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
