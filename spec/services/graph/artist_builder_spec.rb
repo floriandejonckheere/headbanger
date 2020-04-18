@@ -10,7 +10,7 @@ RSpec.describe Graph::ArtistBuilder do
   it { is_expected.to have_attributes born_at: a_kind_of(Date), died_at: nil }
   it { is_expected.to have_attributes gender: "male" }
 
-  it { is_expected.to have_attributes country: country("ES") }
+  it { is_expected.to have_attributes country: graph_country("ES") }
 
-  it { is_expected.to have_attributes groups: match_array([group(3_540_361_100), group(5795)]) }
+  it { is_expected.to have_attributes groups: match_array([graph_group(3_540_361_100), graph_group(5795)]) }
 end
