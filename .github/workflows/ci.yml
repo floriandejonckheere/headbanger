@@ -59,6 +59,8 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - name: Test
+        env:
+          APP_CONTACT: ${{ secrets.APP_CONTACT }}
         run: |
           bundle exec rails db:create db:schema:load --trace
           bundle exec rails neo4j:migrate --trace
