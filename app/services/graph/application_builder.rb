@@ -10,7 +10,11 @@ module Graph
 
     def call
       # Return if data is not stale
-      return model if model.fresh?
+      if model.respond_to?(:fresh)
+        return model if model.fresh?
+      else
+        return model if model.persisted?
+      end
 
       # Assemble attributes
       attributes
