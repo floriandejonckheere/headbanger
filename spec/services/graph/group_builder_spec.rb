@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Graph::GroupBuilder do
-  subject(:artist) { described_class.new(metal_archives_key: 3540361100).call }
+  subject(:artist) { described_class.new(metal_archives_key: 3_540_361_100).call }
 
-  it { is_expected.to have_attributes metal_archives_key: 3540361100 }
+  it { is_expected.to have_attributes metal_archives_key: 3_540_361_100 }
 
   it { is_expected.to have_attributes name: "Alquimia", alt_names: [] }
   it { is_expected.to have_attributes description: a_kind_of(String) }

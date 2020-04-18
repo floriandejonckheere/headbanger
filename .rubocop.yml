@@ -21,6 +21,9 @@ Layout/MultilineMethodCallIndentation:
 Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
 Lint/AssignmentInCondition:
   AllowSafeAssignment: true
 
@@ -33,7 +36,14 @@ Lint/RaiseException:
 Lint/StructNewOverride:
   Enabled: true
 
+Metrics/AbcSize:
+  Enabled: true
+  Max: 25
+
 Rails:
+  Enabled: true
+
+Style/ExponentialNotation:
   Enabled: true
 
 Style/HashEachMethods:

@@ -24,7 +24,7 @@ module Graph
     end
 
     def groups
-      @bands ||= metal_archives
+      @groups ||= metal_archives
         .bands
         .map { |b| b[:band] }
         .select { |b| b.respond_to? :id }
