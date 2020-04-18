@@ -6,6 +6,6 @@ RSpec.configure do |config|
   config.before do
     Neo4j::ActiveBase
       .current_session
-      .query("MATCH (n) WHERE NOT n:`Neo4j::Migrations::SchemaMigration` DETACH DELETE n")
+      .query("MATCH (n) WHERE NOT n:`Neo4j::Migrations::SchemaMigration` AND NOT n:`Genre` DETACH DELETE n")
   end
 end
