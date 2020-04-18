@@ -12,7 +12,7 @@ module Graph
     end
 
     def associations
-      model.country = Graph::CountryBuilder.new(code: metal_archives.country.alpha2).call
+      model.country = CountryBuilder.new(code: metal_archives.country.alpha2).call
       model.groups = groups
     end
 
@@ -27,7 +27,7 @@ module Graph
         .bands
         .map { |b| b[:band] }
         .select { |b| b.respond_to? :id }
-        .map { |b| Graph::Group.find_or_initialize_by(metal_archives_key: b.id) }
+        .map { |b| Group.find_or_initialize_by(metal_archives_key: b.id) }
     end
   end
 end
