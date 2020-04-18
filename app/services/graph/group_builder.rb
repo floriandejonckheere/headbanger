@@ -14,13 +14,19 @@ module Graph
       model.country = CountryBuilder.new(code: metal_archives.country.alpha2).call
       # TODO: model.releases
       # TODO: model.themes
-      # TODO: model.genres
+      model.genres = genres
     end
 
     private
 
     def metal_archives
       @metal_archives ||= MetalArchives::Band.find!(model.metal_archives_key)
+    end
+
+    def genres
+      @genres ||= metal_archives
+        .genres
+        .map { |g| GenreBuilder.new(name: g).call }
     end
   end
 end
