@@ -13,6 +13,10 @@ module GraphHelpers
     Graph::Release.find_or_initialize_by(metal_archives_key: metal_archives_key)
   end
 
+  def graph_genre(name)
+    Graph::Genre.find_or_initialize_by(name: name)
+  end
+
   def graph_country(code)
     Graph::Country.find_or_initialize_by(code: code)
   end
