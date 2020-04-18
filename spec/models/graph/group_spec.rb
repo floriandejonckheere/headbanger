@@ -4,7 +4,7 @@ RSpec.describe Graph::Group do
   it { is_expected.to define_property :name, :String }
   it { is_expected.to validate_presence_of :name }
 
-  it { is_expected.to define_property :alt_names, :String }
+  it { is_expected.to define_property :alt_names }
   it { is_expected.to validate_presence_of :alt_names }
 
   it { is_expected.to define_property :description, :String }

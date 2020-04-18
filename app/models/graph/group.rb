@@ -13,8 +13,7 @@ module Graph
     property :name,
              type: String
 
-    property :alt_names,
-             type: String
+    property :alt_names
 
     property :description,
              type: String
@@ -41,8 +40,6 @@ module Graph
     validates :state,
               presence: true,
               inclusion: { in: STATES }
-
-    serialize :alt_names
 
     has_one :out,
             :country,
