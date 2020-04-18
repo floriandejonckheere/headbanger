@@ -12,5 +12,5 @@ RSpec.describe Graph::ArtistBuilder do
 
   it { is_expected.to have_attributes country: country("ES") }
 
-  it { is_expected.to have_attributes groups: [group(3540361100), group(5795)] }
+  it { is_expected.to have_attributes groups: match_array([group(3540361100), group(5795)]) }
 end

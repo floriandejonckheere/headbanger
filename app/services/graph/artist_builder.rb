@@ -28,7 +28,7 @@ module Graph
         .bands
         .map { |b| b[:band] }
         .select { |b| b.respond_to? :id }
-        .map { |b| Group.find_or_initialize_by(metal_archives_key: b.id) }
+        .map { |b| GroupBuilder.new(metal_archives_key: b.id).call }
     end
   end
 end
