@@ -1,27 +1,19 @@
 # frozen_string_literal: true
 
 module Graph
-  class ArtistBuilder
-    attr_accessor :model
-
-    def initialize(metal_archives_key:)
-      @model = Graph::Artist.find_or_initialize_by(metal_archives_key: metal_archives_key)
-    end
-
-    def call
-      # Assemble attributes
+  class ArtistBuilder < ApplicationBuilder
+    def attributes
       model.name = metal_archives.name
       model.alt_names = metal_archives.aliases
       model.description = Nokogiri::HTML(metal_archives.biography).text
       model.born_at = metal_archives.date_of_birth&.date
       model.died_at = metal_archives.date_of_death&.date
       model.gender = metal_archives.gender
+    end
 
-      # Assemble associations
-      model.country = Graph::Country.find_or_initialize_by(code: metal_archives.country.alpha2)
+    def associations
+      model.country = Graph::CountryBuilder.new(code: metal_archives.country.alpha2).call
       model.groups = groups
-
-      model
     end
 
     private

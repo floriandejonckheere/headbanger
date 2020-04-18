@@ -1,0 +1,36 @@
+# frozen_string_literal: true
+
+module Graph
+  class ApplicationBuilder
+    attr_reader :model
+
+    def initialize(**params)
+      @model = model_class.find_or_initialize_by(**params)
+    end
+
+    def call
+      # Return if data is not stale
+      return model if model.fresh?
+
+      # Assemble attributes
+      attributes
+
+      # Assemble associations
+      associations
+
+      # Persist
+      model.save!
+      model
+    end
+
+    protected
+
+    def attributes; end
+
+    def associations; end
+
+    def model_class
+      self.class.name.remove("Builder").constantize
+    end
+  end
+end
