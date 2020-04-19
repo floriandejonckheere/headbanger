@@ -12,7 +12,7 @@ module Graph
              type: String
 
     property :released_at,
-             type: DateTime
+             type: Date
 
     validates :name,
               presence: true

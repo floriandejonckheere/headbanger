@@ -4,7 +4,7 @@ RSpec.describe Graph::Release do
   it { is_expected.to define_property :name, :String }
   it { is_expected.to validate_presence_of :name }
 
-  it { is_expected.to define_property :released_at, :DateTime }
+  it { is_expected.to define_property :released_at, :Date }
   it { is_expected.to validate_presence_of :released_at }
 
   it { is_expected.to define_property :musicbrainz_key, :Integer }
