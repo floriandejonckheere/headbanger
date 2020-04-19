@@ -40,7 +40,8 @@ services:
       - neo4j
       - postgres
     env_file:
-      - headbanger.env
+      - .env.development
+      - .env.development.local
     restart: always
 
   web:
@@ -66,7 +67,8 @@ services:
     links:
       - redis
     env_file:
-      - headbanger.env
+      - .env.development
+      - .env.development.local
     restart: always
 
 volumes:
