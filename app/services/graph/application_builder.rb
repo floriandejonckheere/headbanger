@@ -30,6 +30,10 @@ module Graph
 
     def associations; end
 
+    def sanitize(string)
+      ActionView::Base.full_sanitizer.sanitize string
+    end
+
     def model_class
       self.class.name.remove("Builder").constantize
     end

@@ -5,7 +5,7 @@ module Graph
     def attributes
       model.name = metal_archives.name
       model.alt_names = metal_archives.aliases
-      model.description = Nokogiri::HTML(metal_archives.comment).text
+      model.description = sanitize(metal_archives.comment)
       model.formed_at = metal_archives.date_formed.date
       model.state = metal_archives.status
     end

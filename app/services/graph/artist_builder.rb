@@ -5,7 +5,7 @@ module Graph
     def attributes
       model.name = metal_archives.name
       model.alt_names = metal_archives.aliases
-      model.description = Nokogiri::HTML(metal_archives.biography).text
+      model.description = sanitize(metal_archives.biography)
       model.born_at = metal_archives.date_of_birth&.date
       model.died_at = metal_archives.date_of_death&.date
       model.gender = metal_archives.gender
