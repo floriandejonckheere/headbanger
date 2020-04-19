@@ -32,10 +32,10 @@ module Graph
              model_class: "Graph::Artist",
              unique: { on: :id }
 
-    has_one :in,
-            :group,
-            type: :released_by,
-            model_class: "Graph::Group",
-            unique: { on: :id }
+    has_many :in,
+             :group,
+             type: :released_by,
+             model_class: "Graph::Group",
+             unique: { on: :id }
   end
 end
