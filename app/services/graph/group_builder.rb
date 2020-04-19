@@ -24,20 +24,20 @@ module Graph
     end
 
     def releases
-      @releases ||= metal_archives
+      metal_archives
         .releases
         .select { |r| r.type == :full_length }
         .map { |r| ReleaseBuilder.new(metal_archives_key: r.id).call }
     end
 
     def themes
-      @themes ||= metal_archives
+      metal_archives
         .lyrical_themes
         &.map { |t| ThemeBuilder.new(description: t).call }
     end
 
     def genres
-      @genres ||= metal_archives
+      metal_archives
         .genres
         .map { |g| GenreBuilder.new(name: g).call }
     end
