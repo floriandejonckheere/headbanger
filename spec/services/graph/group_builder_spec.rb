@@ -12,5 +12,6 @@ RSpec.describe Graph::GroupBuilder do
 
   it { is_expected.to have_attributes country: graph_country("ES") }
 
+  it { is_expected.to have_attributes themes: match_array([graph_theme("epic"), graph_theme("legends")]) }
   it { is_expected.to have_attributes genres: match_array([graph_genre("melodic_power")]) }
 end
