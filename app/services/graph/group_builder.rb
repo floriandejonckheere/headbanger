@@ -12,7 +12,7 @@ module Graph
 
     def associations
       model.country = CountryBuilder.new(code: metal_archives.country.alpha2).call
-      # TODO: model.releases
+      model.releases = releases
       model.themes = themes
       model.genres = genres
     end
@@ -21,6 +21,13 @@ module Graph
 
     def metal_archives
       @metal_archives ||= MetalArchives::Band.find!(model.metal_archives_key)
+    end
+
+    def releases
+      @releases ||= metal_archives
+        .releases
+        .select { |r| r.type == :full_length }
+        .map { |r| ReleaseBuilder.new(metal_archives_key: r.id).call }
     end
 
     def themes

@@ -12,6 +12,7 @@ RSpec.describe Graph::GroupBuilder do
 
   it { is_expected.to have_attributes country: graph_country("ES") }
 
+  it { is_expected.to have_attributes releases: match_array([graph_release(391_528), graph_release(548_366)]) }
   it { is_expected.to have_attributes themes: match_array([graph_theme("epic"), graph_theme("legends")]) }
   it { is_expected.to have_attributes genres: match_array([graph_genre("melodic_power")]) }
 end
