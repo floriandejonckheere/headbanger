@@ -38,9 +38,6 @@ module Graph
     validates :description,
               presence: true
 
-    validates :born_at,
-              presence: true
-
     validates :gender,
               presence: true,
               inclusion: { in: GENDERS }
