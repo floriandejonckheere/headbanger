@@ -30,5 +30,9 @@ module Graph
              type: :based_in,
              model_class: "Graph::Group",
              unique: { on: :id }
+
+    def name
+      @name ||= ISO3166::Country[code].name
+    end
   end
 end

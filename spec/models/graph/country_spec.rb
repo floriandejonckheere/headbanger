@@ -7,4 +7,10 @@ RSpec.describe Graph::Country do
 
   it { is_expected.to track_creations }
   it { is_expected.to track_modifications }
+
+  describe "#name" do
+    it "returns name" do
+      expect(build(:country, code: "BE").name).to eq "Belgium"
+    end
+  end
 end
