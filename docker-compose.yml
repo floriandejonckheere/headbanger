@@ -63,6 +63,8 @@ services:
     volumes:
       - .:/app/:cached
     depends_on:
+      - neo4j
+      - postgres
       - redis
     links:
       - redis
