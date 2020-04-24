@@ -3,18 +3,7 @@
 module Graph
   class ThemeBuilder < ApplicationBuilder
     def initialize(description:)
-      super(name: theme_for(description))
-
-      model.description = description
-    end
-
-    private
-
-    def theme_for(description)
-      description
-        .underscore
-        .gsub(/ +/, "_")
-        .tr("/", "_")
+      super(name: Theme.name_for(description))
     end
   end
 end

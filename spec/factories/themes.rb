@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :theme, class: "Graph::Theme" do
-    name { FFaker::Lorem.words(3).join(" ").capitalize }
+    name { Theme.name_for(FFaker::Lorem.words(3).join(" ")) }
   end
 end

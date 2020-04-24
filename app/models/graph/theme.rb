@@ -8,9 +8,6 @@ module Graph
     property :name,
              type: String
 
-    property :description,
-             type: String
-
     validates :name,
               presence: true,
               uniqueness: true
@@ -23,5 +20,20 @@ module Graph
              type: :narrates_of,
              model_class: "Graph::Group",
              unique: { on: :id }
+
+    def description
+      Theme.description_for(name)
+    end
+
+    class << self
+      def name_for(description)
+        description
+          .parameterize(separator: "_")
+      end
+
+      def description_for(name)
+        name.titleize
+      end
+    end
   end
 end
