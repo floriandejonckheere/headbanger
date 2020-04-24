@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :country, class: "Graph::Country" do
-    code { ISO3166::Country.code.sample }
+  factory :release, class: "Graph::Release" do
+    name { FFaker::Lorem.words(2).join(" ").capitalize }
+    released_at { rand(50).year.ago }
   end
 end
