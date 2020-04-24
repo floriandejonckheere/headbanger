@@ -30,6 +30,10 @@ module Graph
              model_class: "Graph::Genre",
              unique: { on: :id }
 
+    def description
+      Genre.description_for(name)
+    end
+
     class << self
       def taxonomy
         @taxonomy ||= YAML.load_file(Rails.root.join("data/genres.yml"))
@@ -37,6 +41,16 @@ module Graph
 
       def flat_taxonomy
         @flat_taxonomy ||= taxonomy.flatten.flatten.compact
+      end
+
+      def name_for(description)
+        description
+          .parameterize(separator: "_")
+          .gsub(/_?metal/, "")
+      end
+
+      def description_for(name)
+        "#{name.titleize} Metal"
       end
     end
   end
