@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :user, class: "Graph::User" do
     name { FFaker::Name.name }
-    email { FFaker::Internet.email }
+    email { FFaker::Internet.email(name) }
   end
 end

@@ -7,5 +7,7 @@ FactoryBot.define do
     description { FFaker::Lorem.words(20).join(" ").capitalize }
     formed_at { rand(50).year.ago }
     state { Graph::Group::STATES.sample }
+
+    association :country, factory: :country
   end
 end

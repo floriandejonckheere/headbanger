@@ -8,5 +8,7 @@ FactoryBot.define do
     born_at { rand(20..50).year.ago }
     died_at { [rand(20).year.ago, nil].sample }
     gender { Graph::Artist::GENDERS.sample }
+
+    association :country, factory: :country
   end
 end
