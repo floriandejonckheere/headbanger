@@ -55,7 +55,7 @@ jobs:
         run: |
           bundle exec rails db:create db:schema:load --trace
           bundle exec rails neo4j:migrate --trace
-          bundle exec rails db:seed --trace
+          bundle exec rails database:seed:production --trace
           bundle exec rspec --profile 10 --format progress
 
       - name: Lint

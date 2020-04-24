@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Neo4j::ActiveBase.run_transaction do |tx|
+neo4j_transaction do
   Graph::Genre.taxonomy.each do |genre_key, subgenre_keys|
     genre = Graph::Genre.find_or_create_by!(name: genre_key)
 
@@ -14,7 +14,4 @@ Neo4j::ActiveBase.run_transaction do |tx|
 
     genre.subgenres.replace_with(subgenres)
   end
-rescue StandardError => e
-  tx.mark_failed
-  raise e
 end

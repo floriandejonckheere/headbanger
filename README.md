@@ -19,7 +19,9 @@ rails neo4j:migrate
 Initialize database seeds (for both PostgreSQL and Neo4j):
 
 ```
-rails db:seed
+rails database:seed             # Production and development seeds
+rails database:seed:production  # Production seeds
+rails database:seed:development # Development seeds
 ```
 
 Generate TLS client certificates for NGINX:
