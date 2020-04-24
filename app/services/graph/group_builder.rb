@@ -39,7 +39,7 @@ module Graph
     def genres
       metal_archives
         .genres
-        .map { |g| GenreBuilder.new(name: g).call }
+        .map { |g| GenreBuilder.new(description: g).call }
     end
   end
 end

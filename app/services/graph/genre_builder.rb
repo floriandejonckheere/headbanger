@@ -2,8 +2,8 @@
 
 module Graph
   class GenreBuilder < ApplicationBuilder
-    def initialize(name:)
-      super(name: Genre.name_for(name))
+    def initialize(description:)
+      super(name: Genre.name_for(description))
     end
 
     def associations
