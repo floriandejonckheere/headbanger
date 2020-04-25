@@ -2,6 +2,11 @@
 
 FactoryBot.define do
   factory :genre, class: "Graph::Genre" do
-    name { Genre.name_for("#{FFaker::Lorem.word} Metal") }
+    to_create do |instance|
+      instance.attributes = Graph::Genre.find_or_create_by(name: instance.name).attributes
+      instance.reload
+    end
+
+    code { Genre.flat_taxonomy.sample }
   end
 end

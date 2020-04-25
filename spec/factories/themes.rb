@@ -2,6 +2,11 @@
 
 FactoryBot.define do
   factory :theme, class: "Graph::Theme" do
-    name { Theme.name_for(FFaker::Lorem.words(3).join(" ")) }
+    to_create do |instance|
+      instance.attributes = Graph::Theme.find_or_create_by(name: instance.name).attributes
+      instance.reload
+    end
+
+    name { FFaker::Metal.theme }
   end
 end

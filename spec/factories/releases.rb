@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :release, class: "Graph::Release" do
-    name { FFaker::Lorem.words(2).join(" ").capitalize }
-    released_at { rand(50).year.ago }
+    name { FFaker::Metal.release }
+    released_at { FFaker::Time.between(50.years.ago, DateTime.current) }
   end
 end

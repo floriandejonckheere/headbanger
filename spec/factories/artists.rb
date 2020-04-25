@@ -3,11 +3,11 @@
 FactoryBot.define do
   factory :artist, class: "Graph::Artist" do
     name { FFaker::Name.name }
-    alt_names { [FFaker::Lorem.words(2).join(" ").capitalize] }
-    description { FFaker::Lorem.words(20).join(" ").capitalize }
-    born_at { rand(20..50).year.ago }
-    died_at { [rand(20).year.ago, nil].sample }
-    gender { Graph::Artist::GENDERS.sample }
+    alt_names { [] }
+    description { "A #{DateTime.current.year - born_at.year} year old #{gender} artist from #{country.name}." }
+    born_at { FFaker::Time.between(20.years.ago, 50.years.ago) }
+    died_at { [FFaker::Time.between(born_at, DateTime.current), nil, nil].sample }
+    gender { %w(male female).sample }
 
     association :country, factory: :country
   end
