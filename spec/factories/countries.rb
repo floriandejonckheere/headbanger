@@ -2,10 +2,7 @@
 
 FactoryBot.define do
   factory :country, class: "Graph::Country" do
-    to_create do |instance|
-      instance.attributes = Graph::Country.find_or_create_by(code: instance.code).attributes
-      instance.reload
-    end
+    initialize_with { Graph::Country.find_or_initialize_by(code: code) }
 
     code { ISO3166::Country.codes.sample }
   end
