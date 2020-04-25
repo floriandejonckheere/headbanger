@@ -1,0 +1,65 @@
+---
+170619:
+  name: Rubén Lanuza
+  alt_names: []
+  description: ""
+  born_at: 1986-12-14
+  gender: "male"
+  country: "ES"
+  groups:
+    - 3540361100
+  releases:
+    - 391528
+    - 548366
+
+523059:
+  name: Leo Duarte
+  alt_names: []
+  description: ""
+  born_at:
+  gender: "male"
+  country: "CU"
+  groups:
+    - 3540361100
+  releases:
+    - 391528
+    - 548366
+
+60908:
+  name: Alberto Rionda
+  alt_names: []
+  description: "Avalanch's guitarist, composer and producer since 1997 as well as a lyricist, arranger, keyboardist and sound engineer in his recording studio."
+  born_at: 1972-09-02
+  gender: "male"
+  country: "ES"
+  groups:
+    - 3540361100
+  releases:
+    - 391528
+    - 548366
+
+60931:
+  name: Chez García
+  alt_names: []
+  description: ""
+  born_at:
+  gender: "male"
+  country: "ES"
+  groups:
+    - 3540361100
+  releases:
+    - 391528
+    - 548366
+
+170617:
+  name: Israel Ramos
+  alt_names: []
+  description: ""
+  born_at: 1982-08-27
+  gender: "male"
+  country: "ES"
+  groups:
+    - 3540361100
+  releases:
+    - 391528
+    - 548366

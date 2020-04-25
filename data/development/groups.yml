@@ -1,0 +1,22 @@
+---
+3540361100:
+  name: "Alquimia"
+  alt_names: []
+  description: "Formed by Alberto Rionda after the pause of the Spanish metal band Avalanch."
+  formed_at: 2013
+  state: "on_hold"
+  country: "ES"
+  artists:
+    - 170619
+    - 523059
+    - 60908
+    - 60931
+    - 170617
+  releases:
+    - 391528
+    - 548366
+  themes:
+    - "epic"
+    - "legends"
+  genres:
+    - "melodic_power"
