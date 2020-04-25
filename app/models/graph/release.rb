@@ -34,7 +34,7 @@ module Graph
 
     has_one :in,
             :group,
-            type: :released_by,
+            type: :releases,
             model_class: "Graph::Group",
             unique: { on: :id }
   end

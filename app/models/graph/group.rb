@@ -56,7 +56,7 @@ module Graph
 
     has_many :out,
              :releases,
-             type: :released_by,
+             type: :releases,
              model_class: "Graph::Release",
              unique: { on: :id }
 
