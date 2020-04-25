@@ -11,10 +11,12 @@ module FFaker
     end
 
     def group
-      "#{fetch_sample(names['first'])} #{fetch_sample(names['second'])}"
+      "#{fetch_sample(groups['first'])} #{fetch_sample(groups['second'])}"
     end
 
-    alias release group
+    def release
+      group
+    end
 
     def themes
       @themes ||= YAML.load_file(Rails.root.join("data/development/themes.yml"))
