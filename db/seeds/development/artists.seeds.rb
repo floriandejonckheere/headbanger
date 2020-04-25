@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 neo4j_transaction do
-  YAML
-    .load_file(Rails.root.join("data/development/artists.yml"))
-    .deep_symbolize_keys
-    .map do |metal_archives_key, data|
-    artist = Graph::Artist.find_or_initialize_by metal_archives_key: metal_archives_key
-    artist.name = data[:name]
-    artist.alt_names = data[:alt_names]
-    artist.description = data[:description]
-    artist.born_at = data[:born_at]
-    artist.gender = data[:gender]
+  Rails.logger.info "-- Creating artists"
 
-    artist.country = Graph::Country.find_or_create_by!(code: data[:country])
-    data[:groups].each { |key| artist.groups << Graph::Group.find_by(metal_archives_key: key) }
-    data[:releases].each { |key| artist.releases << Graph::Release.find_by(metal_archives_key: key) }
+  rand(25..50).times do
+    artist = FactoryBot.create(:artist)
+
+    groups = [Graph::Group.all.to_a.sample(rand(2..4)), FactoryBot.build_list(:group, rand(0..5))].flatten
+    artist.groups = groups
+
+    releases = [
+      Graph::Release.all.to_a.sample(rand(2..4)),
+      FactoryBot.build_list(:release, rand(5..10), group: groups.sample),
+    ].flatten
+
+    artist.releases = releases
 
     artist.save!
   end

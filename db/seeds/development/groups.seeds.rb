@@ -1,22 +1,23 @@
 # frozen_string_literal: true
 
 neo4j_transaction do
-  YAML
-    .load_file(Rails.root.join("data/development/groups.yml"))
-    .deep_symbolize_keys
-    .map do |metal_archives_key, data|
-    group = Graph::Group.find_or_initialize_by metal_archives_key: metal_archives_key
-    group.name = data[:name]
-    group.alt_names = data[:alt_names]
-    group.description = data[:description]
-    group.formed_at = data[:formed_at]
-    group.state = data[:state]
+  Rails.logger.info "-- Creating groups"
 
-    group.country = Graph::Country.find_or_create_by!(code: data[:country])
-    data[:artists].each { |key| group.artists << Graph::Artist.find_by(metal_archives_key: key) }
-    data[:releases].each { |key| group.releases << Graph::Release.find_by(metal_archives_key: key) }
-    data[:themes].each { |theme| group.themes << Graph::Theme.find_or_create_by!(name: theme) }
-    data[:genres].each { |genre| group.genres << Graph::Genre.find_or_create_by!(name: genre) }
+  rand(25..50).times do
+    group = FactoryBot.create(:group)
+
+    artists = [Graph::Artist.all.to_a.sample(rand(2..4)), FactoryBot.build_list(:artist, rand(1..5))].flatten
+    group.artists = artists
+
+    releases = [
+      Graph::Release.all.to_a.sample(rand(1..5)),
+      FactoryBot.build_list(:release, rand(0..5), group: group),
+    ].sample
+
+    group.releases = releases
+
+    group.themes = FactoryBot.create_list(:theme, rand(0..5))
+    group.genres = FactoryBot.create_list(:genre, rand(1..2))
 
     group.save!
   end
