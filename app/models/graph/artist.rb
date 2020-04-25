@@ -35,9 +35,6 @@ module Graph
               presence: true,
               allow_blank: true
 
-    validates :description,
-              presence: true
-
     validates :gender,
               presence: true,
               inclusion: { in: GENDERS }
