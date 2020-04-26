@@ -7,6 +7,7 @@ module Graph
   class Group < ApplicationRecord
     include Identifiable
     include Refreshable
+    include Rateable
 
     STATES = %w(active split_up on_hold changed_name disputed unknown).freeze
 
@@ -72,11 +73,5 @@ module Graph
              type: :associated_with,
              model_class: "Graph::Genre",
              unique: { on: :id }
-
-    has_many :in,
-             :raters,
-             type: :rates,
-             model_class: "Graph::User",
-             unique: { on: :uuid }
   end
 end

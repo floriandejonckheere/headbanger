@@ -7,6 +7,7 @@ module Graph
   class Release < ApplicationRecord
     include Identifiable
     include Refreshable
+    include Rateable
 
     property :name,
              type: String
@@ -19,12 +20,6 @@ module Graph
 
     validates :released_at,
               presence: true
-
-    has_many :in,
-             :raters,
-             type: :rates,
-             model_class: "Graph::User",
-             unique: { on: :uuid }
 
     has_many :in,
              :artists,

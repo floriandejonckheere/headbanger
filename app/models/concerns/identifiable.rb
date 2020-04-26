@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-##
-# Allows a node to be updated from a data source
-#
 module Identifiable
   extend ActiveSupport::Concern
 

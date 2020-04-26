@@ -7,6 +7,7 @@ module Graph
   class Artist < ApplicationRecord
     include Identifiable
     include Refreshable
+    include Rateable
 
     GENDERS = %w(male female other unknown).freeze
 
@@ -44,12 +45,6 @@ module Graph
             type: :based_in,
             model_class: "Graph::Country",
             unique: { on: :id }
-
-    has_many :in,
-             :raters,
-             type: :rates,
-             model_class: "Graph::User",
-             unique: { on: :uuid }
 
     has_many :out,
              :groups,
