@@ -25,8 +25,14 @@ module Graph
             unique: { on: :id }
 
     has_many :out,
-             :rated,
-             type: :rates,
+             :likes,
+             type: :likes,
+             model_class: %w(Graph::Artist Graph::Group Graph::Release),
+             unique: { on: :id }
+
+    has_many :out,
+             :dislikes,
+             type: :dislikes,
              model_class: %w(Graph::Artist Graph::Group Graph::Release),
              unique: { on: :id }
   end

@@ -5,8 +5,14 @@ module Rateable
 
   included do
     has_many :in,
-             :raters,
-             type: :rates,
+             :likes,
+             type: :likes,
+             model_class: "Graph::User",
+             unique: { on: :uuid }
+
+    has_many :in,
+             :dislikes,
+             type: :dislikes,
              model_class: "Graph::User",
              unique: { on: :uuid }
   end

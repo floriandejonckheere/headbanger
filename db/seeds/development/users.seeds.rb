@@ -13,7 +13,7 @@ neo4j_transaction do
 
     groups.each do |group|
       n = rand(3)
-      user.rated << if n.zero?
+      user.likes << if n.zero?
                       group
                     elsif n == 1
                       group.releases.to_a.sample
