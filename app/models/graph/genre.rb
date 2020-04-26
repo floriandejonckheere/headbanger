@@ -50,7 +50,7 @@ module Graph
       end
 
       def description_for(name)
-        "#{name.titleize} Metal"
+        "#{name.titleize} Metal" if name
       end
     end
   end

@@ -32,7 +32,7 @@ module Graph
       end
 
       def description_for(name)
-        name.titleize
+        name&.titleize
       end
     end
   end
