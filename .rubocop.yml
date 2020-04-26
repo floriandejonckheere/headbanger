@@ -40,6 +40,10 @@ Metrics/AbcSize:
   Enabled: true
   Max: 25
 
+Metrics/BlockLength:
+  Enabled: true
+  Max: 50
+
 Rails:
   Enabled: true
 
