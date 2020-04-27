@@ -10,10 +10,139 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_155523) do
+ActiveRecord::Schema.define(version: 2020_04_27_081335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
+  create_table "artists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.jsonb "alt_names", default: [], null: false
+    t.string "country", null: false
+    t.string "description"
+    t.string "gender"
+    t.date "born_at"
+    t.date "died_at"
+    t.string "metal_archives_key"
+    t.string "musicbrainz_key"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["metal_archives_key"], name: "index_artists_on_metal_archives_key", unique: true
+    t.index ["musicbrainz_key"], name: "index_artists_on_musicbrainz_key", unique: true
+  end
+
+  create_table "artists_groups", id: false, force: :cascade do |t|
+    t.uuid "artist_id", null: false
+    t.uuid "group_id", null: false
+    t.index ["artist_id", "group_id"], name: "index_artists_groups_on_artist_id_and_group_id", unique: true
+    t.index ["artist_id"], name: "index_artists_groups_on_artist_id"
+    t.index ["group_id"], name: "index_artists_groups_on_group_id"
+  end
+
+  create_table "artists_releases", id: false, force: :cascade do |t|
+    t.uuid "artist_id", null: false
+    t.uuid "release_id", null: false
+    t.index ["artist_id", "release_id"], name: "index_artists_releases_on_artist_id_and_release_id", unique: true
+    t.index ["artist_id"], name: "index_artists_releases_on_artist_id"
+    t.index ["release_id"], name: "index_artists_releases_on_release_id"
+  end
+
+  create_table "genres", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "genre_id"
+    t.index ["genre_id"], name: "index_genres_on_genre_id"
+    t.index ["name"], name: "index_genres_on_name", unique: true
+  end
+
+  create_table "groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.jsonb "alt_names", default: [], null: false
+    t.string "status", null: false
+    t.string "country", null: false
+    t.string "description"
+    t.date "formed_at"
+    t.string "metal_archives_key"
+    t.string "musicbrainz_key"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["metal_archives_key"], name: "index_groups_on_metal_archives_key", unique: true
+    t.index ["musicbrainz_key"], name: "index_groups_on_musicbrainz_key", unique: true
+  end
+
+  create_table "groups_genres", id: false, force: :cascade do |t|
+    t.uuid "group_id", null: false
+    t.uuid "genre_id", null: false
+    t.index ["genre_id"], name: "index_groups_genres_on_genre_id"
+    t.index ["group_id", "genre_id"], name: "index_groups_genres_on_group_id_and_genre_id", unique: true
+    t.index ["group_id"], name: "index_groups_genres_on_group_id"
+  end
+
+  create_table "groups_releases", id: false, force: :cascade do |t|
+    t.uuid "group_id", null: false
+    t.uuid "release_id", null: false
+    t.index ["group_id", "release_id"], name: "index_groups_releases_on_group_id_and_release_id", unique: true
+    t.index ["group_id"], name: "index_groups_releases_on_group_id"
+    t.index ["release_id"], name: "index_groups_releases_on_release_id"
+  end
+
+  create_table "groups_themes", id: false, force: :cascade do |t|
+    t.uuid "group_id", null: false
+    t.uuid "theme_id", null: false
+    t.index ["group_id", "theme_id"], name: "index_groups_themes_on_group_id_and_theme_id", unique: true
+    t.index ["group_id"], name: "index_groups_themes_on_group_id"
+    t.index ["theme_id"], name: "index_groups_themes_on_theme_id"
+  end
+
+  create_table "ratings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.string "rateable_type", null: false
+    t.uuid "rateable_id", null: false
+    t.string "rating", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rateable_type", "rateable_id"], name: "index_ratings_on_rateable_type_and_rateable_id"
+    t.index ["user_id", "rateable_id", "rateable_type"], name: "index_ratings_on_user_id_and_rateable_id_and_rateable_type", unique: true
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
+  create_table "releases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.date "released_at"
+    t.string "metal_archives_key"
+    t.string "musicbrainz_key"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["metal_archives_key"], name: "index_releases_on_metal_archives_key", unique: true
+    t.index ["musicbrainz_key"], name: "index_releases_on_musicbrainz_key", unique: true
+  end
+
+  create_table "themes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_themes_on_name", unique: true
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "country", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "artists_groups", "artists"
+  add_foreign_key "artists_groups", "groups"
+  add_foreign_key "artists_releases", "artists"
+  add_foreign_key "artists_releases", "releases"
+  add_foreign_key "groups_genres", "genres"
+  add_foreign_key "groups_genres", "groups"
+  add_foreign_key "groups_releases", "groups"
+  add_foreign_key "groups_releases", "releases"
+  add_foreign_key "groups_themes", "groups"
+  add_foreign_key "groups_themes", "themes"
+  add_foreign_key "ratings", "users"
 end
