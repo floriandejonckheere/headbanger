@@ -4,18 +4,12 @@ module Identifiable
   extend ActiveSupport::Concern
 
   included do
-    property :musicbrainz_key,
-             type: Integer
-
-    property :metal_archives_key,
-             type: Integer
+    validates :metal_archives_key,
+              uniqueness: true,
+              allow_nil: true
 
     validates :musicbrainz_key,
               uniqueness: true,
-              allow_blank: true
-
-    validates :metal_archives_key,
-              uniqueness: true,
-              allow_blank: true
+              allow_nil: true
   end
 end
