@@ -3,6 +3,9 @@
 RSpec.describe Genre do
   subject(:genre) { build(:genre) }
 
+  it { is_expected.to have_many(:group_genres).dependent :destroy }
+  it { is_expected.to have_many(:groups).through :group_genres }
+
   it { is_expected.to belong_to(:genre).optional }
 
   it { is_expected.to validate_presence_of :name }

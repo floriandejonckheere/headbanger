@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Theme < ApplicationRecord
+  has_many :group_themes,
+           dependent: :destroy
+
+  has_many :groups,
+           through: :group_themes
+
   validates :name,
             presence: true,
             uniqueness: true
