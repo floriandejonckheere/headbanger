@@ -7,7 +7,6 @@ FactoryBot.define do
     description { "A band from #{country.name}." }
     formed_at { FFaker::Time.between(50.years.ago, DateTime.current) }
     state { Graph::Group::STATES.sample }
-
-    association :country, factory: :country
+    country { ISO3166::Country.codes.sample }
   end
 end
