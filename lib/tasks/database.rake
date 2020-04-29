@@ -7,13 +7,11 @@ namespace :database do
   namespace :seed do
     desc "Seed production database"
     task production: :environment do
-      require Rails.root.join("db/seeds.rb")
       Dir[Rails.root.join("db/seeds/*.rb")].sort.each { |f| require f }
     end
 
     desc "Seed development database"
     task development: :environment do
-      require Rails.root.join("db/seeds.rb")
       Dir[Rails.root.join("db/seeds/development/*.rb")].sort.each { |f| require f }
     end
   end
