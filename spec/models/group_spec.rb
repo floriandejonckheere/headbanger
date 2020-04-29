@@ -13,6 +13,9 @@ RSpec.describe Group do
   it { is_expected.to have_many(:group_genres).dependent :destroy }
   it { is_expected.to have_many(:genres).through :group_genres }
 
+  it { is_expected.to have_many(:ratings).dependent :destroy }
+  it { is_expected.to have_many(:users).through :ratings }
+
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_presence_of(:alt_names).allow_nil }
   it { is_expected.to validate_presence_of :description }

@@ -3,7 +3,6 @@
 class Release < ApplicationRecord
   include Identifiable
   include Refreshable
-  include Rateable
 
   has_many :artist_releases,
            dependent: :destroy
@@ -16,6 +15,13 @@ class Release < ApplicationRecord
 
   has_many :groups,
            through: :group_releases
+
+  has_many :ratings,
+           as: :rateable,
+           dependent: :destroy
+
+  has_many :users,
+           through: :ratings
 
   validates :name,
             presence: true

@@ -3,7 +3,6 @@
 class Group < ApplicationRecord
   include Identifiable
   include Refreshable
-  include Rateable
 
   STATUSES = %w(active split_up on_hold changed_name disputed unknown).freeze
 
@@ -30,6 +29,13 @@ class Group < ApplicationRecord
 
   has_many :genres,
            through: :group_genres
+
+  has_many :ratings,
+           as: :rateable,
+           dependent: :destroy
+
+  has_many :users,
+           through: :ratings
 
   validates :name,
             presence: true

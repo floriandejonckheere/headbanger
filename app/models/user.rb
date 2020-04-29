@@ -1,6 +1,24 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :ratings,
+           dependent: :destroy
+
+  has_many :rated_artists,
+           through: :ratings,
+           source: :rateable,
+           source_type: "Artist"
+
+  has_many :rated_groups,
+           through: :ratings,
+           source: :rateable,
+           source_type: "Group"
+
+  has_many :rated_releases,
+           through: :ratings,
+           source: :rateable,
+           source_type: "Release"
+
   validates :name,
             presence: true
 
@@ -11,16 +29,4 @@ class User < ApplicationRecord
   validates :country,
             inclusion: { in: ISO3166::Country.codes },
             allow_nil: true
-
-  # has_many :out,
-  #          :likes,
-  #          type: :likes,
-  #          model_class: %w(Graph::Artist Graph::Group Graph::Release),
-  #          unique: { on: :id }
-  #
-  # has_many :out,
-  #          :dislikes,
-  #          type: :dislikes,
-  #          model_class: %w(Graph::Artist Graph::Group Graph::Release),
-  #          unique: { on: :id }
 end

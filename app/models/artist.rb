@@ -3,7 +3,6 @@
 class Artist < ApplicationRecord
   include Identifiable
   include Refreshable
-  include Rateable
 
   GENDERS = %w(male female other unknown).freeze
 
@@ -18,6 +17,13 @@ class Artist < ApplicationRecord
 
   has_many :releases,
            through: :artist_releases
+
+  has_many :ratings,
+           as: :rateable,
+           dependent: :destroy
+
+  has_many :users,
+           through: :ratings
 
   validates :name,
             presence: true
