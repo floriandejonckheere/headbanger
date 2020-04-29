@@ -12,7 +12,6 @@ class CreateTables < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_reference :genres, :genre, type: :uuid
     add_index :genres, :name, unique: true
 
     ##
@@ -82,6 +81,12 @@ class CreateTables < ActiveRecord::Migration[6.0]
 
     add_index :releases, :metal_archives_key, unique: true
     add_index :releases, :musicbrainz_key, unique: true
+
+    # Genres - Genres
+    create_table :genres_genres, id: false do |t|
+      t.references :supergenre, null: false, type: :uuid, foreign_key: { to_table: :genres }, dependent: :destroy
+      t.references :subgenre, null: false, type: :uuid, foreign_key: { to_table: :genres }, dependent: :destroy
+    end
 
     # Artists - Groups
     create_table :artists_groups, id: false do |t|

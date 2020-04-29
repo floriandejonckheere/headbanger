@@ -52,9 +52,14 @@ ActiveRecord::Schema.define(version: 2020_04_27_081335) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.uuid "genre_id"
-    t.index ["genre_id"], name: "index_genres_on_genre_id"
     t.index ["name"], name: "index_genres_on_name", unique: true
+  end
+
+  create_table "genres_genres", id: false, force: :cascade do |t|
+    t.uuid "supergenre_id", null: false
+    t.uuid "subgenre_id", null: false
+    t.index ["subgenre_id"], name: "index_genres_genres_on_subgenre_id"
+    t.index ["supergenre_id"], name: "index_genres_genres_on_supergenre_id"
   end
 
   create_table "groups", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -138,6 +143,8 @@ ActiveRecord::Schema.define(version: 2020_04_27_081335) do
   add_foreign_key "artists_groups", "groups"
   add_foreign_key "artists_releases", "artists"
   add_foreign_key "artists_releases", "releases"
+  add_foreign_key "genres_genres", "genres", column: "subgenre_id"
+  add_foreign_key "genres_genres", "genres", column: "supergenre_id"
   add_foreign_key "groups_genres", "genres"
   add_foreign_key "groups_genres", "groups"
   add_foreign_key "groups_releases", "groups"

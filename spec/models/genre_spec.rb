@@ -6,7 +6,11 @@ RSpec.describe Genre do
   it { is_expected.to have_many(:group_genres).dependent :destroy }
   it { is_expected.to have_many(:groups).through :group_genres }
 
-  it { is_expected.to belong_to(:genre).optional }
+  it { is_expected.to have_many(:supergenre_genres).dependent :destroy }
+  it { is_expected.to have_many(:supergenres).through :supergenre_genres }
+
+  it { is_expected.to have_many(:subgenre_genres).dependent :destroy }
+  it { is_expected.to have_many(:subgenres).through :subgenre_genres }
 
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_uniqueness_of :name }

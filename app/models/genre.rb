@@ -7,8 +7,25 @@ class Genre < ApplicationRecord
   has_many :groups,
            through: :group_genres
 
-  belongs_to :genre,
-             optional: true
+  has_many :supergenre_genres,
+           dependent: :destroy,
+           foreign_key: :subgenre_id,
+           inverse_of: :subgenre,
+           class_name: "GenreGenre"
+
+  has_many :subgenre_genres,
+           dependent: :destroy,
+           foreign_key: :supergenre_id,
+           inverse_of: :supergenre,
+           class_name: "GenreGenre"
+
+  has_many :supergenres,
+           through: :supergenre_genres,
+           source: :supergenre
+
+  has_many :subgenres,
+           through: :subgenre_genres,
+           source: :subgenre
 
   validates :name,
             presence: true,
