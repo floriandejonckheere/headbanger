@@ -139,17 +139,17 @@ ActiveRecord::Schema.define(version: 2020_04_27_081335) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "artists_groups", "artists"
-  add_foreign_key "artists_groups", "groups"
-  add_foreign_key "artists_releases", "artists"
-  add_foreign_key "artists_releases", "releases"
-  add_foreign_key "genres_genres", "genres", column: "subgenre_id"
-  add_foreign_key "genres_genres", "genres", column: "supergenre_id"
-  add_foreign_key "groups_genres", "genres"
-  add_foreign_key "groups_genres", "groups"
-  add_foreign_key "groups_releases", "groups"
-  add_foreign_key "groups_releases", "releases"
-  add_foreign_key "groups_themes", "groups"
-  add_foreign_key "groups_themes", "themes"
-  add_foreign_key "ratings", "users"
+  add_foreign_key "artists_groups", "artists", on_delete: :cascade
+  add_foreign_key "artists_groups", "groups", on_delete: :cascade
+  add_foreign_key "artists_releases", "artists", on_delete: :cascade
+  add_foreign_key "artists_releases", "releases", on_delete: :cascade
+  add_foreign_key "genres_genres", "genres", column: "subgenre_id", on_delete: :cascade
+  add_foreign_key "genres_genres", "genres", column: "supergenre_id", on_delete: :cascade
+  add_foreign_key "groups_genres", "genres", on_delete: :cascade
+  add_foreign_key "groups_genres", "groups", on_delete: :cascade
+  add_foreign_key "groups_releases", "groups", on_delete: :cascade
+  add_foreign_key "groups_releases", "releases", on_delete: :cascade
+  add_foreign_key "groups_themes", "groups", on_delete: :cascade
+  add_foreign_key "groups_themes", "themes", on_delete: :cascade
+  add_foreign_key "ratings", "users", on_delete: :cascade
 end

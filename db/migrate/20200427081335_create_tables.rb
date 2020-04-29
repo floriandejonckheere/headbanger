@@ -84,46 +84,46 @@ class CreateTables < ActiveRecord::Migration[6.0]
 
     # Genres - Genres
     create_table :genres_genres, id: false do |t|
-      t.references :supergenre, null: false, type: :uuid, foreign_key: { to_table: :genres }, dependent: :destroy
-      t.references :subgenre, null: false, type: :uuid, foreign_key: { to_table: :genres }, dependent: :destroy
+      t.references :supergenre, null: false, type: :uuid, foreign_key: { to_table: :genres, on_delete: :cascade }
+      t.references :subgenre, null: false, type: :uuid, foreign_key: { to_table: :genres, on_delete: :cascade }
     end
 
     # Artists - Groups
     create_table :artists_groups, id: false do |t|
-      t.references :artist, null: false, type: :uuid, foreign_key: true, dependent: :destroy
-      t.references :group, null: false, type: :uuid, foreign_key: true, dependent: :destroy
+      t.references :artist, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
+      t.references :group, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
     end
 
     add_index :artists_groups, [:artist_id, :group_id], unique: true
 
     # Artists - Releases
     create_table :artists_releases, id: false do |t|
-      t.references :artist, null: false, type: :uuid, foreign_key: true, dependent: :destroy
-      t.references :release, null: false, type: :uuid, foreign_key: true, dependent: :destroy
+      t.references :artist, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
+      t.references :release, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
     end
 
     add_index :artists_releases, [:artist_id, :release_id], unique: true
 
     # Groups - Releases
     create_table :groups_releases, id: false do |t|
-      t.references :group, null: false, type: :uuid, foreign_key: true, dependent: :destroy
-      t.references :release, null: false, type: :uuid, foreign_key: true, dependent: :destroy
+      t.references :group, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
+      t.references :release, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
     end
 
     add_index :groups_releases, [:group_id, :release_id], unique: true
 
     # Groups - Themes
     create_table :groups_themes, id: false do |t|
-      t.references :group, null: false, type: :uuid, foreign_key: true, dependent: :destroy
-      t.references :theme, null: false, type: :uuid, foreign_key: true, dependent: :destroy
+      t.references :group, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
+      t.references :theme, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
     end
 
     add_index :groups_themes, [:group_id, :theme_id], unique: true
 
     # Groups - Genres
     create_table :groups_genres, id: false do |t|
-      t.references :group, null: false, type: :uuid, foreign_key: true, dependent: :destroy
-      t.references :genre, null: false, type: :uuid, foreign_key: true, dependent: :destroy
+      t.references :group, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
+      t.references :genre, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
     end
 
     add_index :groups_genres, [:group_id, :genre_id], unique: true
@@ -143,8 +143,8 @@ class CreateTables < ActiveRecord::Migration[6.0]
     # Ratings
     #
     create_table :ratings, id: :uuid do |t|
-      t.references :user, null: false, type: :uuid, foreign_key: true, dependent: :destroy
-      t.references :rateable, null: false, type: :uuid, dependent: :destroy, polymorphic: true
+      t.references :user, null: false, type: :uuid, foreign_key: { on_delete: :cascade }
+      t.references :rateable, null: false, type: :uuid, polymorphic: true
       t.string :rating, null: false
 
       t.timestamps
