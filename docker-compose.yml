@@ -17,18 +17,6 @@ services:
       - redis:/data
     restart: always
 
-  neo4j:
-    image: neo4j:3.5
-    ports:
-      - "7474:7474"
-      - "7687:7687"
-    volumes:
-      - neo4j:/data/
-      - ./logs/neo4j/:/logs/
-    environment:
-      NEO4J_AUTH: neo4j/password
-    restart: always
-
   app:
     build: .
     ports:
@@ -37,8 +25,8 @@ services:
       - .:/app/:cached
       - ./logs/app/:/app/log/
     depends_on:
-      - neo4j
       - postgres
+      - redis
     env_file:
       - .env.development
       - .env.development.local
@@ -63,7 +51,6 @@ services:
     volumes:
       - .:/app/:cached
     depends_on:
-      - neo4j
       - postgres
       - redis
     links:
@@ -76,5 +63,4 @@ services:
 volumes:
   postgres:
   redis:
-  neo4j:
   nginx:

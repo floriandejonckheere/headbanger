@@ -21,9 +21,6 @@ gem "rack-cors"
 # Use sidekiq as asynchronous job queue
 gem "sidekiq"
 
-# Use neo4j as the graph database
-gem "neo4j"
-
 # ISO3166 countries
 gem "countries"
 
@@ -49,9 +46,6 @@ group :development, :test do
   # RSpec
   gem "rspec"
   gem "rspec-rails"
-
-  # Neo4j matchers
-  gem "neo4j-rspec"
 
   # Shoulda-matchers
   gem "shoulda-matchers"
