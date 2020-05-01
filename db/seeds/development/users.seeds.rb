@@ -1,43 +1,23 @@
 # frozen_string_literal: true
 
-neo4j_transaction do
-  Rails.logger.info "-- Creating users"
+ActiveRecord::Base.transaction do
+  puts "-- Creating users"
+
+  models = {
+    genres: Group.all.to_a,
+    artists: Artist.all.to_a,
+    releases: Release.all.to_a,
+  }
 
   rand(100..200).times do
     user = FactoryBot.create(:user)
+    puts "    > #{user.email}"
 
-    # Likes
-    genres = Graph::Genre.all.to_a.sample(rand(1..3))
-    themes = Graph::Theme.all.to_a.sample(rand(5..10))
+    rateables = Array
+      .new(rand(50..200)) { models[[:genres, :artists, :releases].sample].sample }
+      .uniq(&:id)
 
-    groups = [genres.map(&:groups).flatten, themes.map(&:groups).flatten].flatten.compact.uniq
-
-    groups.each do |group|
-      n = rand(3)
-      user.likes << if n.zero?
-                      group
-                    elsif n == 1
-                      group.releases.to_a.sample
-                    else
-                      group.artists.to_a.sample
-                    end
-    end
-
-    # Dislikes
-    genres = Graph::Genre.all.to_a.sample(rand(1..3))
-
-    groups = genres.map(&:groups).flatten.uniq
-
-    groups.each do |group|
-      n = rand(3)
-      user.dislikes << if n.zero?
-                         group
-                       elsif n == 1
-                         group.releases.to_a.sample
-                       else
-                         group.artists.to_a.sample
-                       end
-    end
+    rateables.each { |r| user.ratings.build(rateable: r, rating: [:like, :dislike].sample) }
 
     user.save!
   end
