@@ -40,7 +40,7 @@ Lint/StructNewOverride:
 
 Metrics/AbcSize:
   Enabled: true
-  Max: 25
+  Max: 35
   Exclude:
     - db/migrate/*
 

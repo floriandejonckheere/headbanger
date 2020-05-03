@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Graph::GenreBuilder do
+RSpec.describe GenreBuilder do
   subject(:genre) { described_class.new(description: "Power Metal").call }
 
   it { is_expected.to have_attributes name: "power" }
@@ -13,7 +13,7 @@ RSpec.describe Graph::GenreBuilder do
     it "maps new genres with existing supergenres" do
       genre = described_class.new(description: "Death Metal with a little Power").call
 
-      expect(genre.supergenres).to match_array [graph_genre("death"), graph_genre("power")]
+      expect(genre.supergenres).to match_array [find_genre("death"), find_genre("power")]
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe Graph::GenreBuilder do
     it "assigns new subgenres" do
       genre = described_class.new(description: "Melodic Power Metal").call
 
-      expect(genre.supergenres).to match_array [graph_genre("power")]
+      expect(genre.supergenres).to match_array [find_genre("power")]
     end
   end
 end
