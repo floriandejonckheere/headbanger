@@ -11,7 +11,7 @@ import store from './store';
 
 import { version } from '../package.json';
 
-Vue.use(Buefy);
+Vue.use(Buefy, { defaultIconPack: 'fas' });
 
 Vue.config.productionTip = false;
 
