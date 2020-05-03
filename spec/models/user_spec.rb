@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe User do
+  subject(:user) { build(:user) }
+
   it { is_expected.to have_many(:ratings).dependent :destroy }
 
   it { is_expected.to have_many(:rated_artists).through :ratings }

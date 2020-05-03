@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe Group do
+  subject(:group) { build(:group) }
+
+  it_behaves_like "identifiable"
+
   it { is_expected.to have_many(:artist_groups).dependent :destroy }
   it { is_expected.to have_many(:artists).through :artist_groups }
 
@@ -22,7 +26,4 @@ RSpec.describe Group do
   it { is_expected.to validate_presence_of :formed_at }
   it { is_expected.to validate_presence_of :status }
   it { is_expected.to validate_inclusion_of(:status).in_array described_class::STATUSES }
-
-  it { is_expected.to validate_presence_of(:musicbrainz_key).allow_nil }
-  it { is_expected.to validate_presence_of(:metal_archives_key).allow_nil }
 end
