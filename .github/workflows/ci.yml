@@ -66,8 +66,7 @@ jobs:
           MA_ENDPOINT_PASSWORD: ${{ secrets.MA_ENDPOINT_PASSWORD }}
         run: |
           bundle exec rails db:create db:schema:load --trace
-          bundle exec rails neo4j:migrate --trace
-          bundle exec rails database:seed:production --trace
+          bundle exec rails database:seed:production RAILS_ENV=test --trace
           bundle exec rspec --profile 10 --format progress
 
       - name: Lint

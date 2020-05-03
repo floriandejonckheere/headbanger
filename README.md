@@ -30,6 +30,20 @@ Generate TLS client certificates for NGINX:
 openssl req  -nodes -new -x509  -keyout web/nginx/client.key -out web/nginx/client.pem
 ```
 
+## Testing
+
+Seed the test database before running the test suite:
+
+```
+rails database:seed:production RAILS_ENV=test
+```
+
+Run the test suite:
+
+```
+rspec
+```
+
 ## Releasing
 
 Update the changelog and bump the version in `lib/headbanger/version.rb` and `web/package.json`.
