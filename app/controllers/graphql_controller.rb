@@ -7,25 +7,29 @@ class GraphqlController < ApplicationController
   # protect_from_forgery with: :null_session
 
   def execute
-    variables = ensure_hash(params[:variables])
-    query = params[:query]
-    operation_name = params[:operationName]
-    context = {
-      current_user: current_user,
-    }
-    result = HeadbangerSchema.execute query,
-                                      variables: variables,
+    result = HeadbangerSchema.execute params[:query],
+                                      variables: ensure_hash(params[:variables]),
                                       context: context,
-                                      operation_name: operation_name
+                                      operation_name: params[:operationName]
 
     render json: result
   rescue StandardError => e
+    logger.error(e)
+    logger.error e.backtrace.join("\n")
+    Raven.capture_exception(e)
+
     raise e unless Rails.env.development?
 
-    handle_error_in_development e
+    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
   end
 
   private
+
+  def context
+    {
+      # current_user: current_user,
+    }
+  end
 
   def ensure_hash(ambiguous_param)
     case ambiguous_param
@@ -42,12 +46,5 @@ class GraphqlController < ApplicationController
     else
       raise ArgumentError, "Unexpected parameter: #{ambiguous_param}"
     end
-  end
-
-  def handle_error_in_development(error)
-    logger.error error.message
-    logger.error error.backtrace.join("\n")
-
-    render json: { errors: [{ message: error.message, backtrace: error.backtrace }], data: {} }, status: 500
   end
 end
