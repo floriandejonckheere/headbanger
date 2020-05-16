@@ -43,6 +43,9 @@ group :development, :test do
   # Database annotations
   gem "annotate"
 
+  # GraphQL API UI
+  gem "graphiql-rails"
+
   # RuboCop
   gem "rubocop"
   gem "rubocop-performance"
