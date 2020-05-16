@@ -4,7 +4,7 @@ class Artist < ApplicationRecord
   include Identifiable
   include Refreshable
 
-  GENDERS = %w(male female other unknown).freeze
+  GENDERS = %w(male female other).freeze
 
   has_many :artist_groups,
            dependent: :destroy
