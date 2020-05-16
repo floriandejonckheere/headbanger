@@ -62,6 +62,9 @@ group :development, :test do
   # Shoulda-matchers
   gem "shoulda-matchers"
 
+  # Time behaviour
+  gem "timecop"
+
   # Factory testing pattern
   gem "factory_bot"
   gem "factory_bot_rails"
