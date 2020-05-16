@@ -60,6 +60,19 @@ services:
       - .env.development.local
     restart: always
 
+  clock:
+    build: .
+    command: bundle exec clockwork clock.rb
+    volumes:
+      - .:/app/:cached
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env.development
+      - .env.development.local
+    restart: always
+
 volumes:
   postgres:
   redis:
