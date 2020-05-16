@@ -35,11 +35,6 @@
     <ApolloQuery
       :query="require('../graphql/Messages.gql')"
     >
-      <ApolloSubscribeToMore
-        :document="require('../graphql/MessageAdded.gql')"
-        :update-query="onMessageAdded"
-      />
-
       <div slot-scope="{ result: { data } }">
         <template v-if="data">
           <div
