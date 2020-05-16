@@ -10,6 +10,7 @@ import router from './router';
 import store from './store';
 
 import { version } from '../package.json';
+import { createProvider } from './vue-apollo';
 
 Vue.use(Buefy, { defaultIconPack: 'fas' });
 
@@ -28,5 +29,6 @@ Sentry.configureScope((scope) => {
 new Vue({
   router,
   store,
+  apolloProvider: createProvider(),
   render: (h) => h(App),
 }).$mount('#app');
