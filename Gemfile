@@ -30,6 +30,9 @@ gem "metal_archives", github: "floriandejonckheere/metal_archives"
 # Error reporting
 gem "sentry-raven"
 
+# GraphQL API
+gem "graphql"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug"
