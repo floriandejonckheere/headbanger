@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/Rykian/clockwork.git
+  revision: 16b4e196aebaadb15d2a0986098eb80c198ea381
+  specs:
+    clockwork (2.0.4)
+      activesupport
+      tzinfo
+
+GIT
   remote: https://github.com/floriandejonckheere/metal_archives.git
   revision: aba658cb4c0d3d8093e1bf1d3e0da7e7f5ab197f
   specs:
@@ -271,6 +279,7 @@ DEPENDENCIES
   annotate
   bootsnap (>= 1.4.2)
   byebug
+  clockwork!
   countries
   debase
   factory_bot
