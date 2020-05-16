@@ -58,3 +58,25 @@ class Group < ApplicationRecord
             inclusion: { in: ISO3166::Country.codes },
             allow_nil: true
 end
+
+# == Schema Information
+#
+# Table name: groups
+#
+#  id                 :uuid             not null, primary key
+#  alt_names          :jsonb            not null
+#  country            :string           not null
+#  description        :string
+#  formed_at          :date
+#  metal_archives_key :string
+#  musicbrainz_key    :string
+#  name               :string           not null
+#  status             :string           not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+# Indexes
+#
+#  index_groups_on_metal_archives_key  (metal_archives_key) UNIQUE
+#  index_groups_on_musicbrainz_key     (musicbrainz_key) UNIQUE
+#

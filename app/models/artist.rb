@@ -40,3 +40,26 @@ class Artist < ApplicationRecord
             presence: true,
             inclusion: { in: GENDERS }
 end
+
+# == Schema Information
+#
+# Table name: artists
+#
+#  id                 :uuid             not null, primary key
+#  alt_names          :jsonb            not null
+#  born_at            :date
+#  country            :string           not null
+#  description        :string
+#  died_at            :date
+#  gender             :string
+#  metal_archives_key :string
+#  musicbrainz_key    :string
+#  name               :string           not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+# Indexes
+#
+#  index_artists_on_metal_archives_key  (metal_archives_key) UNIQUE
+#  index_artists_on_musicbrainz_key     (musicbrainz_key) UNIQUE
+#

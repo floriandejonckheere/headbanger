@@ -40,6 +40,9 @@ group :development, :test do
   # Debugger
   gem "debase"
 
+  # Database annotations
+  gem "annotate"
+
   # RuboCop
   gem "rubocop"
   gem "rubocop-performance"

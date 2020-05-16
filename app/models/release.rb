@@ -29,3 +29,21 @@ class Release < ApplicationRecord
   validates :released_at,
             presence: true
 end
+
+# == Schema Information
+#
+# Table name: releases
+#
+#  id                 :uuid             not null, primary key
+#  metal_archives_key :string
+#  musicbrainz_key    :string
+#  name               :string           not null
+#  released_at        :date
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+# Indexes
+#
+#  index_releases_on_metal_archives_key  (metal_archives_key) UNIQUE
+#  index_releases_on_musicbrainz_key     (musicbrainz_key) UNIQUE
+#
