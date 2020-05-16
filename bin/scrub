@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative "../config/environment"
+require_relative "../config/boot"
+
+log_target = Rails.env.development? ? STDOUT : Rails.root.join("logs/scrub.log")
+logger = Logger.new(log_target)
+logger.level = ENV.fetch("LOG_LEVEL", Logger::DEBUG)
+
+loop do
+  logger.debug "Scrubbing data..."
+
+  Scrub.new.call
+
+  sleep 30
+rescue StandardError => e
+  logger.error(e)
+  Raven.capture_exception(e)
+end

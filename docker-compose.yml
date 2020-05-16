@@ -73,6 +73,19 @@ services:
       - .env.development.local
     restart: always
 
+  scrub:
+    build: .
+    command: bin/scrub
+    volumes:
+      - .:/app/:cached
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env.development
+      - .env.development.local
+    restart: always
+
 volumes:
   postgres:
   redis:
