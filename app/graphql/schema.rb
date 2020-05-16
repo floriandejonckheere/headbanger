@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HeadbangerSchema < GraphQL::Schema
+class Schema < GraphQL::Schema
   mutation Types::MutationType
   query Types::QueryType
 

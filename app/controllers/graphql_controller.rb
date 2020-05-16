@@ -7,10 +7,10 @@ class GraphqlController < ApplicationController
   # protect_from_forgery with: :null_session
 
   def execute
-    result = HeadbangerSchema.execute params[:query],
-                                      variables: ensure_hash(params[:variables]),
-                                      context: context,
-                                      operation_name: params[:operationName]
+    result = Schema.execute params[:query],
+                            variables: ensure_hash(params[:variables]),
+                            context: context,
+                            operation_name: params[:operationName]
 
     render json: result
   rescue StandardError => e
