@@ -5,14 +5,14 @@ module Types
     field :user,
           UserType,
           null: true do
-      description "Find a user by ID"
-      argument :id,
-               ID,
+      description "Find a user by name"
+      argument :name,
+               String,
                required: true
     end
 
-    def user(id:)
-      User.find(id)
+    def user(name:)
+      User.find_by("name ILIKE ?", "%#{name}%")
     end
   end
 end

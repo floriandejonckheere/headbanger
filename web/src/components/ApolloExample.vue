@@ -13,7 +13,7 @@
 
     <!-- Apollo watched Graphql query -->
     <ApolloQuery
-      :query="require('../graphql/HelloWorld.gql')"
+      :query="require('../graphql/User.gql')"
       :variables="{ name }"
     >
       <template slot-scope="{ result: { loading, error, data } }">
@@ -24,7 +24,11 @@
         <div v-else-if="error" class="error apollo">An error occured</div>
 
         <!-- Result -->
-        <div v-else-if="data" class="result apollo">{{ data.hello }}</div>
+        <div v-else-if="data" class="result apollo">
+          <strong>{{ data.user.name }}</strong> ({{ data.user.email }})
+          from
+          <strong>{{ data.user.country }}</strong>
+        </div>
 
         <!-- No result -->
         <div v-else class="no-result apollo">No result :(</div>
