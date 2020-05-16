@@ -38,6 +38,14 @@ class Artist < ApplicationRecord
   validates :gender,
             presence: true,
             inclusion: { in: GENDERS }
+
+  def sync!
+    ArtistBuilder
+      .new(metal_archives_key: metal_archives_key)
+      .call
+
+    update! synced_at: DateTime.current
+  end
 end
 
 # == Schema Information

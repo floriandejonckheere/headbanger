@@ -63,6 +63,9 @@ Rails/Output:
   Exclude:
     - db/seeds/**/*
 
+RSpec/MultipleExpectations:
+  Enabled: false
+
 Style/ExponentialNotation:
   Enabled: true
 
