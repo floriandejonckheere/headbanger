@@ -55,6 +55,7 @@ end
 #  metal_archives_key :string
 #  musicbrainz_key    :string
 #  name               :string           not null
+#  synced_at          :datetime         not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
