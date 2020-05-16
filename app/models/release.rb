@@ -2,7 +2,6 @@
 
 class Release < ApplicationRecord
   include Identifiable
-  include Refreshable
 
   has_many :artist_releases,
            dependent: :destroy

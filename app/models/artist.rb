@@ -2,7 +2,6 @@
 
 class Artist < ApplicationRecord
   include Identifiable
-  include Refreshable
 
   GENDERS = %w(male female other).freeze
 

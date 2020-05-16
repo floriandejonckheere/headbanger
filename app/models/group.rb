@@ -2,7 +2,6 @@
 
 class Group < ApplicationRecord
   include Identifiable
-  include Refreshable
 
   STATUSES = %w(active split_up on_hold changed_name disputed).freeze
 

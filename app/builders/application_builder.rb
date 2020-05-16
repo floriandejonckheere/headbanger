@@ -8,10 +8,6 @@ class ApplicationBuilder
   end
 
   def call
-    # Return if data is not stale
-    return model if model.respond_to?(:fresh?) && model.fresh?
-    return model if !model.respond_to?(:fresh?) && model.persisted?
-
     # Assemble attributes
     attributes
 
