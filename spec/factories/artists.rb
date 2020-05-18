@@ -9,5 +9,9 @@ FactoryBot.define do
     died_at { [FFaker::Time.between(born_at, DateTime.current), nil, nil].sample }
     gender { %w(male female).sample }
     country { ISO3166::Country.codes.sample }
+
+    trait :expired do
+      synced_at { (Headbanger.config.data_expires_in + 1.day).ago }
+    end
   end
 end

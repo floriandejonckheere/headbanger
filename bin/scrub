@@ -13,7 +13,7 @@ loop do
 
   Scrub.new.call
 
-  sleep 30
+  sleep Headbanger.config.sync_interval
 rescue StandardError => e
   logger.error(e)
   Raven.capture_exception(e)

@@ -13,11 +13,11 @@ MetalArchives.configure do |c|
   # c.cache_size = 100
 
   ## Metal Archives endpoint (optional, overrides default)
-  c.endpoint = ENV.fetch("MA_ENDPOINT", "http://web:81/")
+  c.endpoint = ENV.fetch("MA_ENDPOINT", "http://web:81")
   c.endpoint_user = ENV.fetch("MA_ENDPOINT_USER", nil)
   c.endpoint_password = ENV.fetch("MA_ENDPOINT_PASSWORD", nil)
 
   ## Custom logger (optional)
-  c.logger = Logger.new File.open("/dev/null")
-  c.logger.level = Logger::ERROR
+  c.logger = Logger.new Rails.root.join("logs/app/metal_archives.log")
+  c.logger.level = Logger::DEBUG
 end
