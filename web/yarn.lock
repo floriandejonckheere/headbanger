@@ -10196,6 +10196,10 @@ uglify-js@3.4.x:
     commander "~2.19.0"
     source-map "~0.6.1"
 
+uikit@^3.4.6:
+  version "3.4.6"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.4.6.tgz#39d59620aeb42d53ba905a67e99e2015d4aaaf9c"
+
 undefsafe@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/undefsafe/-/undefsafe-2.0.3.tgz#6b166e7094ad46313b2202da7ecc2cd7cc6e7aae"

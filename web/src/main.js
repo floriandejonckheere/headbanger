@@ -2,6 +2,10 @@ import Vue from 'vue';
 import * as Sentry from '@sentry/browser';
 import { Vue as VueIntegration } from '@sentry/integrations';
 
+import 'uikit/dist/css/uikit.min.css';
+import 'uikit/dist/js/uikit-core.min';
+import 'uikit/dist/js/uikit-icons.min';
+
 import App from './App.vue';
 import router from './router';
 import store from './store';
