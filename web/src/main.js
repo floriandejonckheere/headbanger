@@ -1,9 +1,6 @@
 import Vue from 'vue';
-import Buefy from 'buefy';
 import * as Sentry from '@sentry/browser';
 import { Vue as VueIntegration } from '@sentry/integrations';
-
-import 'buefy/dist/buefy.css';
 
 import App from './App.vue';
 import router from './router';
@@ -11,8 +8,6 @@ import store from './store';
 
 import { version } from '../package.json';
 import { createProvider } from './vue-apollo';
-
-Vue.use(Buefy, { defaultIconPack: 'fas' });
 
 Vue.config.productionTip = false;
 
