@@ -1,10 +1,10 @@
 import Vue from 'vue';
+import UIkit from 'uikit';
 import * as Sentry from '@sentry/browser';
 import { Vue as VueIntegration } from '@sentry/integrations';
 
-import 'uikit/dist/css/uikit.min.css';
-import 'uikit/dist/js/uikit-core.min';
-import 'uikit/dist/js/uikit-icons.min';
+import '@/assets/styles/styles.scss';
+import Icons from 'uikit/dist/js/uikit-icons';
 
 import App from './App.vue';
 import router from './router';
@@ -12,6 +12,9 @@ import store from './store';
 
 import { version } from '../package.json';
 import { createProvider } from './vue-apollo';
+
+UIkit.use(Icons);
+window.UIkit = UIkit;
 
 Vue.config.productionTip = false;
 

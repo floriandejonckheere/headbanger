@@ -10499,6 +10499,11 @@ vue-cli-plugin-apollo@^0.21.3:
     subscriptions-transport-ws "^0.9.16"
     ts-node "^8.4.1"
 
+vue-cli-plugin-uikit@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-uikit/-/vue-cli-plugin-uikit-1.0.15.tgz#1aa596d9b9f26d18a6418b10891be2759dca7f55"
+  integrity sha512-bPEhcH3GWPKcsMQJ/fL61A6mUwtvxb2WTvh4jzh3/+ikLxPMRPmnwQt+tNfcCQenF7CvT6Ih7hw88voU5PCSGg==
+
 vue-eslint-parser@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.0.0.tgz#a4ed2669f87179dedd06afdd8736acbb3a3864d6"
