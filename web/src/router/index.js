@@ -25,6 +25,12 @@ const routes = [
     name: 'genres',
     component: () => import(/* webpackChunkName: "genres" */ '../views/browse/Genres.vue'),
   },
+  {
+    path: '/browse/genres/:id',
+    name: 'genre',
+    component: () => import(/* webpackChunkName: "genre" */ '../views/browse/Genre.vue'),
+    props: true,
+  },
 ];
 
 const router = new VueRouter({

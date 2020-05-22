@@ -1,6 +1,6 @@
 <template>
   <div class="uk-card uk-card-default uk-box-shadow-small uk-background-default">
-    <router-link :to="{ path: 'genre', params: { id: genre.id } }">
+    <router-link :to="{ name: 'genre', params: { id: genre.id } }">
       <div class="uk-inline-clip uk-transition-toggle">
         <img
           class="uk-transition-scale-up uk-transition-opaque"
@@ -8,7 +8,7 @@
         >
         <div class="uk-overlay-primary uk-position-cover"></div>
         <div class="uk-overlay uk-position-bottom uk-light">
-          <h5 class="uk-link" v-text="genre.description"></h5>
+          <h5 v-text="genre.description"></h5>
       </div>
     </div>
     </router-link>

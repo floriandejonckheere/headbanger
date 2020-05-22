@@ -1,0 +1,32 @@
+<template>
+  <div class="uk-card uk-card-default uk-box-shadow-small uk-background-default">
+    <div class="uk-card-media-top">
+      <img src="https://ia601209.us.archive.org/25/items/mbid-a86017c0-09d9-4edd-81d3-767ac56ed3ff/mbid-a86017c0-09d9-4edd-81d3-767ac56ed3ff-14459102581_thumb500.jpg" alt="">
+    </div>
+    <div class="uk-card-body uk-text-left uk-padding-small">
+      <div class="uk-text-bold uk-text-break">
+        <router-link to="#" class="uk-link-text" v-text="group.name"></router-link>
+      </div>
+      <div class="uk-text-small">
+        By <router-link to="#" v-text="group.name"></router-link>
+      </div>
+      <div class="uk-text-right uk-margin-small-top">
+        <Rating v-bind:rating="null" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Rating from '@/components/Rating.vue';
+
+export default {
+  name: 'GroupCard',
+  props: {
+    group: Object,
+  },
+  components: {
+    Rating,
+  },
+};
+</script>
