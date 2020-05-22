@@ -24,6 +24,12 @@ module.exports = {
         jest: true,
       },
     },
+    {
+      files: ["*.vue"],
+      rules: {
+        'max-len': 'off',
+      },
+    },
   ],
   globals: {
     UIkit: true,
