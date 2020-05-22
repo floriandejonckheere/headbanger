@@ -17,6 +17,7 @@ UIkit.use(Icons);
 window.UIkit = UIkit;
 
 Vue.config.productionTip = false;
+Vue.config.ignoredElements = [/^ion-/];
 
 Sentry.init({
   dsn: process.env.VUE_APP_SENTRY_DSN,
