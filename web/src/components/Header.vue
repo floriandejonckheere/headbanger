@@ -31,9 +31,27 @@
 </template>
 
 <script>
-import './Header.scss';
-
 export default {
   name: 'Header',
 };
 </script>
+
+<style lang="scss">
+  @import "~styles/theme/variables";
+
+  .uk-logo {
+    font-family: 'Pacifico', sans-serif;
+    font-size: 1.8em;
+    color: $global-link-color;
+  }
+
+  // Force default font
+     .uk-navbar-nav > li > a {
+       font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;
+       font-weight: 400;
+     }
+
+  .hb-header-search {
+    border-bottom: 2px solid #e5e5e5;
+  }
+</style>
