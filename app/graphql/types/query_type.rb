@@ -8,6 +8,12 @@ module Types
       description "List releases alphabetically"
     end
 
+    field :genres,
+          [GenreType],
+          null: true do
+      description "List genres alphabetically"
+    end
+
     field :user,
           UserType,
           null: true do
@@ -19,6 +25,10 @@ module Types
 
     def releases
       Release.order(:name)
+    end
+
+    def genres
+      Genre.order(:name)
     end
 
     def user(name:)

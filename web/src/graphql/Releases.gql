@@ -1,6 +1,6 @@
 #import "./ReleaseFragment.gql"
 
-query releases {
+query Releases {
   releases {
     ...Release
   }

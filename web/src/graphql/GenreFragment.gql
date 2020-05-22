@@ -1,0 +1,14 @@
+#import "./ArtistFragment.gql"
+#import "./GroupFragment.gql"
+
+fragment Genre on Genre {
+  id
+  name
+  description
+  groups {
+    ...Group
+  }
+  artists {
+    ...Artist
+  }
+}

@@ -12,13 +12,18 @@ const routes = [
   },
   {
     path: '/discover',
-    name: 'Discover',
+    name: 'discover',
     component: () => import(/* webpackChunkName: "discover" */ '../views/Discover.vue'),
   },
   {
     path: '/browse',
-    name: 'Browse',
+    name: 'browse',
     component: () => import(/* webpackChunkName: "browse" */ '../views/Browse.vue'),
+  },
+  {
+    path: '/browse/genres',
+    name: 'genres',
+    component: () => import(/* webpackChunkName: "genres" */ '../views/Genres.vue'),
   },
 ];
 

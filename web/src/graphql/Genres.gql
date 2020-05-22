@@ -1,0 +1,7 @@
+#import "./GenreFragment.gql"
+
+query Genres {
+  genres {
+    ...Genre
+  }
+}
