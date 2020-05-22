@@ -1,0 +1,4 @@
+fragment Artist on Artist {
+  id
+  name
+}

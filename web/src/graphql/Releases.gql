@@ -1,0 +1,7 @@
+#import "./ReleaseFragment.gql"
+
+query releases {
+  releases {
+    ...Release
+  }
+}

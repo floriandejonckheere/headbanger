@@ -1,0 +1,14 @@
+#import "./ArtistFragment.gql"
+#import "./GroupFragment.gql"
+
+fragment Release on Release {
+  id
+  name
+  releasedAt
+  groups {
+    ...Group
+  }
+  artists {
+    ...Artist
+  }
+}
