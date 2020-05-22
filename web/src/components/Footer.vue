@@ -1,9 +1,9 @@
 <template>
   <footer class="uk-section uk-section-default uk-section-small">
     <div class="uk-container">
-      <p class="uk-text-small uk-text-center">
+      <p class="uk-text-small uk-text-center uk-link-muted">
         <a href="https://florian.dejonckhee.re">
-          Made with <span uk-icon="heart" ratio="0.8"></span> in Belgium
+          Made with <ion-icon name="heart" size="small" class="uk-inline uk-text-danger" /> in Belgium
         </a>
       </p>
     </div>
