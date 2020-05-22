@@ -43,6 +43,11 @@ export default {
     font-family: 'Pacifico', sans-serif;
     font-size: 1.8em;
     color: $global-link-color;
+
+    &:hover,
+    &:focus {
+      color: $global-link-hover-color;
+    }
   }
 
   // Force default font
