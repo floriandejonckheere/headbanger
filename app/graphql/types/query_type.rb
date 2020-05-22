@@ -2,6 +2,12 @@
 
 module Types
   class QueryType < Types::BaseObject
+    field :releases,
+          [ReleaseType],
+          null: true do
+      description "List releases alphabetically"
+    end
+
     field :user,
           UserType,
           null: true do
@@ -9,6 +15,10 @@ module Types
       argument :name,
                String,
                required: true
+    end
+
+    def releases
+      Release.order(:name)
     end
 
     def user(name:)

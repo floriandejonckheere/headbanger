@@ -15,5 +15,13 @@ module Types
     field :released_at,
           GraphQL::Types::ISO8601Date,
           null: false
+
+    field :artists,
+          [ArtistType],
+          null: false
+
+    field :groups,
+          [GroupType],
+          null: false
   end
 end
