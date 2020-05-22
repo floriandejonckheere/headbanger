@@ -1,0 +1,114 @@
+"""
+An artist
+"""
+type Artist {
+  altNames: [String!]!
+  bornAt: ISO8601Date
+  country: String!
+  description: String
+  diedAt: ISO8601Date
+  gender: GenderEnum
+  id: ID!
+  name: String!
+}
+
+enum GenderEnum {
+  """
+  Female
+  """
+  female
+
+  """
+  Male
+  """
+  male
+
+  """
+  Other
+  """
+  other
+}
+
+"""
+A group
+"""
+type Group {
+  altNames: [String!]!
+  description: String
+  formedAt: ISO8601Date
+  id: ID!
+  name: String!
+  status: StatusEnum
+}
+
+"""
+An ISO 8601-encoded date
+"""
+scalar ISO8601Date
+
+type Mutation {
+  """
+  An example field added by the generator
+  """
+  testField: String!
+}
+
+type Query {
+  """
+  List releases alphabetically
+  """
+  releases: [Release!]
+
+  """
+  Find a user by name
+  """
+  user(name: String!): User
+}
+
+"""
+A release
+"""
+type Release {
+  artists: [Artist!]!
+  groups: [Group!]!
+  id: ID!
+  name: String!
+  releasedAt: ISO8601Date!
+}
+
+enum StatusEnum {
+  """
+  Active
+  """
+  active
+
+  """
+  Changed name
+  """
+  changed_name
+
+  """
+  Disputed
+  """
+  disputed
+
+  """
+  On hold
+  """
+  on_hold
+
+  """
+  Split up
+  """
+  split_up
+}
+
+"""
+A user
+"""
+type User {
+  country: String!
+  email: String!
+  id: ID!
+  name: String!
+}
