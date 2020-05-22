@@ -12,7 +12,7 @@
             <div class="uk-inline">
               <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
               <input
-                class="uk-input uk-form-blank hb-header-search hb-header-search"
+                class="uk-input uk-form-blank hb-header-search"
                 type="text"
                 placeholder="Search music...">
             </div>
