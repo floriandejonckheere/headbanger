@@ -1,4 +1,4 @@
-#import "./ReleaseFragment.gql"
+#import "../ReleaseFragment.gql"
 
 query Releases {
   releases {

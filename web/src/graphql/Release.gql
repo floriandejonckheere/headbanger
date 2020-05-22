@@ -1,5 +1,5 @@
-#import "./ArtistFragment.gql"
-#import "./GroupFragment.gql"
+#import "./Artist.gql"
+#import "./Group.gql"
 
 fragment Release on Release {
   id

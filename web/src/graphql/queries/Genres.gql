@@ -1,4 +1,4 @@
-#import "./GenreFragment.gql"
+#import "../Genre.gql"
 
 query Genres {
   genres {
