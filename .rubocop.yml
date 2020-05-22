@@ -65,8 +65,7 @@ Rails/Output:
     - db/seeds/**/*
 
 RSpec/DescribeClass:
-  Exclude:
-    - spec/graphql/**/*
+  Enabled: false
 
 RSpec/ExampleLength:
   Enabled: false

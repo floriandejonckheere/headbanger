@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Query releases" do
+RSpec.describe "Get releases" do
   it "returns releases alphabetically" do
     query_string = <<-GRAPHQL
     query {
@@ -18,11 +18,11 @@ RSpec.describe "Query releases" do
     artist = create(:artist, name: "my_artist")
     release = create(:release, name: "my_release", groups: [group], artists: [artist])
 
-    result = Schema.execute(query_string)
+    post graphql_path, params: { query: query_string }
 
-    expect(result.dig("data", "releases", 0, "id")).to eq release.id
-    expect(result.dig("data", "releases", 0, "name")).to eq "my_release"
-    expect(result.dig("data", "releases", 0, "groups", 0, "name")).to eq "my_group"
-    expect(result.dig("data", "releases", 0, "artists", 0, "name")).to eq "my_artist"
+    expect(response_body.dig("data", "releases", 0, "id")).to eq release.id
+    expect(response_body.dig("data", "releases", 0, "name")).to eq "my_release"
+    expect(response_body.dig("data", "releases", 0, "groups", 0, "name")).to eq "my_group"
+    expect(response_body.dig("data", "releases", 0, "artists", 0, "name")).to eq "my_artist"
   end
 end
