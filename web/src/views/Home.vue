@@ -4,7 +4,9 @@
       <h3>Releases</h3>
       <ApolloQuery :query="require('../graphql/Releases.gql')" notifyOnNetworkStatusChange>
         <template slot-scope="{ result: { loading, error, data } }">
-          <div v-if="loading" uk-spinner />
+          <div v-if="loading" class="uk-text-center">
+            <div uk-spinner />
+          </div>
 
           <div v-else-if="error" class="uk-width-1-1">
             <div class="uk-alert-danger" uk-alert>
