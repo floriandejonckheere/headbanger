@@ -3,7 +3,7 @@
     <div class="uk-container">
       <p class="uk-text-small uk-text-center">
         <a href="https://florian.dejonckhee.re">
-          Made with <vk-icon icon="heart" ratio="0.6"></vk-icon> in Belgium
+          Made with <span uk-icon="heart" ratio="0.8"></span> in Belgium
         </a>
       </p>
     </div>
