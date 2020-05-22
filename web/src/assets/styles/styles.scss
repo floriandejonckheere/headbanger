@@ -1,8 +1,7 @@
 // UIKit Theme Customizations (see https://getuikit.com/docs/sass)
 
 // 1. Your custom variables and variable overwrites in ./theme/_variables.scss
-// @import "theme/variables";
-// $global-link-color: #DA7D02;
+@import "theme/variables";
 
 // 2. Import default variables and available mixins.
 @import "~uikit/src/scss/variables.scss";
