@@ -1,22 +1,7 @@
+@import "~uikit/src/scss/variables.scss";
+
 #app {
   font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  background: #f7f9fb;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  background: $global-muted-background;
 }
