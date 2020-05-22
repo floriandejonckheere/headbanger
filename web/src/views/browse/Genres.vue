@@ -7,7 +7,7 @@
       </ul>
       <h3 class="uk-margin-remove-top">Genres</h3>
 
-      <ApolloQuery :query="require('../graphql/queries/Genres.gql')" notifyOnNetworkStatusChange>
+      <ApolloQuery :query="require('../../graphql/queries/Genres.gql')" notifyOnNetworkStatusChange>
         <template slot-scope="{ result: { loading, error, data } }">
           <div v-if="loading" class="uk-text-center">
             <div uk-spinner />
@@ -23,11 +23,11 @@
           <div v-else-if="data">
             <div class="uk-grid-medium@m uk-grid-small@s" uk-grid>
               <div
-                v-for="release in data.releases"
-                :key="release.id"
+                v-for="genre in data.genres"
+                :key="genre.id"
                 class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l"
               >
-                <Card :title="release.name" :description="release.groups[0].name" />
+                <GenreCard :genre="genre" />
               </div>
             </div>
           </div>
@@ -45,12 +45,12 @@
 </template>
 
 <script>
-import Card from '@/components/Card.vue';
+import GenreCard from '@/components/GenreCard.vue';
 
 export default {
   name: 'Genres',
   components: {
-    Card,
+    GenreCard,
   },
 };
 </script>

@@ -1,4 +1,3 @@
-#import "./Artist.gql"
 #import "./Group.gql"
 
 fragment Genre on Genre {
@@ -7,8 +6,5 @@ fragment Genre on Genre {
   description
   groups {
     ...Group
-  }
-  artists {
-    ...Artist
   }
 }

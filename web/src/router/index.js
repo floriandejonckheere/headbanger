@@ -23,7 +23,7 @@ const routes = [
   {
     path: '/browse/genres',
     name: 'genres',
-    component: () => import(/* webpackChunkName: "genres" */ '../views/Genres.vue'),
+    component: () => import(/* webpackChunkName: "genres" */ '../views/browse/Genres.vue'),
   },
 ];
 
