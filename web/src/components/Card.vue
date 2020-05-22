@@ -10,16 +10,24 @@
       <div class="uk-text-small">
         By <router-link to="#" v-text="description"></router-link>
       </div>
+      <div class="uk-text-right uk-margin-small-top">
+        <Rating v-bind:rating="null" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Rating from '@/components/Rating.vue';
+
 export default {
   name: 'Card',
   props: {
     title: String,
     description: String,
+  },
+  components: {
+    Rating,
   },
 };
 </script>
