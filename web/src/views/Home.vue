@@ -2,6 +2,7 @@
   <section class="uk-section">
     <div class="uk-container">
       <h3>Releases</h3>
+
       <ApolloQuery :query="require('../graphql/Releases.gql')" notifyOnNetworkStatusChange>
         <template slot-scope="{ result: { loading, error, data } }">
           <div v-if="loading" class="uk-text-center">

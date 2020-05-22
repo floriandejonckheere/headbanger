@@ -19,9 +19,8 @@
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-              <li class="uk-active"><a href="#">Home</a></li>
-              <li><a href="#">Discover</a></li>
-              <li><a href="#">Explore</a></li>
+              <router-link to="/discover" tag="li"><a href="#">Discover</a></router-link>
+              <router-link to="/browse" tag="li"><a href="#">Browse</a></router-link>
             </ul>
           </div>
         </div>
