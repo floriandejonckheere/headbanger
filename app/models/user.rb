@@ -19,6 +19,24 @@ class User < ApplicationRecord
            source: :rateable,
            source_type: "Release"
 
+  has_many :recommendations,
+           dependent: :destroy
+
+  has_many :recommended_artists,
+           through: :recommendations,
+           source: :recommended,
+           source_type: "Artist"
+
+  has_many :recommended_groups,
+           through: :recommendations,
+           source: :recommended,
+           source_type: "Group"
+
+  has_many :recommended_releases,
+           through: :recommendations,
+           source: :recommended,
+           source_type: "Release"
+
   validates :name,
             presence: true
 

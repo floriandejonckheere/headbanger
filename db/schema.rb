@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_175731) do
+ActiveRecord::Schema.define(version: 2020_05_23_104305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -114,6 +114,18 @@ ActiveRecord::Schema.define(version: 2020_05_16_175731) do
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
+  create_table "recommendations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.string "recommended_type", null: false
+    t.uuid "recommended_id", null: false
+    t.string "reason", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["recommended_type", "recommended_id"], name: "index_recommendations_on_type_and_id"
+    t.index ["user_id", "recommended_id", "recommended_type"], name: "index_recommendations_on_user_id_and_id_and_type", unique: true
+    t.index ["user_id"], name: "index_recommendations_on_user_id"
+  end
+
   create_table "releases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.date "released_at"
@@ -153,4 +165,5 @@ ActiveRecord::Schema.define(version: 2020_05_16_175731) do
   add_foreign_key "groups_themes", "groups", on_delete: :cascade
   add_foreign_key "groups_themes", "themes", on_delete: :cascade
   add_foreign_key "ratings", "users", on_delete: :cascade
+  add_foreign_key "recommendations", "users", on_delete: :cascade
 end
