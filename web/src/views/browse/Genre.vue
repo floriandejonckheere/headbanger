@@ -1,12 +1,12 @@
 <template>
-  <ApolloQuery
-    :query="require('../../graphql/queries/genres/find.graphql')"
-    :variables="{ id }"
-    notifyOnNetworkStatusChange
-  >
-    <template slot-scope="{ result: { loading, error, data } }">
-      <section class="uk-section">
-        <div class="uk-container">
+  <section class="uk-section">
+    <div class="uk-container">
+      <ApolloQuery
+        :query="require('../../graphql/queries/genres/find.graphql')"
+        :variables="{ id }"
+        notifyOnNetworkStatusChange
+      >
+        <template slot-scope="{ result: { loading, error, data } }">
           <ul class="uk-breadcrumb uk-margin-small-bottom">
             <li><router-link to="/browse">Browse</router-link></li>
             <li><router-link to="/browse/genres">Genres</router-link></li>
@@ -48,10 +48,10 @@
               <p>No results. <u><a class="uk-link-text" @click="$router.go(-1)">Go back</a></u></p>
             </div>
           </div>
-        </div>
-      </section>
-    </template>
-  </ApolloQuery>
+        </template>
+      </ApolloQuery>
+    </div>
+  </section>
 </template>
 
 <script>
