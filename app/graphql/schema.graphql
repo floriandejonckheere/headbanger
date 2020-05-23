@@ -56,6 +56,11 @@ An ISO 8601-encoded date
 """
 scalar ISO8601Date
 
+"""
+A music object
+"""
+union Music = Artist | Group | Release
+
 type Mutation {
   """
   An example field added by the generator
@@ -65,19 +70,49 @@ type Mutation {
 
 type Query {
   """
-  Find a genre by id
+  Find genre by ID
   """
-  genre(id: String!): Genre
+  findGenre(id: String!): Genre
+
+  """
+  Get recommendations by User ID
+  """
+  getRecommendations(userId: String!): [Recommendation!]
 
   """
   List genres alphabetically
   """
-  genres: [Genre!]
+  listGenres: [Genre!]
 
   """
   List releases alphabetically
   """
-  releases: [Release!]
+  listReleases: [Release!]
+}
+
+enum ReasonEnum {
+  """
+  Similar based on artist
+  """
+  artist
+
+  """
+  Similar based on genre
+  """
+  genre
+
+  """
+  Similar based on group
+  """
+  group
+}
+
+"""
+A personalized recommendation
+"""
+type Recommendation {
+  reason: ReasonEnum!
+  recommended: Music!
 }
 
 """

@@ -8,5 +8,8 @@ module Types
     # Genres
     field :list_genres, resolver: Queries::Genres::List
     field :find_genre, resolver: Queries::Genres::Find
+
+    # Recommendations
+    field :get_recommendations, resolver: Queries::Recommendations::Get
   end
 end
