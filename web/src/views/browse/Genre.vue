@@ -10,9 +10,14 @@
           <ul class="uk-breadcrumb uk-margin-small-bottom">
             <li><router-link to="/browse">Browse</router-link></li>
             <li><router-link to="/browse/genres">Genres</router-link></li>
-            <li><span v-text="data.genre.description" v-if="data"></span></li>
+            <li>
+              {{ (data ? data.genre.description : 'Loading...')  }}
+            </li>
           </ul>
-          <h3 class="uk-margin-remove-top" v-text="data.genre.description" v-if="data" />
+
+          <h3 class="uk-margin-remove-top">
+            {{ (data ? data.genre.description : 'Loading...') }}
+          </h3>
 
           <div v-if="loading" class="uk-text-center">
             <div uk-spinner />
@@ -25,7 +30,7 @@
             </div>
           </div>
 
-          <div v-else-if="data">
+          <div v-else-if="data.genre.groups.length !== 0">
             <div class="uk-grid-medium@m uk-grid-small@s" uk-grid>
               <div
                 v-for="group in data.genre.groups"
@@ -40,7 +45,7 @@
           <div v-else class="uk-width-1-1">
             <div class="uk-alert-primary" uk-alert>
               <a class="uk-alert-close" uk-close></a>
-              <p>No results</p>
+              <p>No results. <u><a class="uk-link-text" @click="$router.go(-1)">Go back</a></u></p>
             </div>
           </div>
         </div>

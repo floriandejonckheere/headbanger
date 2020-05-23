@@ -20,7 +20,7 @@
             </div>
           </div>
 
-          <div v-else-if="data">
+          <div v-else-if="data.genres.length !== 0">
             <div class="uk-grid-medium@m uk-grid-small@s" uk-grid>
               <div
                 v-for="genre in data.genres"
