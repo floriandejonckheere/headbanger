@@ -15,5 +15,9 @@ module Types
     field :description,
           String,
           null: false
+
+    field :groups,
+          [GroupType],
+          null: false
   end
 end
