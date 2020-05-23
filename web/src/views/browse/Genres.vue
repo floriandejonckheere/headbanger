@@ -7,7 +7,7 @@
       </ul>
       <h3 class="uk-margin-remove-top">Genres</h3>
 
-      <ApolloQuery :query="require('../../graphql/queries/genres/list.gql')" notifyOnNetworkStatusChange>
+      <ApolloQuery :query="require('../../graphql/queries/genres/list.graphql')" notifyOnNetworkStatusChange>
         <template slot-scope="{ result: { loading, error, data } }">
           <div v-if="loading" class="uk-text-center">
             <div uk-spinner />

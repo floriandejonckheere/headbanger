@@ -1,4 +1,4 @@
-#import "../../types/Genre.gql"
+#import "../../types/Genre.graphql"
 
 query findGenre ($id: String!) {
   genre: findGenre (id: $id) {

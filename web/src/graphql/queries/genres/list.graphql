@@ -1,4 +1,4 @@
-#import "../../types/Genre.gql"
+#import "../../types/Genre.graphql"
 
 query listGenres {
   genres: listGenres {

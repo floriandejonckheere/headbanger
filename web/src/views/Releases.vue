@@ -3,7 +3,7 @@
     <div class="uk-container">
       <h3>Releases</h3>
 
-      <ApolloQuery :query="require('../graphql/queries/releases/list.gql')" notifyOnNetworkStatusChange>
+      <ApolloQuery :query="require('../graphql/queries/releases/list.graphql')" notifyOnNetworkStatusChange>
         <template slot-scope="{ result: { loading, error, data } }">
           <div v-if="loading" class="uk-text-center">
             <div uk-spinner />

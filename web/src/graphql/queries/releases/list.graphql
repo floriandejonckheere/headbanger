@@ -1,4 +1,4 @@
-#import "../../types/ReleaseFragment.gql"
+#import "../../types/ReleaseFragment.graphql"
 
 query listReleases {
   releases: listReleases {

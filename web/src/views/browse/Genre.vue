@@ -1,6 +1,6 @@
 <template>
   <ApolloQuery
-    :query="require('../../graphql/queries/genres/find.gql')"
+    :query="require('../../graphql/queries/genres/find.graphql')"
     :variables="{ id }"
     notifyOnNetworkStatusChange
   >
