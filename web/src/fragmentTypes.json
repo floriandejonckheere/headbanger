@@ -1,0 +1,21 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "UNION",
+        "name": "Music",
+        "possibleTypes": [
+          {
+            "name": "Artist"
+          },
+          {
+            "name": "Group"
+          },
+          {
+            "name": "Release"
+          }
+        ]
+      }
+    ]
+  }
+}

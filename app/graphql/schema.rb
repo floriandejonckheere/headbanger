@@ -30,4 +30,13 @@ class Schema < GraphQL::Schema
   def self.id_from_object(object, _type, _context)
     GraphQL::Schema::UniqueWithinType.encode(object.class.name, object.id)
   end
+
+  def self.to_fragment_types
+    fragments = execute("{ __schema { types { kind name possibleTypes { name } } } }")
+      .to_h
+      .dig("data", "__schema", "types")
+      .select { |t| t["possibleTypes"] }
+
+    JSON.pretty_generate({ __schema: { types: fragments } })
+  end
 end
