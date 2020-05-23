@@ -1,6 +1,6 @@
-#import "../../types/Artist.graphql"
-#import "../../types/Group.graphql"
-#import "../../types/Release.graphql"
+#import "../../types/ArtistDetail.graphql"
+#import "../../types/GroupDetail.graphql"
+#import "../../types/ReleaseDetail.graphql"
 
 query getRecommendations($userId: String!) {
   recommendations: getRecommendations (userId: $userId) {
@@ -9,13 +9,13 @@ query getRecommendations($userId: String!) {
     recommended {
       __typename
       ... on Artist {
-        ...Artist
+        ...ArtistDetail
       }
       ... on Group {
-        ...Group
+        ...GroupDetail
       }
       ... on Release {
-        ...Release
+        ...ReleaseDetail
       }
     }
   }

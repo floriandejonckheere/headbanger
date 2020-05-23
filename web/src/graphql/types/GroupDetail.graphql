@@ -1,0 +1,10 @@
+#import "./Group.graphql"
+#import "./Genre.graphql"
+
+fragment GroupDetail on Group {
+  ...Group
+
+  genres {
+    ...Genre
+  }
+}

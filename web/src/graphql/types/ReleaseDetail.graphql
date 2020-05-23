@@ -1,0 +1,16 @@
+#import "./Artist.graphql"
+#import "./Group.graphql"
+
+fragment ReleaseDetail on Release {
+  id
+  name
+  releasedAt
+
+  artists {
+    ...Artist
+  }
+
+  groups {
+    ...Group
+  }
+}

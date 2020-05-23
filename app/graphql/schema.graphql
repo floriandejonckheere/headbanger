@@ -44,8 +44,10 @@ A group
 """
 type Group {
   altNames: [String!]!
+  country: String!
   description: String
   formedAt: ISO8601Date
+  genres: [Genre!]!
   id: ID!
   name: String!
   status: StatusEnum

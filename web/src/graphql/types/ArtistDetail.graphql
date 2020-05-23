@@ -1,0 +1,5 @@
+#import "./Artist.graphql"
+
+fragment ArtistDetail on Artist {
+  ...Artist
+}
