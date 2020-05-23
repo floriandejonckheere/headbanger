@@ -5,10 +5,10 @@
     </div>
     <div class="uk-card-body uk-text-left uk-padding-small">
       <div class="uk-text-bold uk-text-break">
-        <router-link to="#" class="uk-link-text" v-text="title"></router-link>
+        <slot name="title"></slot>
       </div>
       <div class="uk-text-small">
-        By <router-link to="#" v-text="description"></router-link>
+        <slot name="description"></slot>
       </div>
       <div class="uk-text-right uk-margin-small-top">
         <Rating v-bind:rating="null" />
@@ -22,10 +22,6 @@ import Rating from '@/components/Rating.vue';
 
 export default {
   name: 'Card',
-  props: {
-    title: String,
-    description: String,
-  },
   components: {
     Rating,
   },
