@@ -2,6 +2,8 @@
 
 module Types
   class ArtistType < Types::BaseObject
+    implements Interfaces::MusicItem
+
     description "An artist"
 
     field :id,

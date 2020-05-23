@@ -15,6 +15,21 @@
             "name": "Release"
           }
         ]
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "MusicItem",
+        "possibleTypes": [
+          {
+            "name": "Artist"
+          },
+          {
+            "name": "Group"
+          },
+          {
+            "name": "Release"
+          }
+        ]
       }
     ]
   }

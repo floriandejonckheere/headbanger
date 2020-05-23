@@ -2,6 +2,8 @@
 
 module Types
   class ReleaseType < Types::BaseObject
+    implements Interfaces::MusicItem
+
     description "A release"
 
     field :id,

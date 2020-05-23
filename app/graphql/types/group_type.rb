@@ -2,6 +2,8 @@
 
 module Types
   class GroupType < Types::BaseObject
+    implements Interfaces::MusicItem
+
     description "A group"
 
     field :id,

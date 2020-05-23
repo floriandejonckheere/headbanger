@@ -1,7 +1,7 @@
 """
 An artist
 """
-type Artist {
+type Artist implements MusicItem {
   altNames: [String!]!
   bornAt: ISO8601Date
   country: String!
@@ -10,6 +10,7 @@ type Artist {
   gender: GenderEnum
   id: ID!
   name: String!
+  rating: RatingEnum
 }
 
 enum GenderEnum {
@@ -42,7 +43,7 @@ type Genre {
 """
 A group
 """
-type Group {
+type Group implements MusicItem {
   altNames: [String!]!
   country: String!
   description: String
@@ -50,6 +51,7 @@ type Group {
   genres: [Genre!]!
   id: ID!
   name: String!
+  rating: RatingEnum
   status: StatusEnum
 }
 
@@ -62,6 +64,13 @@ scalar ISO8601Date
 A music object
 """
 union Music = Artist | Group | Release
+
+"""
+A music entity
+"""
+interface MusicItem {
+  rating: RatingEnum
+}
 
 type Mutation {
   """
@@ -92,6 +101,18 @@ type Query {
   listReleases: [Release!]
 }
 
+enum RatingEnum {
+  """
+  Dislike
+  """
+  dislike
+
+  """
+  Like
+  """
+  like
+}
+
 enum ReasonEnum {
   """
   Similar based on artist
@@ -120,11 +141,12 @@ type Recommendation {
 """
 A release
 """
-type Release {
+type Release implements MusicItem {
   artists: [Artist!]!
   groups: [Group!]!
   id: ID!
   name: String!
+  rating: RatingEnum
   releasedAt: ISO8601Date!
 }
 
