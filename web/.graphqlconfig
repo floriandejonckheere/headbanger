@@ -1,0 +1,15 @@
+{
+  "name": "Headbanger GraphQL Schema",
+  "schemaPath": "../app/graphql/schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Headbanger GraphQL Schema": {
+        "url": "http://localhost:3000/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": false
+      }
+    }
+  }
+}
