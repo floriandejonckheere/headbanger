@@ -58,7 +58,7 @@ services:
 
   clock:
     build: .
-    command: bundle exec clockwork clock.rb
+    command: bundle exec clockwork config/clock.rb
     volumes:
       - .:/app/:cached
     depends_on:
