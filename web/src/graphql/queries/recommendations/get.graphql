@@ -1,0 +1,22 @@
+#import "../../types/Artist.graphql"
+#import "../../types/Group.graphql"
+#import "../../types/Release.graphql"
+
+query getRecommendations($userId: String!) {
+  recommendations: getRecommendations (userId: $userId) {
+    reason
+
+    recommended {
+      __typename
+      ... on Artist {
+        ...Artist
+      }
+      ... on Group {
+        ...Group
+      }
+      ... on Release {
+        ...Release
+      }
+    }
+  }
+}
