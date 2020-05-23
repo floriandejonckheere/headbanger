@@ -1,4 +1,9 @@
 fragment Group on Group {
   id
   name
+  altNames
+  description
+  status
+  formedAt
+  country
 }

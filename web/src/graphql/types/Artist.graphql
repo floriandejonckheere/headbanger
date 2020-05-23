@@ -1,4 +1,10 @@
 fragment Artist on Artist {
   id
   name
+  altNames
+  country
+  description
+  gender
+  bornAt
+  diedAt
 }
