@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import GenreCard from '@/components/GenreCard.vue';
+import GenreCard from '@/components/cards/GenreCard.vue';
 
 export default {
   name: 'Genres',

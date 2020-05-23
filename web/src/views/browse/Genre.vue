@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import GroupCard from '@/components/GroupCard.vue';
+import GroupCard from '@/components/cards/GroupCard.vue';
 
 export default {
   name: 'Genre',
