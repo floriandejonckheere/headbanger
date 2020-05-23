@@ -78,11 +78,6 @@ type Query {
   List releases alphabetically
   """
   releases: [Release!]
-
-  """
-  Find a user by name
-  """
-  user(name: String!): User
 }
 
 """
@@ -121,14 +116,4 @@ enum StatusEnum {
   Split up
   """
   split_up
-}
-
-"""
-A user
-"""
-type User {
-  country: String!
-  email: String!
-  id: ID!
-  name: String!
 }

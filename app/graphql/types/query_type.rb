@@ -23,15 +23,6 @@ module Types
                required: true
     end
 
-    field :user,
-          UserType,
-          null: true do
-      description "Find a user by name"
-      argument :name,
-               String,
-               required: true
-    end
-
     def releases
       Release.order(:name)
     end
@@ -42,10 +33,6 @@ module Types
 
     def genre(id:)
       Genre.find_by(id: id)
-    end
-
-    def user(name:)
-      User.find_by("name ILIKE ?", "%#{name}%")
     end
   end
 end
