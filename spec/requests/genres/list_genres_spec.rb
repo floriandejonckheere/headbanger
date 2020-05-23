@@ -14,6 +14,18 @@ RSpec.describe "List genres" do
     GRAPHQL
   end
 
+  it "returns empty when nothing found" do
+    # rubocop:disable RSpec/AnyInstance
+    allow_any_instance_of(Queries::Genres::List)
+      .to receive(:resolve)
+      .and_return []
+    # rubocop:enable RSpec/AnyInstance
+
+    post graphql_path, params: { query: query }
+
+    expect(response_body.dig("data", "genres")).to be_empty
+  end
+
   it "returns genres alphabetically" do
     group = create(:group, name: "my_group")
     # Use 0_ as a prefix, because the database already contains seeded genres

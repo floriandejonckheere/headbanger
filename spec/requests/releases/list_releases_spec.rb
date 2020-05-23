@@ -15,6 +15,12 @@ RSpec.describe "List releases" do
     GRAPHQL
   end
 
+  it "returns empty when nothing found" do
+    post graphql_path, params: { query: query }
+
+    expect(response_body.dig("data", "releases")).to be_empty
+  end
+
   it "returns releases alphabetically" do
     group = create(:group, name: "my_group")
     artist = create(:artist, name: "my_artist")
