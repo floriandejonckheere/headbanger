@@ -2,7 +2,7 @@
   <section class="uk-section">
     <div class="uk-container">
       <ApolloQuery
-        :query="require('../../graphql/queries/genres/find.graphql')"
+        :query="require('@/graphql/queries/genres/find.graphql')"
         :variables="{ id }"
         notifyOnNetworkStatusChange
       >
