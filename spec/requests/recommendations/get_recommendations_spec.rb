@@ -4,7 +4,7 @@ RSpec.describe "Get recommendations" do
   let(:query) do
     <<-GRAPHQL
       query {
-        recommendations: getRecommendations (userId: "$userId") {
+        recommendations: getRecommendations {
           reason
 
           recommended {
@@ -29,14 +29,10 @@ RSpec.describe "Get recommendations" do
 
   let(:user) { create(:user) }
 
-  it "returns empty when user not found" do
-    post graphql_path, params: { query: query.gsub("$userId", "notfound") }
-
-    expect(response_body.dig("data", "recommendations")).to be_empty
-  end
+  before { user }
 
   it "returns empty when nothing found" do
-    post graphql_path, params: { query: query.gsub("$userId", user.id) }
+    post graphql_path, params: { query: query }
 
     expect(response_body.dig("data", "recommendations")).to be_empty
   end
@@ -45,7 +41,7 @@ RSpec.describe "Get recommendations" do
     group = create(:group, name: "my_group")
     user.recommendations.create(recommended: group, reason: :group)
 
-    post graphql_path, params: { query: query.gsub("$userId", user.id) }
+    post graphql_path, params: { query: query }
 
     expect(response_body.dig("data", "recommendations", 0, "reason")).to eq "group"
     expect(response_body.dig("data", "recommendations", 0, "recommended", "__typename")).to eq "Group"

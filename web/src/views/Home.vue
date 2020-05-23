@@ -9,11 +9,7 @@
         <small>A fresh batch of daily recommendations, made personally for you!</small>
       </div>
 
-      <ApolloQuery
-        :query="require('@/graphql/queries/recommendations/get.graphql')"
-        :variables="{ userId: 'cad28113-d2dd-43c7-81c1-b6bacf74d3bd' }"
-        notifyOnNetworkStatusChange
-      >
+      <ApolloQuery :query="require('@/graphql/queries/recommendations/get.graphql')" notifyOnNetworkStatusChange>
         <template slot-scope="{ result: { loading, error, data } }">
           <div v-if="loading" class="uk-text-center">
             <div uk-spinner />

@@ -3,16 +3,13 @@
 module Queries
   module Recommendations
     class Get < ApplicationQuery
-      description "Get recommendations by User ID"
+      description "Get recommendations"
       type [Types::RecommendationType]
 
-      argument :user_id,
-               String,
-               required: true
-
-      def resolve(user_id:)
+      def resolve
+        # FIXME: fetch user from session
         User
-          .find_by(id: user_id)
+          .first
           &.recommendations || []
       end
     end

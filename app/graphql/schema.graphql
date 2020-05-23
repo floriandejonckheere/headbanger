@@ -77,9 +77,9 @@ type Query {
   findGenre(id: String!): Genre
 
   """
-  Get recommendations by User ID
+  Get recommendations
   """
-  getRecommendations(userId: String!): [Recommendation!]
+  getRecommendations: [Recommendation!]
 
   """
   List genres alphabetically

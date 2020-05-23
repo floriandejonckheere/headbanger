@@ -2,8 +2,8 @@
 #import "../../types/GroupDetail.graphql"
 #import "../../types/ReleaseDetail.graphql"
 
-query getRecommendations($userId: String!) {
-  recommendations: getRecommendations (userId: $userId) {
+query getRecommendations {
+  recommendations: getRecommendations {
     reason
 
     recommended {
