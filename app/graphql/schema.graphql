@@ -30,6 +30,16 @@ enum GenderEnum {
 }
 
 """
+A musical genre
+"""
+type Genre {
+  description: String!
+  groups: [Group!]!
+  id: ID!
+  name: String!
+}
+
+"""
 A group
 """
 type Group {
@@ -54,6 +64,16 @@ type Mutation {
 }
 
 type Query {
+  """
+  Find a genre by id
+  """
+  genre(id: String!): Genre
+
+  """
+  List genres alphabetically
+  """
+  genres: [Genre!]
+
   """
   List releases alphabetically
   """
