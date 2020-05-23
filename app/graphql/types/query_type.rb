@@ -14,6 +14,15 @@ module Types
       description "List genres alphabetically"
     end
 
+    field :genre,
+          GenreType,
+          null: true do
+      description "Find a genre by id"
+      argument :id,
+               String,
+               required: true
+    end
+
     field :user,
           UserType,
           null: true do
@@ -29,6 +38,10 @@ module Types
 
     def genres
       Genre.order(:name)
+    end
+
+    def genre(id:)
+      Genre.find_by(id: id)
     end
 
     def user(name:)
