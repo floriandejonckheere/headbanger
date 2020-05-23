@@ -16,6 +16,10 @@ module Types
           [String],
           null: false
 
+    field :country,
+          String,
+          null: false
+
     field :description,
           String,
           null: true
@@ -27,5 +31,9 @@ module Types
     field :formed_at,
           GraphQL::Types::ISO8601Date,
           null: true
+
+    field :genres,
+          [GenreType],
+          null: false
   end
 end
