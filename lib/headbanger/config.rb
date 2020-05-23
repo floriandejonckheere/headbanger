@@ -19,5 +19,9 @@ module Headbanger
     def sync_interval
       @sync_interval ||= ENV.fetch("HB_SYNC_INTERVAL", 30).to_i
     end
+
+    def recommendation_limit
+      @recommendation_limit ||= ENV.fetch("HB_RECOMMENDATION_LIMIT", 10).to_i
+    end
   end
 end
