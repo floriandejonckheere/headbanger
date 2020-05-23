@@ -1,5 +1,8 @@
 # Headbanger
 
+![CI](https://github.com/floriandejonckheere/headbanger/workflows/CI/badge.svg)
+![Release](https://github.com/floriandejonckheere/headbanger/workflows/Create%20release/badge.svg)
+
 Headbanger is a music recommendation and discovery platform.
 
 ## Set up
