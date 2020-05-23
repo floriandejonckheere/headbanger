@@ -2078,7 +2078,7 @@ apollo-cache-control@^0.10.1-alpha.0:
     apollo-server-env "^2.4.4-alpha.0"
     graphql-extensions "^0.12.1-alpha.0"
 
-apollo-cache-inmemory@^1.6.3:
+apollo-cache-inmemory@^1.6.3, apollo-cache-inmemory@^1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.6.6.tgz#56d1f2a463a6b9db32e9fa990af16d2a008206fd"
   dependencies:
@@ -10502,7 +10502,6 @@ vue-cli-plugin-apollo@^0.21.3:
 vue-cli-plugin-uikit@^1.0.15:
   version "1.0.15"
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-uikit/-/vue-cli-plugin-uikit-1.0.15.tgz#1aa596d9b9f26d18a6418b10891be2759dca7f55"
-  integrity sha512-bPEhcH3GWPKcsMQJ/fL61A6mUwtvxb2WTvh4jzh3/+ikLxPMRPmnwQt+tNfcCQenF7CvT6Ih7hw88voU5PCSGg==
 
 vue-eslint-parser@^7.0.0:
   version "7.0.0"
