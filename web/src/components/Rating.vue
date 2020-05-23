@@ -2,13 +2,13 @@
   <div>
     <div
       class="uk-button uk-button-small hb-rating-button"
-      v-bind:class="{ 'hb-rating-button-selected': (rating === true) }"
+      v-bind:class="{ 'hb-rating-button-selected': (rating === 'like') }"
     >
       <ion-icon name="heart" size="small" class="uk-inline" />
     </div>
     <div
       class="uk-button uk-button-small hb-rating-button"
-      v-bind:class="{ 'hb-rating-button-selected': (rating === false) }"
+      v-bind:class="{ 'hb-rating-button-selected': (rating === 'dislike') }"
     >
       <ion-icon name="heart-dislike" size="small" class="uk-inline" />
     </div>
@@ -19,7 +19,7 @@
 export default {
   name: 'Rating',
   props: {
-    rating: [Boolean, null],
+    rating: [String, null],
   },
 };
 </script>

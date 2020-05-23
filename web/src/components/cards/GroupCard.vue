@@ -1,5 +1,5 @@
 <template>
-  <Card>
+  <Card :rating="group.rating">
     <template v-slot:title>
       <router-link to="#" class="uk-link-text">{{ group.name }}</router-link>
     </template>

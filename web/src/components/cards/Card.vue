@@ -21,7 +21,7 @@
       </div>
 
       <div class="uk-text-right uk-margin-small-top">
-        <Rating v-bind:rating="null" />
+        <Rating v-bind:rating="rating" />
       </div>
     </div>
   </div>
@@ -34,6 +34,9 @@ export default {
   name: 'Card',
   components: {
     Rating,
+  },
+  props: {
+    rating: [String, null],
   },
 };
 </script>

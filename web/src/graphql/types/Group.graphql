@@ -6,4 +6,6 @@ fragment Group on Group {
   status
   formedAt
   country
+
+  rating
 }

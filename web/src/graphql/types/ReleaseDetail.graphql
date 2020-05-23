@@ -1,10 +1,9 @@
+#import "./Release.graphql"
 #import "./Artist.graphql"
 #import "./Group.graphql"
 
 fragment ReleaseDetail on Release {
-  id
-  name
-  releasedAt
+  ...Release
 
   artists {
     ...Artist
