@@ -1,0 +1,7 @@
+#import "../../types/ReleaseFragment.gql"
+
+query listReleases {
+  releases: listReleases {
+    ...Release
+  }
+}

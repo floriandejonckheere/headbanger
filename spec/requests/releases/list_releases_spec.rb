@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe "Get releases" do
+RSpec.describe "List releases" do
   let(:query) do
     <<-GRAPHQL
       query {
-        releases {
+        releases: listReleases {
           id
           name
           releasedAt

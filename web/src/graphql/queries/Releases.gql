@@ -1,7 +1,0 @@
-#import "../ReleaseFragment.gql"
-
-query Releases {
-  releases {
-    ...Release
-  }
-}

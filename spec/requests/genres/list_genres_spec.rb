@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe "Get genres" do
+RSpec.describe "List genres" do
   let(:query) do
     <<-GRAPHQL
       query {
-        genres {
+        genres: listGenres {
           id
           name
           description

@@ -3,10 +3,10 @@
 module Types
   class QueryType < Types::BaseObject
     # Releases
-    field :releases, resolver: Queries::Releases::List
+    field :list_releases, resolver: Queries::Releases::List
 
     # Genres
-    field :genres, resolver: Queries::Genres::List
-    field :genre, resolver: Queries::Genres::Find
+    field :list_genres, resolver: Queries::Genres::List
+    field :find_genre, resolver: Queries::Genres::Find
   end
 end

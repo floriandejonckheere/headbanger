@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-RSpec.describe "Get genre" do
+RSpec.describe "Find genre" do
   let(:query) do
     <<-GRAPHQL
-    query {
-      genre (id: "$id") {
-        id
-        name
-        description
-        groups { id name }
+      query {
+        genre: findGenre (id: "$id") {
+          id
+          name
+          description
+          groups { id name }
+        }
       }
-    }
     GRAPHQL
   end
 

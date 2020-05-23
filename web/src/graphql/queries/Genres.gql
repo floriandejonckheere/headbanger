@@ -1,7 +1,0 @@
-#import "../Genre.gql"
-
-query Genres {
-  genres {
-    ...Genre
-  }
-}

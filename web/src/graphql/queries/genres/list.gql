@@ -1,0 +1,7 @@
+#import "../../types/Genre.gql"
+
+query listGenres {
+  genres: listGenres {
+    ...Genre
+  }
+}

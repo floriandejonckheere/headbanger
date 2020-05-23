@@ -1,7 +1,0 @@
-#import "../Genre.gql"
-
-query Genres ($id: String!) {
-  genre (id: $id) {
-    ...Genre
-  }
-}
