@@ -1,22 +1,11 @@
-#import "../../types/ArtistDetail.graphql"
-#import "../../types/GroupDetail.graphql"
-#import "../../types/ReleaseDetail.graphql"
+#import "../../types/Music.graphql"
 
 query getRecommendations {
   recommendations: getRecommendations {
     reason
 
     recommended {
-      __typename
-      ... on Artist {
-        ...ArtistDetail
-      }
-      ... on Group {
-        ...GroupDetail
-      }
-      ... on Release {
-        ...ReleaseDetail
-      }
+      ...Music
     }
   }
 }

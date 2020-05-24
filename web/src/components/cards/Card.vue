@@ -21,7 +21,7 @@
       </div>
 
       <div class="uk-text-right uk-margin-small-top">
-        <Rating v-bind:rating="rating" />
+        <Rating :music="music" />
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
     Rating,
   },
   props: {
-    rating: [String, null],
+    music: Object,
   },
 };
 </script>

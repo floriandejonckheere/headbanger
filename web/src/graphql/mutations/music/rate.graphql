@@ -1,0 +1,11 @@
+#import '../../types/Music.graphql'
+
+mutation rate ($type: String!, $id: ID!, $rating: String) {
+  rate (input: { type: $type, id: $id, rating: $rating }) {
+    errors
+
+    rateable {
+      ...Music
+    }
+  }
+}

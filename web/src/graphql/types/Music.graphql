@@ -1,0 +1,16 @@
+#import "./ArtistDetail.graphql"
+#import "./GroupDetail.graphql"
+#import "./ReleaseDetail.graphql"
+
+fragment Music on Music {
+  __typename
+  ... on Artist {
+    ...ArtistDetail
+  }
+  ... on Group {
+    ...GroupDetail
+  }
+  ... on Release {
+    ...ReleaseDetail
+  }
+}

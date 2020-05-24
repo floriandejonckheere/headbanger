@@ -1,5 +1,5 @@
 <template>
-  <Card :rating="release.rating">
+  <Card v-bind:music="release">
     <template v-slot:title>
       <router-link to="#" class="uk-link-text">{{ release.name }}</router-link>
     </template>

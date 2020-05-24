@@ -1,5 +1,5 @@
 <template>
-  <Card :rating="artist.rating">
+  <Card v-bind:music="artist">
     <template v-slot:title>
       <router-link to="#" class="uk-link-text">{{ title }}</router-link>
     </template>
