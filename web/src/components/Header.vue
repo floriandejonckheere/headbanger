@@ -12,7 +12,7 @@
             <div class="uk-inline">
               <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
               <input
-                class="uk-input uk-form-blank hb-header-search"
+                class="uk-input uk-form-blank"
                 type="text"
                 placeholder="Search music...">
             </div>
@@ -50,12 +50,8 @@ export default {
   }
 
   // Force default font
-     .uk-navbar-nav > li > a {
-       font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;
-       font-weight: 400;
-     }
-
-  .hb-header-search {
-    border-bottom: 2px solid #e5e5e5;
+  .uk-navbar-nav > li > a {
+   font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;
+   font-weight: 400;
   }
 </style>

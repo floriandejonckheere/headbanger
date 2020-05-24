@@ -8,7 +8,7 @@
 @import "~uikit/src/scss/mixins.scss";
 
 // 3. Your custom mixin overwrites.
-//@import "theme/accordion-mixins.scss";
+@import "theme/form.scss";
 
 // 4. Import UIkit.
 @import "~uikit/src/scss/uikit.scss";

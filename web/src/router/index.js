@@ -32,6 +32,11 @@ const routes = [
     props: true,
   },
   {
+    path: '/auth/signin',
+    name: 'signin',
+    component: () => import(/* webpackChunkName: "signin" */ '../views/auth/Signin.vue'),
+  },
+  {
     path: '*',
     name: 'not_found',
     component: () => import(/* webpackChunkName: "not_found" */ '../views/errors/NotFound.vue'),
