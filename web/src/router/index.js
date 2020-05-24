@@ -20,6 +20,8 @@ const routes = [
     name: 'browse',
     component: () => import(/* webpackChunkName: "browse" */ '../views/Browse.vue'),
   },
+
+  // Genres
   {
     path: '/browse/genres',
     name: 'genres',
@@ -31,6 +33,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "genre" */ '../views/browse/Genre.vue'),
     props: true,
   },
+
+  // Artists
+  {
+    path: '/browse/artists/:id',
+    name: 'artist',
+    component: () => import(/* webpackChunkName: "artist" */ '../views/browse/Artist.vue'),
+    props: true,
+  },
+
+  // Authentication
   {
     path: '/auth/signin',
     name: 'signin',
@@ -41,6 +53,8 @@ const routes = [
     name: 'signup',
     component: () => import(/* webpackChunkName: "signup" */ '../views/auth/Signup.vue'),
   },
+
+  // Catchall
   {
     path: '*',
     name: 'not_found',

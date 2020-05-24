@@ -1,7 +1,9 @@
 <template>
   <Card v-bind:music="artist">
     <template v-slot:title>
-      <router-link to="#" class="uk-link-text">{{ title }}</router-link>
+      <router-link :to="{ name: 'artist', params: { id: artist.id } }" class="uk-link-text">
+        {{ title }}
+      </router-link>
     </template>
     <template v-slot:description>
       {{ description }}

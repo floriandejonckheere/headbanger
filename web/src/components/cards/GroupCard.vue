@@ -1,7 +1,7 @@
 <template>
   <Card v-bind:music="group">
     <template v-slot:title>
-      <router-link to="#" class="uk-link-text">{{ group.name }}</router-link>
+      <router-link to="/" class="uk-link-text">{{ group.name }}</router-link>
     </template>
     <template v-slot:description>
       <span v-for="(genre, index) in group.genres" v-bind:key="genre.id">
