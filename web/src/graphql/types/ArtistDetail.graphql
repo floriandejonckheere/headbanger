@@ -1,5 +1,10 @@
 #import "./Artist.graphql"
+#import "./Group.graphql"
 
 fragment ArtistDetail on Artist {
   ...Artist
+
+  groups {
+    ...Group
+  }
 }

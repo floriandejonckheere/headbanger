@@ -2,6 +2,10 @@
 
 module Types
   class QueryType < Types::BaseObject
+    # Artists
+    field :list_artists, resolver: Queries::Artists::List
+    field :find_artist, resolver: Queries::Artists::Find
+
     # Releases
     field :list_releases, resolver: Queries::Releases::List
 

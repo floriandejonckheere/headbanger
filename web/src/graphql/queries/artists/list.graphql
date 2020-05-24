@@ -1,0 +1,7 @@
+#import "../../types/ArtistDetail.graphql"
+
+query listArtists {
+  artists: listArtists {
+    ...ArtistDetail
+  }
+}

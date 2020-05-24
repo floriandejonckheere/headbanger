@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Types
-  class ArtistType < Types::BaseObject
+  class ArtistType < BaseObject
     implements Interfaces::MusicItem
 
     description "An artist"
@@ -37,5 +37,9 @@ module Types
     field :died_at,
           GraphQL::Types::ISO8601Date,
           null: true
+
+    field :groups,
+          [GroupType],
+          null: false
   end
 end

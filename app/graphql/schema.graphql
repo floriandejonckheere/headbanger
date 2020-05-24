@@ -8,6 +8,7 @@ type Artist implements MusicItem {
   description: String
   diedAt: ISO8601Date
   gender: GenderEnum
+  groups: [Group!]!
   id: ID!
   name: String!
   rating: RatingEnum
@@ -78,6 +79,11 @@ type Mutation {
 
 type Query {
   """
+  Find artist by ID
+  """
+  findArtist(id: String!): Genre
+
+  """
   Find genre by ID
   """
   findGenre(id: String!): Genre
@@ -86,6 +92,11 @@ type Query {
   Get recommendations
   """
   getRecommendations: [Recommendation!]
+
+  """
+  List artists alphabetically
+  """
+  listArtists: [Genre!]
 
   """
   List genres alphabetically

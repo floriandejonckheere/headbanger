@@ -1,0 +1,7 @@
+#import "../../types/ArtistDetail.graphql"
+
+query findArtist ($id: String!) {
+  artist: findArtist (id: $id) {
+    ...ArtistDetail
+  }
+}
