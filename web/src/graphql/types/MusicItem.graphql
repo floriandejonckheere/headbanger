@@ -1,3 +1,0 @@
-fragment MusicItem on MusicItem {
-  rating
-}

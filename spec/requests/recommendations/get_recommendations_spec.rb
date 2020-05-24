@@ -8,7 +8,7 @@ RSpec.describe "Get recommendations" do
           reason
 
           recommended {
-            __typename
+            type
             ... on Artist {
               id
               name
@@ -44,7 +44,7 @@ RSpec.describe "Get recommendations" do
     post graphql_path, params: { query: query }
 
     expect(response_body.dig("data", "recommendations", 0, "reason")).to eq "group"
-    expect(response_body.dig("data", "recommendations", 0, "recommended", "__typename")).to eq "Group"
+    expect(response_body.dig("data", "recommendations", 0, "recommended", "type")).to eq "Group"
     expect(response_body.dig("data", "recommendations", 0, "recommended", "id")).to eq group.id
     expect(response_body.dig("data", "recommendations", 0, "recommended", "name")).to eq "my_group"
   end
