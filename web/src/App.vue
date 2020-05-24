@@ -26,8 +26,7 @@ export default {
   @import "~uikit/src/scss/variables.scss";
 
   html,
-  body,
-  #app {
+  body {
     height: 100%;
   }
 
@@ -35,6 +34,8 @@ export default {
     font-family: Poppins, Avenir, Helvetica, Arial, sans-serif;
     font-weight: 300;
     background: $global-muted-background;
+
+    min-height: 100%;
 
     display: flex;
     flex-direction: column;
