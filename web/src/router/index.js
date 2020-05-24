@@ -31,6 +31,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "genre" */ '../views/browse/Genre.vue'),
     props: true,
   },
+  {
+    path: '*',
+    name: 'not_found',
+    component: () => import(/* webpackChunkName: "not_found" */ '../views/errors/NotFound.vue'),
+  },
 ];
 
 const router = new VueRouter({
