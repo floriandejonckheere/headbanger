@@ -1,17 +1,12 @@
 <template>
-  <div>
-    <ApolloMutation
-      :mutation="require('@/graphql/mutations/music/rate.graphql')"
-      class="form"
-    >
-      <template v-slot="{ mutate, loading, error }">
-        <button
-          v-if="error"
-          class="uk-button uk-button-default demo"
-          type="button"
-          onclick="UIkit.notification({ message: error, status: 'danger' })"
-        >Danger</button>
+  <ApolloMutation
+    :mutation="require('@/graphql/mutations/music/rate.graphql')"
+    class="form"
+  >
+    <template v-slot="{ mutate, loading, error }">
+      <span v-if="error">{{ error }}</span>
 
+      <div class="uk-flex uk-flex-between uk-flex-bottom">
         <div
           class="uk-button uk-button-small hb-rating-button"
           v-bind:class="{ 'hb-rating-button-selected': (music.rating === 'like') }"
@@ -25,6 +20,7 @@
           })"
         >
           <ion-icon name="heart" size="small" class="uk-inline" />
+          Like
         </div>
         <div
           class="uk-button uk-button-small hb-rating-button"
@@ -39,10 +35,11 @@
           })"
         >
           <ion-icon name="heart-dislike" size="small" class="uk-inline" />
+          Dislike
         </div>
-      </template>
-    </ApolloMutation>
-  </div>
+      </div>
+    </template>
+  </ApolloMutation>
 </template>
 
 <script>
@@ -59,24 +56,25 @@ export default {
 
   .hb-rating-button {
     background: $global-muted-background;
-
-    ion-icon { color: $global-muted-color; }
+    color: $global-muted-color;
 
     &:hover {
       background: $global-danger-background;
-
-      ion-icon { color: white; }
+      color: white;
     }
 
     &:active,
     &:focus {
       background: darken($global-danger-background, 10%);
-
-      ion-icon { color: white; }
+      color: white;
     }
   }
 
   .hb-rating-button-selected {
-    ion-icon { color: $global-danger-background; }
+    color: $global-danger-background;
+
+    &:hover {
+      color: white;
+    }
   }
 </style>

@@ -23,7 +23,7 @@
           </div>
 
           <div v-else-if="data.recommendations">
-            <div class="uk-grid-medium@m uk-grid-small@s" uk-grid uk-height-match="target: .uk-card">
+            <div class="uk-grid-medium@m uk-grid-small@s" uk-grid uk-height-match="target: .uk-card-body">
               <div
                 v-for="recommendation in data.recommendations"
                 :key="recommendation.recommended.id"

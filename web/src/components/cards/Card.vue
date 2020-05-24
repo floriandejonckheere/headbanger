@@ -12,17 +12,16 @@
         </div>
       </div>
     </div>
-    <div class="uk-card-body uk-text-left uk-padding-small">
+    <div class="uk-card-body uk-padding-small uk-padding-remove-bottom">
       <div class="uk-text-bold uk-text-break">
         <slot name="title"></slot>
       </div>
       <div class="uk-text-small">
         <slot name="description"></slot>
       </div>
-
-      <div class="uk-text-right uk-margin-small-top">
-        <Rating :music="music" />
-      </div>
+    </div>
+    <div class="uk-card-footer uk-padding-small">
+      <Rating :music="music" />
     </div>
   </div>
 </template>
