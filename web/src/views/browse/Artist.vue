@@ -28,7 +28,7 @@
 
           <div v-if="data.artist">
             <div class="uk-cover-container uk-height-medium">
-              <img src="https://ia601209.us.archive.org/25/items/mbid-a86017c0-09d9-4edd-81d3-767ac56ed3ff/mbid-a86017c0-09d9-4edd-81d3-767ac56ed3ff-14459102581.jpg" alt="" uk-cover>
+              <img uk-img data-src="https://ia601209.us.archive.org/25/items/mbid-a86017c0-09d9-4edd-81d3-767ac56ed3ff/mbid-a86017c0-09d9-4edd-81d3-767ac56ed3ff-14459102581.jpg" alt="">
               <div class="uk-overlay-primary uk-position-cover" />
               <div class="uk-overlay uk-position-bottom uk-light">
                 <h3 class="uk-margin-remove-vertical">

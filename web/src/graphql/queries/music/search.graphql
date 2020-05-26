@@ -1,0 +1,7 @@
+#import "../../types/Music.graphql"
+
+query search ($query: String!) {
+  results: search (query: $query) {
+    ...Music
+  }
+}

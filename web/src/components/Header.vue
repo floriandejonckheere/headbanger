@@ -9,13 +9,7 @@
             </router-link>
           </div>
           <div class="uk-navbar-center">
-            <div class="uk-inline">
-              <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
-              <input
-                class="uk-input uk-form-blank"
-                type="text"
-                placeholder="Search music...">
-            </div>
+            <SearchBar />
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
@@ -30,8 +24,13 @@
 </template>
 
 <script>
+import SearchBar from '@/components/search/SearchBar.vue';
+
 export default {
   name: 'Header',
+  components: {
+    SearchBar,
+  },
 };
 </script>
 
