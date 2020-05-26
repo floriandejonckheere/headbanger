@@ -15,5 +15,8 @@ module Types
 
     # Recommendations
     field :get_recommendations, resolver: Queries::Recommendations::Get
+
+    # Search
+    field :search, resolver: Queries::Music::Search
   end
 end

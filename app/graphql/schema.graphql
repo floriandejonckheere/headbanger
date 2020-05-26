@@ -81,7 +81,7 @@ type Query {
   """
   Find artist by ID
   """
-  findArtist(id: String!): Genre
+  findArtist(id: String!): Artist
 
   """
   Find genre by ID
@@ -107,6 +107,11 @@ type Query {
   List releases alphabetically
   """
   listReleases: [Release!]
+
+  """
+  Find music
+  """
+  search(query: String!): [Music!]
 }
 
 """
