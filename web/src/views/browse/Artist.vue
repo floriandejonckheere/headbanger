@@ -30,9 +30,22 @@
             <div class="uk-cover-container uk-height-medium">
               <img src="https://ia601209.us.archive.org/25/items/mbid-a86017c0-09d9-4edd-81d3-767ac56ed3ff/mbid-a86017c0-09d9-4edd-81d3-767ac56ed3ff-14459102581.jpg" alt="" uk-cover>
               <div class="uk-overlay-primary uk-position-cover" />
-              <h3 class="uk-overlay uk-position-bottom uk-light">
-                {{ data.artist.name }}
-              </h3>
+              <div class="uk-overlay uk-position-bottom uk-light">
+                <h3 class="uk-margin-remove-vertical">
+                  {{ data.artist.name }}
+                </h3>
+                <small v-if="data.artist.altNames">
+                  Also known as {{ data.artist.altNames.join(", ") }}
+                </small>
+              </div>
+            </div>
+
+            <div class="uk-margin">
+              {{ data.artist.description }}
+            </div>
+
+            <div class="uk-margin">
+              <strong>Country: {{ countries[data.artist.country].name }}</strong>
             </div>
 
             <h3>Member of</h3>
@@ -63,6 +76,8 @@
 </template>
 
 <script>
+import { countries } from 'countries-list';
+
 import GroupCard from '@/components/cards/GroupCard.vue';
 
 export default {
@@ -72,6 +87,11 @@ export default {
   },
   components: {
     GroupCard,
+  },
+  data() {
+    return {
+      countries,
+    };
   },
 };
 </script>
