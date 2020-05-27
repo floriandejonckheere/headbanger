@@ -33,6 +33,9 @@ gem "sentry-raven"
 # GraphQL API
 gem "graphql"
 
+# Full-text searching in Postgres
+gem "pg_search"
+
 # Job scheduling
 gem "clockwork", github: "Rykian/clockwork"
 

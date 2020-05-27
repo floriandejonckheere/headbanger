@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_104305) do
+ActiveRecord::Schema.define(version: 2020_05_27_063855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -100,6 +100,15 @@ ActiveRecord::Schema.define(version: 2020_05_23_104305) do
     t.index ["group_id", "theme_id"], name: "index_groups_themes_on_group_id_and_theme_id", unique: true
     t.index ["group_id"], name: "index_groups_themes_on_group_id"
     t.index ["theme_id"], name: "index_groups_themes_on_theme_id"
+  end
+
+  create_table "pg_search_documents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.uuid "searchable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
   end
 
   create_table "ratings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
