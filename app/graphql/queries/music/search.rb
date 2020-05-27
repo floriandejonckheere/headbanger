@@ -11,6 +11,8 @@ module Queries
                required: true
 
       def resolve(query:)
+        return [] if query.length < 3
+
         ::Search
           .new(query)
           .call

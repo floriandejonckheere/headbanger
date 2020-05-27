@@ -6,11 +6,7 @@ class Group < ApplicationRecord
 
   STATUSES = %w(active split_up on_hold changed_name disputed).freeze
 
-  multisearchable against: {
-    name: "A",
-    alt_names: "B",
-    description: "C",
-  }
+  multisearchable against: %w(name alt_names description)
 
   has_many :artist_groups,
            dependent: :destroy

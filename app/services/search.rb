@@ -8,7 +8,9 @@ class Search
   end
 
   def call
-    Group
-      .where("name LIKE ?", "%#{query}%")
+    PgSearch
+      .multisearch(query)
+      .limit(5)
+      .map(&:searchable)
   end
 end

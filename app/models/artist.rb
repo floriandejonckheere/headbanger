@@ -6,11 +6,7 @@ class Artist < ApplicationRecord
 
   GENDERS = %w(male female other).freeze
 
-  multisearchable against: {
-    name: "A",
-    alt_names: "B",
-    description: "C",
-  }
+  multisearchable against: %w(name alt_names description)
 
   has_many :artist_groups,
            dependent: :destroy

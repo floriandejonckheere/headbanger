@@ -4,9 +4,7 @@ class Release < ApplicationRecord
   include PgSearch::Model
   include Identifiable
 
-  multisearchable against: {
-    name: "A",
-  }
+  multisearchable multisearchable against: %w(name)
 
   has_many :artist_releases,
            dependent: :destroy
