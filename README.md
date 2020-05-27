@@ -13,13 +13,7 @@ Migrate the PostgreSQL database:
 rails db:migrate
 ```
 
-Migrate the Neo4j database:
-
-```
-rails neo4j:migrate
-```
-
-Initialize database seeds (for both PostgreSQL and Neo4j):
+Initialize database seeds:
 
 ```
 rails database:seed             # Production and development seeds
