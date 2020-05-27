@@ -41,6 +41,16 @@ Run the test suite:
 rspec
 ```
 
+## Troubleshooting
+
+Rebuild the search indices:
+
+```
+rails pg_search:multisearch:rebuild[Artist]
+rails pg_search:multisearch:rebuild[Group]
+rails pg_search:multisearch:rebuild[Release]
+```
+
 ## Releasing
 
 Update the changelog and bump the version in `lib/headbanger/version.rb` and `web/package.json`.

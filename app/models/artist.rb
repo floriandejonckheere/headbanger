@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 class Artist < ApplicationRecord
+  include PgSearch::Model
   include Identifiable
 
   GENDERS = %w(male female other).freeze
+
+  multisearchable against: {
+    name: "A",
+    alt_names: "B",
+    description: "C",
+  }
 
   has_many :artist_groups,
            dependent: :destroy

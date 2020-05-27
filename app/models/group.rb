@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 class Group < ApplicationRecord
+  include PgSearch::Model
   include Identifiable
 
   STATUSES = %w(active split_up on_hold changed_name disputed).freeze
+
+  multisearchable against: {
+    name: "A",
+    alt_names: "B",
+    description: "C",
+  }
 
   has_many :artist_groups,
            dependent: :destroy

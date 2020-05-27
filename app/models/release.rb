@@ -1,7 +1,12 @@
 # frozen_string_literal: true
 
 class Release < ApplicationRecord
+  include PgSearch::Model
   include Identifiable
+
+  multisearchable against: {
+    name: "A",
+  }
 
   has_many :artist_releases,
            dependent: :destroy
