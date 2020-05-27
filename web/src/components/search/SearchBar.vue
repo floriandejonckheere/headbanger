@@ -10,16 +10,18 @@
         @input="debounceInput"
       >
     </div>
+
     <ApolloQuery
       :query="require('@/graphql/queries/music/search.graphql')"
       :variables="{ query }"
+      :skip="query.length < 3"
       notifyOnNetworkStatusChange
     >
       <template slot-scope="{ result: { loading, error, data } }">
         <div
           uk-dropdown="mode: click; toggle: #search; animation: uk-animation-fade; duration: 100"
           class="uk-background-default uk-padding-small uk-box-shadow-small uk-width-1-1"
-          v-if="loading || error || data"
+          id="search-dropdown"
         >
           <div v-if="loading" class="uk-text-center">
             <div uk-spinner key="loading" />
@@ -31,7 +33,7 @@
 
           <ul
             class="uk-nav uk-dropdown-nav uk-list-large uk-text-break"
-            v-else-if="data.results.length !== 0"
+            v-else-if="data && data.results.length !== 0"
           >
             <li v-for="result in data.results" v-bind:key="result.id">
               <SearchResult :result="result" />
@@ -70,6 +72,7 @@ export default {
   created() {
     this.debounceInput = debounce((e) => {
       this.query = e.target.value;
+      UIkit.dropdown('#search-dropdown').show();
     }, 500);
   },
 };
