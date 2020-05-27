@@ -7,7 +7,7 @@
         type="text"
         placeholder="Search music..."
         id="search"
-        v-model="query"
+        @input="debounceInput"
       >
     </div>
     <ApolloQuery
@@ -17,7 +17,7 @@
     >
       <template slot-scope="{ result: { loading, error, data } }">
         <div
-          uk-dropdown="mode: click; toggle: #search"
+          uk-dropdown="mode: click; toggle: #search; animation: uk-animation-fade; duration: 100"
           class="uk-background-default uk-padding-small uk-box-shadow-small uk-width-1-1"
           v-if="loading || error || data"
         >
@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import debounce from 'debounce';
+
 import SearchResult from './SearchResult.vue';
 
 export default {
@@ -64,6 +66,11 @@ export default {
   },
   components: {
     SearchResult,
+  },
+  created() {
+    this.debounceInput = debounce((e) => {
+      this.query = e.target.value;
+    }, 500);
   },
 };
 </script>
