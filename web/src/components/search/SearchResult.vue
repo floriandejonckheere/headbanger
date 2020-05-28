@@ -20,9 +20,7 @@ export default {
         Artist: 'person',
         Group: 'people',
         Release: 'disc',
-      /* eslint-disable no-underscore-dangle */
       }[this.result.__typename];
-      /* eslint-enable no-underscore-dangle */
     },
   },
 };
