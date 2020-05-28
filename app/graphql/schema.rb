@@ -11,6 +11,9 @@ class Schema < GraphQL::Schema
   # Add built-in connections for pagination
   use GraphQL::Pagination::Connections
 
+  # Restrict clients from asking too much data
+  default_max_page_size 25
+
   def self.resolve_type(_abstract_type, object, _context)
     type_class = "::Types::#{object.class}Type".safe_constantize
 
