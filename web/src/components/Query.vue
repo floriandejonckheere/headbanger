@@ -1,22 +1,24 @@
 <template>
   <ApolloQuery
     :query="query"
+    :variables="variables"
+    :skip="skip"
     notifyOnNetworkStatusChange
   >
-    <template slot-scope="{ result: { loading, error, data } }">
+    <template slot-scope="{ result: { loading, error, data }, query }">
       <div v-if="loading" class="uk-text-center">
         <div uk-spinner key="loading" />
       </div>
 
-      <div v-else-if="error" class="uk-width-1-1">
+      <div v-if="error" class="uk-width-1-1">
         <div class="uk-alert-danger" uk-alert>
           <a class="uk-alert-close" uk-close></a>
           <p>An error occurred: {{ error.message }}</p>
         </div>
       </div>
 
-      <div v-else-if="data">
-        <slot name="success" v-bind="data"></slot>
+      <div v-if="data">
+        <slot name="success" v-bind="{ data, query }"></slot>
       </div>
 
       <div v-else class="uk-width-1-1">
@@ -35,6 +37,8 @@ export default {
   name: 'Query',
   props: {
     query: Object,
+    variables: Object,
+    skip: Boolean,
   },
 };
 </script>

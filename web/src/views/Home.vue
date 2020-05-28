@@ -10,7 +10,7 @@
       </div>
 
       <Query :query="require('@/graphql/queries/recommendations/get.graphql')">
-        <template slot="success" slot-scope="data">
+        <template slot="success" slot-scope="{ data }">
           <div class="uk-grid-medium@m uk-grid-small@s" uk-grid uk-height-match="target: .uk-card-body">
             <div
               v-for="edge in data.recommendations.edges"

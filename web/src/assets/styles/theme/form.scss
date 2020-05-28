@@ -1,3 +1,8 @@
 @mixin hook-form-blank() {
+  background: white;
   border-bottom: 2px solid $global-border;
+}
+
+@mixin hook-form-blank-focus() {
+  background: $global-muted-background;
 }

@@ -15,7 +15,7 @@
       :query="require('@/graphql/queries/music/search.graphql')"
       :variables="{
         query,
-        first: 10,
+        first: 5,
       }"
       :skip="query.length < 3"
       notifyOnNetworkStatusChange
@@ -36,13 +36,13 @@
 
           <ul
             class="uk-nav uk-dropdown-nav uk-list-large uk-text-break"
-            v-else-if="data && data.search.edges.length !== 0"
+            v-else-if="data && data.results.edges.length !== 0"
           >
-            <li v-for="edge in data.search.edges" v-bind:key="edge.cursor">
+            <li v-for="edge in data.results.edges" v-bind:key="edge.cursor">
               <SearchResult :result="edge.node" />
             </li>
             <li>
-              <router-link to="/" class="uk-link-text uk-text-primary uk-text-center">
+              <router-link :to="{ name: 'search' }" class="uk-link-text uk-text-primary uk-text-center">
                 See all results
               </router-link>
             </li>
@@ -67,8 +67,6 @@ export default {
   data() {
     return {
       query: '',
-      loading: 0,
-      pageSize: 10,
     };
   },
   components: {

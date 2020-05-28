@@ -8,7 +8,7 @@
       <h3 class="uk-margin-remove-top">Genres</h3>
 
       <Query :query="require('@/graphql/queries/genres/list.graphql')">
-        <template slot="success" slot-scope="data">
+        <template slot="success" slot-scope="{ data }">
           <div class="uk-grid-medium@m uk-grid-small@s" uk-grid>
             <div
               v-for="edge in data.genres.edges"
