@@ -1,7 +1,15 @@
 #import "../../types/Music.graphql"
 
-query search ($query: String!) {
-  results: search (query: $query) {
-    ...Music
+query search ($query: String!, $before: String, $after: String, $first: Int, $last: Int) {
+  search (query: $query, before: $before, after: $after, first: $first, last: $last) {
+    pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+
+    edges {
+      cursor
+
+      node {
+        ...Music
+      }
+    }
   }
 }

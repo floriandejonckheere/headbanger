@@ -13,7 +13,10 @@
 
     <ApolloQuery
       :query="require('@/graphql/queries/music/search.graphql')"
-      :variables="{ query }"
+      :variables="{
+        query,
+        first: 10,
+      }"
       :skip="query.length < 3"
       notifyOnNetworkStatusChange
     >
@@ -33,10 +36,10 @@
 
           <ul
             class="uk-nav uk-dropdown-nav uk-list-large uk-text-break"
-            v-else-if="data && data.results.length !== 0"
+            v-else-if="data && data.search.edges.length !== 0"
           >
-            <li v-for="result in data.results" v-bind:key="result.id">
-              <SearchResult :result="result" />
+            <li v-for="edge in data.search.edges" v-bind:key="edge.cursor">
+              <SearchResult :result="edge.node" />
             </li>
             <li>
               <router-link to="/" class="uk-link-text uk-text-primary uk-text-center">
@@ -64,6 +67,8 @@ export default {
   data() {
     return {
       query: '',
+      loading: 0,
+      pageSize: 10,
     };
   },
   components: {

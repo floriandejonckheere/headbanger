@@ -4,7 +4,7 @@ module Queries
   module Music
     class Search < ApplicationQuery
       description "Find music"
-      type [Types::MusicType]
+      type Types::MusicType.connection_type
 
       argument :query,
                String,

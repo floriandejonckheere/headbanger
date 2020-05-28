@@ -4,19 +4,27 @@ RSpec.describe "Search music" do
   let(:query) do
     <<-GRAPHQL
       query {
-        results: search (query: "$query") {
-          __typename
-          ... on Artist {
-            id
-            name
-          }
-          ... on Group {
-            id
-            name
-          }
-          ... on Release {
-            id
-            name
+        search (query: "$query") {
+          pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+
+          edges {
+            cursor
+
+            node {
+              __typename
+              ... on Artist {
+                id
+                name
+              }
+              ... on Group {
+                id
+                name
+              }
+              ... on Release {
+                id
+                name
+              }
+            }
           }
         }
       }
@@ -26,7 +34,7 @@ RSpec.describe "Search music" do
   it "returns empty when nothing found" do
     post graphql_path, params: { query: query.gsub("$query", "notfound") }
 
-    expect(response_body.dig("data", "results")).to be_empty
+    expect(response_body.dig("data", "search", "edges")).to be_empty
   end
 
   it "returns empty when query is shorter than three characters" do
@@ -34,7 +42,7 @@ RSpec.describe "Search music" do
 
     post graphql_path, params: { query: query.sub("$query", "my") }
 
-    expect(response_body.dig("data", "results")).to be_empty
+    expect(response_body.dig("data", "search", "edges")).to be_empty
   end
 
   it "returns music" do
@@ -42,8 +50,8 @@ RSpec.describe "Search music" do
 
     post graphql_path, params: { query: query.gsub("$query", "my_group") }
 
-    expect(response_body.dig("data", "results", 0, "id")).to eq group.id
-    expect(response_body.dig("data", "results", 0, "name")).to eq "my_group"
+    expect(response_body.dig("data", "search", "edges", 0, "node", "id")).to eq group.id
+    expect(response_body.dig("data", "search", "edges", 0, "node", "name")).to eq "my_group"
   end
 
   it "returns maximum 5 results" do
@@ -51,6 +59,6 @@ RSpec.describe "Search music" do
 
     post graphql_path, params: { query: query.gsub("$query", "my_group") }
 
-    expect(response_body.dig("data", "results").count).to eq 5
+    expect(response_body.dig("data", "search", "edges").count).to eq 5
   end
 end
