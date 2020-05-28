@@ -1,7 +1,10 @@
 import Vue from 'vue';
 import UIkit from 'uikit';
+
 import * as Sentry from '@sentry/browser';
 import { Vue as VueIntegration } from '@sentry/integrations';
+
+import InfiniteLoading from 'vue-infinite-loading';
 
 import '@/assets/styles/styles.scss';
 import Icons from 'uikit/dist/js/uikit-icons';
@@ -15,6 +18,8 @@ import { createProvider } from './vue-apollo';
 
 UIkit.use(Icons);
 window.UIkit = UIkit;
+
+Vue.use(InfiniteLoading);
 
 Vue.config.productionTip = false;
 Vue.config.ignoredElements = [/^ion-/];
