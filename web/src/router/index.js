@@ -20,6 +20,11 @@ const routes = [
     name: 'browse',
     component: () => import(/* webpackChunkName: "browse" */ '../views/Browse.vue'),
   },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import(/* webpackChunkName: "search" */ '../views/Search.vue'),
+  },
 
   // Genres
   {

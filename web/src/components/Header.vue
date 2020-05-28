@@ -9,7 +9,7 @@
             </router-link>
           </div>
           <div class="uk-navbar-center">
-            <SearchBar />
+            <SearchBar v-if="this.$route.name !== 'search'" />
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
