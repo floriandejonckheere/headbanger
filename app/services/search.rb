@@ -10,7 +10,6 @@ class Search
   def call
     PgSearch
       .multisearch(query)
-      .limit(5)
       .map(&:searchable)
   end
 end

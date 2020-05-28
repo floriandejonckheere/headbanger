@@ -53,12 +53,4 @@ RSpec.describe "Search music" do
     expect(response_body.dig("data", "results", "edges", 0, "node", "id")).to eq group.id
     expect(response_body.dig("data", "results", "edges", 0, "node", "name")).to eq "my_group"
   end
-
-  it "returns maximum 5 results" do
-    Array.new(6).map { |i| create(:group, name: "my_group_#{i}") }
-
-    post graphql_path, params: { query: query.gsub("$query", "my_group") }
-
-    expect(response_body.dig("data", "results", "edges").count).to eq 5
-  end
 end
