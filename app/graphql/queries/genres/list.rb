@@ -4,7 +4,7 @@ module Queries
   module Genres
     class List < ApplicationQuery
       description "List genres alphabetically"
-      type [Types::GenreType]
+      type Types::GenreType.connection_type
 
       def resolve
         Genre

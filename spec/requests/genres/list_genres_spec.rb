@@ -5,10 +5,18 @@ RSpec.describe "List genres" do
     <<-GRAPHQL
       query {
         genres: listGenres {
-          id
-          name
-          description
-          groups { id name }
+          pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+
+          edges {
+            cursor
+
+            node {
+              id
+              name
+              description
+              groups { id name }
+            }
+          }
         }
       }
     GRAPHQL
@@ -23,7 +31,7 @@ RSpec.describe "List genres" do
 
     post graphql_path, params: { query: query }
 
-    expect(response_body.dig("data", "genres")).to be_empty
+    expect(response_body.dig("data", "genres", "edges")).to be_empty
   end
 
   it "returns genres alphabetically" do
@@ -35,12 +43,12 @@ RSpec.describe "List genres" do
 
     post graphql_path, params: { query: query }
 
-    expect(response_body.dig("data", "genres", 0, "id")).to eq genre_a.id
-    expect(response_body.dig("data", "genres", 0, "name")).to eq "0_my_genre_a"
-    expect(response_body.dig("data", "genres", 0, "description")).to eq genre_a.description
-    expect(response_body.dig("data", "genres", 0, "groups", 0, "name")).to eq "my_group"
+    expect(response_body.dig("data", "genres", "edges", 0, "node", "id")).to eq genre_a.id
+    expect(response_body.dig("data", "genres", "edges", 0, "node", "name")).to eq "0_my_genre_a"
+    expect(response_body.dig("data", "genres", "edges", 0, "node", "description")).to eq genre_a.description
+    expect(response_body.dig("data", "genres", "edges", 0, "node", "groups", 0, "name")).to eq "my_group"
 
-    expect(response_body.dig("data", "genres", 1, "id")).to eq genre_b.id
-    expect(response_body.dig("data", "genres", 2, "id")).to eq genre_c.id
+    expect(response_body.dig("data", "genres", "edges", 1, "node", "id")).to eq genre_b.id
+    expect(response_body.dig("data", "genres", "edges", 2, "node", "id")).to eq genre_c.id
   end
 end

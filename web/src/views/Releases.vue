@@ -7,11 +7,11 @@
         <template slot="success" slot-scope="data">
           <div class="uk-grid-medium@m uk-grid-small@s" uk-grid>
             <div
-              v-for="release in data.releases"
-              :key="release.id"
+              v-for="edge in data.releases.edges"
+              :key="edge.node.id"
               class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l"
             >
-              <Card :title="release.name" :description="release.groups[0].name" />
+              <Card :title="edge.node.name" :description="edge.node.groups[0].name" />
             </div>
           </div>
         </template>

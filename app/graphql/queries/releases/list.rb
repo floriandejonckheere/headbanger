@@ -4,7 +4,7 @@ module Queries
   module Releases
     class List < ApplicationQuery
       description "List releases alphabetically"
-      type [Types::ReleaseType]
+      type Types::ReleaseType.connection_type
 
       def resolve
         Release

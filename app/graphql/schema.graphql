@@ -42,6 +42,41 @@ type Genre {
 }
 
 """
+The connection type for Genre.
+"""
+type GenreConnection {
+  """
+  A list of edges.
+  """
+  edges: [GenreEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [Genre]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type GenreEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Genre
+}
+
+"""
 A group
 """
 type Group implements MusicItem {
@@ -151,22 +186,102 @@ type Query {
   """
   Get recommendations
   """
-  getRecommendations: [Recommendation!]
+  getRecommendations(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): RecommendationConnection
 
   """
   List artists alphabetically
   """
-  listArtists: [Genre!]
+  listArtists(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): GenreConnection
 
   """
   List genres alphabetically
   """
-  listGenres: [Genre!]
+  listGenres(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): GenreConnection
 
   """
   List releases alphabetically
   """
-  listReleases: [Release!]
+  listReleases(
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+  ): ReleaseConnection
 
   """
   Find music
@@ -258,6 +373,41 @@ type Recommendation {
 }
 
 """
+The connection type for Recommendation.
+"""
+type RecommendationConnection {
+  """
+  A list of edges.
+  """
+  edges: [RecommendationEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [Recommendation]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type RecommendationEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Recommendation
+}
+
+"""
 A release
 """
 type Release implements MusicItem {
@@ -267,6 +417,41 @@ type Release implements MusicItem {
   name: String!
   rating: RatingEnum
   releasedAt: ISO8601Date!
+}
+
+"""
+The connection type for Release.
+"""
+type ReleaseConnection {
+  """
+  A list of edges.
+  """
+  edges: [ReleaseEdge]
+
+  """
+  A list of nodes.
+  """
+  nodes: [Release]
+
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+}
+
+"""
+An edge in a connection.
+"""
+type ReleaseEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Release
 }
 
 enum StatusEnum {

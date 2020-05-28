@@ -1,7 +1,15 @@
 #import "../../types/GenreDetail.graphql"
 
-query listGenres {
-  genres: listGenres {
-    ...GenreDetail
+query listGenres ($before: String, $after: String, $first: Int, $last: Int) {
+  genres: listGenres (before: $before, after: $after, first: $first, last: $last) {
+    pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+
+    edges {
+      cursor
+
+      node {
+        ...GenreDetail
+      }
+    }
   }
 }

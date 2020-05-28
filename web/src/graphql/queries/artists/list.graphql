@@ -1,7 +1,15 @@
 #import "../../types/ArtistDetail.graphql"
 
-query listArtists {
-  artists: listArtists {
-    ...ArtistDetail
+query listArtists ($before: String, $after: String, $first: Int, $last: Int) {
+  artists: listArtists (before: $before, after: $after, first: $first, last: $last) {
+    pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+
+    edges {
+      cursor
+
+      node {
+        ...ArtistDetail
+      }
+    }
   }
 }

@@ -13,11 +13,11 @@
         <template slot="success" slot-scope="data">
           <div class="uk-grid-medium@m uk-grid-small@s" uk-grid uk-height-match="target: .uk-card-body">
             <div
-              v-for="recommendation in data.recommendations"
-              :key="recommendation.recommended.id"
+              v-for="edge in data.recommendations.edges"
+              :key="edge.node.id"
               class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l"
             >
-              <MusicCard :music="recommendation.recommended" />
+              <MusicCard :music="edge.node.recommended" />
             </div>
           </div>
         </template>
