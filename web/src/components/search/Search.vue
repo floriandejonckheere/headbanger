@@ -1,16 +1,5 @@
 <template>
   <div>
-    <div class="uk-margin-large uk-inline">
-      <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
-      <input
-        class="uk-input uk-form-blank uk-form-width-large"
-        type="text"
-        placeholder="Search music..."
-        ref="search"
-        @input="debounceInput"
-      >
-    </div>
-
     <ApolloQuery
       :query="require('@/graphql/queries/music/search.graphql')"
       :variables="{
@@ -21,6 +10,23 @@
       notifyOnNetworkStatusChange
     >
       <template slot-scope="{ result: { loading, error, data }, query: gqlQuery }">
+        <div class="uk-margin-large">
+          <div class="uk-inline">
+            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
+            <input
+              class="uk-input uk-form-blank uk-form-width-large"
+              type="text"
+              placeholder="Search music..."
+              ref="search"
+              @input="debounceInput"
+            >
+          </div>
+
+          <small v-if="data && data.results" class="uk-margin-small-left">
+            {{data.results.pageInfo.count}} results
+          </small>
+        </div>
+
         <div class="uk-grid-medium@m uk-grid-small@s" uk-grid uk-height-match="target: .uk-card-body">
           <Loading :loading="loading" />
           <Error :error="error" />
@@ -40,6 +46,8 @@
         <div class="uk-margin">
           <infinite-loading @infinite="() => loadMore(query, gqlQuery, data)">
             <div slot="spinner" class="uk-spinner" />
+            <div slot="no-more">No more</div>
+            <div slot="no-results">No more</div>
           </infinite-loading>
         </div>
       </template>
@@ -64,8 +72,15 @@ export default {
     };
   },
   mounted() {
-    this.query = this.$route.query.query;
-    this.$refs.search.value = this.query;
+    if (this.$route.query.query) {
+      this.query = this.$route.query.query;
+      this.$refs.search.value = this.query;
+    }
+  },
+  created() {
+    this.debounceInput = debounce((e) => {
+      this.query = e.target.value;
+    }, 500);
   },
   methods: {
     loadMore(query, gqlQuery, data) {
@@ -101,11 +116,6 @@ export default {
     Error,
     NoResults,
     MusicCard,
-  },
-  created() {
-    this.debounceInput = debounce((e) => {
-      this.query = e.target.value;
-    }, 500);
   },
 };
 </script>
