@@ -9,31 +9,45 @@
         <small>A fresh batch of daily recommendations, made personally for you!</small>
       </div>
 
-      <Query :query="require('@/graphql/queries/recommendations/get.graphql')">
-        <template slot="success" slot-scope="{ data }">
+      <ApolloQuery :query="require('@/graphql/queries/recommendations/get.graphql')" notifyOnNetworkStatusChange>
+        <template slot-scope="{ result: { loading, error, data } }">
           <div class="uk-grid-medium@m uk-grid-small@s" uk-grid uk-height-match="target: .uk-card-body">
-            <div
-              v-for="edge in data.recommendations.edges"
-              :key="edge.node.id"
-              class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l"
-            >
-              <MusicCard :music="edge.node.recommended" />
-            </div>
+            <Loading :loading="loading" />
+            <Error :error="error" />
+            <NoResults
+              :results="data && data.recommendations.edges"
+              message="Hey there! Unfortunately we don't have any recommendations for you right now. Come back in a bit!"
+            />
+
+            <template v-if="data && data.recommendations.edges.length > 0">
+              <div
+                v-for="edge in data.recommendations.edges"
+                :key="edge.node.id"
+                class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l"
+              >
+                <MusicCard :music="edge.node.recommended" />
+              </div>
+            </template>
           </div>
         </template>
-      </Query>
+      </ApolloQuery>
     </div>
   </section>
 </template>
 
 <script>
-import Query from '@/components/Query.vue';
+import Loading from '@/components/Loading.vue';
+import Error from '@/components/Error.vue';
+import NoResults from '@/components/NoResults.vue';
+
 import MusicCard from '@/components/cards/MusicCard.vue';
 
 export default {
   name: 'Home',
   components: {
-    Query,
+    Loading,
+    Error,
+    NoResults,
     MusicCard,
   },
 };
