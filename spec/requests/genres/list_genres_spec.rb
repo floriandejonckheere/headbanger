@@ -5,7 +5,7 @@ RSpec.describe "List genres" do
     <<-GRAPHQL
       query {
         genres: listGenres {
-          pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+          pageInfo { count startCursor endCursor hasPreviousPage hasNextPage }
 
           edges {
             cursor

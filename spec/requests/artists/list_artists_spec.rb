@@ -5,7 +5,7 @@ RSpec.describe "List artists" do
     <<-GRAPHQL
       query {
         artists: listArtists {
-          pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+          pageInfo { count startCursor endCursor hasPreviousPage hasNextPage }
 
           edges {
             cursor

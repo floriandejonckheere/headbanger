@@ -2,7 +2,7 @@
 
 query listReleases ($before: String, $after: String, $first: Int, $last: Int) {
   releases: listReleases (before: $before, after: $after, first: $first, last: $last) {
-    pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+    pageInfo { count startCursor endCursor hasPreviousPage hasNextPage }
 
     edges {
       cursor

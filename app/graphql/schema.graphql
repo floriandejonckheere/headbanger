@@ -152,6 +152,11 @@ Information about pagination in a connection.
 """
 type PageInfo {
   """
+  Total amount of edges in the connection.
+  """
+  count: Int!
+
+  """
   When paginating forwards, the cursor to continue.
   """
   endCursor: String

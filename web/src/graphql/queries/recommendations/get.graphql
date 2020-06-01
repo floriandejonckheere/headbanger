@@ -2,7 +2,7 @@
 
 query getRecommendations ($before: String, $after: String, $first: Int, $last: Int) {
   recommendations: getRecommendations (before: $before, after: $after, first: $first, last: $last) {
-    pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+    pageInfo { count startCursor endCursor hasPreviousPage hasNextPage }
 
     edges {
       cursor

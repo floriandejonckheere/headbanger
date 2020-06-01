@@ -42,5 +42,8 @@ module Headbanger
     config.api_only = true
 
     config.autoload_paths << Rails.root.join("lib")
+
+    # Eager load extensions
+    Dir[Rails.root.join("lib/ext/**/*.rb")].each { |f| load f }
   end
 end

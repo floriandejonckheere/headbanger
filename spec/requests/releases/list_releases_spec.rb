@@ -5,7 +5,7 @@ RSpec.describe "List releases" do
     <<-GRAPHQL
       query {
         releases: listReleases {
-          pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+          pageInfo { count startCursor endCursor hasPreviousPage hasNextPage }
 
           edges {
             cursor

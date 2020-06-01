@@ -5,7 +5,7 @@ RSpec.describe "Search music" do
     <<-GRAPHQL
       query {
         results: search (query: "$query") {
-          pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+          pageInfo { count startCursor endCursor hasPreviousPage hasNextPage }
 
           edges {
             cursor

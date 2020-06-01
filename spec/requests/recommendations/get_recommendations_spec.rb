@@ -5,7 +5,7 @@ RSpec.describe "Get recommendations" do
     <<-GRAPHQL
       query {
         recommendations: getRecommendations {
-          pageInfo { startCursor endCursor hasPreviousPage hasNextPage }
+          pageInfo { count startCursor endCursor hasPreviousPage hasNextPage }
 
           edges {
             cursor
