@@ -6,42 +6,54 @@
         class="uk-input uk-form-blank uk-form-width-large"
         type="text"
         placeholder="Search music..."
-        id="search"
+        ref="search"
         @input="debounceInput"
       >
     </div>
 
-    <Query
+    <ApolloQuery
       :query="require('@/graphql/queries/music/search.graphql')"
       :variables="{
         query,
         first: 10,
       }"
       :skip="query.length < 3"
+      notifyOnNetworkStatusChange
     >
-      <template slot="success" slot-scope="{ data, query: gqlQuery }">
+      <template slot-scope="{ result: { loading, error, data }, query: gqlQuery }">
         <div class="uk-grid-medium@m uk-grid-small@s" uk-grid uk-height-match="target: .uk-card-body">
-          <div
-            v-for="edge in data.results.edges"
-            :key="edge.node.id"
-            class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l"
-          >
-            <MusicCard :music="edge.node" />
-          </div>
+          <Loading :loading="loading" />
+          <Error :error="error" />
+          <NoResults :results="data && data.results.edges" />
+
+          <template v-if="data && data.results.edges.length > 0">
+            <div
+              v-for="edge in data.results.edges"
+              :key="edge.node.id"
+              class="uk-width-1-2 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l"
+            >
+              <MusicCard :music="edge.node" />
+            </div>
+          </template>
         </div>
 
         <div class="uk-margin">
-          <infinite-loading @infinite="() => loadMore(query, gqlQuery, data)" />
+          <infinite-loading @infinite="() => loadMore(query, gqlQuery, data)">
+            <div slot="spinner" class="uk-spinner" />
+          </infinite-loading>
         </div>
       </template>
-    </Query>
+    </ApolloQuery>
   </div>
 </template>
 
 <script>
 import debounce from 'debounce';
 
-import Query from '@/components/Query.vue';
+import Loading from '@/components/Loading.vue';
+import Error from '@/components/Error.vue';
+import NoResults from '@/components/NoResults.vue';
+
 import MusicCard from '@/components/cards/MusicCard.vue';
 
 export default {
@@ -51,9 +63,15 @@ export default {
       query: '',
     };
   },
+  mounted() {
+    this.query = this.$route.query.query;
+    this.$refs.search.value = this.query;
+  },
   methods: {
     loadMore(query, gqlQuery, data) {
-      if (!data.results.pageInfo.hasNextPage) return;
+      console.log('fetching');
+
+      if (!data || !data.results.pageInfo.hasNextPage) return;
 
       gqlQuery.fetchMore({
         variables: {
@@ -61,6 +79,7 @@ export default {
           after: data.results.pageInfo.endCursor,
         },
         updateQuery: (prevResult, { fetchMoreResult }) => {
+          console.log(fetchMoreResult.results);
           const newEdges = fetchMoreResult.results.edges;
           const { pageInfo } = fetchMoreResult.results;
 
@@ -78,7 +97,9 @@ export default {
     },
   },
   components: {
-    Query,
+    Loading,
+    Error,
+    NoResults,
     MusicCard,
   },
   created() {

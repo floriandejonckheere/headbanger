@@ -42,7 +42,7 @@
               <SearchResult :result="edge.node" />
             </li>
             <li>
-              <router-link :to="{ name: 'search' }" class="uk-link-text uk-text-primary uk-text-center">
+              <router-link :to="{ name: 'search', query: { query } }" class="uk-link-text uk-text-primary uk-text-center">
                 See all results
               </router-link>
             </li>

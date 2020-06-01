@@ -6,6 +6,10 @@
     notifyOnNetworkStatusChange
   >
     <template slot-scope="{ result: { loading, error, data }, query }">
+      loading = {{loading}};
+      error = {{error}}
+      data = {{data}}
+
       <div v-if="loading" class="uk-text-center">
         <div uk-spinner key="loading" />
       </div>
