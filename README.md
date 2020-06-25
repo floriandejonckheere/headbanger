@@ -7,10 +7,10 @@ Headbanger is a music recommendation and discovery platform.
 
 ## Set up
 
-Migrate the PostgreSQL database:
+Set up the PostgreSQL database:
 
 ```
-rails db:migrate
+rails db:setup
 ```
 
 Initialize database seeds:
@@ -25,6 +25,14 @@ Generate TLS client certificates for NGINX:
 
 ```
 openssl req  -nodes -new -x509  -keyout web/nginx/client.key -out web/nginx/client.pem
+```
+
+## Migrating
+
+Run database migrations:
+
+```
+rails db:migrate
 ```
 
 ## Testing
