@@ -129,10 +129,9 @@ GEM
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     i18n_data (0.10.0)
-    listen (3.1.5)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
+    listen (3.2.1)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -240,7 +239,6 @@ GEM
     rubocop-rspec (1.43.2)
       rubocop (~> 0.87)
     ruby-progressbar (1.10.1)
-    ruby_dep (1.5.0)
     sentry-raven (3.0.4)
       faraday (>= 1.0)
     shoulda-matchers (4.4.1)
@@ -291,7 +289,7 @@ DEPENDENCIES
   ffaker
   graphiql-rails
   graphql
-  listen (>= 3.0.5, < 3.2)
+  listen (>= 3.0.5, < 3.3)
   metal_archives!
   pg (>= 0.18, < 2.0)
   pg_search
