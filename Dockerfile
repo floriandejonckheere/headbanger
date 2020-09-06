@@ -19,7 +19,7 @@ ARG UID=1000
 ARG GID=1000
 
 RUN addgroup -g $GID $USER
-RUN adduser -D -u $UID -G $USER -h $APP_HOME $USER
+RUN adduser -D -u $UID -G $USER -h $APP_HOME/ $USER
 
 # Install system dependencies
 RUN apk add --no-cache $BUILD_DEPS $RUNTIME_DEPS
@@ -34,12 +34,14 @@ ADD Gemfile.lock $APP_HOME/
 
 RUN bundle install
 
-# Change user
-USER $USER
-
 # Add application
 ADD . $APP_HOME/
 
 RUN mkdir -p $APP_HOME/tmp/pids/
+
+RUN chown -R $UID:$GID $APP_HOME/
+
+# Change user
+USER $USER
 
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
