@@ -1,0 +1,73 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: postgres:12
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    restart: unless-stopped
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis:/data/
+    restart: unless-stopped
+
+  app:
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.3.0
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env.production
+    restart: unless-stopped
+
+  web:
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-web:v0.3.0
+    ports:
+      - "81:80"
+    volumes:
+      - nginx:/cache/
+      - ./client.pem:/etc/nginx/conf.d/client.pem
+      - ./client.key:/etc/nginx/conf.d/client.key
+    depends_on:
+      - app
+    restart: unless-stopped
+
+  sidekiq:
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.3.0
+    command: bundle exec sidekiq
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env.production
+    restart: unless-stopped
+
+  clock:
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.3.0
+    command: bundle exec clockwork config/clock.rb
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env.production
+    restart: unless-stopped
+
+  scrub:
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.3.0
+    command: bin/scrub
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .env.production
+    restart: unless-stopped
+
+volumes:
+  postgres:
+  redis:
+  nginx:

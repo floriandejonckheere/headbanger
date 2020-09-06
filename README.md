@@ -71,11 +71,24 @@ SSH authentication is handled by the host's SSH agent running on `SSH_AUTH_SOCK`
 
 Rebuild the search indices:
 
-```
+```sh
 rails pg_search:multisearch:rebuild[Artist]
 rails pg_search:multisearch:rebuild[Group]
 rails pg_search:multisearch:rebuild[Release]
 ```
+
+Github secrets for continuous integration:
+
+- `APP_CONTACT`
+- `MA_ENDPOINT` (optional)
+- `MA_ENDPOINT_USER` (optional)
+- `MA_ENDPOINT_PASSWORD` (optional)
+
+Github secrets for continuous deployment:
+
+- `DEPLOY_SSH_HOST`
+- `DEPLOY_SSH_USER`
+- `DEPLOY_SSH_KEY`
 
 ## Releasing
 
@@ -83,10 +96,25 @@ Update the changelog and bump the version in `lib/headbanger/version.rb` and `we
 Create a tag for the version and push it to Github.
 A Docker image will automatically be built and pushed to the registry.
 
-```
+```sh
 git add lib/headbanger/version.rb web/package.json
 git commit -m "Bump version to v1.0.0"
 git tag v1.0.0
 git push origin master
 git push origin v1.0.0
 ```
+
+## Deployment
+
+Ensure the images have been built and are available in the container registry.
+Update the version in `ops/docker-compose.yml`, commit and push it to Github.
+The file will automatically be uploaded, and the containers recreated.
+
+```sh
+nano ops/docker-compose.yml
+git add ops/docker-compose.yml
+git commit -m "Update images to latest version"
+git push origin master
+```
+
+For initial deployment, copy `.env.production`, `client.key` and `client.pem` manually, and initialize the database.
