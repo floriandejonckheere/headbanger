@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   },
   plugins: [
-    'graphql'
+    'graphql',
   ],
   extends: [
     'plugin:vue/essential',
@@ -29,7 +29,7 @@ module.exports = {
       },
     },
     {
-      files: ["*.vue"],
+      files: ['*.vue'],
       rules: {
         'max-len': 'off',
       },
