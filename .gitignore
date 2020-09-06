@@ -66,3 +66,6 @@ html/
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore files from alpine container
+.ash_history
