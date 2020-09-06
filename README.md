@@ -92,11 +92,13 @@ Github secrets for continuous deployment:
 
 ## Releasing
 
-Update the changelog and bump the version in `lib/headbanger/version.rb` and `web/package.json`.
+Update the changelog and bump the version using the `bin/version` tool.
+Execute `bin/version --help` to see all parameters.
 Create a tag for the version and push it to Github.
 A Docker image will automatically be built and pushed to the registry.
 
 ```sh
+bin/version version 1.0.0
 git add lib/headbanger/version.rb web/package.json
 git commit -m "Bump version to v1.0.0"
 git tag v1.0.0

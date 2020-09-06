@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+APP_PATH = File.expand_path("../config/application", __dir__)
+require_relative "../config/environment"
+
+FILE_RB = Rails.root.join("lib/headbanger/version.rb")
+FILE_JS = Rails.root.join("web/package.json")
+
+def usage(error: false)
+  puts "Usage: #{$PROGRAM_NAME} [major [VERSION] | minor [VERSION] | patch [VERSION] | pre VERSION]"
+  puts "  #{$PROGRAM_NAME} major\t\tIncrement major version number"
+  puts "  #{$PROGRAM_NAME} major VERSION\tSet major version number"
+  puts "  #{$PROGRAM_NAME} minor\t\tIncrement minor version number"
+  puts "  #{$PROGRAM_NAME} minor VERSION\tSet minor version number"
+  puts "  #{$PROGRAM_NAME} patch\t\tIncrement patch version number"
+  puts "  #{$PROGRAM_NAME} patch VERSION\tSet patch version number"
+  puts "  #{$PROGRAM_NAME} pre\t\tClear pre version number"
+  puts "  #{$PROGRAM_NAME} pre VERSION\tSet pre version number"
+  puts "  #{$PROGRAM_NAME} version VERSION\tSet entire version number"
+
+  exit 1 if error
+end
+
+def bump(hash)
+  hash.each do |level, version|
+    File.write FILE_RB, File.read(FILE_RB).gsub(/#{level}( +)= [^\n]*/) { "#{level}#{$LAST_MATCH_INFO[1]}= #{version}" }
+  end
+
+  silence_warnings { load FILE_RB }
+
+  File.write FILE_JS, File.read(FILE_JS).gsub(/"version": "[^"]*"/) { "\"version\": \"#{Headbanger::VERSION}\"" }
+end
+
+case ARGV.shift&.to_sym
+when nil
+  # Print version
+  puts "v#{Headbanger::VERSION}"
+when :version
+  usage(error: true) unless ARGV.any?
+
+  version, pre = ARGV.shift.split("-")
+  major, minor, patch = version.split(".")
+
+  bump MAJOR: major, MINOR: minor, PATCH: patch, PRE: (pre ? "\"#{pre}\"" : "nil")
+  puts "Setting version to #{Headbanger::VERSION}"
+when :major
+  # Bump major version
+  bump MAJOR: (ARGV.pop || Headbanger::Version::MAJOR + 1)
+  puts "Bumping version to #{Headbanger::VERSION}"
+when :minor
+  # Bump minor version
+  bump MINOR: (ARGV.pop || Headbanger::Version::MINOR + 1)
+  puts "Bumping version to #{Headbanger::VERSION}"
+when :patch
+  # Bump patch version
+  bump PATCH: (ARGV.pop || Headbanger::Version::PATCH + 1)
+  puts "Bumping version to #{Headbanger::VERSION}"
+when :pre
+  # Set or clear patch version
+  bump PRE: (ARGV.any? ? "\"#{ARGV.shift}\"" : "nil")
+else
+  usage
+end
