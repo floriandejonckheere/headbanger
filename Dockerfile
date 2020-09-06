@@ -2,7 +2,7 @@ FROM ruby:2.7-alpine
 
 MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
 
-ENV RUNTIME_DEPS postgresql
+ENV RUNTIME_DEPS postgresql openssh
 ENV BUILD_DEPS build-base curl-dev git postgresql-dev
 
 ENV BUNDLER_VERSION 2.1.4

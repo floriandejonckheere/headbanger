@@ -49,6 +49,24 @@ Run the test suite:
 rspec
 ```
 
+## Data sources
+
+### Metal Archives
+
+By default, an NGINX caching proxy is configured on `http://web:81/`.
+The app server uses this as default endpoint for queries.
+If you wish to override this, set at least the `MA_ENDPOINT` environment variable.
+`MA_USER` and `MA_PASSWORD` can be set if the endpoint is protected with HTTP Basic Authentication.
+
+### MusicBrainz
+
+By default, the app server will use the same database settings as the main PostgreSQL server.
+If you wish to override this, set the `MB_HOST`, `MB_USER`, `MB_PASSWORD` and `MB_DATABASE` environment variables.
+An SSH forwarding container is also available, if the database resides on another host.
+In this case, set the `MB_SSH_HOST` environment variable and connect to the `musicbrainz` container.
+SSH authentication is handled by the host's SSH agent running on `SSH_AUTH_SOCK`.
+
+
 ## Troubleshooting
 
 Rebuild the search indices:

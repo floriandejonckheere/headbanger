@@ -20,9 +20,9 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: postgres
-  username: postgres
-  password: postgres
+  host: <%= ENV.fetch("PG_HOST", "postgres") %>
+  username: <%= ENV.fetch("PG_USER", "postgres") %>
+  password: <%= ENV.fetch("PG_PASSWORD", "postgres") %>
 
 development:
   <<: *default
@@ -79,8 +79,18 @@ test:
 # You can use this database configuration with:
 #
 #   production:
-#     url: <%= ENV['DATABASE_URL'] %>
+#     url: <%= ENV["DATABASE_URL"] %>
 #
 production:
   <<: *default
   database: headbanger_production
+
+# MusicBrainz database
+musicbrainz:
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("MB_HOST", "postgres") %>
+  username: <%= ENV.fetch("MB_USER", "postgres") %>
+  password: <%= ENV.fetch("MB_PASSWORD", "postgres") %>
+  database: <%= ENV.fetch("MB_DATABASE", "musicbrainz") %>

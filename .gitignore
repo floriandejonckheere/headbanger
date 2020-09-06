@@ -62,10 +62,10 @@ build-iPhoneSimulator/
 
 ## Temp files
 .byebug_history
+.ash_history
+.irb_history
 html/
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Ignore files from alpine container
-.ash_history

@@ -86,6 +86,20 @@ services:
       - .env.development.local
     restart: always
 
+  musicbrainz:
+    build: .
+    command: bin/forward
+    volumes:
+      - .:/app/:cached
+      - $HOME/.ssh:/app/.ssh:ro
+      - $SSH_AUTH_SOCK:/ssh
+    ports:
+      - "5433:5432"
+    env_file:
+      - .env.development
+      - .env.development.local
+    restart: "no"
+
 volumes:
   postgres:
   redis:
