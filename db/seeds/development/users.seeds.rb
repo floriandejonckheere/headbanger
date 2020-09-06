@@ -13,11 +13,15 @@ ActiveRecord::Base.transaction do
     user = FactoryBot.create(:user)
     puts "    > #{user.email}"
 
+    genres = [:genres, :artists, :releases]
+
     rateables = Array
-      .new(rand(50..200)) { models[[:genres, :artists, :releases].sample].sample }
+      .new(rand(50..200)) { models[genres.sample].sample }
       .uniq(&:id)
 
-    rateables.each { |r| user.ratings.build(rateable: r, rating: [:like, :dislike].sample) }
+    ratings = [:like, :dislike]
+
+    rateables.each { |r| user.ratings.build(rateable: r, rating: ratings.sample) }
 
     user.save!
   end

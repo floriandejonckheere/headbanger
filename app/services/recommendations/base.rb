@@ -12,10 +12,11 @@ module Recommendations
       # TODO: actual implementation
 
       models = Artist.all + Group.all + Release.all
+      reasons = %w(artist group genre)
 
       models
         .sample(Headbanger.config.recommendation_limit)
-        .map { |m| Recommendation.new(recommended: m, reason: %w(artist group genre).sample) }
+        .map { |m| Recommendation.new(recommended: m, reason: reasons.sample) }
     end
   end
 end

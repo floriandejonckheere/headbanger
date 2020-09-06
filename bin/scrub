@@ -4,7 +4,7 @@
 require_relative "../config/environment"
 require_relative "../config/boot"
 
-log_target = Rails.env.development? ? STDOUT : Rails.root.join("logs/scrub.log")
+log_target = Rails.env.development? ? $stdout : Rails.root.join("logs/scrub.log")
 logger = Logger.new(log_target)
 logger.level = ENV.fetch("LOG_LEVEL", Logger::DEBUG)
 

@@ -25,7 +25,7 @@ class ArtistBuilder < ApplicationBuilder
   def groups
     metal_archives
       .bands
-      .map { |b| b[:band] }
+      .pluck(:band)
       .select { |b| b.respond_to? :id }
       .map { |b| GroupBuilder.new(metal_archives_key: b.id).call }
   end
