@@ -28,11 +28,6 @@ jobs:
           --health-timeout 5s
           --health-retries 5
 
-      neo4j:
-        image: neo4j:3.5
-        env:
-          NEO4J_AUTH: neo4j/password
-
     container:
       image: ruby:2.7-alpine
 
