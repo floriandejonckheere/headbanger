@@ -5,16 +5,18 @@ require_relative "../config/environment"
 require_relative "../config/boot"
 
 log_target = Rails.env.development? ? $stdout : Rails.root.join("logs/scrub.log")
-logger = Logger.new(log_target)
-logger.level = ENV.fetch("LOG_LEVEL", Logger::DEBUG)
+Rails.logger = Logger.new(log_target)
+Rails.logger.level = ENV.fetch("LOG_LEVEL", Logger::DEBUG)
 
 loop do
-  logger.debug "Scrubbing data..."
+  Rails.logger.debug "Scrubbing data..."
 
   Scrub.new.call
-
-  sleep Headbanger.config.sync_interval
 rescue StandardError => e
-  logger.error(e)
+  Rails.logger.error(e)
   Raven.capture_exception(e)
+
+  raise e
+ensure
+  sleep Headbanger.config.sync_interval
 end
