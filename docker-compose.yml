@@ -40,6 +40,9 @@ services:
       - nginx:/cache/
     depends_on:
       - app
+    env_file:
+      - .env.development
+      - .env.development.local
 
   sidekiq:
     build: .

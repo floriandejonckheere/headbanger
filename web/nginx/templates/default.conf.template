@@ -27,6 +27,12 @@ server {
 
   # Serve UI
   location / {
+    sub_filter_types application/javascript;
+    sub_filter_once off;
+
+    sub_filter HEADBANGER_VUE_APP_SENTRY_DSN ${VUE_APP_SENTRY_DSN};
+    sub_filter HEADBANGER_VUE_APP_INSTANCE ${INSTANCE};
+
     try_files $uri /index.html;
   }
 }

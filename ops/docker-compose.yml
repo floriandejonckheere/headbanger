@@ -35,6 +35,8 @@ services:
       - ./client.key:/etc/nginx/conf.d/client.key
     depends_on:
       - app
+    env_file:
+      - .env.production
     restart: unless-stopped
 
   sidekiq:
