@@ -2,8 +2,8 @@ name: Continuous Integration
 
 on:
   push:
-    paths:
-      - '!ops/**/*'
+    paths-ignore:
+      - 'ops/**'
 
 jobs:
   app:
