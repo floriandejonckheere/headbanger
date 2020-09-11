@@ -34,7 +34,7 @@
     "@vue/test-utils": "1.0.0-beta.31",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-graphql": "^3.1.1",
+    "eslint-plugin-graphql": "^4.0.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
     "graphql-tag": "^2.9.0",
