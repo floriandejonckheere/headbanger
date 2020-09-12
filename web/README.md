@@ -20,6 +20,12 @@ yarn serve
 
 ## Production
 
+For Sentry to automatically upload source maps during build, ensure you have a valid auth token in `~/.sentryclirc` or authenticate first:
+
+```
+sentry-cli login
+```
+
 Build the project:
 
 ```

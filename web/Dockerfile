@@ -11,6 +11,10 @@ ADD package.json yarn.lock $APP_HOME/
 
 RUN yarn install
 
+ARG SENTRY_AUTH_TOKEN
+ARG SENTRY_ORG
+ARG SENTRY_PROJECT
+
 # Add application
 ADD . $APP_HOME/
 

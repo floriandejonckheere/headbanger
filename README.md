@@ -84,6 +84,9 @@ rails pg_search:multisearch:rebuild[Release]
 Github secrets for continuous integration:
 
 - `APP_CONTACT`
+- `SENTRY_AUTH_TOKEN`
+- `SENTRY_ORG`
+- `SENTRY_PROJECT`
 - `MA_ENDPOINT` (optional)
 - `MA_ENDPOINT_USER` (optional)
 - `MA_ENDPOINT_PASSWORD` (optional)
