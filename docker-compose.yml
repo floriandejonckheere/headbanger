@@ -32,7 +32,12 @@ services:
       - .env.development.local
 
   web:
-    build: web
+    build:
+      context: web
+      args:
+        - SENTRY_AUTH_TOKEN
+        - SENTRY_ORG
+        - SENTRY_PROJECT
     ports:
       - "80:80"
     volumes:
