@@ -24,6 +24,9 @@ gem "sidekiq"
 # ISO3166 countries
 gem "countries"
 
+# User management
+gem "devise"
+
 # Data sources
 gem "metal_archives", github: "floriandejonckheere/metal_archives"
 
