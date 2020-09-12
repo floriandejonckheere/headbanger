@@ -49,7 +49,8 @@
           </ul>
 
           <div v-else>
-            No results.
+            <span v-if="query.length < 3">Start typing to search for music</span>
+            <span v-else>No results</span>
           </div>
         </div>
       </template>
