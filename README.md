@@ -120,3 +120,7 @@ git push origin master
 ```
 
 For initial deployment, copy `.env.production`, `client.key` and `client.pem` manually, and initialize the database.
+
+## License
+
+See [LICENSE.md](LICENSE.md).
