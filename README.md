@@ -2,7 +2,10 @@
 
 ![Continuous Integration](https://github.com/floriandejonckheere/headbanger/workflows/Continuous%20Integration/badge.svg)
 ![Continuous Deployment](https://github.com/floriandejonckheere/headbanger/workflows/Continuous%20Deployment/badge.svg)
+
 ![Release](https://img.shields.io/github/v/release/floriandejonckheere/headbanger?label=Latest%20release)
+![Deployment](https://img.shields.io/github/deployments/floriandejonckheere/headbanger/production?label=Deployment)
+
 
 Headbanger is a music recommendation and discovery platform.
 
