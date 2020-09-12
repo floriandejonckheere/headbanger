@@ -9,8 +9,9 @@ server {
   # Don't send the NGINX version number in error pages and Server header
   server_tokens off;
 
-  # Don't process logs
+  # Configure logging
   access_log off;
+  error_log stderr warn
 
   root /usr/share/nginx/html/;
   index index.html;
