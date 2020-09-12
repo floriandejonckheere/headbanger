@@ -10,6 +10,13 @@ module.exports = {
       lintGQL: true,
     },
   },
+  devServer: {
+    proxy: {
+      '/graphql': {
+        target: 'http://localhost:3000',
+      },
+    },
+  },
   configureWebpack: {
     resolve: {
       alias: {
