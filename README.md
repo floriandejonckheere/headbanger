@@ -1,7 +1,8 @@
 # Headbanger
 
-![CI](https://github.com/floriandejonckheere/headbanger/workflows/CI/badge.svg)
-![Release](https://github.com/floriandejonckheere/headbanger/workflows/Create%20release/badge.svg)
+![Continuous Integration](https://github.com/floriandejonckheere/headbanger/workflows/Continuous%20Integration/badge.svg)
+![Continuous Deployment](https://github.com/floriandejonckheere/headbanger/workflows/Continuous%20Deployment/badge.svg)
+![Release](https://img.shields.io/github/v/release/floriandejonckheere/headbanger?label=Latest%20release)
 
 Headbanger is a music recommendation and discovery platform.
 
