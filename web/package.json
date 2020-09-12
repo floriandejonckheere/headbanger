@@ -21,6 +21,7 @@
     "vue-apollo": "^3.0.0-beta.11",
     "vue-cli-plugin-apollo": "^0.22.2",
     "vue-infinite-loading": "^2.4.5",
+    "vue-ionicons": "^3.0.5",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"
   },

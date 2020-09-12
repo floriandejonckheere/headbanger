@@ -19,7 +19,7 @@
             }
           })"
         >
-          <ion-icon name="heart" size="small" class="uk-inline" />
+          <ios-heart-icon class="uk-text-middle" h="18px" w="18px" />
           Like
         </div>
         <div
@@ -34,7 +34,7 @@
             }
           })"
         >
-          <ion-icon name="heart-dislike" size="small" class="uk-inline" />
+          <ios-heart-dislike-icon class="uk-text-middle" h="18px" w="18px" />
           Dislike
         </div>
       </div>

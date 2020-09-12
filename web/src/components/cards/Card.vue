@@ -6,7 +6,7 @@
         <div class="uk-overlay-primary uk-position-cover uk-invisible-hover uk-animation-fade uk-animation-fast">
           <span class="uk-position-center">
             <a href="#">
-              <ion-icon name="play-outline" style="font-size: 2rem;" />
+              <ios-play-icon />
             </a>
           </span>
         </div>

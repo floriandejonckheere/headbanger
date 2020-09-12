@@ -7,6 +7,9 @@ import { Integrations } from '@sentry/tracing';
 
 import InfiniteLoading from 'vue-infinite-loading';
 
+import 'vue-ionicons/ionicons.css';
+import AllIosIcon from 'vue-ionicons/dist/ionicons-ios';
+
 import '@/assets/styles/styles.scss';
 import Icons from 'uikit/dist/js/uikit-icons';
 
@@ -21,9 +24,9 @@ UIkit.use(Icons);
 window.UIkit = UIkit;
 
 Vue.use(InfiniteLoading);
+Vue.use(AllIosIcon);
 
 Vue.config.productionTip = false;
-Vue.config.ignoredElements = [/^ion-/];
 
 Sentry.init({
   dsn: process.env.VUE_APP_SENTRY_DSN,

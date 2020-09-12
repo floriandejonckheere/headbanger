@@ -1,6 +1,6 @@
 <template>
   <router-link to="/">
-    <ion-icon :name="`${icon}-outline`" />
+    <component :is="icon" />
     <span class="uk-padding-small">
       {{ result.name }}
       <small class="uk-text-muted">{{ result.__typename.toLowerCase() }}</small>
@@ -17,9 +17,9 @@ export default {
   computed: {
     icon() {
       return {
-        Artist: 'person',
-        Group: 'people',
-        Release: 'disc',
+        Artist: 'ios-person-icon',
+        Group: 'ios-people-icon',
+        Release: 'ios-disc-icon',
       }[this.result.__typename];
     },
   },
