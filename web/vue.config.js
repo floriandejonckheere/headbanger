@@ -2,7 +2,7 @@ const path = require('path');
 
 const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 
-const package = require('./package.json')
+const npmPackage = require('./package.json');
 
 module.exports = {
   pluginOptions: {
@@ -25,7 +25,7 @@ module.exports = {
     },
     plugins: [
       new SentryWebpackPlugin({
-        release: package.version,
+        release: npmPackage.version,
         include: './dist',
         ignore: ['node_modules', 'vue.config.js'],
         dryRun: (process.env.NODE_ENV === 'development'),
