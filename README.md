@@ -116,14 +116,16 @@ git push origin v1.0.0
 ## Deployment
 
 Ensure the images have been built and are available in the container registry.
-Update the version in `ops/docker-compose.yml`, commit and push it to Github.
-The file will automatically be uploaded, and the containers recreated.
+Apply your changes in `ops/docker-compose.yml`.
+Update the `production` tag to the correct commit and push it to Github
+The file will automatically be deployed, and the containers recreated.
 
 ```sh
 nano ops/docker-compose.yml
 git add ops/docker-compose.yml
 git commit -m "Update images to latest version"
-git push origin master
+git tag -f production
+git push origin master && git push -f origin production
 ```
 
 For initial deployment, copy `.env.production`, `client.key` and `client.pem` manually, and initialize the database.

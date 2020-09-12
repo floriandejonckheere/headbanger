@@ -2,8 +2,10 @@ name: Continuous Integration
 
 on:
   push:
-    paths-ignore:
-      - 'ops/**'
+    branches:
+      - '**'
+    tags-ignore:
+      - 'production'
 
 jobs:
   app:
@@ -56,6 +58,7 @@ jobs:
         env:
           RAILS_ENV: test
           APP_CONTACT: ${{ secrets.APP_CONTACT }}
+          SMTP_FROM: ${{ secrets.APP_CONTACT }}
           MA_ENDPOINT: ${{ secrets.MA_ENDPOINT }}
           MA_ENDPOINT_USER: ${{ secrets.MA_ENDPOINT_USER }}
           MA_ENDPOINT_PASSWORD: ${{ secrets.MA_ENDPOINT_PASSWORD }}
