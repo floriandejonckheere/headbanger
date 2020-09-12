@@ -21,6 +21,7 @@ module.exports = {
         release: package.version,
         include: './dist',
         ignore: ['node_modules', 'vue.config.js'],
+        dryRun: (process.env.NODE_ENV === 'development'),
       }),
     ],
   },
