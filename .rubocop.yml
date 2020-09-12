@@ -36,9 +36,10 @@ Metrics/AbcSize:
 
 Metrics/BlockLength:
   Exclude:
+    - config/**/*
     - db/migrate/*
-    - spec/**/*
     - lib/tasks/*
+    - spec/**/*
 
 Metrics/MethodLength:
   Max: 20

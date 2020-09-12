@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   before_action :set_raven_context
 
   def index
-    render json: { status: :ok }
+    head :no_content
   end
 
   private
