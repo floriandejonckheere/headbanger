@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'ops/**'
+  workflow_dispatch:
 
 jobs:
   app:
