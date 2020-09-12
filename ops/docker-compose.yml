@@ -17,7 +17,7 @@ services:
     restart: unless-stopped
 
   app:
-    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.5.0
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.6.0
     depends_on:
       - postgres
       - redis
@@ -32,7 +32,7 @@ services:
     restart: unless-stopped
 
   web:
-    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-web:v0.5.0
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-web:v0.6.0
     ports:
       - "81:80"
     volumes:
@@ -46,7 +46,7 @@ services:
     restart: unless-stopped
 
   sidekiq:
-    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.5.0
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.6.0
     command: bundle exec sidekiq
     depends_on:
       - postgres
@@ -62,7 +62,7 @@ services:
     restart: unless-stopped
 
   clock:
-    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.5.0
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.6.0
     command: bundle exec clockwork config/clock.rb
     depends_on:
       - postgres
@@ -78,7 +78,7 @@ services:
     restart: unless-stopped
 
   scrub:
-    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.5.0
+    image: docker.pkg.github.com/floriandejonckheere/headbanger/headbanger-app:v0.6.0
     command: bin/scrub
     depends_on:
       - postgres
