@@ -36,6 +36,7 @@ gem "sentry-raven"
 
 # GraphQL API
 gem "graphql"
+gem "graphql_devise"
 
 # Full-text searching in Postgres
 gem "pg_search"

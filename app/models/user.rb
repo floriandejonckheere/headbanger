@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :lockable,
          :recoverable, :validatable, :confirmable, :trackable
 
+  include GraphqlDevise::Concerns::Model
+
   has_many :ratings,
            dependent: :destroy
 

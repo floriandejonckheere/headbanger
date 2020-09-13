@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   # GraphQL API
   post "/graphql", to: "graphql#execute"
 
-
   next if Rails.env.development?
 
   # GraphQL API UI

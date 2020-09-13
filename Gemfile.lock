@@ -127,6 +127,10 @@ GEM
       railties
       sprockets-rails
     graphql (1.11.4)
+    graphql_devise (0.13.4)
+      devise_token_auth (>= 0.1.43, < 2.0)
+      graphql (>= 1.8, < 1.12.0)
+      rails (>= 4.2, < 6.2)
     http (4.4.1)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -308,6 +312,7 @@ DEPENDENCIES
   ffaker
   graphiql-rails
   graphql
+  graphql_devise
   listen (>= 3.0.5, < 3.3)
   metal_archives!
   pg (>= 0.18, < 2.0)

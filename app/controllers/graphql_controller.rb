@@ -9,10 +9,10 @@ class GraphqlController < ApplicationController
   def execute
     result = Schema.execute params[:query],
                             variables: ensure_hash(params[:variables]),
-                            context: context,
+                            context: graphql_context(:user),
                             operation_name: params[:operationName]
 
-    render json: result
+    render json: result unless performed?
   rescue StandardError => e
     logger.error(e)
     logger.error e.backtrace.join("\n")
@@ -24,12 +24,6 @@ class GraphqlController < ApplicationController
   end
 
   private
-
-  def context
-    {
-      # current_user: current_user,
-    }
-  end
 
   def ensure_hash(ambiguous_param)
     case ambiguous_param
