@@ -12,6 +12,7 @@ class Schema < GraphQL::Schema
   use GraphqlDevise::SchemaPlugin.new(
     query: Types::QueryType,
     mutation: Types::MutationType,
+    authenticate_default: false,
     resource_loaders: [
       GraphqlDevise::ResourceLoader.new("User"),
     ]

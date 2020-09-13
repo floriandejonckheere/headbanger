@@ -3,6 +3,6 @@
 module Types
   class MutationType < BaseObject
     # Rating
-    field :rate, mutation: Mutations::Music::Rate
+    field :rate, mutation: Mutations::Music::Rate, authenticate: true
   end
 end
