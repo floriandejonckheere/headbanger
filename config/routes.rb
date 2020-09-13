@@ -12,3 +12,9 @@ Rails.application.routes.draw do
   # GraphQL API UI
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
 end
+
+# == Route Map
+#
+#  Prefix Verb URI Pattern        Controller#Action
+#    root GET  /                  application#index
+# graphql POST /graphql(.:format) graphql#execute
