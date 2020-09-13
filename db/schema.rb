@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_12_132144) do
+ActiveRecord::Schema.define(version: 2020_09_13_063016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -176,8 +176,12 @@ ActiveRecord::Schema.define(version: 2020_09_12_132144) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.json "tokens"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   add_foreign_key "artists_groups", "artists", on_delete: :cascade

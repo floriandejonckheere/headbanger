@@ -3,13 +3,12 @@
 Rails.application.routes.draw do
   root to: "application#index"
 
-  # GraphQL API UI
-  mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql" if Rails.env.development?
-
-  namespace :api do
-    get "/", to: "application#index"
-  end
-
   # GraphQL API
   post "/graphql", to: "graphql#execute"
+
+
+  next if Rails.env.development?
+
+  # GraphQL API UI
+  mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
 end

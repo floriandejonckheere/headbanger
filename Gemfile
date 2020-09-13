@@ -26,6 +26,7 @@ gem "countries"
 
 # User management
 gem "devise"
+gem "devise_token_auth"
 
 # Data sources
 gem "metal_archives", github: "floriandejonckheere/metal_archives"
