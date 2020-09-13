@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require Rails.root.join("lib/headbanger/app.rb")
+require Rails.root.join("lib/headbanger/version.rb")
+
 MetalArchives.configure do |c|
   ## Application identity (required)
   c.app_name    = Headbanger::App::NAME
