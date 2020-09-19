@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ArtistBuilder do
+RSpec.describe ArtistBuilder, type: :builder do
   subject(:artist) { described_class.new(metal_archives_key: "60908").call }
 
   it { is_expected.to have_attributes metal_archives_key: "60908" }
@@ -11,5 +11,5 @@ RSpec.describe ArtistBuilder do
   it { is_expected.to have_attributes gender: "male" }
   it { is_expected.to have_attributes country: "ES" }
 
-  it { is_expected.to have_attributes groups: match_array([find_group("3540361100"), find_group("5795")]) }
+  it { is_expected.to have_attributes groups: match_array([find_or_initialize_group("3540361100"), find_or_initialize_group("5795")]) }
 end

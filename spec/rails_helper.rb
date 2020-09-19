@@ -33,7 +33,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-  config.include ModelHelpers
+  config.include BuilderHelpers, type: :builder
   config.include RequestHelpers, type: :request
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
