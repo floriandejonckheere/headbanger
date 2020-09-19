@@ -45,11 +45,6 @@ class User < ApplicationRecord
   validates :name,
             presence: true
 
-  validates :email,
-            presence: true,
-            format: { with: URI::MailTo::EMAIL_REGEXP },
-            uniqueness: true
-
   validates :country,
             inclusion: { in: ISO3166::Country.codes },
             allow_nil: true
