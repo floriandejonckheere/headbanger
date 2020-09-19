@@ -21,6 +21,13 @@ RSpec.describe "List artists" do
     GRAPHQL
   end
 
+  it "returns error when not authenticated" do
+    list_artists(nil)
+
+    expect(response).to have_errors "AUTHENTICATION_ERROR"
+    expect(response_body.dig(:data, :artists)).to be_nil
+  end
+
   it "returns empty when nothing found" do
     # rubocop:disable RSpec/AnyInstance
     allow_any_instance_of(Queries::Artists::List)
@@ -28,9 +35,10 @@ RSpec.describe "List artists" do
       .and_return []
     # rubocop:enable RSpec/AnyInstance
 
-    post graphql_path, params: { query: query }
+    list_artists(default_user)
 
-    expect(response_body.dig("data", "artists", "edges")).to be_empty
+    expect(response).not_to have_errors
+    expect(response_body.dig(:data, :artists, :edges)).to be_empty
   end
 
   it "returns artists alphabetically" do
@@ -40,13 +48,17 @@ RSpec.describe "List artists" do
     artist_a = create(:artist, name: "0_my_artist_a", groups: [group])
     artist_c = create(:artist, name: "0_my_artist_c", groups: [group])
 
-    post graphql_path, params: { query: query }
+    list_artists(default_user)
 
-    expect(response_body.dig("data", "artists", "edges", 0, "node", "id")).to eq artist_a.id
-    expect(response_body.dig("data", "artists", "edges", 0, "node", "name")).to eq "0_my_artist_a"
-    expect(response_body.dig("data", "artists", "edges", 0, "node", "groups", 0, "name")).to eq "my_group"
+    expect(response).not_to have_errors
+    expect(response_body.dig(:data, :artists, :edges, 0, :node, :id)).to eq artist_a.id
+    expect(response_body.dig(:data, :artists, :edges, 0, :node, :name)).to eq "0_my_artist_a"
+    expect(response_body.dig(:data, :artists, :edges, 0, :node, :groups, 0, :name)).to eq "my_group"
+    expect(response_body.dig(:data, :artists, :edges, 1, :node, :id)).to eq artist_b.id
+    expect(response_body.dig(:data, :artists, :edges, 2, :node, :id)).to eq artist_c.id
+  end
 
-    expect(response_body.dig("data", "artists", "edges", 1, "node", "id")).to eq artist_b.id
-    expect(response_body.dig("data", "artists", "edges", 2, "node", "id")).to eq artist_c.id
+  def list_artists(user)
+    post graphql_path, params: { query: query }, headers: user&.create_new_auth_token
   end
 end
