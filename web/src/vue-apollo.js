@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
 import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client';
+import { onError } from 'apollo-link-error';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import * as Sentry from '@sentry/browser';
@@ -19,6 +20,13 @@ const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || '/graphql';
 export const filesRoot = process.env.VUE_APP_FILES_ROOT || httpEndpoint.substr(0, httpEndpoint.indexOf('/graphql'));
 
 Vue.prototype.$filesRoot = filesRoot;
+
+const link = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) {
+    graphQLErrors.forEach(({ message, locations, path, extensions }) => console.log(`[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(locations)}, Path: ${path}, Extensions: ${JSON.stringify(extensions)}`));
+  }
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
 
 // Config
 const defaultOptions = {
@@ -40,7 +48,7 @@ const defaultOptions = {
   // Override default apollo link
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
-  // link: myLink
+  link,
 
   // Override default cache
   cache: new InMemoryCache({ fragmentMatcher }),
@@ -69,6 +77,7 @@ export function createProvider(options = {}) {
     defaultClient: apolloClient,
     defaultOptions: {
       $query: {
+        errorPolicy: 'all',
         // fetchPolicy: 'cache-and-network',
       },
     },
