@@ -14,7 +14,12 @@ class Schema < GraphQL::Schema
     mutation: Types::MutationType,
     authenticate_default: false,
     resource_loaders: [
-      GraphqlDevise::ResourceLoader.new("User"),
+      GraphqlDevise::ResourceLoader.new(
+        "User",
+        operations: {
+          sign_up: Mutations::Auth::SignUp,
+        }
+      ),
     ]
   )
 

@@ -157,7 +157,7 @@ type Mutation {
   userLogout: UserLogoutPayload
   userResendConfirmation(email: String!, redirectUrl: String!): UserResendConfirmationPayload
   userSendPasswordReset(email: String!, redirectUrl: String!): UserSendPasswordResetPayload
-  userSignUp(confirmSuccessUrl: String, email: String!, password: String!, passwordConfirmation: String!): UserSignUpPayload
+  userSignUp(confirmSuccessUrl: String, country: String!, email: String!, name: String!, password: String!, passwordConfirmation: String!): UserSignUpPayload
   userUpdatePassword(currentPassword: String, password: String!, passwordConfirmation: String!): UserUpdatePasswordPayload
 }
 
