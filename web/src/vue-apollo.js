@@ -23,7 +23,9 @@ Vue.prototype.$filesRoot = filesRoot;
 
 const link = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.forEach(({ message, locations, path, extensions }) => console.log(`[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(locations)}, Path: ${path}, Extensions: ${JSON.stringify(extensions)}`));
+    graphQLErrors.forEach(({
+      message, locations, path, extensions,
+    }) => console.log(`[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(locations)}, Path: ${path}, Extensions: ${JSON.stringify(extensions)}`));
   }
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
