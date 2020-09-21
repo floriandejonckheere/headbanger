@@ -1,0 +1,14 @@
+#import "../../types/User.graphql"
+#import "../../types/Credential.graphql"
+
+mutation signin ($email: String!, $password: String!) {
+  userLogin (email: $email, password: $password) {
+    authenticatable {
+      ...User
+    }
+
+    credentials {
+      ...Credential
+    }
+  }
+}

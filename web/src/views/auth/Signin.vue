@@ -1,36 +1,72 @@
 <template>
-  <section class="uk-section">
-    <div class="uk-container">
-      <div class="uk-grid uk-child-width-1-3@s uk-flex-center">
-        <div class="uk-card uk-card-small uk-padding-small uk-card-default uk-box-shadow-small uk-background-default">
-          <div class="uk-card-header">
-            <h3 class="uk-margin-remove-vertical">Sign in</h3>
-            <small>Please sign in to continue</small>
-          </div>
-          <div class="uk-card-body">
-            <form>
-              <div class="uk-margin">
-                <input class="uk-input uk-form-blank" type="email" placeholder="Email" required>
+  <ApolloMutation :mutation="require('@/graphql/mutations/auth/signin.graphql')" @done="onDone">
+    <template v-slot="{ mutate, loading, error }">
+      <section class="uk-section">
+        <div class="uk-container">
+          <div class="uk-grid uk-child-width-1-3@s uk-flex-center">
+            <div class="uk-card uk-card-small uk-padding-small uk-card-default uk-box-shadow-small uk-background-default">
+              <div class="uk-card-header">
+                <h3 class="uk-margin-remove-vertical">Sign in</h3>
+                <small>Please sign in to continue</small>
               </div>
+              <div class="uk-card-body">
+                <Error :error="error" />
 
-              <div class="uk-margin">
-                <input class="uk-input uk-form-blank" type="password" placeholder="Password" required>
+                <form
+                  id="form-signin"
+                  @submit.prevent="mutate({ variables: { ...form } })"
+                >
+                  <div class="uk-margin">
+                    <input class="uk-input uk-form-blank" type="email" placeholder="Email" v-model="form.email" required>
+                  </div>
+
+                  <div class="uk-margin">
+                    <input class="uk-input uk-form-blank" type="password" placeholder="Password" v-model="form.password" required>
+                  </div>
+                </form>
               </div>
-            </form>
-          </div>
-          <div class="uk-card-footer uk-flex uk-flex-column">
-            <div class="uk-margin-small">
-              <button class="uk-button uk-button-primary">Sign in</button>
+              <div class="uk-card-footer uk-flex uk-flex-column">
+                <div class="uk-margin-small">
+                  <button
+                    type="submit"
+                    form="form-signin"
+                    class="uk-button uk-button-primary"
+                    :disabled="loading"
+                  >
+                    Sign in
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    </template>
+  </ApolloMutation>
 </template>
 
 <script>
+import Error from '@/components/Error.vue';
+
+import { onLogin } from '@/vue-apollo';
+
 export default {
-  name: 'Home',
+  name: 'Signin',
+  components: {
+    Error,
+  },
+  data() {
+    return {
+      form: {
+        email: '',
+        password: '',
+      },
+    };
+  },
+  methods: {
+    onDone(result) {
+      onLogin(this.$apolloProvider.defaultClient, result.data.userLogin.credentials.accessToken);
+    },
+  },
 };
 </script>

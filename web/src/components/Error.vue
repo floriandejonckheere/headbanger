@@ -3,7 +3,7 @@
     <div class="uk-alert-danger" uk-alert>
       <a class="uk-alert-close" uk-close></a>
       <div v-if="error.graphQLErrors">
-        <p class="uk-margin-remove-bottom" v-for="(message, i) in error.graphQLErrors.flatMap(e => e.extensions.detailed_errors)" v-bind:key="i">
+        <p class="uk-margin-remove-bottom" v-for="(message, i) in error.graphQLErrors.flatMap(e => e.message || e.extensions.detailed_errors)" v-bind:key="i">
           {{ message }}
         </p>
       </div>
@@ -18,6 +18,10 @@ export default {
   name: 'Error',
   props: {
     error: [Object, Error],
+  },
+  data() {
+    console.log(this.error);
+    return {};
   },
 };
 </script>
