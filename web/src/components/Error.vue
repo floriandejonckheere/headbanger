@@ -20,7 +20,6 @@ export default {
     error: [Object, Error],
   },
   data() {
-    console.log(this.error);
     return {};
   },
 };
