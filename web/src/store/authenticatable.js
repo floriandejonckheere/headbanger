@@ -1,14 +1,12 @@
-const initialState = {
-  authenticatable: {
-    id: null,
-    name: null,
-    email: null,
-  },
-};
+const initialState = () => ({
+  id: null,
+  name: null,
+  email: null,
+});
 
 const getters = {
   isAuthenticated(state) {
-    return state.authenticatable.id !== null;
+    return state.id !== null;
   },
 };
 
@@ -16,10 +14,14 @@ const mutations = {
   signin(state, authenticatable) {
     const { id, name, email } = authenticatable;
 
-    state.authenticatable = { id, name, email };
+    state.id = id;
+    state.name = name;
+    state.email = email;
   },
   signout(state) {
-    state.authenticatable = { id: null, name: null, email: null };
+    state.id = null;
+    state.name = null;
+    state.email = null;
   },
 };
 

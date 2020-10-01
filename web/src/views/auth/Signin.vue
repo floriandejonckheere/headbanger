@@ -17,11 +17,11 @@
                   @submit.prevent="mutate({ variables: { ...form } })"
                 >
                   <div class="uk-margin">
-                    <input class="uk-input uk-form-blank" type="email" placeholder="Email" v-model="form.email" required>
+                    <input class="uk-input uk-form-blank" type="email" name="email" id="email" placeholder="Email" v-model="form.email" required>
                   </div>
 
                   <div class="uk-margin">
-                    <input class="uk-input uk-form-blank" type="password" placeholder="Password" v-model="form.password" required>
+                    <input class="uk-input uk-form-blank" type="password" name="password" id="password" placeholder="Password" v-model="form.password" required>
                   </div>
                 </form>
               </div>

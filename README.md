@@ -39,6 +39,12 @@ Run database migrations:
 rails db:migrate
 ```
 
+## Development
+
+Useful resources:
+
+- [Ionicons v4](https://ionicons.com/v4/)
+
 ## Testing
 
 Seed the test database before running the test suite:

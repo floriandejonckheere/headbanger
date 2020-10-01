@@ -61,6 +61,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "signup" */ './views/auth/Signup.vue'),
     meta: { authenticated: false },
   },
+  {
+    path: '/auth/signou',
+    name: 'signout',
+    component: () => import(/* webpackChunkName: "signout" */ './views/auth/Signout.vue'),
+  },
 
   // Catchall
   {
