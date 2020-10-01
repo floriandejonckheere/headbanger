@@ -62,7 +62,7 @@ const routes = [
     meta: { authenticated: false },
   },
   {
-    path: '/auth/signou',
+    path: '/auth/signout',
     name: 'signout',
     component: () => import(/* webpackChunkName: "signout" */ './views/auth/Signout.vue'),
   },
