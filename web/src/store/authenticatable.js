@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const getters = {
-  authenticated(state) {
+  isAuthenticated(state) {
     return state.authenticatable.id !== null;
   },
 };

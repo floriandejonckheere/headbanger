@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import store from './store';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -51,11 +53,13 @@ const routes = [
     path: '/auth/signin',
     name: 'signin',
     component: () => import(/* webpackChunkName: "signin" */ './views/auth/Signin.vue'),
+    meta: { authenticated: false },
   },
   {
     path: '/auth/signup',
     name: 'signup',
     component: () => import(/* webpackChunkName: "signup" */ './views/auth/Signup.vue'),
+    meta: { authenticated: false },
   },
 
   // Catchall
@@ -63,6 +67,7 @@ const routes = [
     path: '*',
     name: 'not_found',
     component: () => import(/* webpackChunkName: "not_found" */ './views/errors/NotFound.vue'),
+    meta: { authenticated: false },
   },
 ];
 
@@ -71,6 +76,15 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   linkActiveClass: 'uk-active',
   routes,
+});
+
+// Authentication guard
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((route) => route.meta.authenticated !== false) && !store.getters.isAuthenticated) {
+    next({ name: 'signin' });
+  } else {
+    next();
+  }
 });
 
 export default router;
