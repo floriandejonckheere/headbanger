@@ -114,6 +114,8 @@ GEM
     diff-lcs (1.4.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    enumerize (2.3.1)
+      activesupport (>= 3.2)
     erubi (1.10.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
@@ -321,6 +323,7 @@ DEPENDENCIES
   countries
   devise
   devise_token_auth!
+  enumerize
   factory_bot
   factory_bot_rails
   ffaker
