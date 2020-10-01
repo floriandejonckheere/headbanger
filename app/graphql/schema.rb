@@ -18,6 +18,7 @@ class Schema < GraphQL::Schema
         "User",
         operations: {
           sign_up: Mutations::Auth::SignUp,
+          login: Mutations::Auth::SignIn,
         }
       ),
     ]
