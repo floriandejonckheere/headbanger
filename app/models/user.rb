@@ -5,6 +5,13 @@ class User < ApplicationRecord
          :recoverable, :validatable, :confirmable, :trackable
 
   include GraphqlDevise::Concerns::Model
+  extend Enumerize
+
+  enumerize :role,
+            in: %w(user admin).freeze,
+            default: "user",
+            predicates: true,
+            scope: :shallow
 
   has_many :ratings,
            dependent: :destroy
@@ -48,6 +55,9 @@ class User < ApplicationRecord
   validates :country,
             presence: true,
             inclusion: { in: ISO3166::Country.codes }
+
+  validates :role,
+            presence: true
 end
 
 # == Schema Information
@@ -71,10 +81,11 @@ end
 #  provider               :string           default("email"), not null
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :string           default("user"), not null
 #  sign_in_count          :integer          default(0), not null
-#  unconfirmed_email      :string
 #  tokens                 :json
 #  uid                    :string           default(""), not null
+#  unconfirmed_email      :string
 #  unlock_token           :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
