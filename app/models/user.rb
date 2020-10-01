@@ -46,8 +46,8 @@ class User < ApplicationRecord
             presence: true
 
   validates :country,
-            inclusion: { in: ISO3166::Country.codes },
-            allow_nil: true
+            presence: true,
+            inclusion: { in: ISO3166::Country.codes }
 end
 
 # == Schema Information
