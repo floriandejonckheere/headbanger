@@ -28,6 +28,9 @@ gem "countries"
 gem "devise"
 gem "devise_token_auth"
 
+# Authorization framework
+gem "pundit"
+
 # Data sources
 gem "metal_archives", github: "floriandejonckheere/metal_archives"
 

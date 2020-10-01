@@ -176,6 +176,8 @@ GEM
     public_suffix (4.0.6)
     puma (5.0.2)
       nio4r (~> 2.0)
+    pundit (2.1.0)
+      activesupport (>= 3.0.0)
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
@@ -322,6 +324,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pg_search
   puma (~> 5.0)
+  pundit
   rack-cors
   rails (~> 6.0.3)
   rspec
