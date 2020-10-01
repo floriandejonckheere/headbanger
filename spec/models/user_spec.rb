@@ -19,4 +19,7 @@ RSpec.describe User do
   it { is_expected.to validate_presence_of :country }
 
   it { is_expected.to validate_inclusion_of(:country).in_array ISO3166::Country.codes }
+
+  it { is_expected.to validate_presence_of :role }
+  it { is_expected.to enumerize(:role).in %w(user admin) }
 end
