@@ -68,6 +68,8 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex';
+
 import { countries } from 'countries-list';
 
 import Error from '@/components/Error.vue';
@@ -93,9 +95,24 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['signin']),
     onDone(result) {
+      // Set state
+      this.signin(result.data.userSignUp.authenticatable);
+
+      // Set token in local storage
       onLogin(this.$apolloProvider.defaultClient, result.data.userSignUp.credentials.accessToken);
+
+      // Redirect to homepage
+      this.$router.push('/');
     },
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
+  mounted() {
+    console.log(this.isAuthenticated);
+    if (this.isAuthenticated) this.$router.push('/');
   },
 };
 </script>

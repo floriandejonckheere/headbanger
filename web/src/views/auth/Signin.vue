@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 
 import Error from '@/components/Error.vue';
 
@@ -78,8 +78,11 @@ export default {
       this.$router.push('/');
     },
   },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
   mounted() {
-    if (this.$store.getters.isAuthenticated) this.$router.push('/');
+    if (this.isAuthenticated) this.$router.push('/');
   },
 };
 </script>
