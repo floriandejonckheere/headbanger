@@ -44,6 +44,8 @@ rails db:migrate
 Useful resources:
 
 - [Ionicons v4](https://ionicons.com/v4/)
+- [Devise Token Auth](https://devise-token-auth.gitbook.io/devise-token-auth/)
+- [GraphQL Devise](https://github.com/graphql-devise/graphql_devise)
 
 ## Testing
 
