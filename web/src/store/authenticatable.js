@@ -24,11 +24,11 @@ const mutations = {
 };
 
 const actions = {
-  signin(context, authenticatable) {
-    context.commit('signin', authenticatable);
+  signin({ commit }, authenticatable) {
+    commit('signin', authenticatable);
   },
-  signout(context) {
-    context.commit('signout');
+  signout({ commit }) {
+    commit('signout');
   },
 };
 

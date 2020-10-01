@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 import Error from '@/components/Error.vue';
 
 import { onLogin } from '@/vue-apollo';
@@ -64,9 +66,20 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['signin']),
     onDone(result) {
+      // Set state
+      this.signin(result.data.userLogin.authenticatable);
+
+      // Set token in local storage
       onLogin(this.$apolloProvider.defaultClient, result.data.userLogin.credentials.accessToken);
+
+      // Redirect to homepage
+      this.$router.push('/');
     },
+  },
+  mounted() {
+    if (this.$store.getters.isAuthenticated) this.$router.push('/');
   },
 };
 </script>
