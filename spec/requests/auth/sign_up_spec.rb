@@ -11,7 +11,7 @@ RSpec.describe "Sign up" do
               email
               country
           }
-      
+
           credentials {
             accessToken
             client
@@ -22,6 +22,13 @@ RSpec.describe "Sign up" do
         }
       }
     GRAPHQL
+  end
+
+  it "returns an error when missing required fields" do
+    sign_up(name: "John", email: "john.doe@example.com", password: "abcd1234", country: "")
+
+    expect(response).to have_errors "USER_ERROR"
+    expect(response_body.dig(:data, :userSignUp)).to be_nil
   end
 
   it "creates a user" do

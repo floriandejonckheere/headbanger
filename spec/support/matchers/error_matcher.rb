@@ -6,7 +6,7 @@ module ErrorMatcher
       @actual = JSON
         .parse(response.body)
         .deep_symbolize_keys[:errors]
-        &.map { |e| e.key?(:extensions) ? e.dig(:extensions, :code) : e[:message] }
+        &.flat_map { |e| e.key?(:extensions) ? e.dig(:extensions, :code) : e[:message] }
 
       if codes
         Array(codes).each { |code| expect(@actual).to include code }
