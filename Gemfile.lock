@@ -127,7 +127,7 @@ GEM
     graphiql-rails (1.7.0)
       railties
       sprockets-rails
-    graphql (1.11.4)
+    graphql (1.11.5)
     graphql_devise (0.13.4)
       devise_token_auth (>= 0.1.43, < 2.0)
       graphql (>= 1.8, < 1.12.0)
