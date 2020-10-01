@@ -29,7 +29,7 @@ module.exports = {
       },
     },
     {
-      files: ['*.vue'],
+      files: ['*.js', '*.vue'],
       rules: {
         'max-len': 'off',
       },
