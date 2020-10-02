@@ -40,7 +40,7 @@ RSpec.describe "Get recommendations" do
   it "returns error when not authenticated" do
     get_recommendations(nil)
 
-    expect(response).to have_errors "AUTHENTICATION_ERROR"
+    expect(response).to have_error_codes "AUTHENTICATION_ERROR"
     expect(response_body.dig(:data, :recommendations)).to be_nil
   end
 

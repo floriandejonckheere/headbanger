@@ -23,7 +23,7 @@ RSpec.describe "Rate music" do
   it "returns error when not authenticated" do
     rate(nil, "Group", "notfound", :like)
 
-    expect(response).to have_errors "AUTHENTICATION_ERROR"
+    expect(response).to have_error_codes "AUTHENTICATION_ERROR"
     expect(response_body.dig(:data, :rate)).to be_nil
   end
 

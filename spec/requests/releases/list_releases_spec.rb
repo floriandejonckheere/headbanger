@@ -29,7 +29,7 @@ RSpec.describe "List releases" do
   it "returns error when not authenticated" do
     list_releases(nil)
 
-    expect(response).to have_errors "AUTHENTICATION_ERROR"
+    expect(response).to have_error_codes "AUTHENTICATION_ERROR"
     expect(response_body.dig(:data, :releases)).to be_nil
   end
 
