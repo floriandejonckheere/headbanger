@@ -5,6 +5,9 @@ class Schema < GraphQL::Schema
   use GraphQL::Execution::Interpreter
   use GraphQL::Analysis::AST
 
+  # Also use the new error handling
+  use GraphQL::Execution::Errors
+
   # Add built-in connections for pagination
   use GraphQL::Pagination::Connections
 
@@ -29,6 +32,10 @@ class Schema < GraphQL::Schema
 
   # Restrict clients from asking too much data
   default_max_page_size 25
+
+  rescue_from ActiveRecord::RecordNotFound do |error, _obj, _args, _ctx, _field|
+    raise GraphqlDevise::UserError, error.message
+  end
 
   def self.resolve_type(_abstract_type, object, _context)
     type_class = "::Types::#{object.class}Type".safe_constantize
