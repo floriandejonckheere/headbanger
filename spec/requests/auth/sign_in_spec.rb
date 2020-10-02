@@ -29,7 +29,7 @@ RSpec.describe "Sign in" do
   it "returns an error when the credentials are not valid" do
     sign_in(email: "john.doe@example.com", password: "abcd12345")
 
-    expect(response).to have_errors "USER_ERROR"
+    expect(response).to have_error_codes "USER_ERROR"
     expect(response_body.dig(:data, :userLogin)).to be_nil
   end
 

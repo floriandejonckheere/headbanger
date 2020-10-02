@@ -17,7 +17,7 @@ RSpec.describe "Find genre" do
   it "returns error when not authenticated" do
     find_genre(nil, "notfound")
 
-    expect(response).to have_errors "AUTHENTICATION_ERROR"
+    expect(response).to have_error_codes "AUTHENTICATION_ERROR"
     expect(response_body.dig(:data, :genre)).to be_nil
   end
 
