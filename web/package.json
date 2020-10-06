@@ -9,7 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "@sentry/browser": "^5.24.2",
+    "@sentry/browser": "^5.25.0",
     "@sentry/integrations": "^5.25.0",
     "@sentry/tracing": "^5.25.0",
     "apollo-cache-inmemory": "^1.6.6",
