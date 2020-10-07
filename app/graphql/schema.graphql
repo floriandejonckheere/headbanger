@@ -22,6 +22,22 @@ type Credential {
   uid: String!
 }
 
+"""
+A user-readable error
+"""
+type Error {
+  extensions: Extension
+  message: String!
+  path: [String!]
+}
+
+"""
+An error extension
+"""
+type Extension {
+  code: String!
+}
+
 enum GenderEnum {
   """
   Female
