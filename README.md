@@ -11,6 +11,8 @@ Headbanger is a music recommendation and discovery platform.
 
 ## Set up
 
+Use the `bin/setup` script or run the following steps manually.
+
 Set up the PostgreSQL database:
 
 ```
@@ -34,6 +36,8 @@ rails db:migrate
 ```
 
 ## Development
+
+Use the `bin/update` script to update your development environment dependencies.
 
 Useful resources:
 
