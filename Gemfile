@@ -63,6 +63,9 @@ group :development, :test do
   # GraphQL API UI
   gem "graphiql-rails"
 
+  # Authorization framework
+  gem "pundit-matchers", github: "aurangzaib-danial/pundit-matchers"
+
   # RuboCop
   gem "rubocop"
   gem "rubocop-performance"
