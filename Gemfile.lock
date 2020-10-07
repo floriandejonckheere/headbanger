@@ -7,6 +7,13 @@ GIT
       tzinfo
 
 GIT
+  remote: https://github.com/aurangzaib-danial/pundit-matchers.git
+  revision: 777eb340c7fac4486bc0c87d052a368a2d02bf25
+  specs:
+    pundit-matchers (1.6.0)
+      rspec-rails (>= 3.0.0)
+
+GIT
   remote: https://github.com/floriandejonckheere/metal_archives.git
   revision: aba658cb4c0d3d8093e1bf1d3e0da7e7f5ab197f
   specs:
@@ -328,6 +335,7 @@ DEPENDENCIES
   pg_search
   puma (~> 5.0)
   pundit
+  pundit-matchers!
   rack-cors
   rails (~> 6.0.3)
   rspec
