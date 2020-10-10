@@ -6,6 +6,7 @@ module Errors
       user_error: "USER_ERROR",
       authentication_error: "AUTHENTICATION_ERROR",
       authorization_error: "AUTHORIZATION_ERROR",
+      internal_server_error: "INTERNAL_SERVER_ERROR",
     }.freeze
   end
 end
