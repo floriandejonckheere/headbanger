@@ -20,6 +20,13 @@ RSpec.describe "Sign up" do
 
   let!(:user) { create(:user) }
 
+  it "returns an error when not authorized" do
+    update_user(id: create(:user).id, name: "John")
+
+    expect(response).to have_error_codes "AUTHORIZATION_ERROR"
+    expect(response_body.dig(:data, :updateUser, :user)).to be_nil
+  end
+
   it "returns an error when object is not found" do
     update_user(id: "notfound", name: "John")
 

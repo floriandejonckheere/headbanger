@@ -9,6 +9,8 @@ FactoryBot.define do
     password { FFaker::Internet.password }
     uid { email }
 
+    role { "user" }
+
     factory :admin do
       role { "admin" }
     end

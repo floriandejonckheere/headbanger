@@ -5,7 +5,9 @@ module Mutations
     class Update < BaseMutation
       argument :id,
                ID,
-               required: true
+               required: true,
+               as: :user,
+               prepare: ->(id, _context) { User.find(id) }
 
       argument :name,
                String,
@@ -31,9 +33,9 @@ module Mutations
             [Types::ErrorType],
             null: false
 
-      def resolve(id:, **attributes)
-        user = User.find(id)
+      authorize :user
 
+      def resolve(user:, **attributes)
         user.update(attributes)
 
         { user: user, errors: user.graphql_errors }
