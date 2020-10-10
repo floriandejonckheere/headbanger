@@ -3,8 +3,8 @@
 RSpec.describe "Sign up" do
   let(:query) do
     <<-GRAPHQL
-      mutation updateUser ($id: ID!, $name: String, $email: String, $password: String, $country: String) {
-        updateUser (input: { id: $id, name: $name, email: $email, password: $password, country: $country }) {
+      mutation updateUser ($userId: ID!, $name: String, $email: String, $password: String, $country: String) {
+        updateUser (input: { userId: $userId, name: $name, email: $email, password: $password, country: $country }) {
           errors { message path }
 
           user {
@@ -21,14 +21,14 @@ RSpec.describe "Sign up" do
   let!(:user) { create(:user) }
 
   it "returns an error when object is not found" do
-    update_user(id: "notfound", name: "John")
+    update_user(user_id: "notfound", name: "John")
 
-    expect(response).to have_error_codes "USER_ERROR"
+    expect(response).to have_errors
     expect(response_body.dig(:data, :updateUser, :user)).to be_nil
   end
 
   it "updates a user" do
-    update_user(id: user.id, name: "John")
+    update_user(user_id: user.id, name: "John")
 
     expect(response).not_to have_errors
     expect(response_body.dig(:data, :updateUser, :user, :name)).to eq "John"
@@ -38,7 +38,7 @@ RSpec.describe "Sign up" do
     post graphql_path,
          params: {
            query: query,
-           variables: variables,
+           variables: variables.transform_keys { |k| k.to_s.camelize(:lower).to_sym },
          },
          headers: user.create_new_auth_token
   end

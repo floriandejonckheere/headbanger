@@ -2,6 +2,9 @@
 
 module Types
   class QueryType < Types::BaseObject
+    # Relay nodes
+    add_field GraphQL::Types::Relay::NodeField
+
     # Artists
     field :list_artists, resolver: Queries::Artists::List, authenticate: true
     field :find_artist, resolver: Queries::Artists::Find, authenticate: true

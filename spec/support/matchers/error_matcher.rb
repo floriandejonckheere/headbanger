@@ -11,7 +11,7 @@ module ErrorMatcher
 
       @expected = count || 1
 
-      expect(@actual).to eq @expected
+      expect(@actual.count).to eq @expected
     end
 
     failure_message do |_response|

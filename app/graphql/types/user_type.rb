@@ -2,7 +2,11 @@
 
 module Types
   class UserType < Types::BaseObject
+    implements GraphQL::Types::Relay::Node
+
     description "A user"
+
+    global_id_field :id
 
     field :id,
           ID,

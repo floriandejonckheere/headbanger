@@ -179,6 +179,16 @@ type Mutation {
 }
 
 """
+An object with an ID.
+"""
+interface Node {
+  """
+  ID of the object.
+  """
+  id: ID!
+}
+
+"""
 Information about pagination in a connection.
 """
 type PageInfo {
@@ -318,6 +328,16 @@ type Query {
     """
     last: Int
   ): ReleaseConnection
+
+  """
+  Fetches an object given its ID.
+  """
+  node(
+    """
+    ID of the object.
+    """
+    id: ID!
+  ): Node
 
   """
   Find music
@@ -529,9 +549,9 @@ input UpdateInput {
   clientMutationId: String
   country: String
   email: String
-  id: ID!
   name: String
   password: String
+  userId: ID!
 }
 
 """
@@ -549,7 +569,7 @@ type UpdatePayload {
 """
 A user
 """
-type User {
+type User implements Node {
   country: String!
   email: String!
   id: ID!

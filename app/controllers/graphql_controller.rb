@@ -7,6 +7,7 @@ class GraphqlController < ApplicationController
   # protect_from_forgery with: :null_session
 
   def execute
+    byebug
     result = Schema.execute params[:query],
                             variables: ensure_hash(params[:variables]),
                             context: graphql_context(:user),

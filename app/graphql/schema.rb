@@ -57,6 +57,10 @@ class Schema < GraphQL::Schema
     GraphQL::Schema::UniqueWithinType.encode(object.class.name, object.id)
   end
 
+  def self.resolve_type(type, object, _context)
+    "Type::#{object.name}Type".constantize
+  end
+
   def self.to_fragment_types
     fragments = execute("{ __schema { types { kind name possibleTypes { name } } } }")
       .to_h
