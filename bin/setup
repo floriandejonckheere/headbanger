@@ -27,7 +27,9 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Copying configuration =="
   FileUtils.cp ".env.development", ".env.development.local" unless File.exist?(".env.development.local")
-  system! "openssl req  -nodes -new -x509  -keyout web/nginx/client.key -out web/nginx/client.pem" unless File.exist?("web/nginx/client.key")
+  unless File.exist?("web/nginx/client.key")
+    system! "openssl req  -nodes -new -x509  -keyout web/nginx/client.key -out web/nginx/client.pem"
+  end
 
   puts "\n== Starting containers =="
   system! "docker-compose up -d"
