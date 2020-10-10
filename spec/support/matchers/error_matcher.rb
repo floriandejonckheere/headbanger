@@ -24,13 +24,15 @@ module ErrorMatcher
       @actual = JSON
         .parse(response.body)
         .deep_symbolize_keys[:errors]
+
+      response_codes = @actual
         &.flat_map { |e| e.dig(:extensions, :code) }
 
-      Array(codes).each { |code| expect(@actual).to include code }
+      Array(codes).each { |code| expect(response_codes).to include code }
     end
 
     failure_message do |_response|
-      "expected response to have error codes #{Array(codes).join(', ')}, but was #{Array(@actual).join(', ')}"
+      "expected response to have error codes #{Array(codes).join(', ')}, but was #{@actual}"
     end
   end
 end

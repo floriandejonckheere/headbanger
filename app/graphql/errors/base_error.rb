@@ -5,6 +5,7 @@ module Errors
     ERROR_CODES = {
       user_error: "USER_ERROR",
       authentication_error: "AUTHENTICATION_ERROR",
+      authorization_error: "AUTHORIZATION_ERROR",
     }.freeze
   end
 end
