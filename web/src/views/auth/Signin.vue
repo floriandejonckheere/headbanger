@@ -35,6 +35,12 @@
                   >
                     Sign in
                   </button>
+                  <router-link
+                    :to="{ name: 'signup' }"
+                    class="uk-button uk-button-text uk-margin-small-top uk-float-right"
+                  >
+                    Sign up
+                  </router-link>
                 </div>
               </div>
             </div>
