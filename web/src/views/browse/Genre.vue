@@ -8,8 +8,8 @@
       >
         <template slot-scope="{ result: { loading, error, data } }">
           <ul class="uk-breadcrumb uk-margin-small-bottom">
-            <li><router-link to="/browse">Browse</router-link></li>
-            <li><router-link to="/browse/genres">Genres</router-link></li>
+            <li><router-link :to="{ name: 'browse' }">Browse</router-link></li>
+            <li><router-link :to="{ name: 'genres' }">Genres</router-link></li>
             <li>
               {{ (data ? data.genre.description : 'Loading...')  }}
             </li>

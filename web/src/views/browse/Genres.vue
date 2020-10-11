@@ -2,7 +2,7 @@
   <section class="uk-section">
     <div class="uk-container">
       <ul class="uk-breadcrumb uk-margin-small-bottom">
-        <li><router-link to="/browse">Browse</router-link></li>
+        <li><router-link :to="{ name: 'browse' }">Browse</router-link></li>
         <li><span>Genres</span></li>
       </ul>
       <h3 class="uk-margin-remove-top">Genres</h3>

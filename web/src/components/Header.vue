@@ -4,7 +4,7 @@
       <div class="uk-container">
         <div class="uk-navbar">
           <div class="uk-navbar-left">
-            <router-link to="/" class="uk-navbar-item uk-logo">
+            <router-link :to="{ name: 'home' }" class="uk-navbar-item uk-logo">
               Headbanger
             </router-link>
           </div>
@@ -23,7 +23,7 @@
                   </a>
                   <div class="uk-navbar-dropdown uk-background-default uk-box-shadow-small">
                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                      <router-link to="/" tag="li"><a href="#">My account</a></router-link>
+                      <router-link :to="{ name: 'home' }" tag="li"><a href="#">My account</a></router-link>
                       <li class="uk-nav-divider uk-margin-small"></li>
                       <router-link :to="{ name: 'signout' }" tag="li"><a href="#">Sign out</a></router-link>
                     </ul>

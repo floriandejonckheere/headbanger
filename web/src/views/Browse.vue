@@ -6,7 +6,7 @@
       </ul>
       <h3 class="uk-margin-remove-top">By genre</h3>
 
-      <router-link to="/browse/genres">See all</router-link>
+      <router-link :to="{ name: 'genres' }">See all</router-link>
     </div>
   </section>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/">
+  <router-link :to="{ name: 'home' }">
     <component :is="icon" />
     <span class="uk-padding-small">
       {{ result.name }}
