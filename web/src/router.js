@@ -67,6 +67,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "signout" */ './views/auth/Signout.vue'),
   },
 
+  // Users
+  {
+    path: '/users/account',
+    name: 'account',
+    component: () => import(/* webpackChunkName: "profile" */ './views/users/Account.vue'),
+  },
+
   // Catchall
   {
     path: '*',

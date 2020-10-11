@@ -1,0 +1,11 @@
+#import '../../types/User.graphql'
+
+mutation updateUser ($id: ID!, $name: String, $email: String, $password: String, $country: String) {
+  updateUser (input: { id: $id, name: $name, email: $email, password: $password, country: $country }) {
+    errors
+
+    user {
+      ...User
+    }
+  }
+}

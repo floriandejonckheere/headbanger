@@ -21,9 +21,9 @@
                     {{ authenticatable.name }}
                     <ios-arrow-down-icon class="uk-text-middle uk-padding-small" />
                   </a>
-                  <div class="uk-navbar-dropdown uk-background-default uk-box-shadow-small">
+                  <div class="uk-navbar-dropdown uk-background-default uk-box-shadow-small" uk-toggle>
                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                      <router-link :to="{ name: 'home' }" tag="li"><a href="#">My account</a></router-link>
+                      <router-link :to="{ name: 'account' }" tag="li"><a href="#">My account</a></router-link>
                       <li class="uk-nav-divider uk-margin-small"></li>
                       <router-link :to="{ name: 'signout' }" tag="li"><a href="#">Sign out</a></router-link>
                     </ul>
