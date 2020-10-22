@@ -10,16 +10,8 @@
       error = {{error}}
       data = {{data}}
 
-      <div v-if="loading" class="uk-text-center">
-        <div uk-spinner key="loading" />
-      </div>
-
-      <div v-if="error" class="uk-width-1-1">
-        <div class="uk-alert-danger" uk-alert>
-          <a class="uk-alert-close" uk-close></a>
-          <p>An error occurred: {{ error.message }}</p>
-        </div>
-      </div>
+      <Loading :loading="loading" />
+      <Error :error="error" />
 
       <div v-if="data">
         <slot name="success" v-bind="{ data, query }"></slot>
@@ -37,12 +29,19 @@
 </template>
 
 <script>
+import Loading from '@/components/Loading.vue';
+import Error from '@/components/Error.vue';
+
 export default {
   name: 'Query',
   props: {
     query: Object,
     variables: Object,
     skip: Boolean,
+  },
+  components: {
+    Loading,
+    Error,
   },
 };
 </script>
