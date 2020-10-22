@@ -220,6 +220,11 @@ type Query {
   findGenre(id: String!): Genre
 
   """
+  Find user by ID
+  """
+  findUser(id: String!): User
+
+  """
   Get recommendations
   """
   getRecommendations(

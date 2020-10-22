@@ -1,0 +1,7 @@
+#import "../../types/User.graphql"
+
+query findUser ($id: String!) {
+  user: findUser (id: $id) {
+    ...User
+  }
+}

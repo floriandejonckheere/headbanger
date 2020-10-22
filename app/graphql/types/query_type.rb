@@ -18,5 +18,8 @@ module Types
 
     # Search
     field :search, resolver: Queries::Music::Search, authenticate: true
+
+    # Users
+    field :find_user, resolver: Queries::Users::Find, authenticate: true
   end
 end
