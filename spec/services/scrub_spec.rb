@@ -6,11 +6,11 @@ RSpec.describe Scrub do
   it "syncs objects" do
     artist = create(:artist, :expired)
 
-    # rubocop:disable RSpec/AnyInstance
+    # rubocop:disable RSpec/AnyInstance, RSpec/StubbedMock
     expect_any_instance_of(artist.class)
       .to receive(:sync!)
       .and_return true
-    # rubocop:enable RSpec/AnyInstance
+    # rubocop:enable RSpec/AnyInstance, RSpec/StubbedMock
 
     scrub.call
   end
