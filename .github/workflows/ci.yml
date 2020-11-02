@@ -149,15 +149,15 @@ jobs:
 
       - name: Build and push web to GitHub Packages
         uses: docker/build-push-action@v2.0.1
-        env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
         with:
           context: web
           file: web/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-web:${{ env.VERSION }}
+          secrets: |
+            SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
+            SENTRY_ORG=headbanger
+            SENTRY_PROJECT=web
 
   release:
     name: Create release
