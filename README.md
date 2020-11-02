@@ -91,8 +91,6 @@ Github secrets for continuous integration:
 
 - `APP_CONTACT`
 - `SENTRY_AUTH_TOKEN`
-- `SENTRY_ORG`
-- `SENTRY_PROJECT`
 - `REGISTRY_TOKEN` (needed for [Github Container Registry](https://docs.github.com/en/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images))
 
 - `MA_ENDPOINT` (optional)
