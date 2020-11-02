@@ -46,15 +46,15 @@ when :version
   puts "Setting version to #{Headbanger::VERSION}"
 when :major
   # Bump major version
-  bump MAJOR: (ARGV.pop || Headbanger::Version::MAJOR + 1)
+  bump MAJOR: (ARGV.pop || Headbanger::Version::MAJOR + 1), MINOR: 0, PATCH: 0, PRE: "nil"
   puts "Bumping version to #{Headbanger::VERSION}"
 when :minor
   # Bump minor version
-  bump MINOR: (ARGV.pop || Headbanger::Version::MINOR + 1)
+  bump MINOR: (ARGV.pop || Headbanger::Version::MINOR + 1), PATCH: 0, PRE: "nil"
   puts "Bumping version to #{Headbanger::VERSION}"
 when :patch
   # Bump patch version
-  bump PATCH: (ARGV.pop || Headbanger::Version::PATCH + 1)
+  bump PATCH: (ARGV.pop || Headbanger::Version::PATCH + 1), PRE: "nil"
   puts "Bumping version to #{Headbanger::VERSION}"
 when :pre
   # Set or clear patch version
