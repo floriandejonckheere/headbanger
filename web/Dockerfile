@@ -3,8 +3,13 @@ FROM node:alpine AS build
 
 MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
 
+ENV BUILD_DEPS yarn python g++ make
+
 ENV APP_HOME /app/
 WORKDIR $APP_HOME/
+
+# Install system dependencies
+RUN apk add --no-cache $BUILD_DEPS
 
 # Install Node dependencies
 ADD package.json yarn.lock $APP_HOME/
