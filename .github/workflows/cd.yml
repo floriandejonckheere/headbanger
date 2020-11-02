@@ -35,8 +35,8 @@ jobs:
       - name: Deploy application
         uses: appleboy/ssh-action@master
         env:
-          GITHUB_USER: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_USER: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
         with:
           host: ${{ secrets.DEPLOY_SSH_HOST }}
           username: ${{ secrets.DEPLOY_SSH_USER }}
@@ -45,13 +45,12 @@ jobs:
           envs: "GITHUB_USER,GITHUB_TOKEN"
           script: |
             echo "Pulling latest images"
-            docker login https://docker.pkg.github.com -u ${GITHUB_USER} -p ${GITHUB_TOKEN}
+            docker login https://ghcr.io -u ${GITHUB_USER} -p ${GITHUB_TOKEN}
             docker-compose pull --quiet
             echo "Running migrations"
-            docker-compose run --rm app rails db:migrate
+            docker-compose run --rm headbanger rails db:migrate
             echo "Recreating containers"
-            docker-compose up -d
-
+            docker-compose up --detach --remove-orphans
 
       - name: Update deployment status (success)
         if: success()
@@ -61,6 +60,20 @@ jobs:
           state: "success"
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
+      - name: Send email (success)
+        if: success()
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: Deploy for ${{ github.event.repository.name }} succeeded
+          body: The deployment with id ${{ steps.deployment.outputs.deployment_id }} of ${{ github.event.repository.name }} completed successfully!
+          from: ${{ secrets.SMTP_FROM }}
+          to: ${{ secrets.SMTP_TO }}
+          content_type: text/hml
+
       - name: Update deployment status (failure)
         if: failure()
         uses: chrnorm/deployment-status@releases/v1
@@ -68,3 +81,17 @@ jobs:
           token: "${{ github.token }}"
           state: "failure"
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Send email (failure)
+        if: failure()
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: Deploy for ${{ github.event.repository.name }} failed
+          body: The deployment with id ${{ steps.deployment.outputs.deployment_id }} of ${{ github.event.repository.name }} failed!
+          from: ${{ secrets.SMTP_FROM }}
+          to: ${{ secrets.SMTP_TO }}
+          content_type: text/hml
