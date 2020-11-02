@@ -17,8 +17,8 @@ ADD package.json yarn.lock $APP_HOME/
 RUN yarn install
 
 ARG SENTRY_AUTH_TOKEN
-ARG SENTRY_ORG
-ARG SENTRY_PROJECT
+ARG SENTRY_ORG=headbanger
+ARG SENTRY_PROJECT=web
 
 # Add application
 ADD . $APP_HOME/
