@@ -93,6 +93,8 @@ Github secrets for continuous integration:
 - `SENTRY_AUTH_TOKEN`
 - `SENTRY_ORG`
 - `SENTRY_PROJECT`
+- `REGISTRY_TOKEN` (needed for [Github Container Registry](https://docs.github.com/en/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images))
+
 - `MA_ENDPOINT` (optional)
 - `MA_ENDPOINT_USER` (optional)
 - `MA_ENDPOINT_PASSWORD` (optional)
@@ -102,6 +104,11 @@ Github secrets for continuous deployment:
 - `DEPLOY_SSH_HOST`
 - `DEPLOY_SSH_USER`
 - `DEPLOY_SSH_KEY`
+
+- `SMTP_USERNAME`
+- `SMTP_PASSWORD`
+- `SMTP_FROM`
+- `SMTP_TO`
 
 ## Releasing
 
