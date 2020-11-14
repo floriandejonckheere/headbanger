@@ -8,116 +8,116 @@ on:
       - 'production'
 
 jobs:
-  app:
-    name: Continuous Integration (app)
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
-    runs-on: ubuntu-latest
-
-    container:
-      image: ruby:2.7-alpine
-
-    services:
-      redis:
-        image: redis:alpine
-
-      postgres:
-        image: postgres:12
-        env:
-          POSTGRES_DB: postgres
-          POSTGRES_USERNAME: postgres
-          POSTGRES_PASSWORD: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: |
-          apk add postgresql
-          apk add build-base curl-dev git postgresql-dev
-          apk add tar
-
-      - name: Cache Gems
-        uses: actions/cache@v2.1.2
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
-
-      - name: Install Gems
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-
-      - name: Test
-        env:
-          RAILS_ENV: test
-          APP_CONTACT: ${{ secrets.APP_CONTACT }}
-          SMTP_FROM: ${{ secrets.APP_CONTACT }}
-          MA_ENDPOINT: ${{ secrets.MA_ENDPOINT }}
-          MA_ENDPOINT_USER: ${{ secrets.MA_ENDPOINT_USER }}
-          MA_ENDPOINT_PASSWORD: ${{ secrets.MA_ENDPOINT_PASSWORD }}
-        run: |
-          bundle exec rails db:create db:schema:load --trace
-          bundle exec rails database:seed:production --trace
-          bundle exec rspec --profile 10 --format progress
-
-      - name: Lint
-        run: bundle exec rubocop --parallel --display-cop-names
-
-  web:
-    name: Continuous Integration (web)
-    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
-    runs-on: ubuntu-latest
-
-    container:
-      image: node:12-alpine
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: |
-          apk add tar
-
-      - name: Get yarn cache
-        id: yarn-cache
-        working-directory: web
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache Node packages
-        uses: actions/cache@v2.1.2
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Install Node packages
-        working-directory: web
-        run: yarn install --frozen-lockfile
-
-      - name: Test
-        working-directory: web
-        run: yarn test:unit
-
-      - name: Lint
-        working-directory: web
-        run: yarn lint
+#  app:
+#    name: Continuous Integration (app)
+#    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+#    runs-on: ubuntu-latest
+#
+#    container:
+#      image: ruby:2.7-alpine
+#
+#    services:
+#      redis:
+#        image: redis:alpine
+#
+#      postgres:
+#        image: postgres:12
+#        env:
+#          POSTGRES_DB: postgres
+#          POSTGRES_USERNAME: postgres
+#          POSTGRES_PASSWORD: postgres
+#        options: >-
+#          --health-cmd pg_isready
+#          --health-interval 10s
+#          --health-timeout 5s
+#          --health-retries 5
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Install dependencies
+#        run: |
+#          apk add postgresql
+#          apk add build-base curl-dev git postgresql-dev
+#          apk add tar
+#
+#      - name: Cache Gems
+#        uses: actions/cache@v2.1.2
+#        with:
+#          path: vendor/bundle
+#          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+#          restore-keys: |
+#            ${{ runner.os }}-gem-
+#
+#      - name: Install Gems
+#        run: |
+#          gem install bundler
+#          bundle config path vendor/bundle
+#          bundle install --jobs 4 --retry 3
+#
+#      - name: Test
+#        env:
+#          RAILS_ENV: test
+#          APP_CONTACT: ${{ secrets.APP_CONTACT }}
+#          SMTP_FROM: ${{ secrets.APP_CONTACT }}
+#          MA_ENDPOINT: ${{ secrets.MA_ENDPOINT }}
+#          MA_ENDPOINT_USER: ${{ secrets.MA_ENDPOINT_USER }}
+#          MA_ENDPOINT_PASSWORD: ${{ secrets.MA_ENDPOINT_PASSWORD }}
+#        run: |
+#          bundle exec rails db:create db:schema:load --trace
+#          bundle exec rails database:seed:production --trace
+#          bundle exec rspec --profile 10 --format progress
+#
+#      - name: Lint
+#        run: bundle exec rubocop --parallel --display-cop-names
+#
+#  web:
+#    name: Continuous Integration (web)
+#    if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+#    runs-on: ubuntu-latest
+#
+#    container:
+#      image: node:12-alpine
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Install dependencies
+#        run: |
+#          apk add tar
+#
+#      - name: Get yarn cache
+#        id: yarn-cache
+#        working-directory: web
+#        run: echo "::set-output name=dir::$(yarn cache dir)"
+#
+#      - name: Cache Node packages
+#        uses: actions/cache@v2.1.2
+#        with:
+#          path: ${{ steps.yarn-cache.outputs.dir }}
+#          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+#          restore-keys: |
+#            ${{ runner.os }}-yarn-
+#
+#      - name: Install Node packages
+#        working-directory: web
+#        run: yarn install --frozen-lockfile
+#
+#      - name: Test
+#        working-directory: web
+#        run: yarn test:unit
+#
+#      - name: Lint
+#        working-directory: web
+#        run: yarn lint
 
   build:
     name: Build application
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
-    needs:
-      - web
-      - app
+#    needs:
+#      - web
+#      - app
 
     steps:
       - uses: actions/checkout@v2
@@ -141,11 +141,11 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.REGISTRY_TOKEN }}
 
-      - name: Build and push app to GitHub Packages
-        uses: docker/build-push-action@v2.0.1
-        with:
-          push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-app:${{ env.VERSION }}
+#      - name: Build and push app to GitHub Packages
+#        uses: docker/build-push-action@v2.0.1
+#        with:
+#          push: true
+#          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-app:${{ env.VERSION }}
 
       - name: Build and push web to GitHub Packages
         uses: docker/build-push-action@v2.0.1
@@ -154,8 +154,10 @@ jobs:
           file: web/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-web:${{ env.VERSION }}
-          secrets: |
+          build-args: |
             SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
+            SENTRY_ORG=headbanger
+            SENTRY_PROJECT=web
 
   release:
     name: Create release
@@ -179,18 +181,18 @@ jobs:
           body: |
             Application ${{ github.event.repository.name }} ${{ env.VERSION }} was released
 
-  merge:
-    name: Automerge dependabot PRs
-    if: github.event_name == 'pull_request' && startsWith(github.ref, 'dependabot')
-    runs-on: ubuntu-latest
-    needs:
-      - web
-      - app
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: ahmadnassri/action-dependabot-auto-merge@v2
-        with:
-          target: minor
-          github-token: ${{ github.token }}
+#  merge:
+#    name: Automerge dependabot PRs
+#    if: github.event_name == 'pull_request' && startsWith(github.ref, 'dependabot')
+#    runs-on: ubuntu-latest
+#    needs:
+#      - web
+#      - app
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+#        with:
+#          target: minor
+#          github-token: ${{ github.token }}
