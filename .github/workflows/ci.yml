@@ -154,7 +154,7 @@ jobs:
           file: web/Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-web:${{ env.VERSION }}
-          build-args: |
+          secrets: |
             SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
 
   release:
