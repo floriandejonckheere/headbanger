@@ -4,12 +4,28 @@ on:
   pull_request:
 
 jobs:
-  worker:
+  automerge:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
 
     steps:
-      - name: Automerge PR
+      - name: Wait for required checks (app)
+        uses: lewagon/wait-on-check-action@v0.1
+        with:
+          ref: ${{ github.ref }}
+          check-name: app
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+
+      - name: Wait for required checks (web)
+        uses: lewagon/wait-on-check-action@v0.1
+        with:
+          ref: ${{ github.ref }}
+          check-name: web
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+
+      - name: Merge pull request
         uses: actions/github-script@0.2.0
         with:
           script: |
