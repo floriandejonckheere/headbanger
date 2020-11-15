@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueApollo from 'vue-apollo';
 import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client';
 import { onError } from 'apollo-link-error';
+import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import * as Sentry from '@sentry/browser';
@@ -11,8 +12,10 @@ import fragmentMatcher from './fragmentMatcher';
 // Install the vue plugin
 Vue.use(VueApollo);
 
-// Name of the localStorage item
+// Names of the localStorage items
 const AUTH_TOKEN = 'apollo-token';
+const AUTH_UID = 'apollo-uid';
+const AUTH_CLIENT = 'apollo-client';
 
 // Http endpoint
 const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || '/graphql';
@@ -21,7 +24,8 @@ export const filesRoot = process.env.VUE_APP_FILES_ROOT || httpEndpoint.substr(0
 
 Vue.prototype.$filesRoot = filesRoot;
 
-const link = onError(({ graphQLErrors, networkError }) => {
+// Error handling
+const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({
       message, locations, path, extensions,
@@ -30,15 +34,32 @@ const link = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
+// Authentication
+const authLink = setContext((operation, { headers }) => {
+  const uid = localStorage.getItem(AUTH_UID);
+  const token = localStorage.getItem(AUTH_TOKEN);
+  const client = localStorage.getItem(AUTH_CLIENT);
+
+  return {
+    headers: {
+      ...headers,
+      uid,
+      'access-token': token,
+      client,
+    },
+  };
+});
+
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
   httpEndpoint,
+
   // You can use `wss` for secure connection (recommended in production)
   // Use `null` to disable subscriptions
   wsEndpoint: null, // process.env.VUE_APP_GRAPHQL_WS || 'ws://localhost:3000/graphql',
   // LocalStorage token
-  tokenName: AUTH_TOKEN,
+  // tokenName: AUTH_TOKEN,
   // Enable Automatic Query persisting with Apollo Engine
   persisting: false,
   // Use websockets for everything (no HTTP)
@@ -50,13 +71,13 @@ const defaultOptions = {
   // Override default apollo link
   // note: don't override httpLink here, specify httpLink options in the
   // httpLinkOptions property of defaultOptions.
-  link,
+  link: authLink.concat(errorLink),
 
   // Override default cache
   cache: new InMemoryCache({ fragmentMatcher }),
 
   // Override the way the Authorization header is set
-  // getAuth: (tokenName) => ...
+  // getAuth: (tokenName) => { ... },
 
   // Additional ApolloClient options
   // apollo: { ... }
@@ -94,9 +115,11 @@ export function createProvider(options = {}) {
 }
 
 // Manually call this when user logs in
-export async function onLogin(apolloClient, token) {
+export async function onLogin(apolloClient, { uid, token, client }) {
   if (typeof localStorage !== 'undefined' && token) {
+    localStorage.setItem(AUTH_UID, uid);
     localStorage.setItem(AUTH_TOKEN, token);
+    localStorage.setItem(AUTH_CLIENT, client);
   }
   if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
   try {
@@ -110,7 +133,9 @@ export async function onLogin(apolloClient, token) {
 // Manually call this when user logs out
 export async function onLogout(apolloClient) {
   if (typeof localStorage !== 'undefined') {
+    localStorage.removeItem(AUTH_UID);
     localStorage.removeItem(AUTH_TOKEN);
+    localStorage.removeItem(AUTH_CLIENT);
   }
   if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
   try {

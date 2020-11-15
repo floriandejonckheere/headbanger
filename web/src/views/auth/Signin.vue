@@ -78,7 +78,12 @@ export default {
       this.signin(result.data.userLogin.authenticatable);
 
       // Set token in local storage
-      onLogin(this.$apolloProvider.defaultClient, result.data.userLogin.credentials.accessToken);
+      const {
+        uid,
+        accessToken: token,
+        client,
+      } = result.data.userLogin.credentials;
+      onLogin(this.$apolloProvider.defaultClient, { uid, token, client });
 
       // Redirect to homepage
       this.$router.push('/');
