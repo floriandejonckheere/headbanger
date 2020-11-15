@@ -20,7 +20,7 @@ class GraphqlController < ApplicationController
 
     raise e unless Rails.env.development?
 
-    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+    render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: :internal_server_error
   end
 
   private
