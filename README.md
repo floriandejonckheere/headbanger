@@ -46,6 +46,10 @@ Useful resources:
 - [Devise Token Auth](https://devise-token-auth.gitbook.io/devise-token-auth/)
 - [GraphQL Devise](https://github.com/graphql-devise/graphql_devise)
 
+## Debugging
+
+To debug the server component in your IDE, start the `debug` instead of the `app` container, and connect to `localhost:1234`.
+
 ## Testing
 
 Seed the test database before running the test suite:
