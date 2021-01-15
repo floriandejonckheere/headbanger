@@ -148,7 +148,7 @@ GEM
     i18n (1.8.7)
       concurrent-ruby (~> 1.0)
     i18n_data (0.10.0)
-    listen (3.2.1)
+    listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.9.0)
@@ -322,7 +322,7 @@ DEPENDENCIES
   graphiql-rails
   graphql
   graphql_devise
-  listen (>= 3.0.5, < 3.3)
+  listen
   metal_archives!
   pg (>= 0.18, < 2.0)
   pg_search
@@ -339,11 +339,11 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   spring
-  spring-watcher-listen (~> 2.0.0)
+  spring-watcher-listen
   timecop
 
 RUBY VERSION
-   ruby 2.7.1p83
+   ruby 3.0.0p0
 
 BUNDLED WITH
-   2.1.4
+   2.2.3
