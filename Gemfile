@@ -49,7 +49,7 @@ group :development, :test do
   gem "byebug"
 
   # Debugger
-  gem "debase"
+  # gem "debase"
 
   # Database annotations
   gem "annotate"
