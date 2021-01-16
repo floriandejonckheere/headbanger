@@ -8,7 +8,7 @@ RSpec.describe GroupBuilder, type: :builder do
   it { is_expected.to have_attributes name: "Alquimia", alt_names: [] }
   it { is_expected.to have_attributes description: a_kind_of(String) }
   it { is_expected.to have_attributes formed_at: a_kind_of(Date) }
-  it { is_expected.to have_attributes status: "on_hold" }
+  it { is_expected.to have_attributes status: "active" }
   it { is_expected.to have_attributes country: "ES" }
 
   it { is_expected.to have_attributes releases: match_array([find_or_initialize_release("391528"), find_or_initialize_release("548366")]) }
