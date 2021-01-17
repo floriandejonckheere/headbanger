@@ -1,11 +1,11 @@
-FROM ruby:2.7-alpine
+FROM ruby:3.0-alpine
 
 MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
 
 ENV RUNTIME_DEPS postgresql openssh
 ENV BUILD_DEPS build-base curl-dev git postgresql-dev
 
-ENV BUNDLER_VERSION 2.1.4
+ENV BUNDLER_VERSION 2.2.3
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
