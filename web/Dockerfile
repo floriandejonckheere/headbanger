@@ -2,6 +2,7 @@
 FROM node:alpine AS build
 
 MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
+LABEL org.opencontainers.image.source https://github.com/floriandejonckheere/headbanger
 
 ENV BUILD_DEPS yarn python g++ make
 

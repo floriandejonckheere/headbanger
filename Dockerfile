@@ -1,6 +1,7 @@
 FROM ruby:3.0-alpine
 
 MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
+LABEL org.opencontainers.image.source https://github.com/floriandejonckheere/headbanger
 
 ENV RUNTIME_DEPS postgresql openssh
 ENV BUILD_DEPS build-base curl-dev git postgresql-dev
