@@ -22,35 +22,26 @@ jobs:
           token: ${{ github.token }}
           environment: production
 
-      - name: Copy files
-        uses: appleboy/scp-action@master
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
         with:
-          host: ${{ secrets.DEPLOY_SSH_HOST }}
-          username: ${{ secrets.DEPLOY_SSH_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          source: ops/docker-compose.yml
-          target: $HOME
-          strip_components: 1
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
 
       - name: Deploy application
-        uses: appleboy/ssh-action@master
-        env:
-          GITHUB_USER: ${{ github.repository_owner }}
-          GITHUB_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+        uses: sagebind/docker-swarm-deploy-action@v2
         with:
-          host: ${{ secrets.DEPLOY_SSH_HOST }}
-          username: ${{ secrets.DEPLOY_SSH_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          script_stop: true
-          envs: "GITHUB_USER,GITHUB_TOKEN"
-          script: |
-            echo "Pulling latest images"
-            docker login https://ghcr.io -u ${GITHUB_USER} -p ${GITHUB_TOKEN}
-            docker-compose pull --quiet
-            echo "Running migrations"
-            docker-compose run --rm headbanger rails db:migrate
-            echo "Recreating containers"
-            docker-compose up --detach --remove-orphans
+          remote_host: ssh://${{ secrets.DEPLOY_SSH_USER }}@${{ secrets.DEPLOY_SSH_HOST }}
+          ssh_private_key: ${{ secrets.DEPLOY_SSH_KEY }}
+          args: stack deploy --with-registry-auth --compose-file ops/docker-compose.yml headbanger
+
+#      - name: Run database migrations
+#        uses: sagebind/docker-swarm-deploy-action@v2
+#        with:
+#          remote_host: ssh://${{ secrets.DEPLOY_SSH_USER }}@${{ secrets.DEPLOY_SSH_HOST }}
+#          ssh_private_key: ${{ secrets.DEPLOY_SSH_KEY }}
+#          args: service create --restart-policy=none --name migrate -d crawl_site alexellis2/href-counter
 
       - name: Update deployment status (success)
         if: success()
