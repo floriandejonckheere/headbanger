@@ -5,6 +5,7 @@ on:
 
 jobs:
   automerge:
+    name: Automerge Dependabot PR
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
 
@@ -13,7 +14,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v0.2
         with:
           ref: ${{ github.ref }}
-          check-name: app
+          check-name: Continuous Integration (app)
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 20
 
@@ -21,7 +22,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v0.2
         with:
           ref: ${{ github.ref }}
-          check-name: web
+          check-name: Continuous Integration (web)
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 20
 
