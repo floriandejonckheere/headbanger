@@ -6,11 +6,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "~> 3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.0.3"
+gem "rails", "~> 6.1"
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
 # Use Puma as the app server
-gem "puma", "~> 5.0"
+gem "puma", "~> 5.1"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
@@ -26,7 +26,7 @@ gem "countries"
 
 # User management
 gem "devise"
-gem "devise_token_auth"
+gem "devise_token_auth", github: "lynndylanhurley/devise_token_auth"
 
 # Data sources
 gem "metal_archives", github: "floriandejonckheere/metal_archives"
