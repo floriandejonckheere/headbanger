@@ -1,7 +1,4 @@
-upstream app {
-  server app:3000;
-}
-
+# Headbanger app
 server {
   listen 80;
   server_name _;
@@ -11,14 +8,14 @@ server {
 
   # Configure logging
   access_log off;
-  error_log stderr warn
+  error_log stderr warn;
 
   root /usr/share/nginx/html/;
   index index.html;
 
   # Proxy to API server
   location /api/ {
-    proxy_pass                          http://app/;
+    proxy_pass                          http://app:3000/;
     proxy_set_header  Host              $http_host;
     proxy_set_header  X-Real-IP         $remote_addr;
     proxy_set_header  X-Forwarded-For   $proxy_add_x_forwarded_for;
@@ -32,15 +29,18 @@ server {
     sub_filter_once off;
 
     sub_filter HEADBANGER_VUE_APP_SENTRY_DSN ${VUE_APP_SENTRY_DSN};
-    sub_filter HEADBANGER_VUE_APP_INSTANCE ${INSTANCE};
+    sub_filter HEADBANGER_VUE_APP_INSTANCE ${VUE_APP_INSTANCE};
 
     try_files $uri /index.html;
   }
 }
 
+limit_req_zone $binary_remote_addr zone=ma_limit_req:10m rate=2r/s;
+
 proxy_cache_path /cache levels=1:2 keys_zone=metal_archives:10m max_size=10g
                  inactive=6M use_temp_path=off;
 
+# Metal Archives caching proxy
 server {
   listen 81;
 
@@ -52,23 +52,41 @@ server {
 
   # Proxy to MA server
   location / {
-    proxy_pass                          https://www.metal-archives.com;
-    proxy_set_header  Host              www.metal-archives.com;
-    proxy_set_header  X-Real-IP         $remote_addr;
-    proxy_set_header  X-Forwarded-For   $proxy_add_x_forwarded_for;
-    proxy_redirect                      off;
-    proxy_ssl_certificate               /etc/nginx/conf.d/client.pem;
-    proxy_ssl_certificate_key           /etc/nginx/conf.d/client.key;
+    proxy_pass                           https://www.metal-archives.com;
+
+    sub_filter                           https://www.metal-archives.com ${VUE_APP_CACHE_DOMAIN};
+    sub_filter_once                      off;
+
+    proxy_set_header  Host               www.metal-archives.com;
+    proxy_set_header  X-Real-IP          $remote_addr;
+    proxy_set_header  X-Forwarded-For    $proxy_add_x_forwarded_for;
+    proxy_set_header  X-Forwarded-Host   $host;
+    proxy_set_header  X-Forwarded-Server $host;
+    proxy_redirect                       off;
+
+    proxy_ssl_certificate                /etc/nginx/conf.d/client.pem;
+    proxy_ssl_certificate_key            /etc/nginx/conf.d/client.key;
     proxy_ssl_server_name on;
     proxy_ssl_session_reuse on;
 
-    proxy_cache                         metal_archives;
-    proxy_ignore_headers                Cache-Control Expires Set-Cookie;
-    proxy_cache_valid                   any 1M;
-    proxy_cache_use_stale               error timeout updating http_500 http_502 http_503 http_504;
-    proxy_cache_background_update       on;
-    proxy_cache_lock                    on;
-    proxy_cache_bypass                  $cookie_nocache $arg_nocache;
-    add_header  X-Cache-Status          $upstream_cache_status;
+    proxy_hide_header     Set-Cookie;
+    proxy_hide_header     Pragma;
+
+    # Limit HTTP requests
+    # limit_req         zone=ma_limit_req burst=5;
+    # limit_req_status  429;
+    # limit_conn_status 429;
+
+    proxy_cache                          metal_archives;
+    proxy_ignore_headers                 X-Accel-Expires Cache-Control Expires Set-Cookie;
+    proxy_cache_valid                    200 301 302 30d;
+    proxy_cache_valid                    404 7d;
+    proxy_cache_use_stale                error timeout updating http_500 http_502 http_503 http_504;
+    proxy_cache_background_update        on;
+    proxy_cache_lock                     on;
+    proxy_cache_bypass                   $cookie_nocache $arg_nocache;
+    expires                              30d;
+
+    add_header  X-Cache-Status           $upstream_cache_status;
   }
 }
