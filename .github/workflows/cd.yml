@@ -10,7 +10,7 @@ jobs:
   app:
     name: Deploy application
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
@@ -28,6 +28,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.REGISTRY_TOKEN }}
+
+      - name: Set environment
+        run: |
+          echo "VUE_APP_SENTRY_DSN=${{ secrets.VUE_APP_SENTRY_DSN }}" >> $GITHUB_ENV
+          echo "VUE_APP_INSTANCE=${{ secrets.VUE_APP_INSTANCE }}" >> $GITHUB_ENV
+          echo "VUE_APP_CACHE_DOMAIN=${{ secrets.VUE_APP_CACHE_DOMAIN }}" >> $GITHUB_ENV
 
       - name: Deploy application
         uses: sagebind/docker-swarm-deploy-action@v2
