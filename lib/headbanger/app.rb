@@ -3,6 +3,6 @@
 module Headbanger
   module App
     NAME    = "Headbanger"
-    CONTACT = ENV.fetch("APP_CONTACT")
+    CONTACT = ENV.fetch("APP_EMAIL")
   end
 end
