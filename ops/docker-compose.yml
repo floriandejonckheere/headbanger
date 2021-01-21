@@ -1,69 +1,136 @@
 version: "3.8"
 
 services:
-  headbanger_app:
-    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: "1g"
-        compress: "true"
-    env_file:
-      - .env.production
-    restart: unless-stopped
-
-  headbanger_web:
-    image: ghcr.io/floriandejonckheere/headbanger-web:v0.6.0
+  redis:
+    image: redis:alpine
+    environment:
+      TZ: Europe/Berlin
     volumes:
-      - ./client.pem:/etc/nginx/conf.d/client.pem
-      - ./client.key:/etc/nginx/conf.d/client.key
-    depends_on:
-      - headbanger_app
-    env_file:
-      - .env.production
-    restart: unless-stopped
+      - "redis:/data/"
+    networks:
+      - backend
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == web
+      restart_policy:
+        condition: on-failure
 
-  sidekiq:
-    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
-    command: bundle exec sidekiq
+  app:
+    image: ghcr.io/floriandejonckheere/headbanger-app:v0.8.6
+    environment:
+      RAILS_ENV: production
+      RAILS_LOG_TO_STDOUT: 1
+
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      APP_EMAIL: ${APP_EMAIL}
+      APP_HOST: ${APP_HOST}
+
+      PG_HOST: ${PG_HOST}
+      PG_USER: ${PG_USER}
+      PG_PASSWORD: ${PG_PASSWORD}
+      PG_DATABASE: ${PG_DATABASE}
+
+      RAILS_APP_SENTRY_DSN: ${RAILS_APP_SENTRY_DSN}
+      VUE_APP_INSTANCE: ${VUE_APP_INSTANCE}
+
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_DOMAIN: ${SMTP_DOMAIN}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_FROM: ${SMTP_FROM}
+
+      MA_ENDPOINT: ${MA_ENDPOINT}
+      MA_ENDPOINT_USER: ${MA_ENDPOINT_USER}
+      MA_ENDPOINT_PASSWORD: ${MA_ENDPOINT_PASSWORD}
+
+      MB_HOST: ${MB_HOST}
+      MB_USER: ${MB_USER}
+      MB_PASSWORD: ${MB_PASSWORD}
+      MB_DATABASE: ${MB_DATABASE}
+
+      HB_DATA_EXPIRES_IN: ${HB_DATA_EXPIRES_IN}
+      HB_SYNC_LIMIT: ${HB_SYNC_LIMIT}
+      HB_SYNC_INTERVAL: ${HB_SYNC_INTERVAL}
+      HB_RECOMMENDATION_LIMIT: ${HB_RECOMMENDATION_LIMIT}
+    networks:
+      - backend
     logging:
       driver: "json-file"
       options:
         max-file: "5"
         max-size: "1g"
         compress: "true"
-    env_file:
-      - .env.production
-    restart: unless-stopped
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == web
+      restart_policy:
+        condition: on-failure
 
-  clock:
-    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
-    command: bundle exec clockwork config/clock.rb
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: "1g"
-        compress: "true"
-    env_file:
-      - .env.production
-    restart: unless-stopped
+  web:
+    image: ghcr.io/floriandejonckheere/headbanger-web:v0.8.6
+    environment:
+      VUE_APP_SENTRY_DSN: ${VUE_APP_SENTRY_DSN}
+      VUE_APP_INSTANCE: ${VUE_APP_INSTANCE}
+      VUE_APP_CACHE_DOMAIN: ${VUE_APP_CACHE_DOMAIN}
+    networks:
+      - backend
+      - proxy
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == web
+      restart_policy:
+        condition: on-failure
+      labels:
+        traefik.enable: "true"
+        traefik.http.middlewares.headbanger-tls.redirectscheme.scheme: "https"
 
-  scrub:
-    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
-    command: bin/scrub
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: "1g"
-        compress: "true"
-    env_file:
-      - .env.production
-    restart: unless-stopped
+        traefik.http.routers.headbanger.rule: "Host(`app.headbang.re`)"
+        traefik.http.routers.headbanger.entrypoints: "web"
+        traefik.http.routers.headbanger.middlewares: "headbanger-tls"
+
+        traefik.http.routers.headbanger-tls.rule: "Host(`app.headbang.re`)"
+        traefik.http.routers.headbanger-tls.entrypoints: "websecure"
+        traefik.http.routers.headbanger-tls.tls: "true"
+        traefik.http.routers.headbanger-tls.tls.certresolver: "letsencrypt"
+
+        traefik.http.middlewares.metal-archives-tls.redirectscheme.scheme: "https"
+
+        traefik.http.routers.metal-archives.rule: "Host(`ma.cache.headbang.re`)"
+        traefik.http.routers.metal-archives.entrypoints: "web"
+        traefik.http.routers.metal-archives.middlewares: "metal-archives-tls"
+
+        traefik.http.routers.metal-archives-tls.rule: "Host(`ma.cache.headbang.re`)"
+        traefik.http.routers.metal-archives-tls.entrypoints: "websecure"
+        traefik.http.routers.metal-archives-tls.tls: "true"
+        traefik.http.routers.metal-archives-tls.tls.certresolver: "letsencrypt"
+
+        traefik.http.services.headbanger.loadbalancer.server.port: "80"
+        traefik.docker.network: "traefik_proxy"
+
+#  sidekiq:
+#    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
+#    <<: *app
+#    command: bundle exec sidekiq
+#
+#  clock:
+#    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
+#    <<: *app
+#    command: bundle exec clockwork config/clock.rb
+#
+#  scrub:
+#    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
+#    <<: *app
+#    command: bin/scrub
+
+volumes:
+  redis:
 
 networks:
-  default:
-    external:
-      name: thalarion_default
+  backend:
+  proxy:
+    external: true
+    name: traefik_proxy

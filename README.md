@@ -25,12 +25,6 @@ rails database:seed:production  # Production seeds
 rails database:seed:development # Development seeds
 ```
 
-Generate TLS client certificates for NGINX:
-
-```
-openssl req  -nodes -new -x509  -keyout web/nginx/client.key -out web/nginx/client.pem
-```
-
 ## Migrating
 
 Run database migrations:
@@ -87,6 +81,10 @@ rails pg_search:multisearch:rebuild[Group]
 rails pg_search:multisearch:rebuild[Release]
 ```
 
+## Secrets
+
+### Repository secrets
+
 Github secrets for continuous integration:
 
 - `APP_EMAIL`
@@ -100,16 +98,53 @@ Github secrets for release:
 - `SENTRY_AUTH_TOKEN` (needed for uploading source maps to Sentry)
 - `DOCKER_TOKEN` (needed for [Github Container Registry](https://docs.github.com/en/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images))
 
-Github secrets for continuous deployment:
+### Environment secrets
 
-- `DEPLOY_SSH_HOST`
-- `DEPLOY_SSH_USER`
-- `DEPLOY_SSH_KEY`
+Github secrets for continuous deployment (process):
 
+- `DOCKER_TOKEN` (needed for [Github Container Registry](https://docs.github.com/en/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images))
+
+- `SWARM_SSH_HOST` (user@host)
+- `SWARM_SSH_KEY` (private key of user, RSA format, convert OpenSSH keys by running `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`)
+- `SWARM_SSH_HOST_KEY` (public key of host)
+
+Github secrets for continuous deployment (application):
+
+- `SECRET_KEY_BASE`
+
+- `APP_EMAIL`
+- `APP_HOST`
+
+- `PG_HOST` (optional)
+- `PG_USER` (optional)
+- `PG_PASSWORD` (optional)
+- `PG_DATABASE` (optional)
+
+- `RAILS_APP_SENTRY_DSN`
+- `VUE_APP_SENTRY_DSN`
+- `VUE_APP_INSTANCE`
+
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_DOMAIN`
 - `SMTP_USERNAME`
 - `SMTP_PASSWORD`
 - `SMTP_FROM`
-- `SMTP_TO`
+- `SMTP_TO` (for deployment notifications)
+
+- `MA_ENDPOINT` (optional)
+- `MA_ENDPOINT_USER` (optional)
+- `MA_ENDPOINT_PASSWORD` (optional)
+
+- `MB_HOST` (optional)
+- `MB_USER` (optional)
+- `MB_PASSWORD` (optional)
+- `MB_DATABASE` (optional)
+
+- `HB_DATA_EXPIRES_IN` (optional)
+- `HB_SYNC_LIMIT` (optional)
+- `HB_SYNC_INTERVAL` (optional)
+- `HB_RECOMMENDATION_LIMIT` (optional)
 
 ## Releasing
 
@@ -136,26 +171,24 @@ git push origin v1.0.0
 ssh root@myserver.com
 
 # Create a user
-useradd -d /data/apps/headbanger -G ssh -G docker -m -s /bin/bash headbanger
+useradd -G ssh -G docker -m -s /bin/bash headbanger
 su - headbanger
 
 # Create SSH keypair
 myserver$ mkdir ~/.ssh/
-ssh-keygen -f ~/.ssh/headbanger-deployment-key -b 4096 -C "headbanger deployment key"
+ssh-keygen -f ~/.ssh/headbanger-deployment-key -b 4096 -C "Headbanger deployment key"
 cp ~/.ssh/headbanger-deployment-key.pub ~/.ssh/authorized_keys
 
 # Initialize the database
-docker exec -ti thalarion_postgres_1 psql -U postgres -c "CREATE ROLE headbanger WITH ENCRYPTED PASSWORD headbanger LOGIN;"
-docker exec -ti thalarion_postgres_1 psql -U postgres -c "CREATE DATABASE headbanger OWNER headbanger;"
+docker exec -ti `docker ps -q name=postgres_postgres` psql -U postgres -c "CREATE ROLE headbanger WITH ENCRYPTED PASSWORD 'headbanger' LOGIN;"
+docker exec -ti `docker ps -q name=postgres_postgres` psql -U postgres -c "CREATE DATABASE headbanger OWNER headbanger;"
 
-# Logout, but don't forget to copy over the private key to your local machine
+# Logout, but don't forget to copy over the private key, and the host public key to your local machine
 logout
 logout
 
-# Copy and edit environment file
-cp .development.env ops/.env.production.local
-edit ops/.env.production.local
-scp -i ~/.ssh/headbanger-deployment-key.pub ops/.env.production.local /data/apps/headbanger/production.env
+# Generate TLS client certificates for NGINX
+openssl req -nodes -new -x509  -keyout ops/client.key -out ops/client.pem
 ```
 
 Additionally, set `DEPLOY_SSH_KEY`, `DEPLOY_SSH_HOST` and `DEPLOY_SSH_USER` as Github Actions secrets.
@@ -174,8 +207,6 @@ git commit -m "Update images to latest version"
 git tag -f production
 git push origin master && git push -f origin production
 ```
-
-For initial deployment, copy `.env.production`, `client.key` and `client.pem` manually, and initialize the database.
 
 ## License
 
