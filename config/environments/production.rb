@@ -54,7 +54,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_options = { from: ENV.fetch("SMTP_FROM") }
+  config.action_mailer.default_options = { from: ENV.fetch("APP_EMAIL") }
   config.action_mailer.smtp_settings = {
     address: ENV.fetch("SMTP_HOST"),
     port: ENV.fetch("SMTP_PORT").to_i,

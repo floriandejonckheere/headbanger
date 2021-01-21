@@ -89,13 +89,16 @@ rails pg_search:multisearch:rebuild[Release]
 
 Github secrets for continuous integration:
 
-- `APP_CONTACT`
-- `SENTRY_AUTH_TOKEN`
-- `REGISTRY_TOKEN` (needed for [Github Container Registry](https://docs.github.com/en/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images))
+- `APP_EMAIL`
 
 - `MA_ENDPOINT` (optional)
 - `MA_ENDPOINT_USER` (optional)
 - `MA_ENDPOINT_PASSWORD` (optional)
+
+Github secrets for release:
+
+- `SENTRY_AUTH_TOKEN` (needed for uploading source maps to Sentry)
+- `DOCKER_TOKEN` (needed for [Github Container Registry](https://docs.github.com/en/packages/getting-started-with-github-container-registry/migrating-to-github-container-registry-for-docker-images))
 
 Github secrets for continuous deployment:
 
