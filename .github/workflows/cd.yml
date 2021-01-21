@@ -11,16 +11,17 @@ jobs:
     name: Deploy application
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ubuntu-20.04
+    environment: production
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: chrnorm/deployment-action@releases/v1
-        name: Create GitHub deployment
-        id: deployment
-        with:
-          token: ${{ github.token }}
-          environment: production
+#      - uses: chrnorm/deployment-action@releases/v1
+#        name: Create GitHub deployment
+#        id: deployment
+#        with:
+#          token: ${{ github.token }}
+#          environment: production
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -35,49 +36,62 @@ jobs:
           echo "VUE_APP_INSTANCE=${{ secrets.VUE_APP_INSTANCE }}" >> $GITHUB_ENV
           echo "VUE_APP_CACHE_DOMAIN=${{ secrets.VUE_APP_CACHE_DOMAIN }}" >> $GITHUB_ENV
 
+          echo "SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}" >> $GITHUB_ENV
+          echo "APP_EMAIL=${{ secrets.APP_EMAIL }}" >> $GITHUB_ENV
+          echo "APP_HOST=${{ secrets.APP_HOST }}" >> $GITHUB_ENV
+
+          echo "PG_HOST=${{ secrets.PG_HOST }}" >> $GITHUB_ENV
+          echo "PG_USER=${{ secrets.PG_USER }}" >> $GITHUB_ENV
+          echo "PG_PASSWORD=${{ secrets.PG_PASSWORD }}" >> $GITHUB_ENV
+          echo "PG_DATABASE=${{ secrets.PG_DATABASE }}" >> $GITHUB_ENV
+
+          echo "RAILS_APP_SENTRY_DSN=${{ secrets.RAILS_APP_SENTRY_DSN }}" >> $GITHUB_ENV
+          echo "VUE_APP_INSTANCE=${{ secrets.VUE_APP_INSTANCE }}" >> $GITHUB_ENV
+
+          echo "SMTP_HOST=${{ secrets.SMTP_HOST }}" >> $GITHUB_ENV
+          echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> $GITHUB_ENV
+          echo "SMTP_DOMAIN=${{ secrets.SMTP_DOMAIN }}" >> $GITHUB_ENV
+          echo "SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}" >> $GITHUB_ENV
+          echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> $GITHUB_ENV
+          echo "SMTP_FROM=${{ secrets.SMTP_FROM }}" >> $GITHUB_ENV
+
+          echo "MA_ENDPOINT=${{ secrets.MA_ENDPOINT }}" >> $GITHUB_ENV
+          echo "MA_ENDPOINT_USER=${{ secrets.MA_ENDPOINT_USER }}" >> $GITHUB_ENV
+          echo "MA_ENDPOINT_PASSWORD=${{ secrets.MA_ENDPOINT_PASSWORD }}" >> $GITHUB_ENV
+
+          echo "MB_HOST=${{ secrets.MB_HOST }}" >> $GITHUB_ENV
+          echo "MB_USER=${{ secrets.MB_USER }}" >> $GITHUB_ENV
+          echo "MB_PASSWORD=${{ secrets.MB_PASSWORD }}" >> $GITHUB_ENV
+          echo "MB_DATABASE=${{ secrets.MB_DATABASE }}" >> $GITHUB_ENV
+
+          echo "HB_DATA_EXPIRES_IN=${{ secrets.HB_DATA_EXPIRES_IN }}" >> $GITHUB_ENV
+          echo "HB_SYNC_LIMIT=${{ secrets.HB_SYNC_LIMIT }}" >> $GITHUB_ENV
+          echo "HB_SYNC_INTERVAL=${{ secrets.HB_SYNC_INTERVAL }}" >> $GITHUB_ENV
+          echo "HB_RECOMMENDATION_LIMIT=${{ secrets.HB_RECOMMENDATION_LIMIT }}" >> $GITHUB_ENV
+
       - name: Deploy application
-        uses: sagebind/docker-swarm-deploy-action@v2
+        uses: wshihadeh/docker-deployment-action@v1
         with:
-          remote_host: ssh://${{ secrets.DEPLOY_SSH_USER }}@${{ secrets.DEPLOY_SSH_HOST }}
-          ssh_private_key: ${{ secrets.DEPLOY_SSH_KEY }}
-          args: stack deploy --with-registry-auth --compose-file ops/docker-compose.yml headbanger
-
-#      - name: Run database migrations
-#        uses: sagebind/docker-swarm-deploy-action@v2
-#        with:
-#          remote_host: ssh://${{ secrets.DEPLOY_SSH_USER }}@${{ secrets.DEPLOY_SSH_HOST }}
-#          ssh_private_key: ${{ secrets.DEPLOY_SSH_KEY }}
-#          args: service create --restart-policy=none --name migrate -d crawl_site alexellis2/href-counter
-
-      - name: Update deployment status (success)
-        if: success()
-        uses: chrnorm/deployment-status@releases/v1
-        with:
-          token: ${{ github.token }}
-          state: "success"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          remote_docker_host: ${{ secrets.SWARM_SSH_HOST }}
+          ssh_private_key: ${{ secrets.SWARM_SSH_KEY }}
+          ssh_public_key: ${{ secrets.SWARM_SSH_HOST_KEY }}
+          deployment_mode: docker-swarm
+          stack_file_name: ops/docker-compose.yml
+          args: --with-registry-auth headbanger
 
       - name: Send email (success)
         if: success()
         uses: dawidd6/action-send-mail@v2
         with:
-          server_address: smtp.gmail.com
-          server_port: 587
+          server_address: ${{ secrets.SMTP_HOST }}
+          server_port: ${{ secrets.SMTP_PORT }}
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: Deploy for ${{ github.event.repository.name }} succeeded
-          body: The deployment with id ${{ steps.deployment.outputs.deployment_id }} of ${{ github.event.repository.name }} completed successfully!
+          body: The deployment of ${{ github.event.repository.name }} completed successfully!
           from: ${{ secrets.SMTP_FROM }}
           to: ${{ secrets.SMTP_TO }}
           content_type: text/hml
-
-      - name: Update deployment status (failure)
-        if: failure()
-        uses: chrnorm/deployment-status@releases/v1
-        with:
-          token: "${{ github.token }}"
-          state: "failure"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
 
       - name: Send email (failure)
         if: failure()
@@ -88,7 +102,7 @@ jobs:
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: Deploy for ${{ github.event.repository.name }} failed
-          body: The deployment with id ${{ steps.deployment.outputs.deployment_id }} of ${{ github.event.repository.name }} failed!
+          body: The deployment of ${{ github.event.repository.name }} failed!
           from: ${{ secrets.SMTP_FROM }}
           to: ${{ secrets.SMTP_TO }}
           content_type: text/hml
