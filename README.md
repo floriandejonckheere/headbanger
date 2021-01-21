@@ -145,12 +145,12 @@ cp ~/.ssh/headbanger-deployment-key.pub ~/.ssh/authorized_keys
 docker exec -ti thalarion_postgres_1 psql -U postgres -c "CREATE ROLE headbanger WITH ENCRYPTED PASSWORD headbanger LOGIN;"
 docker exec -ti thalarion_postgres_1 psql -U postgres -c "CREATE DATABASE headbanger OWNER headbanger;"
 
-# Logout, but don't forget to copy over the private key to your local machine 
+# Logout, but don't forget to copy over the private key to your local machine
 logout
 logout
 
 # Copy and edit environment file
-cp .env.development ops/.env.production.local
+cp .development.env ops/.env.production.local
 edit ops/.env.production.local
 scp -i ~/.ssh/headbanger-deployment-key.pub ops/.env.production.local /data/apps/headbanger/production.env
 ```
