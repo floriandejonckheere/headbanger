@@ -28,8 +28,8 @@ services:
       - postgres
       - redis
     env_file:
-      - .env.development
-      - .env.development.local
+      - .development.env
+      - .development.env.local
 
   web:
     build:
@@ -44,8 +44,8 @@ services:
     depends_on:
       - app
     env_file:
-      - .env.development
-      - .env.development.local
+      - .development.env
+      - .development.env.local
 
   sidekiq:
     build: .
@@ -57,8 +57,8 @@ services:
       - postgres
       - redis
     env_file:
-      - .env.development
-      - .env.development.local
+      - .development.env
+      - .development.env.local
 
   clock:
     build: .
@@ -70,8 +70,8 @@ services:
       - postgres
       - redis
     env_file:
-      - .env.development
-      - .env.development.local
+      - .development.env
+      - .development.env.local
 
   scrub:
     build: .
@@ -83,8 +83,8 @@ services:
       - postgres
       - redis
     env_file:
-      - .env.development
-      - .env.development.local
+      - .development.env
+      - .development.env.local
 
   musicbrainz:
     build: .
@@ -96,8 +96,8 @@ services:
     ports:
       - "5433:5432"
     env_file:
-      - .env.development
-      - .env.development.local
+      - .development.env
+      - .development.env.local
 
 volumes:
   postgres:
