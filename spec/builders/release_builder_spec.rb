@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ReleaseBuilder, type: :builder do
+RSpec.xdescribe ReleaseBuilder, type: :builder do
   subject(:release) { described_class.new(metal_archives_key: "391528").call }
 
   it { is_expected.to have_attributes metal_archives_key: "391528" }

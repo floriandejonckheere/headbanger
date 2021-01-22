@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ArtistBuilder, type: :builder do
+RSpec.xdescribe ArtistBuilder, type: :builder do
   subject(:artist) { described_class.new(metal_archives_key: "60908").call }
 
   it { is_expected.to have_attributes metal_archives_key: "60908" }

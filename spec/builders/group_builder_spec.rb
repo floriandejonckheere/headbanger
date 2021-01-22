@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe GroupBuilder, type: :builder do
+RSpec.xdescribe GroupBuilder, type: :builder do
   subject(:group) { described_class.new(metal_archives_key: "3540361100").call }
 
   it { is_expected.to have_attributes metal_archives_key: "3540361100" }

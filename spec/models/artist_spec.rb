@@ -18,7 +18,7 @@ RSpec.describe Artist do
   it { is_expected.to validate_presence_of :gender }
   it { is_expected.to validate_inclusion_of(:gender).in_array described_class::GENDERS }
 
-  describe "#sync!" do
+  xdescribe "#sync!" do
     subject(:artist) { create(:artist, metal_archives_key: "60908", synced_at: 1.day.ago) }
 
     it "touches the synced_at timestamp" do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe GenreBuilder, type: :builder do
+RSpec.xdescribe GenreBuilder, type: :builder do
   subject(:genre) { described_class.new(description: "Power Metal").call }
 
   it { is_expected.to have_attributes name: "power" }
