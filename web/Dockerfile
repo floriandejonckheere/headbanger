@@ -28,7 +28,7 @@ ADD . $APP_HOME/
 RUN yarn build
 
 # Generate TLS client key and certificate
-RUN openssl req -nodes -new -x509 -keyout /etc/nginx/conf.d/client.key -out /etc/nginx/conf.d/client.pem -subj "/C=BE/ST=/L=/O=CN=headbang.re"
+RUN openssl req -nodes -new -x509 -keyout /app/nginx/conf.d/client.key -out /app/nginx/conf.d/client.pem -subj "/C=BE/ST=/L=/O=CN=headbang.re"
 
 # Stage 1: run application
 FROM nginx:alpine
