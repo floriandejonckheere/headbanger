@@ -32,6 +32,11 @@ FROM nginx:alpine
 
 MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
 
+ENV RUNTIME_DEPS openssl
+
+# Install dependencies
+RUN apk add --no-cache $RUNTIME_DEPS
+
 # Copy
 COPY --from=build /app/docker-entrypoint.sh /docker-entrypoint.sh
 COPY --from=build /app/dist/ /usr/share/nginx/html
