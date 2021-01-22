@@ -4,7 +4,7 @@ module Headbanger
   module Version
     MAJOR = 0
     MINOR = 8
-    PATCH = 4
+    PATCH = 5
     PRE   = nil
 
     VERSION = [MAJOR, MINOR, PATCH].compact.join(".")
