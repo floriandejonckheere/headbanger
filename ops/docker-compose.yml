@@ -40,6 +40,7 @@ x-app: &app
     HB_RECOMMENDATION_LIMIT: ${HB_RECOMMENDATION_LIMIT}
   networks:
     - backend
+    - proxy
   logging:
     driver: "json-file"
     options:
@@ -121,6 +122,16 @@ services:
 
         traefik.http.services.headbanger.loadbalancer.server.port: "80"
         traefik.docker.network: "traefik_proxy"
+
+  migration:
+    <<: *app
+    command: bundle exec rails db:prepare
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == web
+      restart_policy:
+        condition: none
 
 volumes:
   redis:
