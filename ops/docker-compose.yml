@@ -1,5 +1,58 @@
 version: "3.8"
 
+x-app: &app
+  image: ghcr.io/floriandejonckheere/headbanger-app:v0.9.1
+  environment:
+    RAILS_ENV: production
+    RAILS_LOG_TO_STDOUT: 1
+
+    SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+    APP_EMAIL: ${APP_EMAIL}
+    APP_HOST: ${APP_HOST}
+
+    PG_HOST: ${PG_HOST}
+    PG_USER: ${PG_USER}
+    PG_PASSWORD: ${PG_PASSWORD}
+    PG_DATABASE: ${PG_DATABASE}
+
+    RAILS_APP_SENTRY_DSN: ${RAILS_APP_SENTRY_DSN}
+    VUE_APP_INSTANCE: ${VUE_APP_INSTANCE}
+
+    SMTP_HOST: ${SMTP_HOST}
+    SMTP_PORT: ${SMTP_PORT}
+    SMTP_DOMAIN: ${SMTP_DOMAIN}
+    SMTP_USERNAME: ${SMTP_USERNAME}
+    SMTP_PASSWORD: ${SMTP_PASSWORD}
+    SMTP_FROM: ${SMTP_FROM}
+
+    MA_ENDPOINT: ${MA_ENDPOINT}
+    MA_ENDPOINT_USER: ${MA_ENDPOINT_USER}
+    MA_ENDPOINT_PASSWORD: ${MA_ENDPOINT_PASSWORD}
+
+    MB_HOST: ${MB_HOST}
+    MB_USER: ${MB_USER}
+    MB_PASSWORD: ${MB_PASSWORD}
+    MB_DATABASE: ${MB_DATABASE}
+
+    HB_DATA_EXPIRES_IN: ${HB_DATA_EXPIRES_IN}
+    HB_SYNC_LIMIT: ${HB_SYNC_LIMIT}
+    HB_SYNC_INTERVAL: ${HB_SYNC_INTERVAL}
+    HB_RECOMMENDATION_LIMIT: ${HB_RECOMMENDATION_LIMIT}
+  networks:
+    - backend
+  logging:
+    driver: "json-file"
+    options:
+      max-file: "5"
+      max-size: "1g"
+      compress: "true"
+  deploy:
+    placement:
+      constraints:
+        - node.hostname == web
+    restart_policy:
+      condition: on-failure
+
 services:
   redis:
     image: redis:alpine
@@ -17,57 +70,15 @@ services:
         condition: on-failure
 
   app:
-    image: ghcr.io/floriandejonckheere/headbanger-app:v0.9.1
-    environment:
-      RAILS_ENV: production
-      RAILS_LOG_TO_STDOUT: 1
+    <<: *app
 
-      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
-      APP_EMAIL: ${APP_EMAIL}
-      APP_HOST: ${APP_HOST}
+  sidekiq:
+    <<: *app
+    command: bundle exec sidekiq
 
-      PG_HOST: ${PG_HOST}
-      PG_USER: ${PG_USER}
-      PG_PASSWORD: ${PG_PASSWORD}
-      PG_DATABASE: ${PG_DATABASE}
-
-      RAILS_APP_SENTRY_DSN: ${RAILS_APP_SENTRY_DSN}
-      VUE_APP_INSTANCE: ${VUE_APP_INSTANCE}
-
-      SMTP_HOST: ${SMTP_HOST}
-      SMTP_PORT: ${SMTP_PORT}
-      SMTP_DOMAIN: ${SMTP_DOMAIN}
-      SMTP_USERNAME: ${SMTP_USERNAME}
-      SMTP_PASSWORD: ${SMTP_PASSWORD}
-      SMTP_FROM: ${SMTP_FROM}
-
-      MA_ENDPOINT: ${MA_ENDPOINT}
-      MA_ENDPOINT_USER: ${MA_ENDPOINT_USER}
-      MA_ENDPOINT_PASSWORD: ${MA_ENDPOINT_PASSWORD}
-
-      MB_HOST: ${MB_HOST}
-      MB_USER: ${MB_USER}
-      MB_PASSWORD: ${MB_PASSWORD}
-      MB_DATABASE: ${MB_DATABASE}
-
-      HB_DATA_EXPIRES_IN: ${HB_DATA_EXPIRES_IN}
-      HB_SYNC_LIMIT: ${HB_SYNC_LIMIT}
-      HB_SYNC_INTERVAL: ${HB_SYNC_INTERVAL}
-      HB_RECOMMENDATION_LIMIT: ${HB_RECOMMENDATION_LIMIT}
-    networks:
-      - backend
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: "1g"
-        compress: "true"
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == web
-      restart_policy:
-        condition: on-failure
+  clock:
+    <<: *app
+    command: bundle exec clockwork config/clock.rb
 
   web:
     image: ghcr.io/floriandejonckheere/headbanger-web:v0.9.1
@@ -110,21 +121,6 @@ services:
 
         traefik.http.services.headbanger.loadbalancer.server.port: "80"
         traefik.docker.network: "traefik_proxy"
-
-#  sidekiq:
-#    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
-#    <<: *app
-#    command: bundle exec sidekiq
-#
-#  clock:
-#    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
-#    <<: *app
-#    command: bundle exec clockwork config/clock.rb
-#
-#  scrub:
-#    image: ghcr.io/floriandejonckheere/headbanger-app:v0.6.0
-#    <<: *app
-#    command: bin/scrub
 
 volumes:
   redis:
