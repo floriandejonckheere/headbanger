@@ -54,7 +54,7 @@ server {
   location / {
     proxy_pass                           https://www.metal-archives.com;
 
-    sub_filter                           https://www.metal-archives.com ${VUE_APP_CACHE_DOMAIN};
+    sub_filter                           "https://www.metal-archives.com" "${VUE_APP_CACHE_DOMAIN}";
     sub_filter_once                      off;
 
     proxy_set_header  Host               www.metal-archives.com;
