@@ -123,6 +123,7 @@ Github secrets for continuous deployment (application):
 - `RAILS_APP_SENTRY_DSN`
 - `VUE_APP_SENTRY_DSN`
 - `VUE_APP_INSTANCE`
+- `VUE_APP_CACHE_DOMAIN`
 
 - `SMTP_HOST`
 - `SMTP_PORT`
