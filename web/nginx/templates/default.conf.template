@@ -1,7 +1,7 @@
 # Headbanger app
 server {
   listen 80;
-  server_name _;
+  server_name app.headbang.re;
 
   # Don't send the NGINX version number in error pages and Server header
   server_tokens off;
@@ -42,7 +42,8 @@ proxy_cache_path /cache levels=1:2 keys_zone=metal_archives:10m max_size=10g
 
 # Metal Archives caching proxy
 server {
-  listen 81;
+  listen 80;
+  server_name ${VUE_APP_CACHE_DOMAIN};
 
   # Don't send the NGINX version number in error pages and Server header
   server_tokens off;
