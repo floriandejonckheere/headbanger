@@ -14,7 +14,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v0.2
         with:
           ref: ${{ github.ref }}
-          check-name: Continuous Integration (app)
+          check-name: app
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 20
 
@@ -22,7 +22,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v0.2
         with:
           ref: ${{ github.ref }}
-          check-name: Continuous Integration (web)
+          check-name: web
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 20
 
