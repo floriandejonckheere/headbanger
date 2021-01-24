@@ -16,13 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-#      - uses: chrnorm/deployment-action@releases/v1
-#        name: Create GitHub deployment
-#        id: deployment
-#        with:
-#          token: ${{ github.token }}
-#          environment: production
-
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
