@@ -38,5 +38,3 @@ MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
 # Copy
 COPY --from=build /app/dist/ /usr/share/nginx/html
 COPY --from=build /app/nginx/ /etc/nginx/
-
-EXPOSE 81

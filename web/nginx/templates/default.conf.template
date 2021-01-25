@@ -14,7 +14,7 @@ server {
   index index.html;
 
   # Proxy to API server
-  location /api/ {
+  location /graphql {
     proxy_pass                          http://app:3000/;
     proxy_set_header  Host              $http_host;
     proxy_set_header  X-Real-IP         $remote_addr;
