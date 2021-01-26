@@ -63,7 +63,7 @@ jobs:
           echo "HB_RECOMMENDATION_LIMIT=${{ secrets.HB_RECOMMENDATION_LIMIT }}" >> $GITHUB_ENV
 
       - name: Deploy application
-        uses: wshihadeh/docker-deployment-action@v1
+        uses: wshihadeh/docker-deployment-action@v2
         with:
           remote_docker_host: ${{ secrets.SWARM_SSH_HOST }}
           ssh_private_key: ${{ secrets.SWARM_SSH_KEY }}
