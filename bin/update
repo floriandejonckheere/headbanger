@@ -20,7 +20,7 @@ FileUtils.chdir APP_ROOT do
   system("bundle check") || system!("bundle install")
 
   puts "\n== Installing remote app dependencies =="
-  system! "docker-compose exec -u root app bundle install"
+  system! "docker-compose run --rm -u root app bundle install"
 
   puts "\n== Installing web dependencies"
   Dir.chdir("web") { system! "yarn install" }
