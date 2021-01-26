@@ -76,11 +76,11 @@
 <script>
 import { mapMutations, mapGetters } from 'vuex';
 
-import { countries } from 'countries-list';
-
 import Error from '@/components/Error.vue';
 
 import { onLogin } from '@/vue-apollo';
+
+import sortedCountriesWithCode from '@/lib/countries';
 
 export default {
   name: 'Signup',
@@ -88,9 +88,8 @@ export default {
     Error,
   },
   data() {
-    const countriesWithCode = Object.entries(countries).map((struct) => ({ ...struct[1], code: struct[0] }));
     return {
-      countries: countriesWithCode.sort((a, b) => (a.name.localeCompare(b.name))),
+      countries: sortedCountriesWithCode,
       form: {
         name: '',
         email: '',
