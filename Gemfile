@@ -28,9 +28,6 @@ gem "countries"
 gem "devise"
 gem "devise_token_auth", github: "lynndylanhurley/devise_token_auth"
 
-# Enums
-gem "enumerize"
-
 # Authorization framework
 gem "pundit"
 

@@ -5,13 +5,8 @@ class User < ApplicationRecord
          :recoverable, :validatable, :confirmable, :trackable
 
   include GraphqlDevise::Concerns::Model
-  extend Enumerize
 
-  enumerize :role,
-            in: %w(user admin).freeze,
-            default: "user",
-            predicates: true,
-            scope: :shallow
+  ROLES = %w(user admin).freeze
 
   has_many :ratings,
            dependent: :destroy
@@ -57,7 +52,16 @@ class User < ApplicationRecord
             inclusion: { in: ISO3166::Country.codes }
 
   validates :role,
-            presence: true
+            presence: true,
+            inclusion: { in: ROLES }
+
+  def user?
+    role == "user"
+  end
+
+  def admin?
+    role == "admin"
+  end
 end
 
 # == Schema Information
