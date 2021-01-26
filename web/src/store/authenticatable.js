@@ -8,6 +8,9 @@ const getters = {
   isAuthenticated(state) {
     return state.id !== null;
   },
+  getId(state) {
+    return state.id;
+  },
 };
 
 const mutations = {
