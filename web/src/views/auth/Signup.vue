@@ -80,7 +80,7 @@ import Error from '@/components/Error.vue';
 
 import { onLogin } from '@/vue-apollo';
 
-import sortedCountriesWithCode from '@/lib/countries';
+import { sortedCountriesWithCode } from '@/lib/countries';
 
 export default {
   name: 'Signup',
