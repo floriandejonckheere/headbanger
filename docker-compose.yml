@@ -1,5 +1,15 @@
 version: "3.8"
 
+x-app: &app
+  build: .
+  volumes:
+    - .:/app/:cached
+    - bundle:/usr/local/bundle/
+  depends_on:
+    - postgres
+    - redis
+  env_file: .development.env
+
 services:
   postgres:
     image: postgres:12
@@ -17,18 +27,9 @@ services:
       - redis:/data/
 
   app:
-    build: .
+    <<: *app
     ports:
       - "3000:3000"
-    volumes:
-      - .:/app/:cached
-      - ./logs/app/:/app/log/
-      - bundle:/usr/local/bundle/
-    depends_on:
-      - postgres
-      - redis
-    env_file:
-      - .development.env
 
   web:
     build:
@@ -45,53 +46,36 @@ services:
     env_file:
       - .development.env
 
+  debug:
+    <<: *app
+    command: rdebug-ide --host 0.0.0.0 --port 1234 --dispatcher-port 26162 -- bin/rails s -b 0.0.0.0
+    ports:
+      - "3000:3000"
+      - "1234:1234"
+    environment:
+      RUBYLIB: ""
+
   sidekiq:
-    build: .
+    <<: *app
     command: bundle exec sidekiq
-    volumes:
-      - .:/app/:cached
-      - bundle:/usr/local/bundle/
-    depends_on:
-      - postgres
-      - redis
-    env_file:
-      - .development.env
 
   clock:
-    build: .
+    <<: *app
     command: bundle exec clockwork config/clock.rb
-    volumes:
-      - .:/app/:cached
-      - bundle:/usr/local/bundle/
-    depends_on:
-      - postgres
-      - redis
-    env_file:
-      - .development.env
 
   scrub:
-    build: .
+    <<: *app
     command: bin/scrub
-    volumes:
-      - .:/app/:cached
-      - bundle:/usr/local/bundle/
-    depends_on:
-      - postgres
-      - redis
-    env_file:
-      - .development.env
 
   musicbrainz:
-    build: .
+    <<: *app
     command: bin/forward
+    ports:
+      - "5433:5432"
     volumes:
       - .:/app/:cached
       - $HOME/.ssh/:/app/.ssh/:ro
       - $SSH_AUTH_SOCK:/ssh
-    ports:
-      - "5433:5432"
-    env_file:
-      - .development.env
 
 volumes:
   postgres:
