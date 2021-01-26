@@ -14,8 +14,8 @@
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav" uk-navbar="mode: click">
               <template v-if="isAuthenticated">
-                <router-link :to="{ name: 'discover' }" tag="li"><a href="#">Discover</a></router-link>
-                <router-link :to="{ name: 'browse' }" tag="li"><a href="#">Browse</a></router-link>
+                <router-link :to="{ name: 'discover' }" v-slot="{ navigate }" custom><li @click="navigate" @keypress.enter="navigate"><a href="#">Discover</a></li></router-link>
+                <router-link :to="{ name: 'browse' }" v-slot="{ navigate }" custom><li @click="navigate" @keypress.enter="navigate"><a href="#">Browse</a></li></router-link>
                 <li>
                   <a href="#">
                     {{ authenticatable.name }}
@@ -23,16 +23,16 @@
                   </a>
                   <div class="uk-navbar-dropdown uk-background-default uk-box-shadow-small" uk-toggle>
                     <ul class="uk-nav uk-navbar-dropdown-nav">
-                      <router-link :to="{ name: 'account' }" tag="li"><a href="#">My account</a></router-link>
+                      <router-link :to="{ name: 'account' }" v-slot="{ navigate }" custom><li @click="navigate" @keypress.enter="navigate"><a href="#">My account</a></li></router-link>
                       <li class="uk-nav-divider uk-margin-small"></li>
-                      <router-link :to="{ name: 'signout' }" tag="li"><a href="#">Sign out</a></router-link>
+                      <router-link :to="{ name: 'signout' }" v-slot="{ navigate }" custom><li @click="navigate" @keypress.enter="navigate"><a href="#">Sign out</a></li></router-link>
                     </ul>
                   </div>
                 </li>
               </template>
               <template v-else>
-                <router-link :to="{ name: 'signup' }" tag="li"><a href="#">Sign up</a></router-link>
-                <router-link :to="{ name: 'signin' }" tag="li"><a href="#">Sign in</a></router-link>
+                <router-link :to="{ name: 'signup' }" v-slot="{ navigate }" custom><li @click="navigate" @keypress.enter="navigate"><a href="#">Signup</a></li></router-link>
+                <router-link :to="{ name: 'signin' }" v-slot="{ navigate }" custom><li @click="navigate" @keypress.enter="navigate"><a href="#">Signin</a></li></router-link>
               </template>
             </ul>
           </div>
