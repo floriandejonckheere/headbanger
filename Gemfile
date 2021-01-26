@@ -95,5 +95,5 @@ group :development do
   gem "spring-watcher-listen"
 
   # Debugger
-  gem "ruby-debug-ide"
+  # gem "ruby-debug-ide"
 end
