@@ -8,7 +8,7 @@
               Headbanger
             </router-link>
           </div>
-          <div class="uk-navbar-center">
+          <div class="uk-navbar-center uk-visible@m">
             <SearchBar v-if="this.$route.name !== 'search'" />
           </div>
           <div class="uk-navbar-right">

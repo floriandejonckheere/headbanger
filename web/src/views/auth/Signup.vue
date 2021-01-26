@@ -3,7 +3,7 @@
     <template v-slot="{ mutate, loading, error }">
       <section class="uk-section">
         <div class="uk-container">
-          <div class="uk-grid uk-child-width-1-3@s uk-flex-center">
+          <div class="uk-grid uk-child-width-1-1 uk-child-width-auto@s uk-child-width-1-3@s uk-flex-center uk-margin-remove-left">
             <div class="uk-card uk-card-small uk-padding-small uk-card-default uk-box-shadow-small uk-background-default">
               <div class="uk-card-header">
                 <h3 class="uk-margin-remove-vertical">Sign up</h3>
