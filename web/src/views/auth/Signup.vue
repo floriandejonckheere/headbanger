@@ -110,7 +110,7 @@ export default {
         uid,
         accessToken: token,
         client,
-      } = result.data.userLogin.credentials;
+      } = result.data.userSignUp.credentials;
       onLogin(this.$apolloProvider.defaultClient, { uid, token, client });
 
       // Redirect to homepage
@@ -121,7 +121,6 @@ export default {
     ...mapGetters(['isAuthenticated']),
   },
   mounted() {
-    console.log(this.isAuthenticated);
     if (this.isAuthenticated) this.$router.push('/');
   },
 };
