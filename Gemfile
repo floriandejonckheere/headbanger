@@ -41,8 +41,8 @@ gem "metal_archives", github: "floriandejonckheere/metal_archives"
 gem "sentry-raven"
 
 # GraphQL API
-gem "graphql"
-gem "graphql_devise"
+gem "graphql", "~> 1.11"
+gem "graphql_devise", "~> 0.14"
 
 # Full-text searching in Postgres
 gem "pg_search"
