@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "Sign up" do
+RSpec.describe "Update user" do
   let(:query) do
     <<-GRAPHQL
       mutation updateUser ($id: ID!, $name: String, $email: String, $password: String, $country: String) {
