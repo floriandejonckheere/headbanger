@@ -8,7 +8,7 @@ const getters = {
   isAuthenticated(state) {
     return state.id !== null;
   },
-  getId(state) {
+  id(state) {
     return state.id;
   },
 };
@@ -26,6 +26,12 @@ const mutations = {
     state.name = null;
     state.email = null;
   },
+  update(state, authenticatable) {
+    const { name, email } = authenticatable;
+
+    state.name = name;
+    state.email = email;
+  },
 };
 
 const actions = {
@@ -34,6 +40,9 @@ const actions = {
   },
   signout({ commit }) {
     commit('signout');
+  },
+  update({ commit }, authenticatable) {
+    commit('signin', authenticatable);
   },
 };
 
