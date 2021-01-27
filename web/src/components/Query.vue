@@ -3,14 +3,10 @@
     :query="query"
     :variables="variables"
     :skip="skip"
-    @done="done"
+    @result="result"
     notifyOnNetworkStatusChange
   >
     <template slot-scope="{ result: { loading, error, data }, query }">
-      loading = {{loading}};
-      error = {{error}}
-      data = {{data}}
-
       <Loading :loading="loading" />
       <Error :error="error" />
 
@@ -39,7 +35,7 @@ export default {
     query: Object,
     variables: Object,
     skip: Boolean,
-    done: Function,
+    result: Function,
   },
   components: {
     Loading,
