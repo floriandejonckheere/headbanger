@@ -3,7 +3,7 @@
 ActiveRecord::Base.transaction do
   puts "-- Creating releases"
 
-  rand(75..100).times do
+  250.times do
     release = FactoryBot.create(:release)
 
     artists = [Artist.order("RANDOM()").limit(rand(1..3)), FactoryBot.build_list(:artist, rand(1..3))].flatten

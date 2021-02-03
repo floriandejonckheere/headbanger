@@ -9,7 +9,7 @@ ActiveRecord::Base.transaction do
     releases: Release.all.to_a,
   }
 
-  rand(100..200).times do
+  rand(300).times do
     user = FactoryBot.create(:user)
     puts "    > #{user.email}"
 

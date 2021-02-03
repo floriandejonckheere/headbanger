@@ -3,7 +3,7 @@
 ActiveRecord::Base.transaction do
   puts "-- Creating groups"
 
-  rand(25..50).times do
+  100.times do
     group = FactoryBot.create(:group)
 
     artists = [Artist.order("RANDOM()").limit(rand(2..4)), FactoryBot.build_list(:artist, rand(1..5))].flatten
