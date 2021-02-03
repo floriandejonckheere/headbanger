@@ -19,12 +19,20 @@ class Rating < ApplicationRecord
   validates :user_id,
             uniqueness: { scope: [:rateable_id, :rateable_type] }
 
-  def likes?
+  def liked?
     rating == "like"
   end
 
-  def dislikes?
+  def disliked?
     rating == "dislike"
+  end
+
+  def self.liked
+    where(rating: :like)
+  end
+
+  def self.disliked
+    where(rating: :dislike)
   end
 end
 
