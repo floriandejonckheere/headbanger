@@ -72,10 +72,6 @@ services:
     <<: *app
     command: bundle exec clockwork config/clock.rb
 
-  scrub:
-    <<: *app
-    command: bin/scrub
-
   musicbrainz:
     <<: *app
     command: bin/forward
