@@ -8,15 +8,8 @@ module Recommendations
       @user = user
     end
 
-    def call
-      # TODO: actual implementation
-
-      models = Artist.all + Group.all + Release.all
-      reasons = %w(artist group genre)
-
-      models
-        .sample(Headbanger.config.recommendation_limit)
-        .map { |m| Recommendation.new(recommended: m, reason: reasons.sample) }
+    def call(_number)
+      raise NotImplementedError, "Implement this method in your subclass"
     end
   end
 end
