@@ -40,9 +40,9 @@
                   </div>
 
                   <div class="uk-margin uk-flex">
-                    <div><input class="uk-checkbox" type="checkbox" v-model="form.tos"></div>
+                    <div><input class="uk-checkbox" type="checkbox" id="tos" v-model="form.tos"></div>
                     <div class="uk-margin-small-left">
-                      I have read and agree to the <router-link to="#">Terms of Service</router-link> and <router-link to="#">Privacy Policy</router-link>
+                      <label for="tos">I have read and agree to the <router-link to="#">Terms of Service</router-link> and <router-link to="#">Privacy Policy</router-link></label>
                     </div>
                   </div>
                 </form>
