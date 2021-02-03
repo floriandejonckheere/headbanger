@@ -18,6 +18,6 @@ class Recommend
   private
 
   def service
-    @service ||= Recommendations::Base.new(user)
+    @service ||= Recommendations::Weighted.new(user)
   end
 end

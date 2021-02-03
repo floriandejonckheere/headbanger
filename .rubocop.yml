@@ -67,6 +67,9 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
