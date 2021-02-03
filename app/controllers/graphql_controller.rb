@@ -12,6 +12,9 @@ class GraphqlController < ApplicationController
                             context: graphql_context(:user),
                             operation_name: params[:operationName]
 
+    # Clear resource after user destroyed, so DTA won't try to refresh the tokens
+    @resource = nil unless @resource && User.exists?(@resource.id)
+
     render json: result unless performed?
   rescue StandardError => e
     logger.error(e)

@@ -7,5 +7,6 @@ module Types
 
     # Users
     field :update_user, mutation: Mutations::Users::Update, authenticate: true
+    field :delete_user, mutation: Mutations::Users::Delete, authenticate: true
   end
 end

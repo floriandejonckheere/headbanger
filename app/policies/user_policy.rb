@@ -11,7 +11,7 @@ class UserPolicy < ApplicationPolicy
     user.admin? || user == record
   end
 
-  def destroy?
+  def delete?
     return false unless user && record
 
     user.admin? || user == record

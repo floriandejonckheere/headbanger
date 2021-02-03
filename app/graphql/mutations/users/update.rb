@@ -36,9 +36,11 @@ module Mutations
       authorize :user
 
       def resolve(user:, **attributes)
-        user.update(attributes)
-
-        { user: user, errors: user.graphql_errors }
+        if user.update(attributes)
+          { user: user, errors: [] }
+        else
+          { user: nil, errors: user.graphql_errors }
+        end
       end
     end
   end
