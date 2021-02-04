@@ -2,7 +2,7 @@
 
 class Recommendation < ApplicationRecord
   RECOMMENDATIONS = %w(Artist Group Release).freeze
-  REASONS = %w(artist group genre).freeze
+  REASONS = %w(artist group genre release).freeze
 
   belongs_to :user
 

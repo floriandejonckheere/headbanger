@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Recommendations::Weighted do
+RSpec.describe Recommend do
   subject(:service) { described_class.new(user) }
 
   let(:user) { create(:user) }
@@ -70,7 +70,9 @@ RSpec.describe Recommendations::Weighted do
     before { user0.ratings.create(rateable: group1, rating: :like) }
 
     it "creates recommendations" do
-      expect(service.call(3).map { |r| r.recommended.name })
+      service.call
+
+      expect(user.recommendations.first(3).map { |r| r.recommended.name })
         .to match_array %w(group1 artist0 release3)
     end
   end
@@ -79,7 +81,9 @@ RSpec.describe Recommendations::Weighted do
     before { user0.ratings.create(rateable: group1, rating: :dislike) }
 
     it "creates recommendations" do
-      expect(service.call(3).map { |r| r.recommended.name })
+      service.call
+
+      expect(user.recommendations.first(3).map { |r| r.recommended.name })
         .to match_array %w(artist0 release3 release0)
     end
   end
