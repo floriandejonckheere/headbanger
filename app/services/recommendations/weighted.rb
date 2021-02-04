@@ -7,10 +7,12 @@ module Recommendations
     def call(number)
       recommendations = Hash.new(0.0)
 
+      # The current user's rated music
+      self_ratings = user.ratings.liked.pluck(:rateable_type, :rateable_id)
+
       # Find all other users
-      User.all.where.not(id: user.id).each do |other|
-        # The current user's rated music
-        self_ratings = user.ratings.liked.pluck(:rateable_type, :rateable_id)
+      User.includes(:ratings).each do |other|
+        next if user.id == other.id
 
         # The other user's rated music
         other_ratings = other.ratings.liked.pluck(:rateable_type, :rateable_id)
@@ -32,7 +34,7 @@ module Recommendations
         .sort_by(&:last)
         .reverse
         .first(number)
-        .map { |(type, id), _weight| Recommendation.new(recommended_type: type, recommended_id: id, reason: "idunno") }
+        .map { |(type, id), _weight| Recommendation.new(user: user, recommended_type: type, recommended_id: id, reason: type.downcase) }
     end
   end
 end

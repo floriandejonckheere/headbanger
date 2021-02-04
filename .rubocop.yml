@@ -13,9 +13,7 @@ AllCops:
   TargetRubyVersion: 2.7
 
 Layout/LineLength:
-  Max: 120
-  Exclude:
-    - spec/**/*
+  Enabled: false
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented

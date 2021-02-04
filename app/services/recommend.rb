@@ -9,9 +9,9 @@ class Recommend
 
   def call
     ActiveRecord::Base.transaction do
-      recommendations = service.call(Headbanger.config.recommendation_limit)
+      user.recommendations.clear
 
-      user.recommendations.replace(recommendations)
+      user.recommendations += service.call(Headbanger.config.recommendation_limit)
     end
   end
 
