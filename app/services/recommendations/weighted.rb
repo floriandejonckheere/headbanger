@@ -4,30 +4,34 @@ module Recommendations
   ##
   # Simple weighted collaborative filtering algorithm
   class Weighted < Base
+    # rubocop:disable Metrics/AbcSize
     def call(number)
       recommendations = Hash.new(0.0)
 
       # The current user's rated music
-      self_ratings = user.ratings.liked.pluck(:rateable_type, :rateable_id)
+      user_likes = user.ratings.liked.pluck(:rateable_type, :rateable_id)
+      user_dislikes = user.ratings.disliked.pluck(:rateable_type, :rateable_id)
 
       # Find all other users
-      User.includes(:ratings).each do |other|
-        next if user.id == other.id
-
+      User.includes(:ratings).where.not(id: user.id).each do |other|
         # The other user's rated music
-        other_ratings = other.ratings.liked.pluck(:rateable_type, :rateable_id)
+        other_likes = other.ratings.liked.pluck(:rateable_type, :rateable_id)
+        other_dislikes = other.ratings.disliked.pluck(:rateable_type, :rateable_id)
 
         # Find music both users liked
-        common = self_ratings & other_ratings
+        common_likes = user_likes & other_likes
+
+        # Find music both users disliked
+        common_dislikes = user_dislikes & other_dislikes
 
         # Calculate weight by dividing number of common ratings
         # by total number of ratings, to rule out noise and edge cases
-        weight = common.count.to_f / other_ratings.count
-
-        # TODO: subtract dislikes
+        likes_weight = common_likes.count.to_f / other_likes.count
+        dislikes_weight = common_dislikes.count.to_f / other_dislikes.count
 
         # Aggregate weight for music the other user rated
-        (other_ratings - common).each { |rating| recommendations[rating] += weight }
+        (other_likes - common_likes).each { |rating| recommendations[rating] += likes_weight }
+        (other_dislikes - common_dislikes).each { |rating| recommendations[rating] -= dislikes_weight }
       end
 
       recommendations
@@ -36,5 +40,6 @@ module Recommendations
         .first(number)
         .map { |(type, id), _weight| Recommendation.new(user: user, recommended_type: type, recommended_id: id, reason: type.downcase) }
     end
+    # rubocop:enable Metrics/AbcSize
   end
 end
