@@ -1,7 +1,7 @@
 version: "3.8"
 
 x-app: &app
-  image: ghcr.io/floriandejonckheere/headbanger-app:v0.9.1
+  image: ghcr.io/floriandejonckheere/headbanger-app:v0.9.2
   environment:
     RAILS_ENV: production
     RAILS_LOG_TO_STDOUT: 1
@@ -82,7 +82,7 @@ services:
     command: bundle exec clockwork config/clock.rb
 
   web:
-    image: ghcr.io/floriandejonckheere/headbanger-web:v0.9.1
+    image: ghcr.io/floriandejonckheere/headbanger-web:v0.9.2
     environment:
       VUE_APP_SENTRY_DSN: ${VUE_APP_SENTRY_DSN}
       VUE_APP_INSTANCE: ${VUE_APP_INSTANCE}
