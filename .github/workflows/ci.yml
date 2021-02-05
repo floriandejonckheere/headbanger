@@ -40,6 +40,7 @@ jobs:
           apk add postgresql
           apk add build-base curl-dev git postgresql-dev
           apk add tar
+
       - name: Cache Gems
         uses: actions/cache@v2.1.3
         with:
@@ -47,6 +48,7 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
+
       - name: Install Gems
         run: |
           gem install bundler
