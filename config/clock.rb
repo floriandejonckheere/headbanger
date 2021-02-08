@@ -3,9 +3,11 @@
 require "clockwork"
 require "active_support/time"
 
+require_relative "../lib/headbanger/config"
+
 module Clockwork
   handler { |j| j.constantize.new.perform_later }
 
   every(1.day, "RecommendationJob", at: "01:00")
-  every(Headbanger.config.sync_interval.seconds, "ScrubJob")
+  every(::Headbanger.config.sync_interval.seconds, "ScrubJob")
 end
