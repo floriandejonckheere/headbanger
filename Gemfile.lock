@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/floriandejonckheere/metal_archives.git
-  revision: aba658cb4c0d3d8093e1bf1d3e0da7e7f5ab197f
+  revision: 32966ab99d83732fe6868470c8c65c55e7f5b98b
   specs:
     metal_archives (3.0.1)
       countries
