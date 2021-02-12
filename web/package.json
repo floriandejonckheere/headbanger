@@ -20,7 +20,7 @@
     "debounce": "^1.2.0",
     "uikit": "^3.5.8",
     "vue": "^2.6.11",
-    "vue-apollo": "^3.0.5",
+    "vue-apollo": "^3.0.7",
     "vue-cli-plugin-apollo": "^0.22.2",
     "vue-infinite-loading": "^2.4.5",
     "vue-ionicons": "^3.0.5",
