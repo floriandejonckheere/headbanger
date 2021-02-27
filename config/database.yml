@@ -92,3 +92,4 @@ musicbrainz:
   username: <%= ENV.fetch("MB_USER", "postgres") %>
   password: <%= ENV.fetch("MB_PASSWORD", "postgres") %>
   database: <%= ENV.fetch("MB_DATABASE", "musicbrainz") %>
+  schema_search_path: musicbrainz
