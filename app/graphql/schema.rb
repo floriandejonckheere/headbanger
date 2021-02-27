@@ -1,16 +1,6 @@
 # frozen_string_literal: true
 
 class Schema < GraphQL::Schema
-  # Opt in to the new runtime (default in future graphql-ruby versions)
-  use GraphQL::Execution::Interpreter
-  use GraphQL::Analysis::AST
-
-  # Also use the new error handling
-  use GraphQL::Execution::Errors
-
-  # Add built-in connections for pagination
-  use GraphQL::Pagination::Connections
-
   # Add token authentication schema
   use GraphqlDevise::SchemaPlugin.new(
     query: Types::QueryType,
