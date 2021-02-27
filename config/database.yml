@@ -87,9 +87,7 @@ production:
 
 # MusicBrainz database
 musicbrainz:
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  <<: *default
   host: <%= ENV.fetch("MB_HOST", "postgres") %>
   username: <%= ENV.fetch("MB_USER", "postgres") %>
   password: <%= ENV.fetch("MB_PASSWORD", "postgres") %>
