@@ -14,6 +14,15 @@ GIT
       rspec-rails (>= 3.0.0)
 
 GIT
+  remote: https://github.com/floriandejonckheere/active_brainz.git
+  revision: d6f13d77891ebf1d3d44e5b6c401fa4132e55ce4
+  specs:
+    active_brainz (0.1.0)
+      activerecord
+      pg
+      zeitwerk
+
+GIT
   remote: https://github.com/floriandejonckheere/metal_archives.git
   revision: e20a9f5151bb682137176d3fd94c5bee08d78af7
   specs:
@@ -321,6 +330,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_brainz!
   annotate
   bootsnap (>= 1.4.2)
   byebug
@@ -360,4 +370,4 @@ RUBY VERSION
    ruby 3.0.0p0
 
 BUNDLED WITH
-   2.2.7
+   2.2.8

@@ -32,6 +32,7 @@ gem "devise_token_auth", github: "lynndylanhurley/devise_token_auth"
 gem "pundit"
 
 # Data sources
+gem "active_brainz", github: "floriandejonckheere/active_brainz"
 gem "metal_archives", github: "floriandejonckheere/metal_archives"
 
 # Error reporting
