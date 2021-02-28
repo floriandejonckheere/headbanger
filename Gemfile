@@ -48,6 +48,9 @@ gem "pg_search"
 # Job scheduling
 gem "clockwork", github: "Rykian/clockwork"
 
+# Dependency injection
+gem "dinja", "~> 1.1"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug"
