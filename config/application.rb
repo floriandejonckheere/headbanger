@@ -23,8 +23,12 @@ require "dinja/railtie"
 Bundler.require(*Rails.groups)
 
 module Headbanger
+  def self.container
+    Rails.application.config.container
+  end
+
   def self.config
-    Config.instance
+    container.resolve("config")
   end
 
   class Application < Rails::Application
