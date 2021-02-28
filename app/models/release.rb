@@ -41,6 +41,7 @@ end
 #  musicbrainz_key    :string
 #  name               :string           not null
 #  released_at        :date
+#  synced_at          :datetime         not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_01_192757) do
+ActiveRecord::Schema.define(version: 2021_02_28_105353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_192757) do
     t.string "musicbrainz_key"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "synced_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["metal_archives_key"], name: "index_groups_on_metal_archives_key", unique: true
     t.index ["musicbrainz_key"], name: "index_groups_on_musicbrainz_key", unique: true
   end
@@ -144,6 +145,7 @@ ActiveRecord::Schema.define(version: 2020_10_01_192757) do
     t.string "musicbrainz_key"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "synced_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["metal_archives_key"], name: "index_releases_on_metal_archives_key", unique: true
     t.index ["musicbrainz_key"], name: "index_releases_on_musicbrainz_key", unique: true
   end

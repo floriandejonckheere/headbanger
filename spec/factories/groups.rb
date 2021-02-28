@@ -8,5 +8,6 @@ FactoryBot.define do
     formed_at { FFaker::Time.between(50.years.ago, DateTime.current) }
     status { Group::STATUSES.sample }
     country { ISO3166::Country.codes.sample }
+    synced_at { FFaker::Time.datetime }
   end
 end
