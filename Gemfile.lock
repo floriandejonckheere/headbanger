@@ -128,6 +128,8 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
+    dinja (1.0.0)
+      zeitwerk
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.10.0)
@@ -338,6 +340,7 @@ DEPENDENCIES
   countries
   devise
   devise_token_auth!
+  dinja (~> 1.0)
   factory_bot
   factory_bot_rails
   ffaker
