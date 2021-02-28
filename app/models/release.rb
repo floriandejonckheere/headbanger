@@ -3,6 +3,7 @@
 class Release < ApplicationRecord
   include PgSearch::Model
   include Identifiable
+  include Syncable
 
   multisearchable multisearchable against: %w(name)
 

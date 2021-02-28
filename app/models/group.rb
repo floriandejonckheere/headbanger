@@ -3,6 +3,7 @@
 class Group < ApplicationRecord
   include PgSearch::Model
   include Identifiable
+  include Syncable
 
   STATUSES = %w(active split_up on_hold changed_name disputed).freeze
 
