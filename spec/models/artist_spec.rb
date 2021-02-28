@@ -3,6 +3,7 @@
 RSpec.describe Artist do
   subject(:artist) { build(:artist) }
 
+  it_behaves_like "it is identifiable"
   it_behaves_like "it is syncable"
 
   it { is_expected.to have_many(:artist_groups).dependent :destroy }

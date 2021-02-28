@@ -3,6 +3,7 @@
 RSpec.describe Release do
   subject(:release) { build(:release) }
 
+  it_behaves_like "it is identifiable"
   it_behaves_like "it is syncable"
 
   it { is_expected.to have_many(:artist_releases).dependent :destroy }
