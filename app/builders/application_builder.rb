@@ -21,12 +21,12 @@ class ApplicationBuilder
 
   protected
 
-  def attributes; end
+  def attributes
+    raise NotImplementedError
+  end
 
-  def associations; end
-
-  def sanitize(string)
-    ActionView::Base.full_sanitizer.sanitize string
+  def associations
+    raise NotImplementedError
   end
 
   def model_class

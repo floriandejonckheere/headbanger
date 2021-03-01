@@ -4,7 +4,7 @@ class GroupBuilder < ApplicationBuilder
   def attributes
     model.name = metal_archives.name
     model.alt_names = metal_archives.aliases
-    model.description = sanitize(metal_archives.comment)
+    model.description = metal_archives.comment.sanitize
     model.formed_at = metal_archives.date_formed.date
     model.status = metal_archives.status
     model.country = metal_archives.country.alpha2
