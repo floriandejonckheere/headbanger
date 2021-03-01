@@ -3,7 +3,9 @@
 class Scrub
   def call
     ActiveRecord::Base.transaction do
-      scrubables.each(&:sync!)
+      scrubables
+        .map { |model| Headbanger.container.resolve("sync", model) }
+        .each(&:call)
     end
   end
 

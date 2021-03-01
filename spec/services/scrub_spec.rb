@@ -3,16 +3,20 @@
 RSpec.describe Scrub do
   subject(:scrub) { described_class.new }
 
+  let(:sync_service) { instance_double("sync_service") }
+
+  before { allow(sync_service).to receive(:call).and_return true }
+
   it "syncs objects" do
     artist = create(:artist, :expired)
 
-    # rubocop:disable RSpec/AnyInstance, RSpec/StubbedMock
-    expect_any_instance_of(artist.class)
-      .to receive(:sync!)
-      .and_return true
-    # rubocop:enable RSpec/AnyInstance, RSpec/StubbedMock
+    dinja_mock!("sync", artist) { sync_service }
+
+    allow(sync_service).to receive(:call).and_return true
 
     scrub.call
+
+    expect(sync_service).to have_received(:call)
   end
 
   it "syncs maximum N objects" do
