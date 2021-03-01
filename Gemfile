@@ -51,6 +51,9 @@ gem "clockwork", github: "Rykian/clockwork"
 # Dependency injection
 gem "dinja", "~> 1.1"
 
+# Extract, transform, load
+gem "kiba"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug"
