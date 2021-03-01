@@ -20,7 +20,7 @@ RSpec.describe Scrub do
   end
 
   it "syncs maximum N objects" do
-    create_list(:artist, (Headbanger.config.sync_limit + 1), :expired, synced_at: (Headbanger.config.data_expires_in + 1.day).ago)
+    create_list(:artist, (Headbanger.config.sync_limit + 1), :expired)
 
     expect(scrub.scrubables.count).to eq Headbanger.config.sync_limit
   end

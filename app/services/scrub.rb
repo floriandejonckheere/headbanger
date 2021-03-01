@@ -10,9 +10,9 @@ class Scrub
   end
 
   def scrubables
-    @scrubables ||= Artist
+    Artist
+      .where(synced_at: ..Headbanger.config.data_expires_in.ago)
       .order(synced_at: :asc)
-      .where("synced_at < ?", Headbanger.config.data_expires_in.ago)
       .limit(Headbanger.config.sync_limit)
   end
 end
