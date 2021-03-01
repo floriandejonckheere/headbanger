@@ -18,7 +18,7 @@ RSpec.describe User do
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_presence_of :country }
 
-  it { is_expected.to validate_inclusion_of(:country).in_array ISO3166::Country.codes }
+  it { is_expected.to validate_inclusion_of(:country).in_array ISO3166::Country.codes.sample(10) }
 
   it { is_expected.to validate_presence_of :role }
   it { is_expected.to validate_inclusion_of(:role).in_array described_class::ROLES }

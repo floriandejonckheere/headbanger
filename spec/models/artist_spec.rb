@@ -17,7 +17,7 @@ RSpec.describe Artist do
 
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_presence_of(:alt_names).allow_nil }
-  it { is_expected.to validate_inclusion_of(:country).in_array ISO3166::Country.codes }
+  it { is_expected.to validate_inclusion_of(:country).in_array ISO3166::Country.codes.sample(10) }
   it { is_expected.to validate_presence_of :gender }
   it { is_expected.to validate_inclusion_of(:gender).in_array described_class::GENDERS }
 end
