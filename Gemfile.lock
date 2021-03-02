@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: https://github.com/floriandejonckheere/active_brainz.git
-  revision: d6f13d77891ebf1d3d44e5b6c401fa4132e55ce4
+  revision: e517c87c948b5bad8670ff24bf1b09c5b59a4008
   specs:
     active_brainz (0.1.0)
       activerecord
