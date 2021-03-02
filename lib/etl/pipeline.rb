@@ -2,10 +2,16 @@
 
 module ETL
   class Pipeline
-    class_attribute :steps, :setup
+    class_attribute :steps
 
     def initialize
-      setup.call
+      self.steps = []
+
+      setup
+    end
+
+    def setup
+      raise NotImplementedError
     end
 
     def run(enumerable)
@@ -30,11 +36,6 @@ module ETL
 
         break
       end
-    end
-
-    def self.setup(&block)
-      self.steps = []
-      self.setup = block
     end
   end
 end

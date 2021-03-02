@@ -2,7 +2,7 @@
 
 module Pipelines
   class Artist < ETL::Pipeline
-    setup do
+    def setup
       # Enhance object with class information
       steps << Steps::Wrap.new("artist")
 
