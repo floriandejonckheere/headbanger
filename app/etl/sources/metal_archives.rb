@@ -14,7 +14,7 @@ module Sources
       when "release"
         data.merge(metal_archives: ::MetalArchives::Release.new(id: data.fetch(:metal_archives_key)))
       else
-        raise "unknown type: #{data.fetch(:type)}"
+        raise ETL::Error, "unknown type: #{data.fetch(:type)}"
       end
     end
   end

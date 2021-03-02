@@ -12,7 +12,7 @@ module Sources
       when "release"
         data.merge(musicbrainz: MetalArchives::Release.new(data.fetch(:musicbrainz_key)))
       else
-        raise "unknown type: #{data.fetch(:type)}"
+        raise ETL::Error, "unknown type: #{data.fetch(:type)}"
       end
     end
   end
