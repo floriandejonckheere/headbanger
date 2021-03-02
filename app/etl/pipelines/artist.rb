@@ -3,8 +3,8 @@
 module Pipelines
   class Artist < ETL::Pipeline
     step do
-      # Enhance object with class information
-      Steps::Wrap.new("artist")
+      # Enhance object with type information
+      Steps::Type.new("artist")
     end
 
     step do

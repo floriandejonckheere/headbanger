@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Steps
-  class Wrap < ETL::Step
+  class Type < ETL::Step
     attr_reader :type
 
     def initialize(type)
