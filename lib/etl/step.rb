@@ -3,7 +3,7 @@
 module ETL
   class Step
     def run(data)
-      data
+      raise NotImplementedError
     end
   end
 end

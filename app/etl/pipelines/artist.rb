@@ -2,22 +2,30 @@
 
 module Pipelines
   class Artist < ETL::Pipeline
-    def setup
+    step do
       # Enhance object with class information
-      steps << Steps::Wrap.new("artist")
+      Steps::Wrap.new("artist")
+    end
 
+    step do
       # Add Metal Archives source
-      steps << Sources::MetalArchives.new
+      Sources::MetalArchives.new
+    end
 
+    step do
       # TODO: infer musicbrainz_key from metal_archives entity
       # Add MusicBrainz source
-      steps << Sources::MusicBrainz.new
+      Sources::MusicBrainz.new
+    end
 
+    step do
       # Add steps
-      steps << Steps::Artists::Attributes.new
+      Steps::Artists::Attributes.new
+    end
 
+    step do
       # Add sinks
-      steps << Sinks::Database.new
+      Sinks::Database.new
     end
   end
 end
