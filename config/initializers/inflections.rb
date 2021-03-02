@@ -21,4 +21,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym "UUID"
   inflect.acronym "FFaker"
   inflect.acronym "MusicBrainz"
+  inflect.acronym "ETL"
 end
