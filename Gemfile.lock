@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
-  revision: fb710c801244ca6a058e649dccee995e6fb20cc1
+  revision: f6ce3ac22d6b61f0b34054a82553eeb59b1d8b9a
   specs:
     devise_token_auth (1.1.4)
       bcrypt (~> 3.0)
@@ -188,7 +188,7 @@ GEM
     minitest (5.14.4)
     msgpack (1.4.2)
     multipart-post (2.1.1)
-    nio4r (2.5.5)
+    nio4r (2.5.7)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
