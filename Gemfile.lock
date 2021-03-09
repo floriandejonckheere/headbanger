@@ -154,7 +154,7 @@ GEM
       railties
       sprockets-rails
     graphql (1.12.5)
-    graphql_devise (0.14.1)
+    graphql_devise (0.14.2)
       devise_token_auth (>= 0.1.43, < 2.0)
       graphql (>= 1.8, < 1.13.0)
       rails (>= 4.2, < 6.2)
@@ -188,7 +188,7 @@ GEM
     minitest (5.14.4)
     msgpack (1.4.2)
     multipart-post (2.1.1)
-    nio4r (2.5.5)
+    nio4r (2.5.7)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
