@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
-  revision: f6ce3ac22d6b61f0b34054a82553eeb59b1d8b9a
+  revision: 7ecdf0e8c2bbe80b93a3132794491b85156b5ec9
   specs:
     devise_token_auth (1.1.4)
       bcrypt (~> 3.0)
