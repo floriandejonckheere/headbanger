@@ -3,14 +3,10 @@
 RSpec.describe Scrub do
   subject(:scrub) { described_class.new }
 
-  let(:sync_service) { instance_double("sync_service") }
-
-  before { allow(sync_service).to receive(:call).and_return true }
-
   it "syncs objects" do
     artist = create(:artist, :expired)
 
-    dinja_mock!("sync", artist) { sync_service }
+    sync_service = dinja_mock!("sync", artist)
 
     allow(sync_service).to receive(:call).and_return true
 
