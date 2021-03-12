@@ -5,7 +5,7 @@ class Artist < ApplicationRecord
   include Identifiable
   include Syncable
 
-  GENDERS = %w(male female other).freeze
+  GENDERS = %w(male female other unknown).freeze
 
   multisearchable against: %w(name alt_names description)
 
