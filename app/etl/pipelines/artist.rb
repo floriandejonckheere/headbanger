@@ -9,13 +9,13 @@ module Pipelines
 
     step do
       # Add Metal Archives source
-      Sources::MetalArchives.new
+      Sources::Artists::MetalArchives.new
     end
 
     step do
       # TODO: infer musicbrainz_key from metal_archives entity
       # Add MusicBrainz source
-      Sources::MusicBrainz.new
+      Sources::Artists::MusicBrainz.new
     end
 
     step do
