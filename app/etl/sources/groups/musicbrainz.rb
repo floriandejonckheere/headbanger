@@ -6,7 +6,7 @@ module Sources
       def run(data)
         return data unless data[:musicbrainz_key]
 
-        data.merge(musicbrainz: ActiveBrainz::Artist.new(data.fetch(:musicbrainz_key)))
+        data.merge(musicbrainz: ActiveBrainz::Artist.find_by(gid: data.fetch(:musicbrainz_key)))
       end
     end
   end
