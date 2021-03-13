@@ -5,8 +5,8 @@ class ArtistBuilder < ApplicationBuilder
     model.name = metal_archives.name
     model.alt_names = metal_archives.aliases
     model.description = metal_archives.biography.sanitize
-    model.born_at = metal_archives.date_of_birth&.date
-    model.died_at = metal_archives.date_of_death&.date
+    model.born_on = metal_archives.date_of_birth&.date
+    model.died_on = metal_archives.date_of_death&.date
     model.gender = metal_archives.gender
     model.country = metal_archives.country.alpha2
   end

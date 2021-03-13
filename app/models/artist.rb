@@ -50,10 +50,10 @@ end
 #
 #  id                 :uuid             not null, primary key
 #  alt_names          :jsonb            not null
-#  born_at            :date
+#  born_on            :date
 #  country            :string           not null
 #  description        :string
-#  died_at            :date
+#  died_on            :date
 #  gender             :string
 #  metal_archives_key :string
 #  musicbrainz_key    :string

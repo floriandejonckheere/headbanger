@@ -30,11 +30,11 @@ module Types
           GenderEnum,
           null: true
 
-    field :born_at,
+    field :born_on,
           GraphQL::Types::ISO8601Date,
           null: true
 
-    field :died_at,
+    field :died_on,
           GraphQL::Types::ISO8601Date,
           null: true
 

@@ -14,6 +14,3 @@ end
 
 # == Route Map
 #
-#  Prefix Verb URI Pattern        Controller#Action
-#    root GET  /                  application#index
-# graphql POST /graphql(.:format) graphql#execute

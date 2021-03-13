@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_28_105353) do
+ActiveRecord::Schema.define(version: 2021_03_13_140909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2021_02_28_105353) do
     t.string "country", null: false
     t.string "description"
     t.string "gender"
-    t.date "born_at"
-    t.date "died_at"
+    t.date "born_on"
+    t.date "died_on"
     t.string "metal_archives_key"
     t.string "musicbrainz_key"
     t.datetime "created_at", precision: 6, null: false

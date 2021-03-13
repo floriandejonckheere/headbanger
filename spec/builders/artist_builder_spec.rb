@@ -7,7 +7,7 @@ RSpec.xdescribe ArtistBuilder, type: :builder do
 
   it { is_expected.to have_attributes name: "Alberto Rionda", alt_names: [] }
   it { is_expected.to have_attributes description: a_kind_of(String) }
-  it { is_expected.to have_attributes born_at: a_kind_of(Date), died_at: nil }
+  it { is_expected.to have_attributes born_on: a_kind_of(Date), died_on: nil }
   it { is_expected.to have_attributes gender: "male" }
   it { is_expected.to have_attributes country: "ES" }
 
