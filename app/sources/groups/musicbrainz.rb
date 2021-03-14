@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Artists
+module Groups
   class MusicBrainz
     attr_reader :musicbrainz_key
 
@@ -26,16 +26,12 @@ module Artists
       musicbrainz&.comment&.presence
     end
 
-    def born_on
+    def formed_on
       musicbrainz&.begin_date
     end
 
-    def died_on
-      musicbrainz&.end_date
-    end
-
-    def gender
-      musicbrainz&.artist_gender&.name&.downcase
+    def status
+      nil
     end
 
     private
@@ -45,7 +41,7 @@ module Artists
 
       @musicbrainz ||= ActiveBrainz::Artist
         .includes(:artist_type, artist_area: :area_type)
-        .where(artist_type: { name: "Person" })
+        .where(artist_type: { name: "Group" })
         .find_by!(gid: musicbrainz_key)
     end
   end

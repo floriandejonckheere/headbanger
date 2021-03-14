@@ -11,3 +11,11 @@ end
 register("artists.source") do |**args|
   Artists::Source.new(**args)
 end
+
+register("groups.sync") do |model|
+  Groups::Sync.new(model)
+end
+
+register("groups.source") do |**args|
+  Groups::Source.new(**args)
+end

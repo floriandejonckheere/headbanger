@@ -9,5 +9,12 @@ FactoryBot.define do
     status { Group::STATUSES.sample }
     country { ISO3166::Country.codes.sample }
     synced_at { FFaker::Time.datetime }
+
+    metal_archives_key { FFaker::Guid.guid }
+    musicbrainz_key { FFaker::Guid.guid }
+
+    trait :expired do
+      synced_at { (Headbanger.config.data_expires_in + 1.day).ago }
+    end
   end
 end

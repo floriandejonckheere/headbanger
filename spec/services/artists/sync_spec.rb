@@ -18,12 +18,14 @@ RSpec.describe Artists::Sync do
   end
 
   it "does nothing if model was recently synchronized" do
-    artist = build(:artist, synced_at: 1.second.ago)
+    artist = build(:artist, synced_at: 10.seconds.ago)
     service = described_class.new(artist)
 
-    service.call
+    Timecop.freeze do
+      service.call
 
-    expect(artist).not_to be_persisted
+      expect(artist).not_to be_within(1.second).of Time.zone.now
+    end
   end
 
   it "raises when no key is present" do

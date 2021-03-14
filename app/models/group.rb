@@ -5,7 +5,7 @@ class Group < ApplicationRecord
   include Identifiable
   include Syncable
 
-  STATUSES = %w(active split_up on_hold changed_name disputed).freeze
+  STATUSES = %w(active split_up on_hold unknown changed_name disputed).freeze
 
   multisearchable against: %w(name alt_names description)
 
