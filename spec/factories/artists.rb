@@ -11,6 +11,9 @@ FactoryBot.define do
     country { ISO3166::Country.codes.sample }
     synced_at { Time.zone.now }
 
+    metal_archives_key { FFaker::Guid.guid }
+    musicbrainz_key { FFaker::Guid.guid }
+
     trait :expired do
       synced_at { (Headbanger.config.data_expires_in + 1.day).ago }
     end

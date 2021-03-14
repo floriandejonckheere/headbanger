@@ -9,9 +9,9 @@ module Artists
     end
 
     def call
-      return if artist.synced_at > Headbanger.config.data_expires_in.ago
+      raise ImportError, "no key available" unless artist.metal_archives_key?
 
-      raise ImportError, "no key available" unless metal_archives_key
+      return if artist.synced_at > Headbanger.config.data_expires_in.ago
 
       # Keys
       artist.musicbrainz_key = source.musicbrainz_key
@@ -28,7 +28,7 @@ module Artists
     private
 
     def source
-      @source ||= Artists::Source.new(metal_archives_key: artist.metal_archives_key, musicbrainz_key: artist.musicbrainz_key)
+      @source ||= Headbanger.container.resolve("artists.source", metal_archives_key: artist.metal_archives_key, musicbrainz_key: artist.musicbrainz_key)
     end
   end
 end
