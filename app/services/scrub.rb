@@ -4,7 +4,7 @@ class Scrub
   def call
     ActiveRecord::Base.transaction do
       scrubables
-        .map { |model| Headbanger.container.resolve("sync", model) }
+        .map { |model| Headbanger.container.resolve("sync_artist", model) }
         .each(&:call)
     end
   end
