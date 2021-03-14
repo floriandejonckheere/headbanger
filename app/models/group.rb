@@ -50,7 +50,7 @@ class Group < ApplicationRecord
   validates :description,
             presence: true
 
-  validates :formed_at,
+  validates :formed_on,
             presence: true
 
   validates :status,
@@ -70,7 +70,7 @@ end
 #  alt_names          :jsonb            not null
 #  country            :string           not null
 #  description        :string
-#  formed_at          :date
+#  formed_on          :date
 #  metal_archives_key :string
 #  musicbrainz_key    :string
 #  name               :string           not null

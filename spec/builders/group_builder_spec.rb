@@ -7,7 +7,7 @@ RSpec.xdescribe GroupBuilder, type: :builder do
 
   it { is_expected.to have_attributes name: "Alquimia", alt_names: [] }
   it { is_expected.to have_attributes description: a_kind_of(String) }
-  it { is_expected.to have_attributes formed_at: a_kind_of(Date) }
+  it { is_expected.to have_attributes formed_on: a_kind_of(Date) }
   it { is_expected.to have_attributes status: "active" }
   it { is_expected.to have_attributes country: "ES" }
 

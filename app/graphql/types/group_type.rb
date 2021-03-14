@@ -30,7 +30,7 @@ module Types
           StatusEnum,
           null: true
 
-    field :formed_at,
+    field :formed_on,
           GraphQL::Types::ISO8601Date,
           null: true
 
