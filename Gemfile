@@ -49,7 +49,7 @@ gem "pg_search"
 gem "clockwork", github: "Rykian/clockwork"
 
 # Dependency injection
-gem "dinja", "~> 1.2"
+gem "dinja", "~> 2.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
