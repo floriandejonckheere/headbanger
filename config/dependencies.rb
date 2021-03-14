@@ -4,6 +4,6 @@ register("config") do
   Headbanger::Config.new
 end
 
-register("sync_artist") do |model|
+register("artists.sync") do |model|
   Artists::Sync.new(model)
 end
