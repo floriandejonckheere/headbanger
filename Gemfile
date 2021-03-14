@@ -87,6 +87,9 @@ group :development, :test do
   gem "factory_bot"
   gem "factory_bot_rails"
   gem "ffaker"
+
+  # Mock HTTP requests
+  gem "webmock"
 end
 
 group :development do
