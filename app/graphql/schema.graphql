@@ -3,10 +3,10 @@ An artist
 """
 type Artist implements MusicItem {
   altNames: [String!]!
-  bornAt: ISO8601Date
+  bornOn: ISO8601Date
   country: String!
   description: String
-  diedAt: ISO8601Date
+  diedOn: ISO8601Date
   gender: GenderEnum
   groups: [Group!]!
   id: ID!
@@ -129,7 +129,7 @@ type Group implements MusicItem {
   altNames: [String!]!
   country: String!
   description: String
-  formedAt: ISO8601Date
+  formedOn: ISO8601Date
   genres: [Genre!]!
   id: ID!
   name: String!
