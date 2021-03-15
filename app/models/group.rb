@@ -47,12 +47,6 @@ class Group < ApplicationRecord
             presence: true,
             allow_blank: true
 
-  validates :description,
-            presence: true
-
-  validates :formed_on,
-            presence: true
-
   validates :status,
             presence: true,
             inclusion: { in: STATUSES }
