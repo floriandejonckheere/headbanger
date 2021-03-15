@@ -20,4 +20,8 @@ RSpec.describe Artist do
   it { is_expected.to validate_inclusion_of(:country).in_array ISO3166::Country.codes.sample(10) }
   it { is_expected.to validate_presence_of :gender }
   it { is_expected.to validate_inclusion_of(:gender).in_array described_class::GENDERS }
+
+  it "has a default gender" do
+    expect(described_class.new.gender).to eq "unknown"
+  end
 end

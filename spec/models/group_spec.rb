@@ -25,4 +25,8 @@ RSpec.describe Group do
   it { is_expected.to validate_presence_of(:alt_names).allow_nil }
   it { is_expected.to validate_presence_of :status }
   it { is_expected.to validate_inclusion_of(:status).in_array described_class::STATUSES }
+
+  it "has a default status" do
+    expect(described_class.new.status).to eq "unknown"
+  end
 end

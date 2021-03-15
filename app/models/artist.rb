@@ -9,6 +9,8 @@ class Artist < ApplicationRecord
 
   multisearchable against: %w(name alt_names description)
 
+  after_initialize :set_defaults
+
   has_many :artist_groups,
            dependent: :destroy
 
@@ -42,6 +44,10 @@ class Artist < ApplicationRecord
   validates :gender,
             presence: true,
             inclusion: { in: GENDERS }
+
+  def set_defaults
+    self.gender ||= "unknown"
+  end
 end
 
 # == Schema Information

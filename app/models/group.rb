@@ -9,6 +9,8 @@ class Group < ApplicationRecord
 
   multisearchable against: %w(name alt_names description)
 
+  after_initialize :set_defaults
+
   has_many :artist_groups,
            dependent: :destroy
 
@@ -54,6 +56,10 @@ class Group < ApplicationRecord
   validates :country,
             inclusion: { in: ISO3166::Country.codes },
             allow_nil: true
+
+  def set_defaults
+    self.status ||= "unknown"
+  end
 end
 
 # == Schema Information
