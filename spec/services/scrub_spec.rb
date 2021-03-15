@@ -6,7 +6,7 @@ RSpec.describe Scrub do
   it "syncs objects" do
     artist = create(:artist, :expired)
 
-    sync_service = dinja_mock!("sync", artist)
+    sync_service = dinja_mock!("artists.sync", artist)
 
     allow(sync_service).to receive(:call).and_return true
 
