@@ -28,6 +28,11 @@ module Groups
 
     delegate :status, to: :metal_archives
 
+    def artists
+      # TODO: artist association
+      []
+    end
+
     private
 
     def metal_archives

@@ -44,6 +44,12 @@ module Groups
       }
     end
 
+    # rubocop:disable Rails/Delegate
+    def artists
+      metal_archives.artists
+    end
+    # rubocop:enable Rails/Delegate
+
     def musicbrainz_key
       @musicbrainz_key ||= find_musicbrainz_key
     end

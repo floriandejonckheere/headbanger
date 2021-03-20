@@ -34,6 +34,11 @@ module Groups
       nil
     end
 
+    def artists
+      # TODO: artist association
+      []
+    end
+
     private
 
     def musicbrainz
