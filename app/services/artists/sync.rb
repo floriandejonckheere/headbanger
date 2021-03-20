@@ -11,7 +11,7 @@ module Artists
     def call
       raise ImportError, "no key available" unless artist.metal_archives_key?
 
-      return if artist.synced_at > Headbanger.config.data_expires_in.ago
+      return if artist.fresh?
 
       # Keys
       artist.musicbrainz_key = source.musicbrainz_key
