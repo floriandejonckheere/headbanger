@@ -59,7 +59,8 @@ group :development, :test do
   # gem "debase"
 
   # Database annotations
-  gem "annotate"
+  # FIXME: revert to upstream gem when https://github.com/ctran/annotate_models/pull/843 is merged
+  gem "annotate", github: "Vasfed/annotate_models", branch: "rails6_warning"
 
   # GraphQL API UI
   gem "graphiql-rails"

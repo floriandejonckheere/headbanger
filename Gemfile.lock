@@ -7,6 +7,15 @@ GIT
       tzinfo
 
 GIT
+  remote: https://github.com/Vasfed/annotate_models.git
+  revision: a2cca56e2a4d56014716157234cbdf7f1b182aac
+  branch: rails6_warning
+  specs:
+    annotate (3.1.1)
+      activerecord (>= 5.0, < 7.0)
+      rake (>= 10.4, < 14.0)
+
+GIT
   remote: https://github.com/aurangzaib-danial/pundit-matchers.git
   revision: 777eb340c7fac4486bc0c87d052a368a2d02bf25
   specs:
@@ -105,9 +114,6 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    annotate (3.1.1)
-      activerecord (>= 3.2, < 7.0)
-      rake (>= 10.4, < 14.0)
     ast (2.4.2)
     bcrypt (3.1.16)
     bootsnap (1.7.2)
@@ -340,7 +346,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_brainz!
-  annotate
+  annotate!
   bootsnap (>= 1.4.2)
   byebug
   clockwork!
