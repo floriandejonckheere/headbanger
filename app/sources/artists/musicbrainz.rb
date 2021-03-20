@@ -38,6 +38,11 @@ module Artists
       musicbrainz&.artist_gender&.name&.downcase
     end
 
+    def groups
+      # TODO: group association
+      []
+    end
+
     private
 
     def musicbrainz

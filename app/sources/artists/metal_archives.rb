@@ -32,6 +32,14 @@ module Artists
 
     delegate :gender, to: :metal_archives
 
+    def groups
+      metal_archives
+        .bands
+        .pluck(:id)
+        .compact
+        .map { |key| Group.find_or_initialize_by(metal_archives_key: key) }
+    end
+
     private
 
     def metal_archives

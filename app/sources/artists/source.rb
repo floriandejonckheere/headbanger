@@ -14,7 +14,7 @@ module Artists
     end
 
     def alt_names
-      (metal_archives.alt_names + musicbrainz.alt_names)&.uniq
+      (metal_archives.alt_names + musicbrainz.alt_names).uniq
     end
 
     def country
@@ -48,6 +48,12 @@ module Artists
         gender: gender,
       }
     end
+
+    # rubocop:disable Rails/Delegate
+    def groups
+      metal_archives.groups
+    end
+    # rubocop:enable Rails/Delegate
 
     def musicbrainz_key
       @musicbrainz_key ||= find_musicbrainz_key
