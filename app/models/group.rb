@@ -75,7 +75,7 @@ end
 #  musicbrainz_key    :string
 #  name               :string           not null
 #  status             :string           not null
-#  synced_at          :datetime         not null
+#  synced_at          :datetime
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples "it is syncable" do |_model|
-  it { is_expected.to validate_presence_of :synced_at }
-
   describe "#synced?/#expired?" do
     context "when it has not been synced" do
       before { subject.synced_at = nil }
