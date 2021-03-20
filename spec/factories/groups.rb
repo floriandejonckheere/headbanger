@@ -8,7 +8,7 @@ FactoryBot.define do
     formed_on { FFaker::Time.between(50.years.ago, DateTime.current) }
     status { Group::STATUSES.sample }
     country { ISO3166::Country.codes.sample }
-    synced_at { FFaker::Time.datetime }
+    synced_at { 10.seconds.ago }
 
     metal_archives_key { FFaker::Guid.guid }
     musicbrainz_key { FFaker::Guid.guid }

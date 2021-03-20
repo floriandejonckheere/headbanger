@@ -2,30 +2,44 @@
 
 module Groups
   class Sync
-    attr_reader :group
+    attr_reader :group, :full
 
-    def initialize(group)
+    def initialize(group, full: true)
       @group = group
+      @full = full
     end
 
     def call
       raise ImportError, "no key available" unless group.metal_archives_key?
 
-      return if group.synced?
+      return group if group.synced?
 
-      # Keys
-      group.musicbrainz_key = source.musicbrainz_key
-
-      # Attributes
+      # Assign attributes
       group.assign_attributes(source.attributes)
 
-      # Persist model
-      group.synced_at = Time.zone.now
+      group.musicbrainz_key = source.musicbrainz_key
 
+      # Persist model
       group.save!
+
+      return group unless full
+
+      # Assign associations
+      group.artists.replace(artists)
+
+      # Set synced_at
+      group.update! synced_at: Time.zone.now
+
+      group
     end
 
     private
+
+    def artists
+      source
+        .artists
+        .map { |artist| Artists::Sync.new(artist, full: false).call }
+    end
 
     def source
       @source ||= Headbanger.container.resolve("groups.source", metal_archives_key: group.metal_archives_key, musicbrainz_key: group.musicbrainz_key)
