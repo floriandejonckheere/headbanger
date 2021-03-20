@@ -11,7 +11,7 @@ module Artists
     def call
       raise ImportError, "no key available" unless artist.metal_archives_key?
 
-      return if artist.fresh?
+      return if artist.synced?
 
       # Keys
       artist.musicbrainz_key = source.musicbrainz_key

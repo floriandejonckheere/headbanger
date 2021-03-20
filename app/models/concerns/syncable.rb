@@ -8,11 +8,11 @@ module Syncable
               presence: true
   end
 
-  def fresh?
+  def synced?
     synced_at&.> Headbanger.config.data_expires_in.ago
   end
 
-  def stale?
-    !fresh?
+  def expired?
+    !synced?
   end
 end

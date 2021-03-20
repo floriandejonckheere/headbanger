@@ -11,7 +11,7 @@ module Groups
     def call
       raise ImportError, "no key available" unless group.metal_archives_key?
 
-      return if group.fresh?
+      return if group.synced?
 
       # Keys
       group.musicbrainz_key = source.musicbrainz_key
