@@ -9,7 +9,7 @@ FactoryBot.define do
     died_on { [FFaker::Time.between(born_on, DateTime.current), nil, nil].sample }
     gender { %w(male female).sample }
     country { ISO3166::Country.codes.sample }
-    synced_at { Time.zone.now }
+    synced_at { 10.seconds.ago }
 
     metal_archives_key { FFaker::Guid.guid }
     musicbrainz_key { FFaker::Guid.guid }
