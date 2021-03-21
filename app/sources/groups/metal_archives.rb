@@ -29,8 +29,11 @@ module Groups
     delegate :status, to: :metal_archives
 
     def artists
-      # TODO: artist association
-      []
+      metal_archives
+        .members
+        .pluck(:id)
+        .compact
+        .map { |key| Artist.find_or_initialize_by(metal_archives_key: key) }
     end
 
     private
