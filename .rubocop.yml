@@ -48,6 +48,9 @@ Metrics/MethodLength:
 Rails:
   Enabled: true
 
+Rails/Delegate:
+  Enabled: false
+
 Rails/Output:
   Exclude:
     - db/seeds/**/*

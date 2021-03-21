@@ -18,7 +18,7 @@ module Artists
     end
 
     def country
-      metal_archives.country || musicbrainz.country
+      (metal_archives.country || musicbrainz.country)&.alpha2
     end
 
     def description
@@ -49,11 +49,9 @@ module Artists
       }
     end
 
-    # rubocop:disable Rails/Delegate
     def groups
       metal_archives.groups
     end
-    # rubocop:enable Rails/Delegate
 
     def musicbrainz_key
       @musicbrainz_key ||= find_musicbrainz_key
@@ -84,7 +82,7 @@ module Artists
 
       # Filter by country
       artists = artists
-        .where(artist_area: { name: metal_archives.country, area_type: { name: "Country" } })
+        .where(artist_area: { name: metal_archives.country.name, area_type: { name: "Country" } })
 
       artists.first.gid if artists.one?
     end

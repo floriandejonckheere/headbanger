@@ -19,7 +19,6 @@ module Artists
 
       ISO3166::Country
         .find_country_by_name(musicbrainz.artist_area.name)
-        .alpha2
     end
 
     def description

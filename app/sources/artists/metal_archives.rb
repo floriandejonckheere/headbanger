@@ -15,7 +15,7 @@ module Artists
     end
 
     def country
-      metal_archives.country&.alpha2
+      metal_archives.country
     end
 
     def description
