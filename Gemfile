@@ -33,7 +33,7 @@ gem "pundit"
 
 # Data sources
 gem "active_brainz", github: "floriandejonckheere/active_brainz"
-gem "metal_archives", github: "floriandejonckheere/metal_archives"
+gem "metal_archives", "~> 3.1"
 
 # Error reporting
 gem "sentry-raven"

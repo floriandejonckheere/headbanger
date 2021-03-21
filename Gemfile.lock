@@ -32,16 +32,6 @@ GIT
       zeitwerk
 
 GIT
-  remote: https://github.com/floriandejonckheere/metal_archives.git
-  revision: 78749e944b8559538ee54b7c8abaee77743ae672
-  specs:
-    metal_archives (3.0.1)
-      countries
-      http
-      nokogiri
-      zeitwerk
-
-GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
   revision: a9904e564b5d2fdcb0e547ffe5fb57ae95aaa16f
   specs:
@@ -190,6 +180,11 @@ GEM
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
+    metal_archives (3.1.0)
+      countries
+      http
+      nokogiri
+      zeitwerk
     method_source (1.0.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
@@ -361,7 +356,7 @@ DEPENDENCIES
   graphql (~> 1.11)
   graphql_devise (~> 0.14)
   listen
-  metal_archives!
+  metal_archives (~> 3.1)
   pg (>= 0.18, < 2.0)
   pg_search
   puma (~> 5.1)
