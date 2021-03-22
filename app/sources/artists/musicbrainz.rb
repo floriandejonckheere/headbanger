@@ -15,10 +15,10 @@ module Artists
     end
 
     def country
-      return unless musicbrainz&.artist_area
-
-      ISO3166::Country
-        .find_country_by_name(musicbrainz.artist_area.name)
+      musicbrainz
+        &.artist_area
+        &.area_iso_3166_1
+        &.code
     end
 
     def description
@@ -48,7 +48,7 @@ module Artists
       return unless musicbrainz_key
 
       @musicbrainz ||= ActiveBrainz::Artist
-        .includes(:artist_type, artist_area: :area_type)
+        .includes(:artist_type, artist_area: [:area_type, :area_iso_3166_1])
         .where(artist_type: { name: "Person" })
         .find_by!(gid: musicbrainz_key)
     end

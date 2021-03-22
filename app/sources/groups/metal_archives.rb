@@ -15,7 +15,7 @@ module Groups
     end
 
     def country
-      metal_archives.country
+      metal_archives.country&.alpha2
     end
 
     def description

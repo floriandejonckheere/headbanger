@@ -18,7 +18,7 @@ module Artists
     end
 
     def country
-      (metal_archives.country || musicbrainz.country)&.alpha2
+      metal_archives.country || musicbrainz.country
     end
 
     def description
@@ -69,7 +69,7 @@ module Artists
 
     def find_musicbrainz_key
       artists = ActiveBrainz::Artist
-        .includes(:artist_type, artist_area: :area_type)
+        .includes(:artist_type, artist_area: [:area_type, :area_iso_3166_1])
         .where(artist_type: { name: "Person" })
 
       # Filter by name
@@ -82,7 +82,7 @@ module Artists
 
       # Filter by country
       artists = artists
-        .where(artist_area: { name: metal_archives.country.name, area_type: { name: "Country" } })
+        .where(artist_area: { area_type: { name: "Country" }, area_iso_3166_1: { code: metal_archives.country } })
 
       artists.first.gid if artists.one?
     end
