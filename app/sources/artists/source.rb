@@ -60,7 +60,7 @@ module Artists
     private
 
     def metal_archives
-      MetalArchives.new(metal_archives_key)
+      @metal_archives ||= MetalArchives.new(metal_archives_key)
     end
 
     def musicbrainz
