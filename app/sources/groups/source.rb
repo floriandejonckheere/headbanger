@@ -64,14 +64,18 @@ module Groups
 
     def find_musicbrainz_key
       groups = ActiveBrainz::Artist
-        .includes(:artist_type, artist_area: [:area_type, :area_iso_3166_1])
+        .includes(:artist_type, :artist_aliases, artist_area: [:area_type, :area_iso_3166_1])
         .where(artist_type: { name: "Group" })
 
       # Filter by name
       groups = groups
         .where(name: metal_archives.name)
 
-      # TODO: filter by aliases
+      return groups.first.gid if groups.one?
+
+      # Filter by aliases
+      groups = groups
+        .where(artist_aliases: { name: metal_archives.alt_names }) if metal_archives.alt_names.any?
 
       return groups.first.gid if groups.one?
 

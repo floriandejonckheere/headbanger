@@ -69,14 +69,18 @@ module Artists
 
     def find_musicbrainz_key
       artists = ActiveBrainz::Artist
-        .includes(:artist_type, artist_area: [:area_type, :area_iso_3166_1])
+        .includes(:artist_type, :artist_aliases, artist_area: [:area_type, :area_iso_3166_1])
         .where(artist_type: { name: "Person" })
 
       # Filter by name
       artists = artists
         .where(name: metal_archives.name)
 
-      # TODO: filter by aliases
+      return artists.first.gid if artists.one?
+
+      # Filter by aliases
+      artists = artists
+        .where(artist_aliases: { name: metal_archives.alt_names }) if metal_archives.alt_names.any?
 
       return artists.first.gid if artists.one?
 

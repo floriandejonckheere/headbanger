@@ -86,6 +86,9 @@ Style/TrailingCommaInHashLiteral:
 Style/Documentation:
   Enabled: false
 
+Style/MultilineIfModifier:
+  Enabled: false
+
 Style/SymbolArray:
   EnforcedStyle: brackets
 

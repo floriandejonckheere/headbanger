@@ -48,7 +48,7 @@ module Artists
       return unless musicbrainz_key
 
       @musicbrainz ||= ActiveBrainz::Artist
-        .includes(:artist_type, artist_area: [:area_type, :area_iso_3166_1])
+        .includes(:artist_type, :artist_aliases, artist_area: [:area_type, :area_iso_3166_1])
         .where(artist_type: { name: "Person" })
         .find_by!(gid: musicbrainz_key)
     end
