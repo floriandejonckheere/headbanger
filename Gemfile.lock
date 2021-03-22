@@ -23,15 +23,6 @@ GIT
       rspec-rails (>= 3.0.0)
 
 GIT
-  remote: https://github.com/floriandejonckheere/active_brainz.git
-  revision: ff8f61f5373a60d215d0efac6a51f6846b572d18
-  specs:
-    active_brainz (0.1.1)
-      activerecord
-      pg
-      zeitwerk
-
-GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
   revision: a9904e564b5d2fdcb0e547ffe5fb57ae95aaa16f
   specs:
@@ -81,6 +72,10 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_brainz (0.2.1)
+      activerecord
+      pg
+      zeitwerk
     activejob (6.1.3)
       activesupport (= 6.1.3)
       globalid (>= 0.3.6)
@@ -340,7 +335,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_brainz!
+  active_brainz (~> 0.2)
   annotate!
   bootsnap (>= 1.4.2)
   byebug
