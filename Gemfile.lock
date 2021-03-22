@@ -33,9 +33,9 @@ GIT
 
 GIT
   remote: https://github.com/floriandejonckheere/metal_archives.git
-  revision: 78749e944b8559538ee54b7c8abaee77743ae672
+  revision: 695fd26bdfa715f1c7a1e945675a685a72b1ca98
   specs:
-    metal_archives (3.0.1)
+    metal_archives (3.1.0)
       countries
       http
       nokogiri
