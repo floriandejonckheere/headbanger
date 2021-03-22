@@ -24,9 +24,9 @@ GIT
 
 GIT
   remote: https://github.com/floriandejonckheere/active_brainz.git
-  revision: ff8f61f5373a60d215d0efac6a51f6846b572d18
+  revision: 9c0d9f52bb32db23299c58352bb90cae7d77d0d2
   specs:
-    active_brainz (0.1.1)
+    active_brainz (0.2.0)
       activerecord
       pg
       zeitwerk
