@@ -15,7 +15,7 @@ module Syncable
   end
 
   def synced?
-    synced_at&.> Headbanger.config.data_expires_in.ago
+    synced_at.present? && synced_at > Headbanger.config.data_expires_in.ago
   end
 
   def expired?
