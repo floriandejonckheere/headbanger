@@ -81,7 +81,7 @@ module Groups
 
       # Filter by country
       groups = groups
-        .where(artist_area: { area_type: { name: "Country" }, area_iso_3166_1: { code: metal_archives.country } })
+        .where(artist_area: { area_type: { name: "Country" }, iso_3166_1: { code: metal_archives.country } })
 
       groups.first.gid if groups.one?
     end

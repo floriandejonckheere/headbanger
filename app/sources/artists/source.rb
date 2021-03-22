@@ -86,7 +86,7 @@ module Artists
 
       # Filter by country
       artists = artists
-        .where(artist_area: { area_type: { name: "Country" }, area_iso_3166_1: { code: metal_archives.country } })
+        .where(artist_area: { area_type: { name: "Country" }, iso_3166_1: { code: metal_archives.country } })
 
       artists.first.gid if artists.one?
     end
