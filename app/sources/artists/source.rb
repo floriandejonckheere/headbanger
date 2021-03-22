@@ -78,15 +78,15 @@ module Artists
 
       return artists.first.gid if artists.one?
 
-      # Filter by aliases
-      artists = artists
-        .where(artist_aliases: { name: metal_archives.alt_names }) if metal_archives.alt_names.any?
-
-      return artists.first.gid if artists.one?
-
       # Filter by country
       artists = artists
         .where(artist_area: { area_type: { name: "Country" }, iso_3166_1: { code: metal_archives.country } })
+
+      return artists.first.gid if artists.one?
+
+      # Filter by aliases
+      artists = artists
+        .where(artist_aliases: { name: metal_archives.alt_names }) if metal_archives.alt_names.any?
 
       artists.first.gid if artists.one?
     end

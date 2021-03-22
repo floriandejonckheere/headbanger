@@ -73,15 +73,15 @@ module Groups
 
       return groups.first.gid if groups.one?
 
-      # Filter by aliases
-      groups = groups
-        .where(artist_aliases: { name: metal_archives.alt_names }) if metal_archives.alt_names.any?
-
-      return groups.first.gid if groups.one?
-
       # Filter by country
       groups = groups
         .where(artist_area: { area_type: { name: "Country" }, iso_3166_1: { code: metal_archives.country } })
+
+      return groups.first.gid if groups.one?
+
+      # Filter by aliases
+      groups = groups
+        .where(artist_aliases: { name: metal_archives.alt_names }) if metal_archives.alt_names.any?
 
       groups.first.gid if groups.one?
     end
