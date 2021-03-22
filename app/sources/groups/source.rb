@@ -55,11 +55,11 @@ module Groups
     private
 
     def metal_archives
-      @metal_archives ||= MetalArchives.new(metal_archives_key)
+      @metal_archives ||= Headbanger.container.resolve("groups.metal_archives", metal_archives_key)
     end
 
     def musicbrainz
-      @musicbrainz ||= MusicBrainz.new(musicbrainz_key)
+      @musicbrainz ||= Headbanger.container.resolve("groups.musicbrainz", musicbrainz_key)
     end
 
     def find_musicbrainz_key
