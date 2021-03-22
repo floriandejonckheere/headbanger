@@ -26,7 +26,9 @@ module Groups
       metal_archives.date_formed
     end
 
-    delegate :status, to: :metal_archives
+    def status
+      metal_archives.status&.to_s
+    end
 
     def artists
       metal_archives

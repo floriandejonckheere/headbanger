@@ -30,7 +30,9 @@ module Artists
       metal_archives.date_of_death
     end
 
-    delegate :gender, to: :metal_archives
+    def gender
+      metal_archives.gender&.to_s
+    end
 
     def groups
       metal_archives
