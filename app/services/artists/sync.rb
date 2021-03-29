@@ -2,17 +2,18 @@
 
 module Artists
   class Sync
-    attr_reader :artist, :full
+    attr_reader :artist, :full, :force
 
-    def initialize(artist, full: true)
+    def initialize(artist, full: true, force: false)
       @artist = artist
       @full = full
+      @force = force
     end
 
     def call
       raise ImportError, "no key available" unless artist.metal_archives_key?
 
-      return artist if artist.synced?
+      return artist if artist.synced? && !force
 
       # Assign attributes
       artist.assign_attributes(source.attributes)

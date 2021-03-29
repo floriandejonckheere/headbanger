@@ -37,13 +37,24 @@ RSpec.describe Groups::Sync do
   end
 
   it "does nothing if model was recently synchronized" do
-    group = build(:group, synced_at: 10.seconds.ago)
+    group = build(:group, updated_at: 10.seconds.ago, synced_at: 10.seconds.ago)
     service = described_class.new(group)
 
     Timecop.freeze do
       service.call
 
-      expect(group).not_to be_within(1.second).of Time.zone.now
+      expect(group.updated_at).not_to be_within(1.second).of Time.zone.now
+    end
+  end
+
+  it "synchronizes model if force is true" do
+    group = build(:group, updated_at: 10.seconds.ago, synced_at: 10.seconds.ago)
+    service = described_class.new(group, force: true)
+
+    Timecop.freeze do
+      service.call
+
+      expect(group.updated_at).to be_within(1.second).of Time.zone.now
     end
   end
 

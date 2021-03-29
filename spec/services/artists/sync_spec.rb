@@ -28,14 +28,25 @@ RSpec.describe Artists::Sync do
     expect { service.call }.to raise_error ImportError
   end
 
-  it "does nothing if artist was recently synchronized" do
-    artist = build(:artist, synced_at: 10.seconds.ago)
+  it "does nothing if model was recently synchronized" do
+    artist = build(:artist, updated_at: 10.seconds.ago, synced_at: 10.seconds.ago)
     service = described_class.new(artist)
 
     Timecop.freeze do
       service.call
 
-      expect(artist).not_to be_within(1.second).of Time.zone.now
+      expect(artist.updated_at).not_to be_within(1.second).of Time.zone.now
+    end
+  end
+
+  it "synchronizes model if force is true" do
+    artist = build(:artist, updated_at: 10.seconds.ago, synced_at: 10.seconds.ago)
+    service = described_class.new(artist, force: true)
+
+    Timecop.freeze do
+      service.call
+
+      expect(artist.updated_at).to be_within(1.second).of Time.zone.now
     end
   end
 

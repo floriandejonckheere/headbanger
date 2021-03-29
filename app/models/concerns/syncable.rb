@@ -14,10 +14,10 @@ module Syncable
     end
   end
 
-  def sync!
+  def sync!(force: false)
     Headbanger
       .container
-      .resolve("#{self.class.name.downcase.pluralize}.sync", self)
+      .resolve("#{self.class.name.downcase.pluralize}.sync", self, force: force)
       .call
   end
 

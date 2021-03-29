@@ -4,8 +4,8 @@ register("config") do
   Headbanger::Config.new
 end
 
-register("artists.sync") do |model|
-  Artists::Sync.new(model)
+register("artists.sync") do |model, **options|
+  Artists::Sync.new(model, **options)
 end
 
 register("artists.source") do |**args|
@@ -20,8 +20,8 @@ register("artists.musicbrainz") do |musicbrainz_key|
   Artists::MusicBrainz.new(musicbrainz_key)
 end
 
-register("groups.sync") do |model|
-  Groups::Sync.new(model)
+register("groups.sync") do |model, **options|
+  Groups::Sync.new(model, **options)
 end
 
 register("groups.source") do |**args|

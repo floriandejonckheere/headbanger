@@ -2,18 +2,19 @@
 
 module Groups
   class Sync
-    attr_reader :group, :full
+    attr_reader :group, :full, :force
 
-    def initialize(group, full: true)
+    def initialize(group, full: true, force: false)
       @group = group
       @full = full
+      @force = force
     end
 
     # rubocop:disable Metrics/AbcSize
     def call
       raise ImportError, "no key available" unless group.metal_archives_key?
 
-      return group if group.synced?
+      return group if group.synced? && !force
 
       # Assign attributes
       group.assign_attributes(source.attributes)
