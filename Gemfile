@@ -36,7 +36,9 @@ gem "active_brainz", "~> 0.2"
 gem "metal_archives", "~> 3.1"
 
 # Error reporting
-gem "sentry-raven"
+gem "sentry-rails"
+gem "sentry-ruby"
+gem "sentry-sidekiq"
 
 # GraphQL API
 gem "graphql", "~> 1.11"

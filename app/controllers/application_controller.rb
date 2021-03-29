@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::API
   include GraphqlDevise::Concerns::SetUserByToken
 
-  before_action :set_raven_context
+  before_action :set_sentry_context
 
   def index
     head :no_content
@@ -11,7 +11,10 @@ class ApplicationController < ActionController::API
 
   private
 
-  def set_raven_context
-    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+  def set_sentry_context
+    Sentry.with_scope do |scope|
+      scope.set_tags(instance: ENV.fetch("VUE_APP_INSTANCE", "development"))
+      scope.set_extras(params: params.to_unsafe_h, url: request.url)
+    end
   end
 end

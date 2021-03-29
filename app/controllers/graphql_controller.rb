@@ -19,7 +19,7 @@ class GraphqlController < ApplicationController
   rescue StandardError => e
     logger.error(e)
     logger.error e.backtrace.join("\n")
-    Raven.capture_exception(e)
+    Sentry.capture_exception(e)
 
     raise e unless Rails.env.development?
 
