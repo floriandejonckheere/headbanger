@@ -15,15 +15,13 @@ class Theme < ApplicationRecord
     Theme.description_for(name)
   end
 
-  class << self
-    def name_for(description)
-      description
-        .parameterize(separator: "_")
-    end
+  def self.name_for(description)
+    description
+      .parameterize(separator: "_")
+  end
 
-    def description_for(name)
-      name&.titleize
-    end
+  def self.description_for(name)
+    name&.titleize
   end
 end
 
