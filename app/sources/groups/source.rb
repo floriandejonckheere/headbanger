@@ -64,7 +64,7 @@ module Groups
 
     def find_musicbrainz_key
       groups = ActiveBrainz::Artist
-        .includes(:artist_type, :artist_aliases, artist_area: [:area_type, :area_iso_3166_1])
+        .includes(:artist_type, :artist_aliases, artist_area: [:area_type, :area_iso_3166_1, :area_iso_3166_2])
         .where(artist_type: { name: "Group" })
 
       # Filter by name
@@ -76,6 +76,12 @@ module Groups
       # Filter by country
       groups = groups
         .where(artist_area: { area_type: { name: "Country" }, iso_3166_1: { code: metal_archives.country } })
+
+      # Or subdivision
+      subdivisions = ISO3166::Country[metal_archives.country].subdivisions.keys.map { |s| "#{metal_archives.country}-#{s}" }
+
+      groups = groups
+        .or(groups.where(artist_area: { area_type: { name: "Subdivision" }, iso_3166_2: { code: subdivisions } }))
 
       return groups.first.gid if groups.one?
 
