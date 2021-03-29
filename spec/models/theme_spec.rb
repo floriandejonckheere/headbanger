@@ -11,7 +11,7 @@ RSpec.describe Theme do
 
   describe "#description" do
     it "generates a description" do
-      expect(described_class.new(name: "epic_dragon_lore").description).to eq "Epic Dragon Lore"
+      expect(build(:theme, name: "epic_dragon_lore").description).to eq "Epic Dragon Lore"
     end
   end
 end

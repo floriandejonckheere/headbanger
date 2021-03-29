@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :genre, class: "Genre" do
     initialize_with { Genre.find_or_initialize_by(name: name) }
 
-    name { Genre.flat_taxonomy.sample }
+    name { Genre.taxonomy.flatten.compact.sample }
   end
 end

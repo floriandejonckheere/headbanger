@@ -12,16 +12,7 @@ class Theme < ApplicationRecord
             uniqueness: true
 
   def description
-    Theme.description_for(name)
-  end
-
-  def self.name_for(description)
-    description
-      .parameterize(separator: "_")
-  end
-
-  def self.description_for(name)
-    name&.titleize
+    name.titleize
   end
 end
 
