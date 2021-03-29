@@ -44,12 +44,16 @@ module Groups
       }
     end
 
-    def artists
-      metal_archives.artists
-    end
-
     def genres
       metal_archives.genres
+    end
+
+    def themes
+      metal_archives.themes
+    end
+
+    def artists
+      metal_archives.artists
     end
 
     def musicbrainz_key

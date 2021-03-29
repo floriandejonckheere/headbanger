@@ -9,6 +9,7 @@ module Groups
       @full = full
     end
 
+    # rubocop:disable Metrics/AbcSize
     def call
       raise ImportError, "no key available" unless group.metal_archives_key?
 
@@ -26,6 +27,8 @@ module Groups
 
       # Assign associations
       group.genres.replace(genres)
+      group.themes.replace(themes)
+
       group.artists.replace(artists)
 
       # Set synced_at
@@ -33,6 +36,7 @@ module Groups
 
       group
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 
@@ -40,6 +44,12 @@ module Groups
       source
         .genres
         .map { |genre| Genres::Sync.new(genre).call }
+    end
+
+    def themes
+      source
+        .themes
+        .map { |theme| Themes::Sync.new(theme).call }
     end
 
     def artists

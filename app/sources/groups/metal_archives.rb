@@ -37,6 +37,13 @@ module Groups
         .map { |genre| Genre.find_or_initialize_by(name: genre) }
     end
 
+    def themes
+      metal_archives
+        .lyrical_themes
+        .map { |theme| theme.parameterize(separator: "_") }
+        .map { |theme| Theme.find_or_initialize_by(name: theme) }
+    end
+
     def artists
       metal_archives
         .members

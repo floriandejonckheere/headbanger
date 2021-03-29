@@ -18,7 +18,11 @@ RSpec.describe Groups::Sync do
 
     allow(source)
       .to receive(:genres)
-      .and_return ["power"]
+      .and_return ["groups.genre"]
+
+    allow(source)
+      .to receive(:themes)
+      .and_return %w(groups.theme_one groups.theme_two)
 
     allow(source)
       .to receive(:artists)
@@ -91,7 +95,14 @@ RSpec.describe Groups::Sync do
       service.call
 
       expect(group.genres.count).to eq 1
-      expect(group.genres.first.name).to eq "power"
+      expect(group.genres.first.name).to eq "groups.genre"
+    end
+
+    it "associates themes" do
+      service.call
+
+      expect(group.themes.count).to eq 2
+      expect(group.themes.pluck(:name)).to match_array %w(groups.theme_one groups.theme_two)
     end
 
     it "associates artists" do
