@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
-  revision: a9904e564b5d2fdcb0e547ffe5fb57ae95aaa16f
+  revision: 5c0baba8aaf005d03daeaf425d555739d3215603
   specs:
     devise_token_auth (1.1.4)
       bcrypt (~> 3.0)
@@ -181,8 +181,10 @@ GEM
       nokogiri
       zeitwerk
     method_source (1.0.0)
-    mimemagic (0.3.5)
-    mini_mime (1.0.2)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
+    mini_mime (1.0.3)
     mini_portile2 (2.5.0)
     minitest (5.14.4)
     msgpack (1.4.2)
