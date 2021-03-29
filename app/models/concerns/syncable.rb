@@ -14,6 +14,13 @@ module Syncable
     end
   end
 
+  def sync!
+    Headbanger
+      .container
+      .resolve("#{self.class.name.downcase.pluralize}.sync", self)
+      .call
+  end
+
   def synced?
     synced_at.present? && synced_at > Headbanger.config.data_expires_in.ago
   end

@@ -15,6 +15,20 @@ RSpec.shared_examples "it is syncable" do |_model|
     end
   end
 
+  describe "#sync!" do
+    it "calls the sync service" do
+      model = create(described_class.name.underscore)
+
+      service = dinja_mock!("#{described_class.name.downcase.pluralize}.sync", model)
+
+      allow(service).to receive(:call).and_return true
+
+      model.sync!
+
+      expect(service).to have_received(:call)
+    end
+  end
+
   describe "#synced?/#expired?" do
     context "when it has not been synced" do
       before { subject.synced_at = nil }
