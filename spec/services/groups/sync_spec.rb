@@ -17,6 +17,10 @@ RSpec.describe Groups::Sync do
       .and_return name: "groups.name", alt_names: ["groups.alt_names"], description: "groups.description"
 
     allow(source)
+      .to receive(:genres)
+      .and_return ["power"]
+
+    allow(source)
       .to receive(:artists)
       .and_return [build(:artist, name: "artists.name", alt_names: ["artists.alt_names"], description: "artists.description")]
   end
@@ -81,6 +85,13 @@ RSpec.describe Groups::Sync do
         group.reload
         expect(group.synced_at).to be_within(1.second).of Time.zone.now
       end
+    end
+
+    it "associates genres" do
+      service.call
+
+      expect(group.genres.count).to eq 1
+      expect(group.genres.first.name).to eq "power"
     end
 
     it "associates artists" do

@@ -48,6 +48,10 @@ module Groups
       metal_archives.artists
     end
 
+    def genres
+      metal_archives.genres
+    end
+
     def musicbrainz_key
       @musicbrainz_key ||= find_musicbrainz_key
     end

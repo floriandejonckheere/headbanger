@@ -30,6 +30,13 @@ module Groups
       metal_archives.status&.to_s
     end
 
+    def genres
+      metal_archives
+        .genres
+        .map { |genre| genre.parameterize(separator: "_") }
+        .map { |genre| Genre.find_or_initialize_by(name: genre) }
+    end
+
     def artists
       metal_archives
         .members

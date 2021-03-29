@@ -25,6 +25,7 @@ module Groups
       return group unless full
 
       # Assign associations
+      group.genres.replace(genres)
       group.artists.replace(artists)
 
       # Set synced_at
@@ -34,6 +35,12 @@ module Groups
     end
 
     private
+
+    def genres
+      source
+        .genres
+        .map { |genre| Genres::Sync.new(genre).call }
+    end
 
     def artists
       source
