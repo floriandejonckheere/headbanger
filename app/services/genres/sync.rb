@@ -5,7 +5,6 @@ module Genres
     attr_reader :genre, :name
 
     MAPPING = {
-      "melodic_power" => "power",
     }.freeze
 
     def initialize(genre)
