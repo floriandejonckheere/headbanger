@@ -74,3 +74,5 @@ html/
 *.key
 *.pem
 
+# Graph files
+*.dot

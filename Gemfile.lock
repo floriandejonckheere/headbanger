@@ -143,6 +143,7 @@ GEM
       rake
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    graph (2.10.0)
     graphiql-rails (1.7.0)
       railties
       sprockets-rails
@@ -355,6 +356,7 @@ DEPENDENCIES
   factory_bot
   factory_bot_rails
   ffaker
+  graph
   graphiql-rails
   graphql (~> 1.11)
   graphql_devise (~> 0.14)

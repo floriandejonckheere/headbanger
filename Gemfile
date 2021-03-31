@@ -35,6 +35,9 @@ gem "pundit"
 gem "active_brainz", "~> 0.2"
 gem "metal_archives", "~> 3.1"
 
+# Graph visualization
+gem "graph", require: false
+
 # Error reporting
 gem "sentry-rails"
 gem "sentry-ruby"

@@ -4,7 +4,7 @@ MAINTAINER Florian Dejonckheere <florian@floriandejonckheere.be>
 LABEL org.opencontainers.image.source https://github.com/floriandejonckheere/headbanger
 
 ENV RUNTIME_DEPS postgresql openssh
-ENV BUILD_DEPS build-base curl-dev git postgresql-dev
+ENV BUILD_DEPS build-base curl-dev git postgresql-dev graphviz ttf-freefont
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
