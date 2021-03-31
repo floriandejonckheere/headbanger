@@ -12,9 +12,9 @@ class Schema < GraphQL::Schema
         operations: {
           sign_up: Mutations::Auth::SignUp,
           login: Mutations::Auth::SignIn,
-        }
+        },
       ),
-    ]
+    ],
   )
 
   query Types::QueryType
