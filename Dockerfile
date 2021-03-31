@@ -6,8 +6,6 @@ LABEL org.opencontainers.image.source https://github.com/floriandejonckheere/hea
 ENV RUNTIME_DEPS postgresql openssh
 ENV BUILD_DEPS build-base curl-dev git postgresql-dev
 
-ENV BUNDLER_VERSION 2.2.3
-
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 
@@ -26,8 +24,7 @@ RUN adduser -D -u $UID -G $USER -h $APP_HOME/ $USER
 RUN apk add --no-cache $BUILD_DEPS $RUNTIME_DEPS
 
 # Install Bundler
-RUN gem update --system && \
-  gem install bundler --version "$BUNDLER_VERSION" --force
+RUN gem update --system && gem install bundler
 
 # Install Gem dependencies
 ADD Gemfile $APP_HOME/
