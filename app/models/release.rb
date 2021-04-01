@@ -38,6 +38,7 @@ end
 # Table name: releases
 #
 #  id                 :uuid             not null, primary key
+#  description        :string
 #  metal_archives_key :string
 #  musicbrainz_key    :string
 #  name               :string           not null
