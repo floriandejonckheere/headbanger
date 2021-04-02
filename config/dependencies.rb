@@ -35,3 +35,19 @@ end
 register("groups.musicbrainz") do |musicbrainz_key|
   Groups::MusicBrainz.new(musicbrainz_key)
 end
+
+register("releases.sync") do |model, **options|
+  Releases::Sync.new(model, **options)
+end
+
+register("releases.source") do |**args|
+  Releases::Source.new(**args)
+end
+
+register("releases.metal_archives") do |metal_archives_key|
+  Releases::MetalArchives.new(metal_archives_key)
+end
+
+register("releases.musicbrainz") do |musicbrainz_key|
+  Releases::MusicBrainz.new(musicbrainz_key)
+end
