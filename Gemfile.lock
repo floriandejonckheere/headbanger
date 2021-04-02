@@ -23,6 +23,13 @@ GIT
       rspec-rails (>= 3.0.0)
 
 GIT
+  remote: https://github.com/composite-primary-keys/composite_primary_keys.git
+  revision: 17f107092bfa85193f868413e1eaa767feccfe36
+  specs:
+    composite_primary_keys (13.0.0)
+      activerecord (~> 6.1.0)
+
+GIT
   remote: https://github.com/lynndylanhurley/devise_token_auth.git
   revision: 5c0baba8aaf005d03daeaf425d555739d3215603
   specs:
@@ -72,8 +79,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
-    active_brainz (0.3.0)
-      activerecord
+    active_brainz (0.3.1)
+      activerecord (~> 6.1)
+      composite_primary_keys (~> 13)
       pg
       zeitwerk
     activejob (6.1.3.1)
@@ -163,10 +171,10 @@ GEM
     http-form_data (2.3.0)
     http-parser (1.2.3)
       ffi-compiler (>= 1.0, < 2.0)
-    i18n (1.8.9)
+    i18n (1.8.10)
       concurrent-ruby (~> 1.0)
     i18n_data (0.11.0)
-    listen (3.5.0)
+    listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.9.0)
@@ -174,7 +182,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    marcel (1.0.0)
+    marcel (1.0.1)
     metal_archives (3.1.0)
       countries
       http
@@ -344,11 +352,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_brainz (~> 0.2)
+  active_brainz (~> 0.3.1)
   annotate!
   bootsnap (>= 1.4.2)
   byebug
   clockwork!
+  composite_primary_keys!
   countries
   devise
   devise_token_auth!

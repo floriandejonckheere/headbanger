@@ -31,8 +31,11 @@ gem "devise_token_auth", github: "lynndylanhurley/devise_token_auth"
 # Authorization framework
 gem "pundit"
 
+# Needed for active_brainz
+gem "composite_primary_keys", github: "composite-primary-keys/composite_primary_keys"
+
 # Data sources
-gem "active_brainz", "~> 0.2"
+gem "active_brainz", "~> 0.3.1"
 gem "metal_archives", "~> 3.1"
 
 # Graph visualization
