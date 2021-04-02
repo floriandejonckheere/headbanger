@@ -53,10 +53,12 @@ module Groups
     end
 
     def artists
+      # FIXME: use MusicBrainz' artists as well
       metal_archives.artists
     end
 
     def releases
+      # FIXME: use MusicBrainz' releases as well
       metal_archives.releases
     end
 

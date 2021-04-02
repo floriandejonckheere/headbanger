@@ -42,6 +42,17 @@ module Artists
       []
     end
 
+    def releases
+      musicbrainz
+        .artist_credit_names
+        .flat_map do |artist_credit_name|
+        artist_credit_name
+          .artist_credit_name_artist_credit
+          .release_groups
+          .map { |release_group| Release.find_or_initialize_by(musicbrainz_key: release_group.gid) }
+      end
+    end
+
     private
 
     def musicbrainz
