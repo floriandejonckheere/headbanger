@@ -13,11 +13,11 @@ module Releases
     end
 
     def description
-      metal_archives.comment&.sanitize&.squish
+      metal_archives.notes&.sanitize&.squish
     end
 
     def released_at
-      metal_archives.released_at
+      metal_archives.date_released
     end
 
     private
