@@ -183,7 +183,7 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.1)
-    metal_archives (3.1.0)
+    metal_archives (3.1.1)
       countries
       http
       nokogiri
