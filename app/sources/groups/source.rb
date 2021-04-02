@@ -57,7 +57,7 @@ module Groups
     end
 
     def releases
-      metal_archives.releases + musicbrainz.releases
+      metal_archives.releases
     end
 
     def musicbrainz_key
