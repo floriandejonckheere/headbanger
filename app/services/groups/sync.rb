@@ -57,13 +57,13 @@ module Groups
     def artists
       source
         .artists
-        .map { |artist| Artists::Sync.new(artist, full: false).call }
+        .map { |artist| artist.sync!(full: false) }
     end
 
     def releases
       source
         .releases
-        .map { |release| Releases::Sync.new(release, full: false).call }
+        .map { |release| release.sync!(full: false) }
     end
 
     def source

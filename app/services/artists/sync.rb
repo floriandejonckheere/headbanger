@@ -39,7 +39,7 @@ module Artists
     def groups
       source
         .groups
-        .map { |group| Groups::Sync.new(group, full: false).call }
+        .map { |group| group.sync!(full: false) }
     end
 
     def source

@@ -19,7 +19,7 @@ RSpec.shared_examples "it is syncable" do |_model|
     it "calls the sync service" do
       model = create(described_class.name.underscore)
 
-      service = dinja_mock!("#{described_class.name.downcase.pluralize}.sync", model, force: false)
+      service = dinja_mock!("#{described_class.name.downcase.pluralize}.sync", model, any_args)
 
       allow(service).to receive(:call).and_return true
 
