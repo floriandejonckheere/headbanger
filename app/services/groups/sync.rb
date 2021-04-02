@@ -12,7 +12,7 @@ module Groups
 
     # rubocop:disable Metrics/AbcSize
     def call
-      raise ImportError, "no key available" unless group.metal_archives_key?
+      raise ImportError, "no key available: #{group.inspect}" unless group.metal_archives_key?
 
       return group if group.synced? && !force
 

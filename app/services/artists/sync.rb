@@ -11,7 +11,7 @@ module Artists
     end
 
     def call
-      raise ImportError, "no key available" unless artist.metal_archives_key?
+      raise ImportError, "no key available: #{artist.inspect}" unless artist.metal_archives_key?
 
       return artist if artist.synced? && !force
 

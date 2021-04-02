@@ -11,7 +11,7 @@ module Releases
     end
 
     def call
-      raise ImportError, "no key available" unless release.metal_archives_key?
+      raise ImportError, "no key available: #{release.inspect}" unless release.metal_archives_key?
 
       return release if release.synced? && !force
 
