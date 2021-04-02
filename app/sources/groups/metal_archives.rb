@@ -52,6 +52,14 @@ module Groups
         .map { |key| Artist.find_or_initialize_by(metal_archives_key: key) }
     end
 
+    def releases
+      metal_archives
+        .releases
+        .map(&:id)
+        .compact
+        .map { |key| Release.find_or_initialize_by(metal_archives_key: key) }
+    end
+
     private
 
     def metal_archives

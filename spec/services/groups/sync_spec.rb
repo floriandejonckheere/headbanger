@@ -27,6 +27,10 @@ RSpec.describe Groups::Sync do
     allow(source)
       .to receive(:artists)
       .and_return [build(:artist, name: "artists.name", alt_names: ["artists.alt_names"], description: "artists.description")]
+
+    allow(source)
+      .to receive(:releases)
+      .and_return [build(:release, name: "releases.name", description: "releases.description")]
   end
 
   it "raises when no key is present" do
@@ -121,6 +125,13 @@ RSpec.describe Groups::Sync do
 
       expect(group.artists.count).to eq 1
       expect(group.artists.first.name).to eq "artists.name"
+    end
+
+    it "associates releases" do
+      service.call
+
+      expect(group.releases.count).to eq 1
+      expect(group.releases.first.name).to eq "releases.name"
     end
   end
 end

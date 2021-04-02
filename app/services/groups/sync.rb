@@ -31,6 +31,7 @@ module Groups
       group.themes.replace(themes)
 
       group.artists.replace(artists)
+      group.releases.replace(releases)
 
       # Set synced_at
       group.update! synced_at: Time.zone.now
@@ -57,6 +58,12 @@ module Groups
       source
         .artists
         .map { |artist| Artists::Sync.new(artist, full: false).call }
+    end
+
+    def releases
+      source
+        .releases
+        .map { |release| Releases::Sync.new(release, full: false).call }
     end
 
     def source

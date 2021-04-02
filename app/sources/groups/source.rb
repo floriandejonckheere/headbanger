@@ -56,6 +56,10 @@ module Groups
       metal_archives.artists
     end
 
+    def releases
+      metal_archives.releases + musicbrainz.releases
+    end
+
     def musicbrainz_key
       @musicbrainz_key ||= find_musicbrainz_key
     end

@@ -38,6 +38,17 @@ module Groups
       []
     end
 
+    def releases
+      musicbrainz
+        .artist_credit_names
+        .flat_map do |artist_credit_name|
+        artist_credit_name
+          .artist_credit_name_artist_credit
+          .release_groups
+          .map { |release_group| Release.find_or_initialize_by(musicbrainz_key: release_group.gid) }
+      end
+    end
+
     private
 
     def musicbrainz
@@ -45,6 +56,7 @@ module Groups
 
       @musicbrainz ||= ActiveBrainz::Artist
         .includes(:artist_type, :artist_aliases, artist_area: [:area_type, :area_iso_3166_1])
+        .includes(artist_credit_names: { artist_credit_name_artist_credit: :release_groups })
         .where(artist_type: { name: "Group" })
         .find_by!(gid: musicbrainz_key)
     end

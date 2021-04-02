@@ -24,5 +24,5 @@ RSpec.describe Groups::Source do
   it { is_expected.to have_attributes description: /Belgium/ }
   it { is_expected.to have_attributes formed_on: Date.new(2000, 1, 1) }
   it { is_expected.to have_attributes status: "active" }
-  it { is_expected.to have_attributes artists: [] }
+  it { is_expected.to have_attributes artists: [], releases: [] }
 end
