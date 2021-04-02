@@ -24,5 +24,5 @@ RSpec.describe Artists::Source do
   it { is_expected.to have_attributes description: /Belgium/ }
   it { is_expected.to have_attributes born_on: Date.new(2000, 1, 1), died_on: nil }
   it { is_expected.to have_attributes gender: "male" }
-  it { is_expected.to have_attributes groups: [] }
+  it { is_expected.to have_attributes groups: [], releases: [] }
 end

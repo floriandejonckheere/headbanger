@@ -37,5 +37,9 @@ module Artists
     def groups
       []
     end
+
+    def releases
+      []
+    end
   end
 end

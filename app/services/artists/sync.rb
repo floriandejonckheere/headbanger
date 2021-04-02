@@ -10,6 +10,7 @@ module Artists
       @force = force
     end
 
+    # rubocop:disable Metrics/AbcSize
     def call
       raise ImportError, "no key available: #{artist.inspect}" unless artist.metal_archives_key?
 
@@ -27,12 +28,14 @@ module Artists
 
       # Assign associations
       artist.groups.replace(groups)
+      artist.releases.replace(releases)
 
       # Set synced_at
       artist.update! synced_at: Time.zone.now
 
       artist
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 
@@ -40,6 +43,12 @@ module Artists
       source
         .groups
         .map { |group| group.sync!(full: false) }
+    end
+
+    def releases
+      source
+        .releases
+        .map { |release| release.sync!(full: false) }
     end
 
     def source
