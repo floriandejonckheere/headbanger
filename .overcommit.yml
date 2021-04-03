@@ -16,9 +16,33 @@
 # Uncomment the following lines to make the configuration take effect.
 
 PreCommit:
+  Fasterer:
+    enabled: true
+
+  FixMe:
+    enabled: true
+
+  Flay:
+    enabled: true
+
+  Pronto:
+    enabled: true
+
+  RailsBestPractices:
+    enabled: true
+
+  Reek:
+    enabled: true
+
   RuboCop:
     enabled: true
     on_warn: fail # Treat all warnings as failures
+
+  RubyLint:
+    enabled: true
+
+  RubySyntax:
+    enabled: true
 
   TrailingWhitespace:
     enabled: true
