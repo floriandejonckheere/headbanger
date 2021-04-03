@@ -57,13 +57,13 @@ module Groups
     def artists
       source
         .artists
-        .map { |artist| artist.sync!(full: false) }
+        .map { |artist| Headbanger.container.resolve("artists.sync", artist, full: false).call }
     end
 
     def releases
       source
         .releases
-        .map { |release| release.sync!(full: false) }
+        .map { |release| Headbanger.container.resolve("releases.sync", release, full: false).call }
     end
 
     def source

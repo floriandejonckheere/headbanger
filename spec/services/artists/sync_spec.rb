@@ -6,23 +6,27 @@ RSpec.describe Artists::Sync do
   let(:artist) { build(:artist, synced_at: nil) }
 
   before do
-    source = dinja_mock!("artists.source", any_args)
+    allow(Headbanger.container)
+      .to receive(:resolve)
+      .and_call_original
 
-    allow(source)
-      .to receive(:musicbrainz_key)
-      .and_return "artists.musicbrainz_key"
+    allow(Headbanger.container)
+      .to receive(:resolve)
+        .with("artists.source", any_args) { Artists::SourceMock.new }
 
-    allow(source)
-      .to receive(:attributes)
-      .and_return name: "artists.name", alt_names: ["artists.alt_names"], description: "artists.description"
+    allow(Headbanger.container)
+      .to receive(:resolve)
+      .with("groups.sync", any_args) do |_key, group, **_options|
+        instance_double("groups.sync")
+          .tap { |d| allow(d).to receive(:call).and_return group }
+      end
 
-    allow(source)
-      .to receive(:groups)
-      .and_return [build(:group, name: "groups.name", alt_names: ["groups.alt_names"], description: "groups.description")]
-
-    allow(source)
-      .to receive(:releases)
-      .and_return [build(:release, name: "releases.name", description: "releases.description")]
+    allow(Headbanger.container)
+      .to receive(:resolve)
+      .with("releases.sync", any_args) do |_key, release, **_options|
+        instance_double("releases.sync")
+          .tap { |d| allow(d).to receive(:call).and_return release }
+      end
   end
 
   it "raises when no key is present" do

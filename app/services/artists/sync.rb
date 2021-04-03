@@ -42,13 +42,13 @@ module Artists
     def groups
       source
         .groups
-        .map { |group| group.sync!(full: false) }
+        .map { |group| Headbanger.container.resolve("groups.sync", group, full: false).call }
     end
 
     def releases
       source
         .releases
-        .map { |release| release.sync!(full: false) }
+        .map { |release| Headbanger.container.resolve("releases.sync", release, full: false).call }
     end
 
     def source

@@ -6,31 +6,27 @@ RSpec.describe Groups::Sync do
   let(:group) { create(:group, synced_at: nil) }
 
   before do
-    source = dinja_mock!("groups.source", any_args)
+    allow(Headbanger.container)
+      .to receive(:resolve)
+      .and_call_original
 
-    allow(source)
-      .to receive(:musicbrainz_key)
-      .and_return "groups.musicbrainz_key"
+    allow(Headbanger.container)
+      .to receive(:resolve)
+        .with("groups.source", any_args) { Groups::SourceMock.new }
 
-    allow(source)
-      .to receive(:attributes)
-      .and_return name: "groups.name", alt_names: ["groups.alt_names"], description: "groups.description"
+    allow(Headbanger.container)
+      .to receive(:resolve)
+      .with("artists.sync", any_args) do |_key, artist, **_options|
+      instance_double("artists.sync")
+        .tap { |d| allow(d).to receive(:call).and_return artist }
+    end
 
-    allow(source)
-      .to receive(:genres)
-      .and_return [build(:genre, name: "power")]
-
-    allow(source)
-      .to receive(:themes)
-      .and_return [build(:theme, name: "groups.theme_one"), build(:theme, name: "groups.theme_two")]
-
-    allow(source)
-      .to receive(:artists)
-      .and_return [build(:artist, name: "artists.name", alt_names: ["artists.alt_names"], description: "artists.description")]
-
-    allow(source)
-      .to receive(:releases)
-      .and_return [build(:release, name: "releases.name", description: "releases.description")]
+    allow(Headbanger.container)
+      .to receive(:resolve)
+      .with("releases.sync", any_args) do |_key, release, **_options|
+      instance_double("releases.sync")
+        .tap { |d| allow(d).to receive(:call).and_return release }
+    end
   end
 
   it "raises when no key is present" do
@@ -116,8 +112,8 @@ RSpec.describe Groups::Sync do
     it "associates themes" do
       service.call
 
-      expect(group.themes.count).to eq 2
-      expect(group.themes.pluck(:name)).to match_array %w(groups.theme_one groups.theme_two)
+      expect(group.themes.count).to eq 1
+      expect(group.themes.pluck(:name)).to match_array %w(groups.theme)
     end
 
     it "associates artists" do

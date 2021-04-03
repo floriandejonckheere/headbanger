@@ -6,15 +6,27 @@ RSpec.describe Releases::Sync do
   let(:release) { create(:release, synced_at: nil) }
 
   before do
-    source = dinja_mock!("releases.source", any_args)
+    allow(Headbanger.container)
+      .to receive(:resolve)
+      .and_call_original
 
-    allow(source)
-      .to receive(:musicbrainz_key)
-      .and_return "releases.musicbrainz_key"
+    allow(Headbanger.container)
+      .to receive(:resolve)
+        .with("releases.source", any_args) { Releases::SourceMock.new }
 
-    allow(source)
-      .to receive(:attributes)
-      .and_return name: "releases.name", description: "releases.description", released_at: Date.new(2000, 1, 1)
+    allow(Headbanger.container)
+      .to receive(:resolve)
+      .with("artists.sync", any_args) do |_key, artist, **_options|
+      instance_double("artists.sync")
+        .tap { |d| allow(d).to receive(:call).and_return artist }
+    end
+
+    allow(Headbanger.container)
+      .to receive(:resolve)
+      .with("groups.sync", any_args) do |_key, group, **_options|
+      instance_double("groups.sync")
+        .tap { |d| allow(d).to receive(:call).and_return group }
+    end
   end
 
   it "raises when no key is present" do
