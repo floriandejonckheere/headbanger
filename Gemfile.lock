@@ -183,7 +183,7 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.1)
-    metal_archives (3.1.1)
+    metal_archives (3.2.0)
       countries
       http
       nokogiri
@@ -370,7 +370,7 @@ DEPENDENCIES
   graphql (~> 1.11)
   graphql_devise (~> 0.14)
   listen
-  metal_archives (~> 3.1)
+  metal_archives (~> 3.2)
   pg (>= 0.18, < 2.0)
   pg_search
   puma (~> 5.1)

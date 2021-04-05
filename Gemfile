@@ -36,7 +36,7 @@ gem "composite_primary_keys", github: "composite-primary-keys/composite_primary_
 
 # Data sources
 gem "active_brainz", "~> 0.3.1"
-gem "metal_archives", "~> 3.1"
+gem "metal_archives", "~> 3.2"
 
 # Graph visualization
 gem "graph", require: false
