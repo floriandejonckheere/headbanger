@@ -47,7 +47,7 @@ gem "sentry-ruby"
 gem "sentry-sidekiq"
 
 # GraphQL API
-gem "graphql", "~> 1.11"
+gem "graphql", "~> 1.12"
 gem "graphql_devise", "~> 0.14"
 
 # Full-text searching in Postgres

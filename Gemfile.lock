@@ -155,7 +155,7 @@ GEM
     graphiql-rails (1.7.0)
       railties
       sprockets-rails
-    graphql (1.12.6)
+    graphql (1.12.8)
     graphql_devise (0.14.2)
       devise_token_auth (>= 0.1.43, < 2.0)
       graphql (>= 1.8, < 1.13.0)
@@ -367,7 +367,7 @@ DEPENDENCIES
   ffaker
   graph
   graphiql-rails
-  graphql (~> 1.11)
+  graphql (~> 1.12)
   graphql_devise (~> 0.14)
   listen
   metal_archives (~> 3.1)
