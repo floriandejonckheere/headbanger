@@ -27,7 +27,7 @@ jobs:
           wait-interval: 20
 
       - name: Merge pull request
-        uses: actions/github-script@v3.1
+        uses: actions/github-script@v4.0.1
         with:
           script: |
             github.pullRequests.createReview({
