@@ -15,7 +15,7 @@
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-link-context": "^1.0.20",
     "apollo-link-error": "^1.1.13",
-    "core-js": "^3.6.4",
+    "core-js": "^3.11.0",
     "countries-list": "^2.5.4",
     "debounce": "^1.2.0",
     "uikit": "^3.5.8",
