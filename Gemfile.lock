@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/composite-primary-keys/composite_primary_keys.git
-  revision: 17f107092bfa85193f868413e1eaa767feccfe36
+  revision: 7bd0fdbe2251f0493a255288b883a0c34f7d82fd
   specs:
     composite_primary_keys (13.0.0)
       activerecord (~> 6.1.0)
