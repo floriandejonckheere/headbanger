@@ -44,7 +44,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-vue": "^7.1.0",
     "graphql-tag": "^2.9.0",
-    "sass": "^1.27.0",
+    "sass": "^1.34.0",
     "sass-loader": "^10.0.4",
     "vue-cli-plugin-uikit": "^1.0.15",
     "vue-template-compiler": "^2.6.11"
